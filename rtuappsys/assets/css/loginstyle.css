@@ -1,0 +1,372 @@
+body {
+  background-color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+@font-face {
+  font-family: 'Product Sans';
+  font-style: normal;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+@font-face {
+font-family: 'Tw Cen MT';
+src: url('tw.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+
+
+/*The blue and yellow top design*/
+.header img {
+  width: 100%;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+.logoheader {
+  margin: 1.5%;
+}
+
+.logoheader img {
+  width: 10%;
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    z-index: -1;
+    position: relative;
+}
+/*Blue line*/
+.footer img {
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+}
+/*Copyright*/
+.footer p {
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  font-family: Century Gothic;
+  font-size: 0.8vw;
+  text-align: center;
+  color: #A6A6A6;
+}
+/*Shapes*/
+.div2 img {
+  width: 20%;
+  z-index: -1;
+  max-width: 120px;
+  margin-left: 1%;
+  position: fixed;
+  bottom: 7%;
+}
+.frontgp img {
+  width: 45vw;
+  z-index: -1;
+  right: 0;
+  top: 134px;
+  position: absolute;
+  display: block;
+}
+/*RTU App..*/
+.p1{
+	padding-top: 2%;
+  margin-bottom: 0;
+	line-height:1.0;
+	margin-left :180px ;
+	color: #0F49AC;
+	font-size: 50px;
+	font-family: Product Sans;
+}
+/*Welcome to Rizal Tech..*/
+.p2{
+  margin-left :180px ;
+  margin-bottom: 0px;
+	color:#7E6300;
+	font-size: 20px;
+  font-family: Product Sans;
+}
+/*Submit Feedback..*/
+.p3{
+	position: absolute;
+	margin-left : 285px ;
+  margin-bottom: 500px;
+	color: #0070C0;
+	font-size: 14px;
+  font-family: Tw Cen MT;
+}
+/*Hi Guest*/
+.p4{
+  text-align: center;
+  color:#E6B500;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*Make an appointment today...*/
+.p5{
+  color:#002060;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+    
+}
+/*Make an Appointment*/
+.dropbtn {
+  background-color: #D2E9F7 ;
+  color: #002060;
+  width:200px;
+  border-radius: 25px;
+  padding: 16px;
+  font-size: 13px;
+  font-family: "Tw Cen MT";
+  border: none;
+  cursor: pointer;
+  margin-left :250px ;
+  margin-bottom: 5px;
+  margin-top: 50px;
+  -moz-box-shadow: 10px 10px 5px #999999;
+  -webkit-box-shadow: 10px 10px 5px #999999;
+  box-shadow: 10px 5px 5px #999999;
+    
+}
+
+.dropbtn::after {
+  content: "";
+  background: url("../img/arrow.svg");
+  background-size: 15px;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 20px;
+  right: 20px;
+  top: 66px;
+  bottom: 0;
+  transition: all 0.4s;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+ display: none;
+  position: absolute;
+  background-color: white;
+  border: 2px solid #D2E9F7 ;
+  border-radius: 25px;
+  max-width: 200px;
+  max-height: 150px;
+  margin-left :250px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 25px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #ebedea;
+    
+}
+
+.dropbtn1{
+  background-color: #D2E9F7 ;
+  color: #002060;
+  width:170px;
+  border-radius: 25px;
+  padding: 15px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-left: 250px;
+  -moz-box-shadow: 10px 10px 5px #999999;
+  -webkit-box-shadow: 10px 10px 5px #999999;
+  box-shadow: 10px 5px 5px #999999;
+    
+}
+.dropbtn1:hover {
+  background-color: #ebedea;
+  }
+
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 60%;
+  font-size: 12px;
+  font-family: "Tw Cen MT";
+  margin: fixed;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: inline-block;
+  border: none;
+  box-sizing: border-box;
+  background-color: #E8E8E8;
+}
+
+/* Buttons for student,guest,employee */
+button {
+  background-color: white;
+  color: #002060;
+  padding: 14px 40px;
+  margin: 5px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  min-width: 180px;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #ebedea;
+}
+/*Proceed button*/
+ .button1 {
+  display: block;
+  margin: 0 auto;
+  background-color: #002060;
+  font-family: Arial;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  width: 80px;
+  padding: 10px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.button1:hover {
+  background-color: #00153E;
+}
+
+/*View Appointment button*/
+.button2 {
+  background-color: transparent;
+  color: #002060;
+  font-family: "Tw Cen MT";
+  font-size: 13px;
+  margin: 0px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+}
+
+
+
+/* Center the image and position  */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 18%;
+  border-radius: 50%;
+
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+} 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+  text-align: center;
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 27%; /* Could be more or less, depending on screen size */
+  border-radius:50px; /*1*/
+  border: double .3em transparent; /*thickness of border*/
+  background-image: linear-gradient(#F5F5F5, #F5F5F5), 
+                    linear-gradient(to top left, #FFCB0D, #002060);
+  background-origin: border-box;
+  background-clip: content-box, border-box
+}
+
+
+/* The Close Button (x) */
+
+.close {
+  position: absolute;
+  left: 320px;
+  top: 0;
+  color: #002060;
+  font-size: 25px;
+  font-weight: bolder;
+}
+.close:hover,
+.close:focus {
+  color: #FFCB0D;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom .5s;
+  animation: animatezoom 0.5s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+
+    
+}
+

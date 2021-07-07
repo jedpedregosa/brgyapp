@@ -1,0 +1,171 @@
+/* Used Fonts */
+
+@font-face {
+    font-family: Product Sans;
+    font-style: normal;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: Tw Cen MT;
+    src: url('tw.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Office Name DIv */
+
+.rightLine2 {
+    padding-left: 10px;
+}
+
+.line2:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* OFFICE NAMES Dropdown CSS */
+
+.container2 {
+    padding: none;
+}
+
+.select-box2 {
+    display: inline-block;
+    width: 311.2px;
+    position: relative;
+    z-index: 1;
+    top: 50px;
+}
+
+.select-box2 .options-container2 {
+    background: #F5F5F5;
+    font-family: Tw Cen MT;
+    color: #767171;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+    order: 1;
+}
+
+.selected2 {
+    background: #F5F5F5;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #AFABAB;
+    font-family: Tw Cen MT;
+    font-size: 16px;
+    height: 40px;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    order: 0;
+}
+
+.selected2::after {
+    content: "";
+    background: url("../Images/arrow.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 5px;
+    top: 10px;
+    transition: all 0.4s;
+}
+
+.select-box2 .options-container2.active {
+    max-height: 150px;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.select-box2 .options-container2.active+.selected2::after {
+    transform: rotateX(180deg);
+    top: -10px;
+}
+
+.select-box2 .options-container2::-webkit-scrollbar {
+    width: 8px;
+    background: #DAE3F3;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box2 .options-container2::-webkit-scrollbar-thumb {
+    background: #767171;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box2 .option2,
+.selected2 {
+    padding: 12px 15px;
+    cursor: pointer;
+}
+
+.select-box2 .option2:hover {
+    background: #DAE3F3;
+}
+
+.select-box2 label {
+    cursor: pointer;
+}
+
+.select-box2 .option2 .radio2 {
+    display: none;
+}
+
+
+/* Submit Button */
+
+.form input[type=submit] {
+    height: 30px;
+    border-radius: 50px;
+    border: none;
+    background-color: #1E90FF;
+    font-family: Tw Cen MT;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+
+/* Submit Button Hover */
+
+.form input[type=submit]:hover {
+    background-color: #002060;
+    color: #F5F5F5;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+/* Submit Button Div */
+
+.submit {
+    padding-top: 29px;
+    text-align: center;
+}
+
+
+/* Input Fields and Textarea Outline */
+
+input:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #40E0D0;
+}
