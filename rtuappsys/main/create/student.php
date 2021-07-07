@@ -20,20 +20,20 @@
         <div class="progress-bar">
             <div class="step">
                 <div class="bullet">
-                    <span><img src="Images/app_info_icon_fullwhite.png" title="Location and Purpose"></span>
+                    <span><img src="../../assets/img/app_info_icon_fullwhite.png" title="Location and Purpose"></span>
                 </div>
                 <div class="check fas fa-check"></div>
             </div>
             <div class="step">
                 <div class="bullet">
-                    <span><img src="Images/date_time.png" title="Date and Time"></span>
+                    <span><img src="../../assets/img/date_time.png" title="Date and Time"></span>
                 </div>
                 <div class="check fas fa-check"></div>
             </div>
 
             <div class="step">
                 <div class="bullet">
-                    <span><img src="Images/confirm.png" title="Confirmation"></span>
+                    <span><img src="../../assets/img/confirm.png" title="Confirmation"></span>
                 </div>
                 <div class="check fas fa-check"></div>
             </div>
