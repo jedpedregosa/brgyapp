@@ -12,11 +12,38 @@ const bullet = document.querySelectorAll(".step .bullet");
 let current = 1;
 
 nextBtnFirst.addEventListener("click", function(event) {
-    event.preventDefault();
-    slidePage.style.marginLeft = "-25%";
-    bullet[current - 1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    current += 1;
+    //event.preventDefault();
+    //slidePage.style.marginLeft = "-25%";
+    //bullet[current - 1].classList.add("active");
+    //progressCheck[current - 1].classList.add("active");
+    //current += 1;
+        var lname = $('#last-name').val();
+		var fname = $('#first-name').val();
+		var email = $('#email-address').val();
+		var phone = $('#contact-number').val();
+		if(lname!="" && fname!="" && phone!="" && email!=""){
+			$.ajax({
+				url: "../../includes/ajaxtest.php",
+				type: "POST",
+				data: {
+					lname: lname,
+					email: email,
+					phone: phone,
+					fname: fname				
+				},
+				cache: false,
+				success: function(dataResult){
+
+					var dataResult = JSON.parse(dataResult);
+					if(dataResult.statusCode==200){
+                        alert("EWAN");
+					}
+					else if(dataResult.statusCode==201){
+					   alert("Error occured !");
+					}
+				}
+			});
+		}
 });
 nextBtnSec.addEventListener("click", function(event) {
     event.preventDefault();

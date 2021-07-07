@@ -1,6 +1,7 @@
 <html>
 <body>
 <?php
+
 ?>
 <html lang = "en">
    <head>
@@ -51,7 +52,7 @@
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
+  <form class="modal-content animate" action="create/student.php" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -67,7 +68,7 @@
         <label for="ln"><b></b></label>
         <input type="text" placeholder="Last Name" name="psw" required>
     
-        <div class="button1">Proceed</div>
+        <input type = "submit" class="button1" value = "Proceed">
  
     </div>
   </form>

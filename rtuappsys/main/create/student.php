@@ -1,3 +1,14 @@
+<?php 
+    // Check if accessed from appointment.php
+    if(!(isset($_POST["uname"]) && isset($_POST["psw"]))) {
+        header("Location: ../appointment.php"); 
+    }
+
+    // Initialization
+    $studno = $_POST["uname"];
+    $lname = $_POST["psw"];
+?>
+
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
@@ -7,6 +18,7 @@
     <title>Make an Appointment</title>
     <link rel="stylesheet" href="../../assets/css/AppointmentStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -103,15 +115,15 @@
                             <div class="informationForm">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <input type="text" id="student-number" class="student-number" placeholder="Student Number">
+                                        <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($studno); ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="first-name" class="first-name" placeholder="First Name ">
+                                        <input type="text" id="first-name" class="first-name" placeholder="First Name">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name">
+                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($lname)?>">
                                     </div>
                                 </div>
                                 <br>
@@ -211,7 +223,7 @@
                             </div>
                         </div>
                     </div>
-                    <script src="JS/cal_script.js"></script>
+                    <script src="../../assets/js/cal_script.js"></script>
 
                     <!-- DATE AND TIME PAGE BUTTONS -->
                     <div class="PageNameAndButtons">
@@ -294,11 +306,11 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <img src="Images/footer.png">
+        <img src="../../assets/img/footer.png">
     </div>
 
     <!-- JAVASCRIPTS USED -->
-    <script src="JS/AppointmentScript.js"></script>
+    <script src="../../assets/js/AppointmentScript.js"></script>
 </body>
 
 </html>
