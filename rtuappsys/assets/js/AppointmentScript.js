@@ -36,7 +36,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 
 					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
-                        alert("EWAN");
+                        alert("EWAN")
 					}
 					else if(dataResult.statusCode==201){
 					   alert("Error occured !");
