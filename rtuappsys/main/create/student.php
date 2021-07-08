@@ -70,16 +70,16 @@
                             </select>
                             </div><br><br>
                             <div class="container-office">
-                                <select style="width: 150px;">
+                                <select style="width: 150px;" id = "branch">
                                 <option value="" disabled selected hidden>RTU Branch</option>
-                                <option value="Boni">Boni</option>
-                                <option value="Pasig">Pasig</option>
+                                <option value="Boni Campus">Boni</option>
+                                <option value="Pasig Campus">Pasig</option>
                             </select>
                             </div>
                             <br><br>
                             <div class="container-purpose">
                                 <br>
-                                <textarea placeholder="State your purpose here..." required></textarea>
+                                <textarea placeholder="State your purpose here..." id = "purpose" required></textarea>
                             </div>
                             <div class="informationForm">
                                 <div class="form-row">
@@ -129,7 +129,10 @@
                 <!-- DATE AND TIME PAGE -->
                 <div class="page">
                     <!-- important -->
-
+                    <div class="alert alert-danger alert-dismissible" id = "alertSelectSched" style = "display: none;">
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Select your appointment schedule!</strong> Please select a schedule.
+                    </div>
                     <!-- Put here your codes -->
                     <div class="left_text"><b>SELECT DATE & TIME <font style color="#ffd22d">*</font></b></div>
                     <div class="right_text"><b><font style color="#00b050">AVAILABLE</font>&nbsp;&nbsp;&nbsp;<font style color="#ff0000">FULLY BOOKED</b></font>
@@ -190,6 +193,7 @@
                             <div>
                                 <input type="button" id = "TMLSLOT-13" name="btn13" value="02:00 PM" onclick = "load_timeslot(this.id)"/>
                                 <input type="button" id = "TMLSLOT-14" name="btn14" value="02:30 PM" onclick = "load_timeslot(this.id)"/> 
+                                <input type="button" id = "TMLSLOT-15" name="btn15" value="03:00 PM" onclick = "load_timeslot(this.id)"/> 
                             </div>
                         </div>
                     </div>
@@ -219,13 +223,13 @@
 
                         <div class="div1">
                             <b>Student Number&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
-                            <!-- Put here the inputted value --><br>
+                            <span id = "resStudno"></span><br>
                             <b>FULLNAME&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; :</b>&nbsp;
-                            <!-- Put here the inputted value --><br>
+                            <span id = "resFname"></span><br>
                             <b>CONTACT NUMBER&emsp;&ensp; :</b>&nbsp;
-                            <!-- Put here the inputted value --><br>
+                            <span id = "resContact"></span><br>
                             <b>Email Address :</b>&nbsp;
-                            <!-- Put here the inputted value --><br>
+                            <span id = "resEmail"></span><br>
                         </div>
 
                         <!-- Put here the inputted appointment information -->
@@ -234,19 +238,19 @@
                         <div class="div2">
                             <div class="column left">
                                 <b>RTU BRANCH&emsp;&ensp;&ensp;:</b>&nbsp;
-                                <!-- Put here the inputted value --><br>
+                                <span id = "resBranch"></span><br>
                                 <b>OFFICE NAME&emsp;&ensp; :</b>&nbsp;
-                                <!-- Put here the inputted value --><br>
+                                <span id = "resOffice"></span><br>
                                 <b>GOVERNMENT ID :</b>&nbsp;
-                                <!-- Put here the inputted value -->
+                                <span id = "resGovId"></span>
                             </div>
                             <div class="column right">
                                 <b>DATE&emsp;&emsp;&ensp;:</b>&nbsp;
-                                <!-- Put here the inputted value --><br>
+                                <span id = "resDate"></span><br>
                                 <b>TIME&emsp;&emsp;&ensp; :</b>&nbsp;
-                                <!-- Put here the inputted value --><br>
+                                <span id = "resTime"></span><br>
                                 <b>PURPOSE&nbsp;:</b>&nbsp;
-                                <!-- Put here the inputted value --><br>
+                                <span id = "resPurpose"></span><br>
                             </div>
                         </div>
 

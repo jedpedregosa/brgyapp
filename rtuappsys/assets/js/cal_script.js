@@ -1,12 +1,14 @@
-var date = new Date();
+var date = new Date(getServerTime());
+
+function getServerTime() {
+	return $.ajax({async: false}).getResponseHeader( 'Date' );
+}
 
 function setSlctdDate(dateID) {
 	var txtDate = document.getElementById("slctdDate");
 	txtDate.text = dateID;
-	alert(txtDate.text);
 }
 	const renderCalendar = () => {
-		//var date = HoldDate;
 		date.setDate(1);
 
 		var slctyear = date.getFullYear().toString().substr(-2);
@@ -50,7 +52,7 @@ function setSlctdDate(dateID) {
 		}
 
 		for(let i=1; i<=lastDay; i++){
-			if(i===new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() == new Date().getFullYear()) {
+			if(i===new Date(getServerTime()).getDate() && date.getMonth() === new Date(getServerTime()).getMonth() && date.getFullYear() == new Date(getServerTime()).getFullYear()) {
 
 				days += `<div class="today"><input type="radio" name="day" id="${i}" value="${slctyear + slctmonth + i}" onclick = "setSlctdDate(${slctyear + slctmonth + i})">
 				<label for="${i}">${i}</label></div>`;

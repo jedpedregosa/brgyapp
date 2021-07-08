@@ -2,6 +2,7 @@
 
 // Intialization
 var slctTimeSlt = null;
+var slctDate = null;
 
 const slidePage = document.querySelector(".slide-page"); // important for flipping next
 const nextBtnFirst = document.querySelector(".firstNext"); // first next button
@@ -52,11 +53,38 @@ nextBtnFirst.addEventListener("click", function(event) {
 		}
 });
 nextBtnSec.addEventListener("click", function(event) {
-    event.preventDefault();
-    slidePage.style.marginLeft = "-50%";
-    bullet[current - 1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    current += 1;
+    slctDate = slctdDate.text;
+    if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
+        var alertDate = document.getElementById('alertSelectSched');
+        alertDate.style.display = 'block';
+    } else {
+        var officeId = document.getElementById('Office').value;
+        var branch = document.getElementById('branch').value;
+        var studNo = document.getElementById('student-number').value;
+        var fName = document.getElementById('first-name').value;
+        var lName = document.getElementById('last-name').value;
+        var contact = document.getElementById('contact-number').value;
+        var email = document.getElementById('email-address').value;
+        var govID = document.getElementById('government-ID').value;
+        var purpose = document.getElementById('purpose').value;
+
+        document.getElementById('resStudno').innerHTML = studNo;
+        document.getElementById('resFname').innerHTML = lName + " " + fName;
+        document.getElementById('resContact').innerHTML = contact;
+        document.getElementById('resEmail').innerHTML = email;
+        document.getElementById('resBranch').innerHTML = branch;
+        document.getElementById('resGovId').innerHTML = govID;
+        document.getElementById('resDate').innerHTML = slctDate;
+        document.getElementById('resTime').innerHTML = slctTimeSlt;
+        document.getElementById('resOffice').innerHTML = officeId;
+        document.getElementById('resPurpose').innerHTML = purpose;
+        
+        event.preventDefault();
+        slidePage.style.marginLeft = "-50%";
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        current += 1;
+    }
 });
 
 submitBtn.addEventListener("click", function() {
