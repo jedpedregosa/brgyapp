@@ -1,4 +1,8 @@
 // RTU APPOINTMENT SYSTEM
+
+// Intialization
+var slctTimeSlt = null;
+
 const slidePage = document.querySelector(".slide-page"); // important for flipping next
 const nextBtnFirst = document.querySelector(".firstNext"); // first next button
 const prevBtnSec = document.querySelector(".prev-1"); // calendar previous button
@@ -41,7 +45,7 @@ nextBtnFirst.addEventListener("click", function(event) {
                         current += 1;
 					}
 					else if(dataResult.statusCode==201){
-					   alert("Error occured !"); // Error Page: DB Failure
+					   alert("Error occured !"); // Error Page
 					}
 				}
 			});
@@ -74,3 +78,13 @@ prevBtnThird.addEventListener("click", function(event) {
     progressCheck[current - 2].classList.remove("active");
     current -= 1;
 });
+
+// Fuctions
+
+function load_timeslot(tmslot) {
+    if(slctTimeSlt == tmslot) {
+        slctTimeSlt = null;
+    } else {
+        slctTimeSlt = tmslot;
+    }
+}

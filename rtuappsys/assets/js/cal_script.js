@@ -1,8 +1,16 @@
-const date = new Date();
+var date = new Date();
 
+function setSlctdDate(dateID) {
+	var txtDate = document.getElementById("slctdDate");
+	txtDate.text = dateID;
+	alert(txtDate.text);
+}
 	const renderCalendar = () => {
-
+		//var date = HoldDate;
 		date.setDate(1);
+
+		var slctyear = date.getFullYear().toString().substr(-2);
+		var slctmonth = date.getMonth() + 1;
 
 		const monthDays = document.querySelector(".days");
 
@@ -43,10 +51,11 @@ const date = new Date();
 
 		for(let i=1; i<=lastDay; i++){
 			if(i===new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() == new Date().getFullYear()) {
-				days += `<div class="today"><input type="radio" name="day" id="${i}" value="${i}">
+
+				days += `<div class="today"><input type="radio" name="day" id="${i}" value="${slctyear + slctmonth + i}" onclick = "setSlctdDate(${slctyear + slctmonth + i})">
 				<label for="${i}">${i}</label></div>`;
 			} else {
-			days += `<input type="radio" name="day" class="select_day" id="button${i}" value="${i}">
+			days += `<input type="radio" name="day" class="select_day" id="button${i}" value="${slctyear + slctmonth + i}" onclick = "setSlctdDate(${slctyear + slctmonth + i})">
 			<label for="button${i}">${i}</label>`;
 			}
 		}
@@ -58,7 +67,8 @@ const date = new Date();
 	}
 
 document.querySelector('.controls .prev_btn').addEventListener('click',()=>{
-
+	date.setMonth(date.getMonth()-1);
+	renderCalendar();
 });
 
 document.querySelector('.controls .next_btn').addEventListener('click',()=>{
@@ -67,3 +77,4 @@ document.querySelector('.controls .next_btn').addEventListener('click',()=>{
 });
 
 renderCalendar();
+
