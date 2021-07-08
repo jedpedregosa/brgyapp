@@ -10,10 +10,15 @@
 
     $visitorID = "VSTOR-" . createVisitorId();
 
-	$sql = "INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email)
-    VALUES ('$visitorID','$lname','$fname','$phone','$email')";
+	$stmt = $conn -> prepare("INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email)
+    VALUES (:id, :lname, :fname, :phone, :email)");
+	$stmt-> bindParam(':id', $visitorID);
+	$stmt-> bindParam(':lname', $lname);
+	$stmt-> bindParam(':fname', $fname);
+	$stmt-> bindParam(':phone', $phone);
+	$stmt-> bindParam(':email', $email);
 	
-    if ($conn -> query($sql) == TRUE) {
+    if ($stmt->execute()) {
 		echo json_encode(array("statusCode"=>200));
 	} 
 	else {

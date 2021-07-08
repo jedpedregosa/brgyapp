@@ -58,8 +58,7 @@ const date = new Date();
 	}
 
 document.querySelector('.controls .prev_btn').addEventListener('click',()=>{
-	date.setMonth(date.getMonth()-1);
-	renderCalendar();
+
 });
 
 document.querySelector('.controls .next_btn').addEventListener('click',()=>{

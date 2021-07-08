@@ -63,41 +63,10 @@
                             <div class="container-office">
                                 <select name="Office" id="Office" class="Office">
                                 <option value="" disabled selected hidden>Office</option>
-                                <option value="Curriculum and Instructional Resources Development Center">Curriculum and Instructional Resources Development Center</option>
-                                <option value="Alumni Relations and Placement Office">Alumni Relations and Placement Office</option>
-                                <option value="Disaster Risk Protection Office">Disaster Risk Protection Office</option>
-                                <option value="University Data Protection Office">University Data Protection Office</option>
-                                <option value="Internal Audit Services Center">Internal Audit Services Center</option>
-                                <option value="International Linkages and External Center">International Linkages and External Center</option>
-                                <option value="Quality Management System Center">Quality Management System Center</option>
-                                <option value="Legal Affairs Office">Legal Affairs Office</option>
-                                <option value="Sports Development and Wellness Center">Sports Development and Wellness Center</option>
-                                <option value="University Planning Center">University Planning Center</option>
-                                <option value="Graduate School">Graduate School</option>
-                                <option value="College of Arts and Sciences">College of Arts and Sciences</option>
-                                <option value="College of Engineering, Architecture and Technology">College of Engineering, Architecture and Technology</option>
-                                <option value="College of Business and Entrepreneurial Technology">College of Business and Entrepreneurial Technology</option>
-                                <option value="College of Education">College of Education</option>
-                                <option value="Institute of Physical Education">Institute of Physical Education</option>
-                                <option value="Senior High School">Senior High School</option>                            <option value="Cooperative Education Center">Cooperative Education Center</option>
-                                <option value="Review Center">Review Center</option>
-                                <option value="Student Records and Admission Center">Student Records and Admission Center</option>
-                                <option value="Guidance Services Center">Guidance Services Center</option>
-                                <option value="Medical and Dental Services Center">Medical and Dental Services Center</option>
-                                <option value="Center for National Service Training">Center for National Service Training</option>
-                                <option value="Center for Student Affairs">Center for Student Affairs</option>
-                                <option value="Scholarship and Grant Office">Scholarship and Grant Office</option>
-                                <option value="Auxiliary Services Center">Auxiliary Services Center</option>
-                                <option value="University Learning Resource Center">University Learning Resource Center</option>
-                                <option value="Cultural Affairs Center">Cultural Affairs Center</option>
-                                <option value="Administrative Services Center">Administrative Services Center</option>
-                                <option value="Financial Services Center">Financial Services Center</option>
-                                <option value="Human Resource Development Center">Human Resource Development Center</option>
-                                <option value="Management Information Center">Management Information Center</option>
-                                <option value="Extension and Community Services Center">Extension and Community Services Center</option>
-                                <option value="Gender Studies and Development Center">Gender Studies and Development Center</option>
-                                <option value="Intellectual Property Management Center">Intellectual Property Management Center</option>
-                                <option value="Research and Development Center">Research and Development Center</option>
+                                <option value="O01">Curriculum and Instructional Resources Development Center</option>
+                                <option value="O02">Alumni Relations and Placement Office</option>
+                                <option value="O03">Disaster Risk Protection Office</option>
+                                <option value="O04">University Data Protection Office</option>
                             </select>
                             </div><br><br>
                             <div class="container-office">
@@ -110,16 +79,16 @@
                             <br><br>
                             <div class="container-purpose">
                                 <br>
-                                <textarea placeholder="State your purpose here..."></textarea>
+                                <textarea placeholder="State your purpose here..." required></textarea>
                             </div>
                             <div class="informationForm">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($studno); ?>">
+                                        <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($studno); ?>" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="first-name" class="first-name" placeholder="First Name">
+                                        <input type="text" id="first-name" class="first-name" placeholder="First Name" required>
                                     </div>
 
                                     <div class="form-group">
