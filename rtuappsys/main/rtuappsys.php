@@ -52,7 +52,7 @@
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="create/student.php" method="post">
+  <form class="modal-content animate" action="create/appointment.php?type=student" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -64,9 +64,9 @@
 
         <div class="container">
         <label for="studno"><b></b></label>
-        <input type="text" placeholder="Student Number" name="uname" required>
+        <input type="text" placeholder="Student Number" name="studentNum" required>
         <label for="ln"><b></b></label>
-        <input type="text" placeholder="Last Name" name="psw" required>
+        <input type="text" placeholder="Last Name" name="sLname" required>
     
         <input type = "submit" class="button1" value = "Proceed">
  
@@ -75,7 +75,7 @@
 </div>
       <div id="id02" class="modal">
         
-        <form class="modal-content animate" action="/action_page.php" method="post">
+        <form class="modal-content animate" action="create/appointment.php?type=employee" method="post">
           <div class="imgcontainer">
             <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
             <img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -85,19 +85,19 @@
 
           <div class="container">
             <label for="empno"><b></b></label>
-            <input type="text" placeholder="Employee Number" name="empno" required>
+            <input type="text" placeholder="Employee Number" name="empNum" required>
 
             <label for="ln"><b></b></label>
-            <input type="text" placeholder="Last Name" name="ln" required>
+            <input type="text" placeholder="Last Name" name="eLname" required>
             
-            <div class="button1">Proceed</div>
+            <input type = "submit" class="button1" value = "Proceed">
           </div>
      </form>
 </div>
 
         <div id="id03" class="modal">
           
-          <form class="modal-content animate" action="/action_page.php" method="post">
+          <form class="modal-content animate" action="create/appointment.php?type=guest" method="post">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
               <img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -110,9 +110,9 @@
               <input type="text" placeholder="Email" name="email" required>
 
               <label for="ln"><b></b></label>
-              <input type="text" placeholder="Last Name" name="ln" required>
+              <input type="text" placeholder="Last Name" name="gLname" required>
                 
-            <div class="button1">Proceed</div>
+              <input type = "submit" class="button1" value = "Proceed">
          
             </div>
           </form>

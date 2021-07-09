@@ -1,12 +1,41 @@
 <?php 
-    // Check if accessed from appointment.php
-    if(!(isset($_POST["uname"]) && isset($_POST["psw"]))) {
-        header("Location: ../appointment.php"); 
-    }
 
+    // Check if accessed from rtuappsys.php
+    if(isset($_GET["type"])) {
+        if(isset($_POST["studentNum"]) && isset($_POST["sLname"])) { 
+        } else if(isset($_POST["empNum"]) && isset($_POST["eLname"])) { 
+        } else if(isset($_POST["email"]) && isset($_POST["gLname"])) { 
+        } else {
+            header("Location: ../rtuappsys.php");
+        }
+    } else {
+        header("Location: ../rtuappsys.php");
+    }  
+    
     // Initialization
-    $studno = $_POST["uname"];
-    $lname = $_POST["psw"];
+    $fReqData;
+    $sReqData;
+    $userType = $_GET["type"];
+    $isStudent = false;
+    $isEmp = false;
+    $isGuest = false;
+
+    // Check user type
+    if($userType == "student") {
+        $isStudent = true;
+        $fReqData = $_POST["studentNum"];
+        $sReqData = $_POST["sLname"];
+    } else if($userType == "employee") {
+        $isEmp = true;
+        $fReqData = $_POST["empNum"];
+        $sReqData = $_POST["eLname"];
+    } else if($userType == "guest") {
+        $isGuest = true;
+        $fReqData = $_POST["email"];
+        $sReqData = $_POST["gLname"];
+    } else {
+        header("Location: ../rtuappsys.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -72,8 +101,8 @@
                             <div class="container-office">
                                 <select style="width: 150px;" id = "branch">
                                 <option value="" disabled selected hidden>RTU Branch</option>
-                                <option value="Boni Campus">Boni</option>
-                                <option value="Pasig Campus">Pasig</option>
+                                <option value="Boni Campus">Boni Campus</option>
+                                <option value="Pasig Campus">Pasig Campus</option>
                             </select>
                             </div>
                             <br><br>
@@ -83,16 +112,34 @@
                             </div>
                             <div class="informationForm">
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($studno); ?>" required>
-                                    </div>
-
+                                    <?php 
+                                        if($isStudent) {
+                                            ?>
+                                                <div class="form-group">
+                                                    <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($fReqData); ?>" required>
+                                                </div>
+                                            <?php
+                                        } else if($isEmp){
+                                            ?>
+                                                <div class="form-group">
+                                                    <input type="text" id="employee-number" class="student-number" placeholder="Employee Number" value = "<?php echo htmlspecialchars($fReqData); ?>" required>
+                                                </div>
+                                            <?php 
+                                        } else {
+                                            ?>
+                                                <div class="form-group">
+                                                    <input type="text" id="email-address" class="email-address" placeholder="Email Address" value = "<?php echo htmlspecialchars($fReqData); ?>" required>
+                                                </div>
+                                            <?php
+                                        }
+                                    ?>
+                                    
                                     <div class="form-group">
                                         <input type="text" id="first-name" class="first-name" placeholder="First Name" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($lname)?>">
+                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($sReqData)?>">
                                     </div>
                                 </div>
                                 <br>
@@ -101,10 +148,21 @@
                                         <input type="text" id="contact-number" class="contact-number" placeholder="Contact Number">
                                     </div>
 
-
-                                    <div class="form-group">
-                                        <input type="text" id="email-address" class="email-address" placeholder="Email Address">
-                                    </div>
+                                <?php
+                                    if($isGuest) {
+                                        ?>
+                                            <div class="form-group">
+                                                <input type="text" id="affiliated-company" class="affiliated-company" placeholder="Affiliated Company">
+                                            </div>
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <div class="form-group">
+                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address">
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
 
                                     <div class="form-group">
                                         <input type="text" id="government-ID" class="government-ID" placeholder="Government ID">

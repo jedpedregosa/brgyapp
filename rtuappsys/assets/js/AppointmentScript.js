@@ -3,6 +3,7 @@
 // Intialization
 var slctTimeSlt = null;
 var slctDate = null;
+var prevTimeButton;
 
 const slidePage = document.querySelector(".slide-page"); // important for flipping next
 const nextBtnFirst = document.querySelector(".firstNext"); // first next button
@@ -112,6 +113,33 @@ submitBtn.addEventListener("click", function() {
     bullet[current - 1].classList.add("active");
     progressCheck[current - 1].classList.add("active");
     current += 1;
+
+    // Confirm Appointment
+    $.ajax({ 
+        url: "../../includes/sub-appointment.php",
+        type: "POST",
+        data: {
+            schedDate: lname,
+            email: email,
+            phone: phone,
+            fname: fname				
+        },
+        cache: false,
+        success: function(dataResult){
+            var dataResult = JSON.parse(dataResult);
+                if(dataResult.statusCode==200){
+                    // Insert JS Form Validation
+                    event.preventDefault();
+                    slidePage.style.marginLeft = "-25%";
+                    bullet[current - 1].classList.add("active");
+                    progressCheck[current - 1].classList.add("active");
+                    current += 1;
+                }
+                else if(dataResult.statusCode==201){
+                   alert("Error occured !"); // Error Page
+                }
+            }
+    });
 });
 prevBtnSec.addEventListener("click", function(event) {
     event.preventDefault();
@@ -131,9 +159,26 @@ prevBtnThird.addEventListener("click", function(event) {
 // Fuctions
 
 function load_timeslot(tmslot) {
+    var timeButton = document.getElementById(tmslot);
     if(slctTimeSlt == tmslot) {
         slctTimeSlt = null;
+
+        timeButton.style.backgroundColor = "white"; // SET THE SELECTED BUTTON TO UNHOLD
+        timeButton.style.color = "#00b050";
+    } else if(slctTimeSlt == null) {
+        slctTimeSlt = tmslot;
+
+        timeButton.style.backgroundColor = "#00b050"; // SET THE SELECTED BUTTON TO HOLD
+        timeButton.style.color = "white";
+
     } else {
         slctTimeSlt = tmslot;
+
+        timeButton.style.backgroundColor = "#00b050"; // SET THE SELECTED BUTTON TO HOLD
+        timeButton.style.color = "white";
+
+        prevTimeButton.style.backgroundColor = "white"; // SET THE PREVIOUS SELECTED BUTTON TO UNHOLD
+        prevTimeButton.style.color = "#00b050";
     }
+    prevTimeButton = timeButton;
 }
