@@ -55,8 +55,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 nextBtnSec.addEventListener("click", function(event) {
     slctDate = slctdDate.text;
     if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
-        var alertDate = document.getElementById('alertSelectSched');
-        alertDate.style.display = 'block';
+        // Validation Here
     } else {
         var officeId = document.getElementById('Office').value;
         var branch = document.getElementById('branch').value;
@@ -68,15 +67,37 @@ nextBtnSec.addEventListener("click", function(event) {
         var govID = document.getElementById('government-ID').value;
         var purpose = document.getElementById('purpose').value;
 
+        $.ajax({
+			url: "../../includes/schedule.php",
+			type: "POST",
+			data: {
+				officeCode: officeId,
+				timeCode: slctTimeSlt				
+			},
+			cache: false,
+			success: function(dataResult){
+                    var dataResult = JSON.parse(dataResult);
+                    JSON.stringify(dataResult);
+					// Lacks catch if db fails
+                    var loadedofficeValue = dataResult.officeValue;
+                    var loadedtimeValue = dataResult.timeValue;
+
+                    document.getElementById('resTime').innerHTML = String(loadedtimeValue);
+                    document.getElementById('resOffice').innerHTML = String(loadedofficeValue);
+			}
+		});
+
+        // For Date Formatting
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
         document.getElementById('resStudno').innerHTML = studNo;
-        document.getElementById('resFname').innerHTML = lName + " " + fName;
+        document.getElementById('resFname').innerHTML = fName + " " + lName;
         document.getElementById('resContact').innerHTML = contact;
         document.getElementById('resEmail').innerHTML = email;
         document.getElementById('resBranch').innerHTML = branch;
         document.getElementById('resGovId').innerHTML = govID;
-        document.getElementById('resDate').innerHTML = slctDate;
-        document.getElementById('resTime').innerHTML = slctTimeSlt;
-        document.getElementById('resOffice').innerHTML = officeId;
+        document.getElementById('resDate').innerHTML = new Date(slctDate).toLocaleDateString("en-US", options);
+        
         document.getElementById('resPurpose').innerHTML = purpose;
         
         event.preventDefault();

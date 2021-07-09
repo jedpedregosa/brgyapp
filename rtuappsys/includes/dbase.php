@@ -8,7 +8,8 @@
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+            echo "Connection failed: " . $e->getMessage(); 
+            // Catch if db fails
         }
         return $conn;
     }
@@ -20,5 +21,20 @@
         $user = $stmt->fetchColumn(); 
 
         return $user;
+    }
+
+    function getValues($officeCode, $timeCode) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT office_name FROM tbl_office WHERE office_id = ?");
+        $stmt-> execute([$officeCode]);
+        $officeValue = $stmt->fetchColumn();
+
+        $stmt = $conn->prepare("SELECT CONCAT(tmslot_start, ' - ', tmslot_end) FROM tbl_timeslot WHERE tmslot_id = ?");
+        $stmt-> execute([$timeCode]);
+        $timeValue = $stmt->fetchColumn();
+
+        // Catch if db fails 
+        return array("officeValue"=>$officeValue, "timeValue" => $timeValue);
     }
 ?>
