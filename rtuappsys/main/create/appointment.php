@@ -165,7 +165,7 @@
                                     } else {
                                         ?>
                                             <div class="form-group">
-                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address" 
+                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address"
                                                     value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>">
                                             </div>
                                         <?php

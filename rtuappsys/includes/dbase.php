@@ -44,7 +44,7 @@
         $stmt = null;
 
         if(!(doesUserExists($userID, $userType))) { // Check if user does not exists on the database
-            return FALSE;
+            return false;
         }
 
         if($userType == "student") {

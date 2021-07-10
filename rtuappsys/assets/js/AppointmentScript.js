@@ -34,6 +34,32 @@ nextBtnFirst.addEventListener("click", function(event) {
         company = companyElement.text;
         govId = govIdElement.text;
     } */
+    var isAvail = true;
+    if(validateEmail(email)) {
+        $.ajax({
+			url: "../../includes/chk-email.php",
+			type: "POST",
+			data: {
+				email: email
+			},
+			cache: false,
+			success: function(dataResult){
+                var dataResult = JSON.parse(dataResult);
+					if(dataResult.hasEmail == 200){
+                        alert('Engk!! Email');
+                        isAvail = false;
+                    } 
+				}
+                
+			});
+
+    } else {
+        alert('Engk!! Email');
+        return false; // Issue: Not stopping the whole block
+    }
+    if(!isAvail) {
+        return false;
+    }
 		
     if(lname!="" && fname!="" && phone!="" && email!=""){
 		$.ajax({
@@ -195,4 +221,13 @@ function load_timeslot(tmslot) {
         prevTimeButton.style.color = "#00b050";
     }
     prevTimeButton = timeButton;
+}
+function validateEmail(value) {
+    var input = document.createElement('input');
+  
+    input.type = 'email';
+    input.required = true;
+    input.value = value;
+  
+    return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
 }
