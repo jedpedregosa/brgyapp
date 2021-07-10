@@ -166,11 +166,14 @@
                                             </div>
                                         <?php
                                     }
+
+                                    if($isGuest) {
                                 ?>
 
                                     <div class="form-group">
                                         <input type="text" id="government-ID" class="government-ID" placeholder="Government ID">
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

@@ -24,6 +24,16 @@ nextBtnFirst.addEventListener("click", function(event) {
 	var fname = $('#first-name').val();
 	var email = $('#email-address').val();
 	var phone = $('#contact-number').val();
+    var company = $('#affiliated-company').val();
+    var govId = $('#government-ID').val();
+    /*
+    var companyElement = document.getElementById("affiliated-company");
+    var govIdElement = document.getElementById("government-ID");
+
+    if(companyElement && govIdElement) {
+        company = companyElement.text;
+        govId = govIdElement.text;
+    } */
 		
     if(lname!="" && fname!="" && phone!="" && email!=""){
 		$.ajax({
@@ -33,7 +43,9 @@ nextBtnFirst.addEventListener("click", function(event) {
 				lname: lname,
 				email: email,
 				phone: phone,
-				fname: fname				
+				fname: fname,
+                company: company,
+                govId: govId
 			},
 			cache: false,
 			success: function(dataResult){
@@ -48,7 +60,9 @@ nextBtnFirst.addEventListener("click", function(event) {
 					}
 					else if(dataResult.statusCode==201){
 					   alert("Error occured !"); // Error Page
-					}
+					} else if(dataResult.statusCode==202) {
+                        alert("Nakuha nayan bunak");
+                    }
 				}
 			});
 		}

@@ -41,6 +41,7 @@
     function doesUserHasApp($userID, $userType) {
         $conn = connectDb();
         $result = null;
+        $stmt = null;
 
         if(!(doesUserExists($userID, $userType))) { // Check if user does not exists on the database
             return FALSE;
@@ -48,43 +49,60 @@
 
         if($userType == "student") {
             $stmt = $conn->prepare("SELECT vstor_hasApp FROM tbl_visitor WHERE vstor_id = (SELECT vstor_id FROM tbl_student_data WHERE student_num = ?)");
+            $stmt-> execute([$userID]);    
+        } else if($userType == "employee") {
+            $stmt = $conn->prepare("SELECT vstor_hasApp FROM tbl_visitor WHERE vstor_id = (SELECT vstor_id FROM tbl_employee_data WHERE employee_num = ?)");
             $stmt-> execute([$userID]);
-            $result = $stmt->fetchColumn();
+        } else {
+            $stmt = $conn->prepare("SELECT vstor_hasApp FROM tbl_visitor WHERE vstor_email = ?");
+            $stmt-> execute([$userID]);
         }
         //// Other User Types on Else-ifs
+        $result = $stmt->fetchColumn(); // Lacks checker if db fails (to error page)
 
         return $result;
     }
 
     function doesUserExists($userID, $userType) {
         $conn = connectDb();
-        $reult = null;
+        $stmt = null;
+        $result = null;
         
         if($userType == "student") {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_student_data WHERE student_num = ?");
             $stmt-> execute([$userID]);
-            $result = $stmt->fetchColumn();
+        } else if($userType == "employee") {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_employee_data WHERE employee_num = ?");
+            $stmt-> execute([$userID]);
         } else {
-            return false;
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_visitor WHERE vstor_email = ?");
+            $stmt-> execute([$userID]);
         }
         //// Other User Types on Else-ifs
+        $result = $stmt->fetchColumn(); // Lacks checker if db fails (to error page)
 
         return $result;
     }
 
     function getUserData($userID, $userType) {
         $conn = connectDb();
-        $reult = null;
+        $stmt = null;
+        $result = null;
         
         if($userType == "student") {
             $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact, vstor_email FROM tbl_visitor WHERE vstor_id =
             (SELECT vstor_id FROM tbl_student_data WHERE student_num = ?)");
             $stmt-> execute([$userID]);
-            $result = $stmt->fetch();
+        } else if($userType == "employee") {
+            $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact, vstor_email FROM tbl_visitor WHERE vstor_id =
+            (SELECT vstor_id FROM tbl_employee_data WHERE employee_num = ?)");
+            $stmt-> execute([$userID]);
         } else {
-            return false;
+            $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact, vstor_email FROM tbl_visitor WHERE vstor_email = ?");
+            $stmt-> execute([$userID]);
         }
         //// Other User Types on Else-ifs
+        $result = $stmt->fetchColumn(); // Lacks checker if db fails (to error page)
 
         return $result;
     }
@@ -100,7 +118,7 @@
         $stmt-> bindParam(':lname', $userData[1]);
         $stmt-> bindParam(':fname', $userData[2]);
         $stmt-> bindParam(':phone', $userData[3]);
-        $stmt-> bindParam(':email', $userData[4]);
+        $stmt-> bindParam(':email', $userData[0]);
         $stmt-> bindParam(':utype', $userType);
 
         $firstReq = $stmt->execute();
@@ -110,10 +128,21 @@
             $stmt = $conn -> prepare("INSERT INTO tbl_student_data (student_num, vstor_id)
             VALUES (:studentId, :vstorId)");
             $stmt-> bindParam(':studentId', $userData[0]);
+            $stmt-> bindParam(':vstorId', $visitorID);  
+        } else if($userType == "employee"){
+            $stmt = $conn -> prepare("INSERT INTO tbl_employee_data (employee_num, vstor_id)
+            VALUES (:employeeId, :vstorId)");
+            $stmt-> bindParam(':employeeId', $userData[0]);
+            $stmt-> bindParam(':vstorId', $visitorID);  
+        } else {
+            $stmt = $conn -> prepare("INSERT INTO tbl_guest_data (vstor_id, company, government_id)
+            VALUES (:vstorId, :company, :govId)");
             $stmt-> bindParam(':vstorId', $visitorID);
-
-            $secondReq = $stmt->execute();
+            $stmt-> bindParam(':company', $userData[4]);
+            $stmt-> bindParam(':govId', $userData[5]);
         }
+
+        $secondReq = $stmt->execute(); // Lacks checker if db fails (to error page)
 
         return $firstReq && $secondReq;
     }

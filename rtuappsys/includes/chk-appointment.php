@@ -1,5 +1,6 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
     // Check if accessed from rtuappsys.php
 
     $userId;
@@ -29,6 +30,10 @@
     } else {
         header("Location: ../main/rtuappsys.php");
     } 
+
+    if(!(isTypeValid($uType))) {
+        header("Location: ../main/rtuappsys.php");
+    }
 
     session_name("id");
     session_start();
