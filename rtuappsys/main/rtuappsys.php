@@ -52,7 +52,7 @@
 
 <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="create/appointment.php?type=student" method="post">
+  <form class="modal-content animate" action="../includes/chk-appointment.php?type=student" method="post">
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -75,7 +75,7 @@
 </div>
       <div id="id02" class="modal">
         
-        <form class="modal-content animate" action="create/appointment.php?type=employee" method="post">
+        <form class="modal-content animate" action="../includes/chk-appointment.php?type=employee" method="post">
           <div class="imgcontainer">
             <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
             <img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -97,7 +97,7 @@
 
         <div id="id03" class="modal">
           
-          <form class="modal-content animate" action="create/appointment.php?type=guest" method="post">
+          <form class="modal-content animate" action="../includes/chk-appointment.php?type=guest" method="post">
             <div class="imgcontainer">
               <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
               <img src="../assets/img/user.png" alt="Avatar" class="avatar">

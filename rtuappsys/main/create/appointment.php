@@ -1,47 +1,41 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
 
-    // Check if accessed from rtuappsys.php
-    if(isset($_GET["type"])) {
-        if(isset($_POST["studentNum"]) && isset($_POST["sLname"])) {
-            // Check if student number has an ongoing appointment
-            if(doesUserHasApp($_POST["studentNum"], "s")) {
-                // *********** Needs error message
-                header("Location: ../rtuappsys.php");
-            }
-            // ********* Needs format checker for student number
-        } else if(isset($_POST["empNum"]) && isset($_POST["eLname"])) { 
-        } else if(isset($_POST["email"]) && isset($_POST["gLname"])) { 
-        } else {
-            header("Location: ../rtuappsys.php");
-        }
-    } else {
-        header("Location: ../rtuappsys.php");
-    }  
+    session_name("id");
+    session_start();
     
+    if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
+        header("Location: ../rtuappsys.php");
+    }
     // Initialization
-    $fReqData;
-    $sReqData;
-    $userType = $_GET["type"];
+    $fReqData = $_SESSION["userId"];
+    $sReqData = $_SESSION["uLname"];
+    $userType = $_SESSION["uType"];
+
+    if(doesUserHasApp($fReqData, $userType)) {
+        // *********** Needs error message
+        header("Location: ../main/rtuappsys.php");
+    }
+
     $isStudent = false;
     $isEmp = false;
     $isGuest = false;
+    $userExists = doesUserExists($fReqData, $userType);
+    $userData = null;
 
     // Check user type
     if($userType == "student") {
         $isStudent = true;
-        $fReqData = $_POST["studentNum"];
-        $sReqData = $_POST["sLname"];
     } else if($userType == "employee") {
         $isEmp = true;
-        $fReqData = $_POST["empNum"];
-        $sReqData = $_POST["eLname"];
     } else if($userType == "guest") {
         $isGuest = true;
-        $fReqData = $_POST["email"];
-        $sReqData = $_POST["gLname"];
     } else {
         header("Location: ../rtuappsys.php");
+    }
+
+    if($userExists) {
+        $userData = getUserData($fReqData, $userType);
     }
 ?>
 
@@ -123,26 +117,27 @@
                                         if($isStudent) {
                                             ?>
                                                 <div class="form-group">
-                                                    <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($fReqData); ?>" required>
+                                                    <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
                                                 </div>
                                             <?php
                                         } else if($isEmp){
                                             ?>
                                                 <div class="form-group">
-                                                    <input type="text" id="employee-number" class="student-number" placeholder="Employee Number" value = "<?php echo htmlspecialchars($fReqData); ?>" required>
+                                                    <input type="text" id="employee-number" class="student-number" placeholder="Employee Number" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
                                                 </div>
                                             <?php 
                                         } else {
                                             ?>
                                                 <div class="form-group">
-                                                    <input type="text" id="email-address" class="email-address" placeholder="Email Address" value = "<?php echo htmlspecialchars($fReqData); ?>" required>
+                                                    <input type="text" id="email-address" class="email-address" placeholder="Email Address" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
                                                 </div>
                                             <?php
                                         }
                                     ?>
                                     
                                     <div class="form-group">
-                                        <input type="text" id="first-name" class="first-name" placeholder="First Name" required>
+                                        <input type="text" id="first-name" class="first-name" placeholder="First Name" 
+                                        value = "<?php echo $userExists ? $userData[0] : ""; ?>">
                                     </div>
 
                                     <div class="form-group">
@@ -152,7 +147,8 @@
                                 <br>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <input type="text" id="contact-number" class="contact-number" placeholder="Contact Number">
+                                        <input type="text" id="contact-number" class="contact-number" placeholder="Contact Number" 
+                                            value = "<?php echo $userExists ? $userData[1] : ""; ?>">
                                     </div>
 
                                 <?php
@@ -165,7 +161,8 @@
                                     } else {
                                         ?>
                                             <div class="form-group">
-                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address">
+                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address" 
+                                                    value = "<?php echo $userExists ? $userData[2] : ""; ?>">
                                             </div>
                                         <?php
                                     }

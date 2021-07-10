@@ -46,7 +46,7 @@
             return FALSE;
         }
 
-        if($userType == "s") {
+        if($userType == "student") {
             $stmt = $conn->prepare("SELECT vstor_hasApp FROM tbl_visitor WHERE vstor_id = (SELECT vstor_id FROM tbl_student_data WHERE student_num = ?)");
             $stmt-> execute([$userID]);
             $result = $stmt->fetchColumn();
@@ -59,15 +59,38 @@
     function doesUserExists($userID, $userType) {
         $conn = connectDb();
         $reult = null;
-        if($userType == "s") {
+        
+        if($userType == "student") {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_student_data WHERE student_num = ?");
             $stmt-> execute([$userID]);
             $result = $stmt->fetchColumn();
+        } else {
+            return false;
         }
         //// Other User Types on Else-ifs
 
         return $result;
     }
 
+    function getUserData($userID, $userType) {
+        $conn = connectDb();
+        $reult = null;
+        
+        if($userType == "student") {
+            $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact, vstor_email FROM tbl_visitor WHERE vstor_id =
+            (SELECT vstor_id FROM tbl_student_data WHERE student_num = ?)");
+            $stmt-> execute([$userID]);
+            $result = $stmt->fetch();
+        } else {
+            return false;
+        }
+        //// Other User Types on Else-ifs
+
+        return $result;
+    }
+ 
+    function insertUserData($userID) {
+
+    }
 
 ?>
