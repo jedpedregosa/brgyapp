@@ -37,4 +37,37 @@
         // Catch if db fails 
         return array("officeValue"=>$officeValue, "timeValue" => $timeValue);
     }
+    
+    function doesUserHasApp($userID, $userType) {
+        $conn = connectDb();
+        $result = null;
+
+        if(!(doesUserExists($userID, $userType))) { // Check if user does not exists on the database
+            return FALSE;
+        }
+
+        if($userType == "s") {
+            $stmt = $conn->prepare("SELECT vstor_hasApp FROM tbl_visitor WHERE vstor_id = (SELECT vstor_id FROM tbl_student_data WHERE student_num = ?)");
+            $stmt-> execute([$userID]);
+            $result = $stmt->fetchColumn();
+        }
+        //// Other User Types on Else-ifs
+
+        return $result;
+    }
+
+    function doesUserExists($userID, $userType) {
+        $conn = connectDb();
+        $reult = null;
+        if($userType == "s") {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_student_data WHERE student_num = ?");
+            $stmt-> execute([$userID]);
+            $result = $stmt->fetchColumn();
+        }
+        //// Other User Types on Else-ifs
+
+        return $result;
+    }
+
+
 ?>

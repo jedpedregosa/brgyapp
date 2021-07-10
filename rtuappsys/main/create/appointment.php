@@ -1,8 +1,15 @@
 <?php 
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
 
     // Check if accessed from rtuappsys.php
     if(isset($_GET["type"])) {
-        if(isset($_POST["studentNum"]) && isset($_POST["sLname"])) { 
+        if(isset($_POST["studentNum"]) && isset($_POST["sLname"])) {
+            // Check if student number has an ongoing appointment
+            if(doesUserHasApp($_POST["studentNum"], "s")) {
+                // *********** Needs error message
+                header("Location: ../rtuappsys.php");
+            }
+            // ********* Needs format checker for student number
         } else if(isset($_POST["empNum"]) && isset($_POST["eLname"])) { 
         } else if(isset($_POST["email"]) && isset($_POST["gLname"])) { 
         } else {
