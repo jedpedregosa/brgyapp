@@ -79,7 +79,7 @@ nextBtnSec.addEventListener("click", function(event) {
         var lName = document.getElementById('last-name').value;
         var contact = document.getElementById('contact-number').value;
         var email = document.getElementById('email-address').value;
-        var govID = document.getElementById('government-ID').value;
+        var govID = $('#government-ID').val();
         var purpose = document.getElementById('purpose').value;
 
         $.ajax({

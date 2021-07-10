@@ -6,5 +6,6 @@
         // Lacks catch if db fails !!!!!!!!!!!!!!!!
     } else {
         header("Location: ../../main/rtuappsys.php");
+        die();
     }
 ?>

@@ -87,7 +87,7 @@
     function getUserData($userID, $userType) {
         $conn = connectDb();
         $stmt = null;
-        $result = null;
+        $result = [];
         
         if($userType == "student") {
             $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact, vstor_email FROM tbl_visitor WHERE vstor_id =
@@ -100,9 +100,15 @@
         } else {
             $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact, vstor_email FROM tbl_visitor WHERE vstor_email = ?");
             $stmt-> execute([$userID]);
+
+            $result = $stmt->fetch();
+
+            $stmt = $conn->prepare("SELECT company, government_id FROM tbl_guest_data 
+            WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ?)");
+            $stmt-> execute([$userID]);
         }
         //// Other User Types on Else-ifs
-        $result = $stmt->fetchColumn(); // Lacks checker if db fails (to error page)
+        $result = array_merge($result, $stmt->fetch()); // Lacks checker if db fails (to error page)
 
         return $result;
     }
@@ -114,11 +120,12 @@
         
         $stmt = $conn -> prepare("INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email, vstor_type)
         VALUES (:id, :lname, :fname, :phone, :email, :utype)");
+
         $stmt-> bindParam(':id', $visitorID);
         $stmt-> bindParam(':lname', $userData[1]);
         $stmt-> bindParam(':fname', $userData[2]);
-        $stmt-> bindParam(':phone', $userData[3]);
-        $stmt-> bindParam(':email', $userData[0]);
+        $stmt-> bindParam(':email', $userData[3]);
+        $stmt-> bindParam(':phone', $userData[4]);
         $stmt-> bindParam(':utype', $userType);
 
         $firstReq = $stmt->execute();
@@ -138,8 +145,8 @@
             $stmt = $conn -> prepare("INSERT INTO tbl_guest_data (vstor_id, company, government_id)
             VALUES (:vstorId, :company, :govId)");
             $stmt-> bindParam(':vstorId', $visitorID);
-            $stmt-> bindParam(':company', $userData[4]);
-            $stmt-> bindParam(':govId', $userData[5]);
+            $stmt-> bindParam(':company', $userData[5]);
+            $stmt-> bindParam(':govId', $userData[6]);
         }
 
         $secondReq = $stmt->execute(); // Lacks checker if db fails (to error page)

@@ -6,6 +6,7 @@
     
     if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
         header("Location: ../rtuappsys.php");
+        die();
     }
     // Initialization
     $fReqData = $_SESSION["userId"];
@@ -15,6 +16,7 @@
     if(doesUserHasApp($fReqData, $userType)) {
         // *********** Needs error message
         header("Location: ../main/rtuappsys.php");
+        die();
     }
 
     $isStudent = false;
@@ -32,6 +34,7 @@
         $isGuest = true;
     } else {
         header("Location: ../rtuappsys.php");
+        die();
     }
 
     if($userExists) {
@@ -137,7 +140,7 @@
                                     
                                     <div class="form-group">
                                         <input type="text" id="first-name" class="first-name" placeholder="First Name" 
-                                        value = "<?php echo $userExists ? $userData[0] : ""; ?>">
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>">
                                     </div>
 
                                     <div class="form-group">
@@ -148,21 +151,22 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <input type="text" id="contact-number" class="contact-number" placeholder="Contact Number" 
-                                            value = "<?php echo $userExists ? $userData[1] : ""; ?>">
+                                            value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>">
                                     </div>
 
                                 <?php
                                     if($isGuest) {
                                         ?>
                                             <div class="form-group">
-                                                <input type="text" id="affiliated-company" class="affiliated-company" placeholder="Affiliated Company">
+                                                <input type="text" id="affiliated-company" class="affiliated-company" placeholder="Affiliated Company"
+                                                    value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
                                             </div>
                                         <?php
                                     } else {
                                         ?>
                                             <div class="form-group">
                                                 <input type="text" id="email-address" class="email-address" placeholder="Email Address" 
-                                                    value = "<?php echo $userExists ? $userData[2] : ""; ?>">
+                                                    value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>">
                                             </div>
                                         <?php
                                     }
@@ -171,7 +175,8 @@
                                 ?>
 
                                     <div class="form-group">
-                                        <input type="text" id="government-ID" class="government-ID" placeholder="Government ID">
+                                        <input type="text" id="government-ID" class="government-ID" placeholder="Government ID"
+                                            value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
                                     </div>
                                     <?php } ?>
                                 </div>

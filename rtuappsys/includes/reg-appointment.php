@@ -11,6 +11,7 @@
 		$phone=$_POST['phone'];	
 	} else {
 		header("Location: ../main/rtuappsys.php");
+		die();
 	}
 
 	$isSessioned = true;
@@ -37,6 +38,7 @@
 				$govId = $_POST['govId'];
 			} else {
 				header("Location: ../main/rtuappsys.php");
+				die();
 			}
 		}
 		
@@ -44,13 +46,14 @@
 
 		if(!(isTypeValid($userType))) {
 			header("Location: ../main/rtuappsys.php");
+			die();
 		}
 
 		if(doesUserExists($userId, $userType)) {
 
 		} else {
 			if($isGuest) {
-				$userData = [$userId, $lname, $fname, $phone, $company, $govId];
+				$userData = [" ", $lname, $fname, $userId, $phone, $company, $govId];
 			} else {
 				$userData = [$userId, $lname, $fname, $email, $phone];
 			}
