@@ -89,8 +89,33 @@
         return $result;
     }
  
-    function insertUserData($userID) {
+    function insertUserData($userData, $userType) {
+        $conn = connectDb();
+        $visitorID = "VSTOR-" . createVisitorId();
 
+        
+        $stmt = $conn -> prepare("INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email, vstor_type)
+        VALUES (:id, :lname, :fname, :phone, :email, :utype)");
+        $stmt-> bindParam(':id', $visitorID);
+        $stmt-> bindParam(':lname', $userData[1]);
+        $stmt-> bindParam(':fname', $userData[2]);
+        $stmt-> bindParam(':phone', $userData[3]);
+        $stmt-> bindParam(':email', $userData[4]);
+        $stmt-> bindParam(':utype', $userType);
+
+        $firstReq = $stmt->execute();
+        $secondReq = null;
+
+        if($userType == "student") {
+            $stmt = $conn -> prepare("INSERT INTO tbl_student_data (student_num, vstor_id)
+            VALUES (:studentId, :vstorId)");
+            $stmt-> bindParam(':studentId', $userData[0]);
+            $stmt-> bindParam(':vstorId', $visitorID);
+
+            $secondReq = $stmt->execute();
+        }
+
+        return $firstReq && $secondReq;
     }
 
 ?>
