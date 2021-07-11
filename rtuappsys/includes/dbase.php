@@ -116,6 +116,14 @@
     function insertUserData($userData, $userType) {
         $conn = connectDb();
         $visitorID = "VSTOR-" . createVisitorId();
+
+        if(doesEmailExists($userData[3])) {
+            if(!doesEmailHasApp($userData[3])) {               
+                delUserByEmail($userData[3], getUserTypeByEmail($userData[3])); 
+            } else {
+                return false;
+            }
+        }
         
         $stmt = $conn -> prepare("INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email, vstor_type)
         VALUES (:id, :lname, :fname, :phone, :email, :utype)");
@@ -131,6 +139,7 @@
         $secondReq = null;
 
         if($userType == "student") {
+            
             $stmt = $conn -> prepare("INSERT INTO tbl_student_data (student_num, vstor_id)
             VALUES (:studentId, :vstorId)");
             $stmt-> bindParam(':studentId', $userData[0]);
@@ -161,16 +170,16 @@
         $isGuestEligible = ($userData[0] != $userData[3]) && ($userType == "guest");
         $isEmpStudElig = ($userData[3] != getUserData($userData[0], $userType)[2]) && ($userType != "guest");
         if($isGuestEligible || $isEmpStudElig) {
-            if(doesUserExists($userData[3], "guest")) {
+            if(doesEmailExists($userData[3])) {
                 // If the old email owner is in the database, delete visitor + data then update the user type.
                 delUserByEmail($userData[3], $oldEmailOwnerType);
-            } else if (!doesUserExists($userData[3], "guest")) {
+            } else if (!doesEmailExists($userData[3])) {
                 // DO NOTHING
             } else{
                 // Internal Error Page
                 return false;
             }
-        }
+        } 
             
             
         if($userType == "student") {
@@ -261,7 +270,7 @@
 
         if($userType == "guest") {
             $stmt = $conn->prepare("DELETE FROM tbl_guest_data WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = :email)");
-                $stmt-> bindParam(':email', $userId);
+                $stmt-> bindParam(':email', $userEmail);
                 if(!$stmt->execute()) {
                     // Dbase Query Error Page
                     return false;
@@ -269,39 +278,56 @@
 
                 
             $stmt = $conn->prepare("DELETE FROM tbl_visitor WHERE vstor_email = :email");
-            $stmt-> bindParam(':email', $userId;
+            $stmt-> bindParam(':email', $userEmail);
             if(!$stmt->execute()) {
                 // Dbase Query Error Page
                 return false;
             } 
         } else if($userType == "employee") {
             $stmt = $conn->prepare("DELETE FROM tbl_employee_data WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = :email)");
-            $stmt-> bindParam(':email', $userId);
+            $stmt-> bindParam(':email', $userEmail);
             if(!$stmt->execute()) {
                 // Dbase Query Error Page
                 return false;
             }
 
             $stmt = $conn->prepare("DELETE FROM tbl_visitor WHERE vstor_email = :email");
-            $stmt-> bindParam(':email', $userId);
+            $stmt-> bindParam(':email', $userEmail);
             if(!$stmt->execute()) {
                 // Dbase Query Error Page
                 return false;
             }
         } else if($userType == "student") {
             $stmt = $conn->prepare("DELETE FROM tbl_student_data WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = :email)");
-            $stmt-> bindParam(':email', $userId);
+            $stmt-> bindParam(':email', $userEmail);
             if(!$stmt->execute()) {
                 // Dbase Query Error Page
                 return false;
             }
 
             $stmt = $conn->prepare("DELETE FROM tbl_visitor WHERE vstor_email = :email");
-            $stmt-> bindParam(':email', $userId);
+            $stmt-> bindParam(':email', $userEmail);
             if(!$stmt->execute()) {
                 // Dbase Query Error Page
                 return false;
             }
         }
+    }
+
+    function doesEmailExists($userId) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_visitor WHERE vstor_email = ?");
+        $stmt-> execute([$userId]);
+
+        return $stmt->fetchColumn(); // Lacks Catch
+    }
+    function doesEmailHasApp($userId) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT vstor_hasApp FROM tbl_visitor WHERE vstor_email = ?");
+        $stmt-> execute([$userId]);
+
+        return $stmt->fetchColumn(); // Lacks Catch
     }
 ?>

@@ -30,7 +30,7 @@
             $userId = $_POST["empNum"];
             $uLname = $_POST["eLname"];
         } else if(isset($_POST["email"]) && isset($_POST["gLname"])) { 
-            if(doesUserHasApp($_POST["email"], "guest")) {
+            if(doesEmailHasApp($_POST["email"])) {
                 // *********** Needs error message
                 echo "<script>alert('this info has made an appointment already');</script>";
                 header("Location: ../main/rtuappsys.php");
