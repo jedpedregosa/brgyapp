@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 08, 2021 at 10:19 AM
+-- Generation Time: Jul 11, 2021 at 10:17 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -45,6 +45,34 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_employee_data`
+--
+
+DROP TABLE IF EXISTS `tbl_employee_data`;
+CREATE TABLE IF NOT EXISTS `tbl_employee_data` (
+  `vstor_id` varchar(25) NOT NULL,
+  `employee_num` varchar(25) NOT NULL,
+  PRIMARY KEY (`vstor_id`),
+  UNIQUE KEY `employee_num` (`employee_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_guest_data`
+--
+
+DROP TABLE IF EXISTS `tbl_guest_data`;
+CREATE TABLE IF NOT EXISTS `tbl_guest_data` (
+  `vstor_id` varchar(25) NOT NULL,
+  `company` varchar(125) NOT NULL,
+  `government_id` varchar(125) NOT NULL,
+  PRIMARY KEY (`vstor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_office`
 --
 
@@ -56,7 +84,17 @@ CREATE TABLE IF NOT EXISTS `tbl_office` (
   `office_desc` varchar(500) NOT NULL,
   PRIMARY KEY (`office_id`),
   KEY `office_num` (`office_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_office`
+--
+
+INSERT INTO `tbl_office` (`office_num`, `office_id`, `office_name`, `office_desc`) VALUES
+(1, 'RTU-O01', 'Curriculum and Instructional Resources Development Center', ''),
+(2, 'RTU-O02', 'Alumni Relations and Placement Office', ''),
+(4, 'RTU-O03', 'Disaster Risk Protection Office', ''),
+(5, 'RTU-O04', 'University Data Protection Office', '');
 
 -- --------------------------------------------------------
 
@@ -80,6 +118,20 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_student_data`
+--
+
+DROP TABLE IF EXISTS `tbl_student_data`;
+CREATE TABLE IF NOT EXISTS `tbl_student_data` (
+  `vstor_id` varchar(25) NOT NULL,
+  `student_num` varchar(25) NOT NULL,
+  PRIMARY KEY (`vstor_id`),
+  UNIQUE KEY `student_num` (`student_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_timeslot`
 --
 
@@ -90,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `tbl_timeslot` (
   `tmslot_start` varchar(25) NOT NULL,
   `tmslot_end` varchar(25) NOT NULL,
   PRIMARY KEY (`tmslot_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_timeslot`
@@ -107,10 +159,11 @@ INSERT INTO `tbl_timeslot` (`tmslot_num`, `tmslot_id`, `tmslot_start`, `tmslot_e
 (8, 'TMSLOT-08', '11:30 AM', '12:00 PM'),
 (9, 'TMSLOT-09', '12:00 PM', '12:30 PM'),
 (10, 'TMSLOT-10', '12:30 PM', '1:00 PM'),
-(11, 'TMSLOT-11', '1:30 PM', '2:00 PM'),
-(12, 'TMSLOT-12', '2:00 PM', '2:30 PM'),
+(11, 'TMSLOT-11', '1:00 PM', '1:30 PM'),
+(12, 'TMSLOT-12', '1:30 PM', '2:00 PM'),
 (13, 'TMSLOT-13', '2:30 PM', '3:00 PM'),
-(14, 'TMSLOT-14', '3:00 PM', '3:30 PM');
+(14, 'TMSLOT-14', '2:30 PM', '3:00 PM'),
+(15, 'TMSLOT-15', '3:00 PM', '3:30 PM');
 
 -- --------------------------------------------------------
 
@@ -126,9 +179,12 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   `vstor_fname` varchar(125) NOT NULL,
   `vstor_contact` varchar(64) NOT NULL,
   `vstor_email` varchar(125) NOT NULL,
+  `vstor_type` varchar(25) NOT NULL,
+  `vstor_hasApp` tinyint(1) DEFAULT '0' COMMENT 'If Visitor has an ongoing appointment.',
   PRIMARY KEY (`vstor_num`) USING BTREE,
-  UNIQUE KEY `vstor_id` (`vstor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `vstor_id` (`vstor_id`),
+  UNIQUE KEY `vstor_email` (`vstor_email`)
+) ENGINE=MyISAM AUTO_INCREMENT=185 DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
