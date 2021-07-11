@@ -1,5 +1,4 @@
 <?php 
-    if("titeee") {
-        echo "burat";
-    }
+    /////////////// SOURCE CODE TESTING PAGE 
+    /// DELETE test2.php ON PRODUCTION
 ?>
