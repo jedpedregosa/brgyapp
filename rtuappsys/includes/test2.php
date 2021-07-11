@@ -1,24 +1,33 @@
 <?php 
+    /////////////// SOURCE CODE TESTING PAGE 
+    /// DELETE test2.php ON PRODUCTION
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
 
 	// Check if from a page request 
 	
-	if(isset($_POST['lname']) && isset($_POST['fname']) && isset($_POST['email']) && isset($_POST['phone'])) {
-		$lname=$_POST['lname'];
-		$fname=$_POST['fname'];
-		$email=$_POST['email'];
-		$phone=$_POST['phone'];	
-	} else {
-		header("Location: ../main/rtuappsys.php");
-		die();
-	}
+	//if(isset($_POST['lname']) && isset($_POST['fname']) && isset($_POST['email']) && isset($_POST['phone'])) {
+		//$lname=$_POST['lname'];
+		//$fname=$_POST['fname'];
+		//$email=$_POST['email'];
+		//$phone=$_POST['phone'];	
+	//} else {
+		//header("Location: ../main/rtuappsys.php");
+		//die();
+	//}
 
 	$isSessioned = true;
 	$isSuccess = false;
 	$isGuest = false;
-	$company = null;
-	$govId = null;
+	//$company = null;
+	//$govId = null;
+	$lname = "Pedregosa";
+	$fname = "John";
+	$email = "wardpedregoa@gmail.com";
+	$phone = "09081205913";
+	$company = "rawr";
+	$govId = "rawr";
 
 	session_name("id");
 	session_start();
@@ -37,8 +46,8 @@
 				$company = $_POST['company'];
 				$govId = $_POST['govId'];
 			} else {
-				header("Location: ../main/rtuappsys.php");
-				die();
+				//header("Location: ../main/rtuappsys.php");
+				//die();
 			}
 		}
 		
@@ -53,10 +62,10 @@
 			if(!doesUserHasApp($userId, $userType)) {
 				if(!doesUserHasApp($email, "guest")) { // Check if email
 					if($isGuest) {
-						$userData = [$userId, $lname, $fname, $email, $phone, $company, $govId];					
+							$userData = [$userId, $lname, $fname, $email, $phone, $company, $govId];					
 					} else {
 						
-						$userData = [$userId, $lname, $fname, $email, $phone];
+							$userData = [$userId, $lname, $fname, $email, $phone];
 					}
 					$isSuccess = updateUserData($userData, $userType);
 				}
@@ -79,7 +88,7 @@
 	} else if(!$isSessioned) {
 		echo json_encode(array("statusCode"=>201)); // 201 : No Sessioned Appointees
 	} else {
-		echo json_encode(array("statusCode"=>202)); // 202 : Register Error (Email is taken)
+		//echo json_encode(array("statusCode"=>202)); // 202 : Register Error (Email is taken)
 	}
 
 ?>
