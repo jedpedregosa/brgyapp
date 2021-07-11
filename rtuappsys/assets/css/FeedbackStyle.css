@@ -1,171 +1,484 @@
-/* Used Fonts */
-
-@font-face {
-    font-family: Product Sans;
-    font-style: normal;
-    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
-}
-
-@font-face {
-    font-family: Tw Cen MT;
-    src: url('tw.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-/* Office Name DIv */
-
-.rightLine2 {
-    padding-left: 10px;
-}
-
-.line2:after {
-    content: "";
-    display: table;
-    clear: both;
-}
+/* RTU APPOINTMENT SYSTEM */
 
 * {
-    margin: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
 }
 
+/* Font Used */
+@font-face {
+  font-family: Product Sans;
+  font-style: normal;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+@font-face {
+font-family: Tw Cen MT;
+src: url('tw.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+/* BODY */
+body {
+  background-color: white;
+  margin: 0;
+  overflow: auto;
+}
+
+/* HEADER */
+/* Header BG */
+.headerBG img{
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+/* Header Logo */
+.logoHeader img {
+  width: 10%;
+  max-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  padding-top: 1.5%;
+  left: 0;
+  right: 0;
+}
+
+/* FOOTER */
+.footer {
+  position: relative;
+}
+
+/* Copyright Text */
+.footer .footer-bottom {
+  background-color: #003366;
+  width: 100%;
+  font-family: Century Gothic;
+  font-size: 11px;
+  text-align: center;
+  color: #A6A6A6;
+  margin: auto;
+  padding: 9px;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+/* CONTENT COLUMN STYLE */
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* RTU BG COLUMN */
+.column img {
+  padding: 0 0 0 0;
+  display: block;
+  width: 100%;
+  max-width: 850px;
+}
+
+/* FORM COLUMN */
+.column .form {
+  margin: 130px 70px 50px 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTENT */
+/* Clearfix (clear floats) */
+.main::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* RESPONSIVE LAYOUT */
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+
+  .column .form {
+    margin: 50px 70px 50px 70px;
+  }
+}
+
+/* FORM HEADER DESCRIPTION */
+/* Give your feedback here! Text */
+.desc p.header1 {
+  font-family: Product Sans;
+  font-size: 35px;
+  color: #009ED6;
+  text-align: center;
+}
+
+/* Write you comments... Text */
+.desc p.header2 {
+  font-family: Product Sans;
+  font-size: 18px;
+  color: #3B3838;
+  padding-top: 10px;
+  text-align: center;
+}
+
+/* INPUTS */
+/* Input Fields */
+input[type=text] {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 8px;
+  height: 40px;
+  border: none;
+  background-color: #F5F5F5;
+  font-family: Tw Cen MT;
+  font-size: 16px;
+  color: #AFABAB;
+  text-transform: capitalize;
+  padding: 12px;
+}
+
+/* Input Fields Placeholder */
+::-webkit-input-placeholder {
+  color: #AFABAB;
+}
+
+/* TEXTAREA */
+/* Feedback Textarea */
+textarea {
+  width: 100%;
+  max-width: 520px;
+  height: 120px;
+  padding: 12px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  background-color: #F5F5F5;
+  font-size: 16px;
+  resize: none;
+  font-family: Tw Cen MT;
+  color: #AFABAB;
+}
+
+/* TEXTAREA DIV */
+.textarea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Feedback Textarea Scrollbar */
+.textarea textarea::-webkit-scrollbar {
+  width: 8px;
+  background: #DAE3F3;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Feedback Textarea Scrollbar Thumb */
+.textarea textarea::-webkit-scrollbar-thumb {
+  background: #767171;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Input Fields and Textarea Outline */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px #40E0D0;
+}
+
+/* APPOINTMENT ID */
+.appt {
+  padding: 15px 0 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ROWS DIV STYLE */
+.row1 {
+  float: left;
+  width: 100%;
+  padding: 0 0 0 0;
+  position: relative;
+  float: center;
+}
+
+/* CATEGORY COLUMN */
+.column .left1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FULLNAME COLUMN */
+.column .right1 {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+/* RTU BRANCH */
+.column .left2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+/* OFFICE NAMES */
+.column .right2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DROPDOWN CSS */
+/* Category Dropdown CSS */
+.container {
+  padding: none;
+}
+
+.select-box {
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+  padding-bottom: 8px;
+}
+
+.select-box .options-container {
+  background: #F5F5F5;
+  font-family: Tw Cen MT;
+  color: #767171;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+
+  order: 1;
+}
+
+.selected {
+  background: #F5F5F5;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #AFABAB;
+  font-family: Tw Cen MT;
+  font-size: 16px;
+  height: 40px;
+  position: relative;
+
+  order: 0;
+}
+
+.selected::after {
+  content: "";
+  background: url("../Images/arrow.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 5px;
+  top: 10px;
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -10px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: #DAE3F3;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #767171;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 15px;
+  cursor: pointer;
+}
+
+.select-box .option:hover {
+  background: #DAE3F3;
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
 
 /* OFFICE NAMES Dropdown CSS */
-
 .container2 {
-    padding: none;
+  padding: none;
 }
 
 .select-box2 {
-    display: inline-block;
-    width: 311.2px;
-    position: relative;
-    z-index: 1;
-    top: 50px;
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+  padding-bottom: 8px;
 }
 
 .select-box2 .options-container2 {
-    background: #F5F5F5;
-    font-family: Tw Cen MT;
-    color: #767171;
-    max-height: 0;
-    width: 100%;
-    opacity: 0;
-    transition: all 0.4s;
-    border-radius: 8px;
-    overflow: hidden;
-    order: 1;
+  background: #F5F5F5;
+  font-family: Tw Cen MT;
+  color: #767171;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+
+  order: 1;
 }
 
 .selected2 {
-    background: #F5F5F5;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #AFABAB;
-    font-family: Tw Cen MT;
-    font-size: 16px;
-    height: 40px;
-    position: relative;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    order: 0;
+  background: #F5F5F5;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #AFABAB;
+  font-family: Tw Cen MT;
+  font-size: 16px;
+  height: 40px;
+  position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  order: 0;
 }
 
 .selected2::after {
-    content: "";
-    background: url("../Images/arrow.svg");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 100%;
-    width: 32px;
-    right: 5px;
-    top: 10px;
-    transition: all 0.4s;
+  content: "";
+  background: url("../Images/arrow.svg");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 5px;
+  top: 10px;
+  transition: all 0.4s;
 }
 
 .select-box2 .options-container2.active {
-    max-height: 150px;
-    opacity: 1;
-    overflow-y: scroll;
+  max-height: 150px;
+  opacity: 1;
+  overflow-y: scroll;
 }
 
-.select-box2 .options-container2.active+.selected2::after {
-    transform: rotateX(180deg);
-    top: -10px;
+.select-box2 .options-container2.active + .selected2::after {
+  transform: rotateX(180deg);
+  top: -10px;
 }
 
 .select-box2 .options-container2::-webkit-scrollbar {
-    width: 8px;
-    background: #DAE3F3;
-    border-radius: 0 8px 8px 0;
+  width: 8px;
+  background: #DAE3F3;
+  border-radius: 0 8px 8px 0;
 }
 
 .select-box2 .options-container2::-webkit-scrollbar-thumb {
-    background: #767171;
-    border-radius: 0 8px 8px 0;
+  background: #767171;
+  border-radius: 0 8px 8px 0;
 }
 
 .select-box2 .option2,
 .selected2 {
-    padding: 12px 15px;
-    cursor: pointer;
+  padding: 12px 15px;
+  cursor: pointer;
 }
 
 .select-box2 .option2:hover {
-    background: #DAE3F3;
+  background: #DAE3F3;
 }
 
 .select-box2 label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .select-box2 .option2 .radio2 {
-    display: none;
+  display: none;
 }
 
-
+/* BUTTON */
 /* Submit Button */
-
-.form input[type=submit] {
-    height: 30px;
-    border-radius: 50px;
-    border: none;
-    background-color: #1E90FF;
-    font-family: Tw Cen MT;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    color: #FFFFFF;
-    padding-left: 13px;
-    padding-right: 13px;
+.form input[type=submit]{
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+  background-color: #1E90FF;
+  font-family: Tw Cen MT;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  padding-left: 13px;
+  padding-right: 13px;
 }
-
 
 /* Submit Button Hover */
-
 .form input[type=submit]:hover {
-    background-color: #002060;
-    color: #F5F5F5;
-    cursor: pointer;
-    transition: 0.3s ease;
+  background-color: #002060; 
+  color: #F5F5F5;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
-
 
 /* Submit Button Div */
-
 .submit {
-    padding-top: 29px;
-    text-align: center;
+  padding-top: 29px;
+  text-align: center;
 }
 
+/* PAGE SCROLLBAR DESIGN */
+/* width */
+body::-webkit-scrollbar {
+  width: 10px;
+}
 
-/* Input Fields and Textarea Outline */
+/* Track */
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+}
+ 
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #808080; 
+}
 
-input:focus,
-textarea:focus {
-    outline: none;
-    box-shadow: 0 0 5px #40E0D0;
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background: #002E8A; 
 }

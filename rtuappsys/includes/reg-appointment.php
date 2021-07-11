@@ -3,12 +3,11 @@
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
 
 	// Check if from a page request 
-	
 	if(isset($_POST['lname']) && isset($_POST['fname']) && isset($_POST['email']) && isset($_POST['phone'])) {
-		$lname=$_POST['lname'];
-		$fname=$_POST['fname'];
-		$email=$_POST['email'];
-		$phone=$_POST['phone'];	
+		$lname = $_POST['lname'];
+		$fname = $_POST['fname'];
+		$email = $_POST['email'];
+		$phone = $_POST['phone'];	
 	} else {
 		header("Location: ../main/rtuappsys.php");
 		die();
@@ -41,7 +40,6 @@
 				die();
 			}
 		}
-		
 		
 
 		if(!(isTypeValid($userType))) {

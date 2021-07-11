@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 11, 2021 at 10:17 AM
+-- Generation Time: Jul 11, 2021 at 07:03 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -36,11 +36,11 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `office_id` varchar(25) NOT NULL,
   `app_branch` varchar(25) NOT NULL,
   `app_purpose` longtext NOT NULL,
-  `app_is_done` tinyint(1) NOT NULL,
-  `app_done_date` date NOT NULL,
+  `app_is_done` tinyint(1) DEFAULT '0',
+  `app_done_date` date DEFAULT NULL,
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `app_num` (`app_num`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -93,8 +93,8 @@ CREATE TABLE IF NOT EXISTS `tbl_office` (
 INSERT INTO `tbl_office` (`office_num`, `office_id`, `office_name`, `office_desc`) VALUES
 (1, 'RTU-O01', 'Curriculum and Instructional Resources Development Center', ''),
 (2, 'RTU-O02', 'Alumni Relations and Placement Office', ''),
-(4, 'RTU-O03', 'Disaster Risk Protection Office', ''),
-(5, 'RTU-O04', 'University Data Protection Office', '');
+(3, 'RTU-O03', 'Disaster Risk Protection Office', ''),
+(4, 'RTU-O04', 'University Data Protection Office', '');
 
 -- --------------------------------------------------------
 
@@ -109,11 +109,11 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
   `tmslot_id` varchar(25) NOT NULL,
   `office_id` varchar(25) NOT NULL,
   `sched_date` date NOT NULL,
-  `sched_total_visitor` int NOT NULL,
-  `sched_is_available` tinyint(1) NOT NULL,
+  `sched_total_visitor` int DEFAULT '0',
+  `sched_is_available` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`sched_id`),
   KEY `sched_num` (`sched_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   PRIMARY KEY (`vstor_num`) USING BTREE,
   UNIQUE KEY `vstor_id` (`vstor_id`),
   UNIQUE KEY `vstor_email` (`vstor_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=185 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=206 DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

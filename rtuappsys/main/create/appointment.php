@@ -288,14 +288,39 @@
                         <li class="li1"><b>PERSONAL INFORMATION</b></li>
 
                         <div class="div1">
-                            <b>Student Number&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
-                            <span id = "resStudno"></span><br>
-                            <b>FULLNAME&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; :</b>&nbsp;
-                            <span id = "resFname"></span><br>
-                            <b>CONTACT NUMBER&emsp;&ensp; :</b>&nbsp;
-                            <span id = "resContact"></span><br>
-                            <b>Email Address :</b>&nbsp;
-                            <span id = "resEmail"></span><br>
+                            <?php 
+                                if($isStudent) {
+                                    ?>
+                                        <b>Student Number&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
+                                    <?php
+                                } else if($isEmp) {
+                                    ?>
+                                        <b>Employee Number&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
+                                    <?php
+                                } else {
+                                    ?>
+                                        <b>Email Address&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
+                                    <?php
+                                }
+                            ?>
+                            <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
+                            <b>Full Name&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; :</b>&nbsp;
+                            <span id = "visitor-fname"></span><br>
+                            <b>Contact Number&emsp;&ensp; :</b>&nbsp;
+                            <span id = "visitor-contact"></span><br>
+
+                            <?php 
+                                if($isGuest) {
+                                    ?>
+                                        <b>Affiliated Company:</b>&nbsp;
+                                    <?php
+                                } else {
+                                    ?>
+                                        <b>Email Address :</b>&nbsp;
+                                    <?php
+                                }
+                            ?>
+                            <span id = "visitor-email-com"></span><br>
                         </div>
 
                         <!-- Put here the inputted appointment information -->
@@ -303,20 +328,23 @@
 
                         <div class="div2">
                             <div class="column left">
-                                <b>RTU BRANCH&emsp;&ensp;&ensp;:</b>&nbsp;
-                                <span id = "resBranch"></span><br>
-                                <b>OFFICE NAME&emsp;&ensp; :</b>&nbsp;
-                                <span id = "resOffice"></span><br>
-                                <b>GOVERNMENT ID :</b>&nbsp;
-                                <span id = "resGovId"></span>
+                                <b>RTU Branch&emsp;&ensp;&ensp;:</b>&nbsp;
+                                <span id = "visitor-branch"></span><br>
+                                <b>Office Name&emsp;&ensp; :</b>&nbsp;
+                                <span id = "visitor-office"></span><br>
+
+                                <?php if($isGuest) { ?>
+                                    <b>Government ID:</b>&nbsp;
+                                    <span id = "visitor-govId"></span>
+                                <?php } ?>
                             </div>
                             <div class="column right">
-                                <b>DATE&emsp;&emsp;&ensp;:</b>&nbsp;
-                                <span id = "resDate"></span><br>
-                                <b>TIME&emsp;&emsp;&ensp; :</b>&nbsp;
-                                <span id = "resTime"></span><br>
+                                <b>Date&emsp;&emsp;&ensp;:</b>&nbsp;
+                                <span id = "sched-date"></span><br>
+                                <b>Time&emsp;&emsp;&ensp; :</b>&nbsp;
+                                <span id = "sched-time"></span><br>
                                 <b>PURPOSE&nbsp;:</b>&nbsp;
-                                <span id = "resPurpose"></span><br>
+                                <span id = "sched-purpose"></span><br>
                             </div>
                         </div>
 

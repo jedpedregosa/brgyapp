@@ -100,13 +100,22 @@ nextBtnSec.addEventListener("click", function(event) {
     } else {
         var officeId = document.getElementById('Office').value;
         var branch = document.getElementById('branch').value;
-        var studNo = document.getElementById('student-number').value;
         var fName = document.getElementById('first-name').value;
         var lName = document.getElementById('last-name').value;
         var contact = document.getElementById('contact-number').value;
         var email = document.getElementById('email-address').value;
-        var govID = $('#government-ID').val();
         var purpose = document.getElementById('purpose').value;
+
+        var company = "none";
+        var govId = "none";
+
+        var companyElement = document.getElementById("affiliated-company");
+        var govIdElement = document.getElementById("government-ID");
+
+        if(companyElement && govIdElement) {
+            company = companyElement.value;
+            govId = govIdElement.value;
+        } 
 
         $.ajax({
 			url: "../../includes/schedule.php",
@@ -123,23 +132,29 @@ nextBtnSec.addEventListener("click", function(event) {
                     var loadedofficeValue = dataResult.officeValue;
                     var loadedtimeValue = dataResult.timeValue;
 
-                    document.getElementById('resTime').innerHTML = String(loadedtimeValue);
-                    document.getElementById('resOffice').innerHTML = String(loadedofficeValue);
+                    document.getElementById('sched-time').innerHTML = String(loadedtimeValue);
+                    document.getElementById('visitor-office').innerHTML = String(loadedofficeValue);
 			}
 		});
 
         // For Date Formatting
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-        document.getElementById('resStudno').innerHTML = studNo;
-        document.getElementById('resFname').innerHTML = fName + " " + lName;
-        document.getElementById('resContact').innerHTML = contact;
-        document.getElementById('resEmail').innerHTML = email;
-        document.getElementById('resBranch').innerHTML = branch;
-        document.getElementById('resGovId').innerHTML = govID;
-        document.getElementById('resDate').innerHTML = new Date(slctDate).toLocaleDateString("en-US", options);
+        document.getElementById('visitor-fname').innerHTML = fName + " " + lName;
+        document.getElementById('visitor-contact').innerHTML = contact;
         
-        document.getElementById('resPurpose').innerHTML = purpose;
+        document.getElementById('visitor-branch').innerHTML = branch;
+
+        if(companyElement && govIdElement) {
+            document.getElementById('visitor-govId').innerHTML = govId;
+            document.getElementById('visitor-email-com').innerHTML = company;
+        } else {
+            document.getElementById('visitor-email-com').innerHTML = email;
+        }
+        
+        document.getElementById('sched-date').innerHTML = new Date(slctDate).toLocaleDateString("en-US", options);
+        
+        document.getElementById('sched-purpose').innerHTML = purpose;
         
         event.preventDefault();
         slidePage.style.marginLeft = "-50%";
@@ -154,26 +169,27 @@ submitBtn.addEventListener("click", function() {
     progressCheck[current - 1].classList.add("active");
     current += 1;
 
+    var officeId = document.getElementById('Office').value;
+    var branch = document.getElementById('branch').value;
+    var purpose = document.getElementById('purpose').value;
+    
     // Confirm Appointment
     $.ajax({ 
         url: "../../includes/sub-appointment.php",
         type: "POST",
         data: {
-            schedDate: lname,
-            email: email,
-            phone: phone,
-            fname: fname				
+            branch: branch,
+            officeId: officeId,
+            date: slctDate,
+            purpose: purpose,	
+            time: slctTimeSlt			
         },
         cache: false,
         success: function(dataResult){
             var dataResult = JSON.parse(dataResult);
                 if(dataResult.statusCode==200){
                     // Insert JS Form Validation
-                    event.preventDefault();
-                    slidePage.style.marginLeft = "-25%";
-                    bullet[current - 1].classList.add("active");
-                    progressCheck[current - 1].classList.add("active");
-                    current += 1;
+                    window.location.replace("../your-appointment.php");
                 }
                 else if(dataResult.statusCode==201){
                    alert("Error occured !"); // Error Page

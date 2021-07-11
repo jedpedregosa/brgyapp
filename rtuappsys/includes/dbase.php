@@ -330,4 +330,110 @@
 
         return $stmt->fetchColumn(); // Lacks Catch
     }
+
+    function getVisitorId($userId, $userType) {
+        $conn = connectDb();
+
+        if($userType == "student") {
+            $stmt = $conn->prepare("SELECT vstor_id FROM tbl_student_data WHERE student_num = ?");
+            $stmt-> execute([$userId]);
+        } else if($userType == "employee") {
+            $stmt = $conn->prepare("SELECT vstor_id FROM tbl_employee_data WHERE employee_num = ?");
+            $stmt-> execute([$userId]);
+        } else if($userType == "guest"){
+            $stmt = $conn->prepare("SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ?");
+            $stmt-> execute([$userId]);
+        } else {
+            /// INTERNAL ERROR PAGE
+        }
+
+        return $stmt->fetchColumn(); // Lacks Catch
+    }
+
+    function isSchedAvailable($schedId) {
+        if(!doesSchedExist($schedId)) {
+            return true;
+        }
+
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT sched_total_visitor FROM tbl_schedule WHERE sched_id = ?");
+        $stmt-> execute([$schedId]);
+
+        $total_visitor = (int)$stmt->fetchColumn(); // Lacks Catch
+        if($total_visitor < (int)max_per_sched) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function doesSchedExist($schedId) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_schedule WHERE sched_id = ?");
+        $stmt-> execute([$schedId]);
+
+        return $stmt->fetchColumn(); // Lacks Catch
+    }
+
+    function createSched($schedId, $date, $timeId, $office) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("INSERT INTO tbl_schedule (sched_id, tmslot_id, office_id, sched_date)
+            VALUES (:schedno, :tmslot, :office, :sdate)");
+        $stmt-> bindParam(':schedno', $schedId);
+        $stmt-> bindParam(':tmslot', $timeId);
+        $stmt-> bindParam(':office', $office);
+        $stmt-> bindParam(':sdate', $date);
+
+        return $stmt->execute(); 
+    }
+
+    function createAppointment($schedId, $vstor_id, $branch, $office, $purpose) {
+        $conn = connectDb();
+
+        addToSchedTotalVisitor($schedId);
+        $current_queue = checkSchedTotalVisitor($schedId);
+        $appId = $schedId . (string)$current_queue;
+
+        $stmt = $conn -> prepare("INSERT INTO tbl_appointment (app_id, vstor_id, sched_id, office_id, app_branch, app_purpose)
+            VALUES (:appno, :vstor, :sched, :office, :branch, :purpose)");
+        $stmt-> bindParam(':appno', $appId);
+        $stmt-> bindParam(':vstor', $vstor_id);
+        $stmt-> bindParam(':sched', $schedId);
+        $stmt-> bindParam(':office', $office);
+        $stmt-> bindParam(':branch', $branch);
+        $stmt-> bindParam(':purpose', $purpose);
+
+        setVisitorApp($vstor_id);
+        $stmt->execute(); //Lacks Catch
+
+        return $appId;
+
+        // Lacks checking if sched is still available
+        
+    }
+
+    function checkSchedTotalVisitor($schedId) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT sched_total_visitor FROM tbl_schedule WHERE sched_id = ?");
+        $stmt-> execute([$schedId]);
+
+        $total_visitor = (int)$stmt->fetchColumn();
+        return $total_visitor;
+    }
+
+    function addToSchedTotalVisitor($schedId) {
+        $conn = connectDb();
+        $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_total_visitor = sched_total_visitor + 1 WHERE sched_id = ?");
+        return $stmt->execute([$schedId]);
+    }
+
+    function setVisitorApp($vstor_id) {
+        $conn = connectDb();
+        $stmt = $conn->prepare("UPDATE tbl_visitor SET vstor_hasApp = TRUE WHERE vstor_id = ?");
+        return $stmt->execute([$vstor_id]);
+    }
 ?>
