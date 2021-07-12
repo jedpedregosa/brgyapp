@@ -87,7 +87,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 					else if(dataResult.statusCode==201){
 					   alert("Error occured !"); // Error Page
 					} else if(dataResult.statusCode==202) {
-                        alert("Nakuha nayan bunak");
+                        alert("Email Taken");
                     }
 				}
 			});
@@ -193,6 +193,8 @@ submitBtn.addEventListener("click", function() {
                 }
                 else if(dataResult.statusCode==201){
                    alert("Error occured !"); // Error Page
+                } else {
+                    alert("Your selected schedule is not available.");
                 }
             }
     });

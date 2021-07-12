@@ -436,4 +436,21 @@
         $stmt = $conn->prepare("UPDATE tbl_visitor SET vstor_hasApp = TRUE WHERE vstor_id = ?");
         return $stmt->execute([$vstor_id]);
     }
+
+    function doesUserMatch($userId, $lName, $userType) {
+        $conn = connectDb();
+
+        if($userType == "student") {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_visitor WHERE vstor_lname = ? AND vstor_id = (SELECT vstor_id FROM tbl_student_data WHERE student_num = ?)");
+        } else if($userType == "employee") {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_visitor WHERE vstor_lname = ? AND vstor_id = (SELECT vstor_id FROM tbl_employee_data WHERE employee_num = ?)");
+        } else if($userType == "guest"){
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_visitor WHERE vstor_lname = ? AND vstor_email = ?");
+            
+        } else {
+            /// INTERNAL ERROR PAGE
+        }
+        $stmt-> execute([$lName, $userId]);
+        return $stmt->fetchColumn();
+    }
 ?>

@@ -38,7 +38,11 @@
     }
 
     if($userExists) {
-        $userData = getUserData($fReqData, $userType);
+        if(doesUserMatch($fReqData, $sReqData, $userType)) {
+            $userData = getUserData($fReqData, $userType);
+        } else {
+            $userExists = false;
+        }
     }
 ?>
 
