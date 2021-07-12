@@ -98,19 +98,19 @@
                         <hr style="position: relative; top: -10px;">
                         <div class="container-inputs">
                             <div class="container-office">
+                                <select style="width: 150px;" id = "branch">
+                                <option value="" disabled selected hidden>RTU Branch</option>
+                                <option value="Boni Campus">Boni Campus</option>
+                                <option value="Pasig Campus">Pasig Campus</option>
+                            </select>
+                            </div><br><br>
+                            <div class="container-office">
                                 <select name="Office" id="Office" class="Office">
                                 <option value="" disabled selected hidden>Office</option>
                                 <option value="RTU-O01">Curriculum and Instructional Resources Development Center</option>
                                 <option value="RTU-O02">Alumni Relations and Placement Office</option>
                                 <option value="RTU-O03">Disaster Risk Protection Office</option>
                                 <option value="RTU-O04">University Data Protection Office</option>
-                            </select>
-                            </div><br><br>
-                            <div class="container-office">
-                                <select style="width: 150px;" id = "branch">
-                                <option value="" disabled selected hidden>RTU Branch</option>
-                                <option value="Boni Campus">Boni Campus</option>
-                                <option value="Pasig Campus">Pasig Campus</option>
                             </select>
                             </div>
                             <br><br>
