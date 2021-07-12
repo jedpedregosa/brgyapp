@@ -116,7 +116,7 @@
                             <br><br>
                             <div class="container-purpose">
                                 <br>
-                                <textarea placeholder="State your purpose here..." id = "purpose" required></textarea>
+                                <textarea placeholder="State your purpose here..." id = "purpose" onkeyup="this.value = this.value.toUpperCase();" required></textarea>
                             </div>
                             <div class="informationForm">
                                 <div class="form-row">
@@ -144,11 +144,11 @@
                                     
                                     <div class="form-group">
                                         <input type="text" id="first-name" class="first-name" placeholder="First Name" 
-                                        value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>">
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" onkeyup="this.value = this.value.toUpperCase();">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($sReqData)?>">
+                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($sReqData)?>" onkeyup="this.value = this.value.toUpperCase();">
                                     </div>
                                 </div>
                                 <br>
@@ -163,7 +163,7 @@
                                         ?>
                                             <div class="form-group">
                                                 <input type="text" id="affiliated-company" class="affiliated-company" placeholder="Affiliated Company"
-                                                    value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
+                                                    value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>" onkeyup="this.value = this.value.toUpperCase();">
                                             </div>
                                         <?php
                                     } else {
@@ -180,7 +180,7 @@
 
                                     <div class="form-group">
                                         <input type="text" id="government-ID" class="government-ID" placeholder="Government ID"
-                                            value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
+                                            value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>" onkeyup="this.value = this.value.toUpperCase();">
                                     </div>
                                     <?php } ?>
                                 </div>
