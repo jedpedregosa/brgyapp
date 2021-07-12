@@ -66,7 +66,7 @@
         <label for="studno"><b></b></label>
         <input type="text" placeholder="Student Number" name="studentNum" required>
         <label for="ln"><b></b></label>
-        <input type="text" placeholder="Last Name" name="sLname" required>
+        <input type="text" placeholder="Last Name" name="sLname" style="text-transform:uppercase" required>
     
         <input type = "submit" class="button1" value = "Proceed">
  
@@ -88,7 +88,7 @@
             <input type="text" placeholder="Employee Number" name="empNum" required>
 
             <label for="ln"><b></b></label>
-            <input type="text" placeholder="Last Name" name="eLname" required>
+            <input type="text" placeholder="Last Name" name="eLname" style="text-transform:uppercase" required>
             
             <input type = "submit" class="button1" value = "Proceed">
           </div>
@@ -110,7 +110,7 @@
               <input type="text" placeholder="Email" name="email" required>
 
               <label for="ln"><b></b></label>
-              <input type="text" placeholder="Last Name" name="gLname" required>
+              <input type="text" placeholder="Last Name" name="gLname" style="text-transform:uppercase" required>
                 
               <input type = "submit" class="button1" value = "Proceed">
          
