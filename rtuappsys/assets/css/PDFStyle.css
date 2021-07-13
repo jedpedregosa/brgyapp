@@ -113,7 +113,8 @@ body {
 
 /* PDF DIV */
 .col-1 .pdf {
-  border: 1px solid blue; /* REMOVE THIS WHEN PUTTING THE ACTUAL PDF */
+  display: flex;
+  justify-content: center;
   height: 250px;
   width: 100%;
   max-width: 400px;
