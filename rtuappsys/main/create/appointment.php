@@ -44,6 +44,11 @@
             $userExists = false;
         }
     }
+
+    // Server Date & Time
+    date_default_timezone_set("Asia/Manila");
+    $currentDateTime = new DateTime();
+    $dateTime = $currentDateTime->format("D, d M Y H:i:s \G\M\T");
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +61,11 @@
     <link rel="stylesheet" href="../../assets/css/AppointmentStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getServerTime()  {
+            return "<?php echo $dateTime; ?>";
+        }
+    </script>
 </head>
 
 <body>

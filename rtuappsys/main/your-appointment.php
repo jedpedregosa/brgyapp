@@ -1,13 +1,20 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/phpqrcode/qrlib.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/create-pdf.php");
 
     $appId;
     session_name("id");
 	session_start();
 
-    unset($_SESSION['userId']);
-    unset($_SESSION['uLname']);
-    unset($_SESSION['uType']);
+	if(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"])) {
+        unset($_SESSION['userId']);
+		unset($_SESSION['uLname']);
+		unset($_SESSION['uType']);
+    }
+
+    // Initialization
+    
 
     if(isset($_SESSION["applicationId"])) {
         $appId = $_SESSION["applicationId"];
@@ -20,8 +27,13 @@
     $qrfilepath = $qrLoc . $flname;
 
     if (!file_exists($qrfilepath)) {
-        QRcode::png("sheeeeesh". $appId, $qrfilepath); //should be a default link
+        QRcode::png($_SERVER['HTTP_HOST' ]. "/rtuappsys/main/check-appointments.php?app_id=". $appId, $qrfilepath); //should be a default link
     }
+	$visitor_data = getVisitorDataByAppointmentId($appId);
+	
+	if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/rtuappsys/assets/files/RTUAppointment'. $appId .'.pdf')) {
+		generateAppointmentFile($appId);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -57,14 +69,14 @@
 
 				<!-- THANK YOU -->
 				<div class="thankYou">
-					<p>Thank you, <span>User<!-- SAMPLE --></span>!</p><!-- PUT USER'S NAME INSIDE THE SPAN TAG -->
+					<p>Thank you, <span><?php echo htmlspecialchars($visitor_data[3]); ?></span>!</p><!-- PUT USER'S NAME INSIDE THE SPAN TAG -->
 				</div>
 				<!-- //THANK YOU -->
 				
 				<!-- PDF DIV -->
 				<div class="pdf">
 					<!-- PUT HERE THE PDF VIEWER OR DOWNLOADER -->
-                    <img src = "../assets/img/source/<?php echo $flname ?>">
+					<object data="../assets/files/RTUAppointment<?php echo $appId ?>.pdf" type="application/pdf" width="100%" height="100%">PDF Error</object>
 				</div>
 				<!-- //PDF DIV -->
                 

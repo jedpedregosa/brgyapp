@@ -453,4 +453,36 @@
         $stmt-> execute([$lName, $userId]);
         return $stmt->fetchColumn();
     }
+    
+    function getVisitorDataByAppointmentId($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT * FROM tbl_visitor WHERE vstor_id =
+            (SELECT vstor_id FROM tbl_appointment WHERE app_id = ?)");
+        $stmt-> execute([$app_id]);
+        $result = $stmt->fetch();
+
+        return $result; // Lacks Catch
+    }
+
+    function getAppointmentDetails($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT * FROM tbl_appointment WHERE app_id = ?");
+        $stmt-> execute([$app_id]);
+        $result = $stmt->fetch();
+
+        return $result; // Lacks Catch
+    }
+
+    function getScheduleDetailsByAppointmentId($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT * FROM tbl_schedule WHERE sched_id = (SELECT sched_id FROM tbl_appointment WHERE app_id = ?)");
+        $stmt-> execute([$app_id]);
+        $result = $stmt->fetch();
+
+        return $result; // Lacks Catch
+    }
+
 ?>

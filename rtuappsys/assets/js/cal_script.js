@@ -1,9 +1,8 @@
+
+
+
 var date = new Date(getServerTime());
 var finalDate;
-
-function getServerTime() {
-	return $.ajax({async: false}).getResponseHeader( 'Date' );
-}
 
 function setSlctdDate(dateID) {
 	console.log(dateID);
