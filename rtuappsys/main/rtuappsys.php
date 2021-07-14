@@ -66,7 +66,7 @@
         <label for="studno"><b></b></label>
         <input type="text" placeholder="Student Number" name="studentNum" required>
         <label for="ln"><b></b></label>
-        <input type="text" placeholder="Last Name" name="sLname" onkeyup="this.value = this.value.toUpperCase(); required>
+        <input type="text" placeholder="Last Name" name="sLname" onkeyup="this.value = this.value.toUpperCase();" required>
     
         <input type = "submit" class="button1" value = "Proceed">
  
@@ -88,7 +88,7 @@
             <input type="text" placeholder="Employee Number" name="empNum" required>
 
             <label for="ln"><b></b></label>
-            <input type="text" placeholder="Last Name" name="eLname" onkeyup="this.value = this.value.toUpperCase(); required>
+            <input type="text" placeholder="Last Name" name="eLname" onkeyup="this.value = this.value.toUpperCase();" required>
             
             <input type = "submit" class="button1" value = "Proceed">
           </div>
@@ -110,7 +110,7 @@
               <input type="text" placeholder="Email" name="email" required>
 
               <label for="ln"><b></b></label>
-              <input type="text" placeholder="Last Name" name="gLname" onkeyup="this.value = this.value.toUpperCase(); required>
+              <input type="text" placeholder="Last Name" name="gLname" onkeyup="this.value = this.value.toUpperCase();" required>
                 
               <input type = "submit" class="button1" value = "Proceed">
          
@@ -136,7 +136,7 @@
                     <label for="email"><b></b></label>
                     <input type="text" placeholder="Email Address" name="email" required>
                     <label for="ln"><b></b></label>
-                    <input type="text" placeholder="Last Name" name="*" onkeyup="this.value = this.value.toUpperCase(); required>
+                    <input type="text" placeholder="Last Name" name="*" onkeyup="this.value = this.value.toUpperCase();" required>
                 
                     <div class="button1">Proceed</button>
           </form>
