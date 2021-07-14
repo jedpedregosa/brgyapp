@@ -165,9 +165,12 @@ nextBtnSec.addEventListener("click", function(event) {
 });
 
 submitBtn.addEventListener("click", function() {
-    bullet[current - 1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    current += 1;
+
+    if(current < 3) {
+        bullet[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        current += 1;
+    }
 
     var officeId = document.getElementById('Office').value;
     var branch = document.getElementById('branch').value;
