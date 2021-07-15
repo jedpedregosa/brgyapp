@@ -1,14 +1,30 @@
 
-
-
-var date = new Date(getServerTime());
+var available_dates;
+var currentDate;
+var date;
 var finalDate;
+var daySelected;
 
 function setSlctdDate(dateID) {
 	console.log(dateID);
 	var txtDate = document.getElementById("slctdDate");
 	txtDate.text = dateID;
+	daySelected = new Date(dateID).getDate();
+	document.querySelector('.date .day_num').innerHTML = daySelected;
 }
+function startCalendar() {
+	currentDate = new Date(available_dates[0]);
+	date = new Date(currentDate);
+	daySelected = currentDate.getDate();
+	renderCalendar(); 
+}
+function n(n){
+    return n > 9 ? "" + n: "0" + n;
+}
+function isInArray(value) {
+	return (available_dates.find(item => {return item == value}) || []).length > 0;
+  }
+
 	const renderCalendar = () => {
 		date.setDate(1);
 
@@ -44,7 +60,7 @@ function setSlctdDate(dateID) {
 
 		document.querySelector('.date .month_ttl').innerHTML = months[date.getMonth()];
 		document.querySelector('.date .year_ttl').innerHTML = date.getFullYear();
-		document.querySelector('.date .day_num').innerHTML = new Date().getDate();
+		document.querySelector('.date .day_num').innerHTML = daySelected;
 
 		let days = "";
 
@@ -53,15 +69,22 @@ function setSlctdDate(dateID) {
 		}
 
 		for(let i=1; i<=lastDay; i++){
-			finalDate = new Date(slctmonth + " " + i + " " + slctyear);
-			finalDate = finalDate.toLocaleDateString("en-US");
-			if(i===new Date(getServerTime()).getDate() && date.getMonth() === new Date(getServerTime()).getMonth() && date.getFullYear() == new Date(getServerTime()).getFullYear()) {
+			rawDate = slctyear + "-" + n(slctmonth) + "-" + n(i);
+			loadDate = new Date(slctmonth + " " + i + " " + slctyear);
+			finalDate = loadDate.toLocaleDateString("en-US");
+			
+			var dayAvailable = isInArray(rawDate);
 
+			if(i=== currentDate.getDate() && date.getMonth() === currentDate.getMonth() && date.getFullYear() == currentDate.getFullYear() && (loadDate.getDay() != 0 && loadDate.getDay() != 6) && dayAvailable) {
 				days += `<div class="today"><input type="radio" name="day" id="${i}" value="${finalDate}" onclick = "setSlctdDate('${finalDate}')">
 				<label for="${i}">${i}</label></div>`;
+			} else if(i < currentDate.getDate() && date.getMonth() === currentDate.getMonth() && date.getFullYear() == currentDate.getFullYear()) {
+				days += `<div class="prev-date">${i}</div>`;
+			} else if((loadDate.getDay() == 0 || loadDate.getDay() == 6) || !dayAvailable){
+				days += `<div class="prev-date">${i}</div>`;
 			} else {
-			days += `<input type="radio" name="day" class="select_day" id="button${i}" value="${finalDate}" onclick = "setSlctdDate('${finalDate}')">
-			<label for="button${i}">${i}</label>`;
+				days += `<input type="radio" name="day" class="select_day" id="button${i}" value="${finalDate}" onclick = "setSlctdDate('${finalDate}')">
+				<label for="button${i}">${i}</label>`;
 			}
 		}
 
@@ -72,14 +95,19 @@ function setSlctdDate(dateID) {
 	}
 
 document.querySelector('.controls .prev_btn').addEventListener('click',()=>{
-	date.setMonth(date.getMonth()-1);
-	renderCalendar();
+	if(currentDate.getMonth() + 1 <= date.getMonth()) {
+		date.setMonth(date.getMonth()-1);
+		renderCalendar();
+	}
+
 });
 
 document.querySelector('.controls .next_btn').addEventListener('click',()=>{
-	date.setMonth(date.getMonth()+1);
-	renderCalendar();
+	if(currentDate.getMonth() + 1 > date.getMonth()) {
+		date.setMonth(date.getMonth()+1);
+		renderCalendar();
+	}
 });
 
-renderCalendar();
+//renderCalendar();
 

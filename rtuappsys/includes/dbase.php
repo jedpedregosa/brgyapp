@@ -427,8 +427,29 @@
 
     function addToSchedTotalVisitor($schedId) {
         $conn = connectDb();
+
         $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_total_visitor = sched_total_visitor + 1 WHERE sched_id = ?");
-        return $stmt->execute([$schedId]);
+        $stmt->execute([$schedId]);
+
+        $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_is_available = 0 WHERE sched_id = ? AND sched_total_visitor = ?");
+        $stmt-> execute([$schedId, (int)max_per_sched]);
+    }
+
+    function checkDaySched($Day, $office) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT SUM(sched_total_visitor) FROM tbl_schedule
+            WHERE sched_date = ? AND office_id = ?");
+        $stmt->execute([$Day, $office]);
+        $result = $stmt->fetchColumn();
+
+        $maxVisitorAllowed = (int)max_per_sched * (int)number_of_timeslots;
+
+        if($result < $maxVisitorAllowed) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function setVisitorApp($vstor_id) {

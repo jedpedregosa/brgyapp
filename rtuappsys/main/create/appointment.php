@@ -48,7 +48,7 @@
     // Server Date & Time
     date_default_timezone_set("Asia/Manila");
     $currentDateTime = new DateTime();
-    $dateTime = $currentDateTime->format("D, d M Y H:i:s \G\M\T");
+    $dateTime = $currentDateTime->format("F d, Y h:i:s");
 ?>
 
 <!DOCTYPE html>
@@ -237,7 +237,7 @@
                                 <span class="month_ttl"></span>
                                 <span class="year_ttl"></span>
                                 <span class="day_num"></span>
-                                <span class="day_ttl">day</span>
+                                <span class="day_ttl">Day</span>
                             </div>
                         </div>
 

@@ -26,6 +26,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 	var phone = $('#contact-number').val();
     var company = $('#affiliated-company').val();
     var govId = $('#government-ID').val();
+    var officeId = $('#Office').val();
     /*
     var companyElement = document.getElementById("affiliated-company");
     var govIdElement = document.getElementById("government-ID");
@@ -78,11 +79,6 @@ nextBtnFirst.addEventListener("click", function(event) {
                 var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
                         // Insert JS Form Validation
-                        event.preventDefault();
-                        slidePage.style.marginLeft = "-25%";
-                        bullet[current - 1].classList.add("active");
-                        progressCheck[current - 1].classList.add("active");
-                        current += 1;
 					}
 					else if(dataResult.statusCode==201){
 					   alert("Error occured !"); // Error Page
@@ -91,7 +87,31 @@ nextBtnFirst.addEventListener("click", function(event) {
                     }
 				}
 			});
-		}
+	}
+    if(officeId!=""){
+		$.ajax({
+			url: "../../includes/test2.php",
+			type: "POST",
+			data: {
+				officeCode: officeId
+			},
+			cache: false,
+			success: function(dataResult){
+                var dataResult = JSON.parse(dataResult);
+
+			}
+		}).done(function(dataResult) {
+            available_dates = JSON.parse(dataResult);
+
+            event.preventDefault();
+            slidePage.style.marginLeft = "-25%";
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            current += 1;
+
+           startCalendar();
+        }); //Lacks Catch
+	}
 });
 nextBtnSec.addEventListener("click", function(event) {
     slctDate = slctdDate.text;
