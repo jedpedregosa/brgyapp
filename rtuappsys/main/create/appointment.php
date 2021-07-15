@@ -60,6 +60,9 @@
     <title>Make an Appointment</title>
     <link rel="stylesheet" href="../../assets/css/AppointmentStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         function getServerTime()  {
@@ -104,7 +107,7 @@
                 <!-- ACTION FOR PHP -->
                 <div class="page slide-page">
                     <!-- Put here your codes -->
-                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: Arial;">Fill out the fields to make an appointment</h3>
+                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Fill out the fields to make an appointment</h4>
                         <hr style="position: relative; top: -10px;">
                         <div class="container-inputs">
                             <div class="container-office">
@@ -214,7 +217,7 @@
                 <div class="page">
                     <!-- important -->
                     <!-- Put here your codes -->
-                    <div class="left_text"><b>SELECT DATE & TIME <font style color="#ffd22d">*</font></b></div>
+                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Select date and time</h4>
                     <div class="calendar">
                         <div class="weekdays">
                             <div>Sun</div>
@@ -277,7 +280,7 @@
                             <div id="timeslot-load" class = "overlay">
                                 <div class="cv-spinner">
                                     <span class="spinner"></span>
-                                    <span style = "display: block; margin-left: 5%; font-family: Arial; color: #808080"> 
+                                    <span style = "display: block; margin-left: 5%; font-family: 'Poppins', sans-serif; color: #808080"> 
                                         Please wait..
                                     </span>
                                 </div>
@@ -301,7 +304,8 @@
                 <!-- PERSONAL INFORMATION PAGE -->
                 <!-- CONFIRMATION PAGE -->
                 <div class="page">
-                    <h4>APPOINTMENT SUMMARY</h4>
+                    
+                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Appointment Summary</h4>
                     <hr></hr>
                     <ul>
 
