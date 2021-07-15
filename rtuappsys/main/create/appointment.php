@@ -217,7 +217,7 @@
                 <div class="page">
                     <!-- important -->
                     <!-- Put here your codes -->
-                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Select date and time</h4>
+                    <h4 style="top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Select date and time</h4>
                     <div class="calendar">
                         <div class="weekdays">
                             <div>Sun</div>

@@ -161,7 +161,7 @@ hr {
     align-items: center;
     justify-content: center;
     display: flex;
-    padding-top: 5px;
+    padding-top: 2px;
 }
 
 
@@ -453,13 +453,11 @@ li {
 /* CALENDAR DESIGN */
 .calendar {
     /* calendar container */
-    margin-top: 30px;
     width: 50rem;
     /* always use rem unit if plan to change the value, hehe proportional kasi ito sa area, a bit complicated to tantya-meter */
-    height: 20rem;
+    height: 19.2rem;
     /* dependent 'yung content nitong cal containers to these two rem val */
     background-color: #002060;
-    margin-bottom: 3px;
 }
 
 .weekdays {
@@ -503,7 +501,7 @@ li {
     /* separated div for the prev and next button */
     margin-left: 10px;
     float: left;
-    font-size: 18px;
+    font-size: 14px;
     width: 5%;
     text-align: center;
 }
@@ -513,7 +511,7 @@ li {
 }
 
 .controls .prev_btn:hover {
-    color: #00eb6b;
+    color: #eab800;
 }
 
 .controls .next_btn {
@@ -521,19 +519,18 @@ li {
 }
 
 .controls .next_btn:hover {
-    color: #00eb6b;
+    color: #eab800;
 }
 
 .date .month_ttl {
     /* separated div for the Month Name (e.g JUNE) */
-    font-size: 43px;
+    font-size: 30px;
     margin-left: 10px;
     float: left;
 }
 
 .date .year_ttl {
     /* sparated div for year count (2021)*/
-    margin-top: 12px;
     font-size: 30px;
     margin-left: 10px;
     float: left;
@@ -541,14 +538,13 @@ li {
 
 .date .day_ttl {
     /* separated div for Day title (day) */
-    margin-top: 12px;
     float: right;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .date .day_num {
     /* separated div for today's date (with js function)*/
-    font-size: 43px;
+    font-size: 30px;
     margin-left: 5px;
     margin-right: 10px;
     float: right;
@@ -653,7 +649,7 @@ li {
 
 .time {
     /* time container for all the buttons */
-    height: 14.8rem;
+    height: 14em;
     width: 47.3%;
     float: right;
     background-color: #ededed;
