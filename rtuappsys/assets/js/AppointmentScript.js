@@ -90,7 +90,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 	}
     if(officeId!=""){
 		$.ajax({
-			url: "../../includes/test2.php",
+			url: "../../includes/load-dates.php",
 			type: "POST",
 			data: {
 				officeCode: officeId

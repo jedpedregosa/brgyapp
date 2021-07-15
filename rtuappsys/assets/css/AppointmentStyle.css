@@ -1034,3 +1034,40 @@ select option {
     font-family: Tw Cen MT;
     color: #767171;
 }
+
+#slotsload {
+    display: none;
+}
+
+#timeslot-load {
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .cv-spinner {
+    margin-top: 15%;
+    height: 20%;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+  }
+  .spinner {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 4px #ededed solid;
+    border-top: 4px #808080 solid;
+    border-left: 4px #808080 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.5s infinite linear;
+  }
+  @keyframes sp-anime {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .is-hide {
+    display: none;
+  }

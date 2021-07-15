@@ -249,31 +249,41 @@
                         <div style="display: none;">
                             <input type = "text" id = "slctdDate"/>
                         </div>
-                        <div class="time">
-                            <div>
-                                <input type="button" id = "TMSLOT-01" name="btn1" value="08:00 AM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-02" name="btn2" value="08:30 AM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-03" name="btn3" value="09:00 AM" onclick = "load_timeslot(this.id)"/>
-                            </div>
-                            <div>
-                                <input type="button" id = "TMSLOT-04" name="btn4" value="09:30 AM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-05" name="btn5" value="10:00 AM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-06" name="btn6" value="10:30 AM" onclick = "load_timeslot(this.id)"/>
-                            </div>
-                            <div>
-                                <input type="button" id = "TMSLOT-07" name="btn7" value="11:00 AM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-08" name="btn8" value="11:30 AM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-09" name="btn9" value="12:00 PM" onclick = "load_timeslot(this.id)"/>
-                            </div>
-                            <div>
-                                <input type="button" id = "TMSLOT-10" name="btn10" value="12:30 PM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-11" name="btn11" value="01:00 PM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-12" name="btn12" value="01:30 PM" onclick = "load_timeslot(this.id)"/>
-                            </div>
-                            <div>
-                                <input type="button" id = "TMSLOT-13" name="btn13" value="02:00 PM" onclick = "load_timeslot(this.id)"/>
-                                <input type="button" id = "TMSLOT-14" name="btn14" value="02:30 PM" onclick = "load_timeslot(this.id)"/> 
-                                <input type="button" id = "TMSLOT-15" name="btn15" value="03:00 PM" onclick = "load_timeslot(this.id)"/> 
+                        <div class="time" id = "slots">
+                                <div>
+                                    <input type="button" id = "TMSLOT-01" name="btn1" value="08:00 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-02" name="btn2" value="08:30 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-03" name="btn3" value="09:00 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                </div>
+                                <div>
+                                    <input type="button" id = "TMSLOT-04" name="btn4" value="09:30 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-05" name="btn5" value="10:00 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-06" name="btn6" value="10:30 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                </div>
+                                <div>
+                                    <input type="button" id = "TMSLOT-07" name="btn7" value="11:00 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-08" name="btn8" value="11:30 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-09" name="btn9" value="12:00 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                </div>
+                                <div>
+                                    <input type="button" id = "TMSLOT-10" name="btn10" value="12:30 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-11" name="btn11" value="01:00 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-12" name="btn12" value="01:30 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                </div>
+                                <div>
+                                    <input type="button" id = "TMSLOT-13" name="btn13" value="02:00 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id = "TMSLOT-14" name="btn14" value="02:30 PM" onclick = "load_timeslot(this.id)" disabled/> 
+                                    <input type="button" id = "TMSLOT-15" name="btn15" value="03:00 PM" onclick = "load_timeslot(this.id)" disabled/> 
+                                </div>
+                        </div> 
+                        <div class ="time" id = "slotsload">
+                            <div id="timeslot-load" class = "overlay">
+                                <div class="cv-spinner">
+                                    <span class="spinner"></span>
+                                    <span style = "display: block; margin-left: 5%; font-family: Arial; color: #808080"> 
+                                        Please wait..
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

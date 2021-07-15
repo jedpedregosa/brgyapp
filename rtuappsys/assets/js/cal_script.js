@@ -11,6 +11,37 @@ function setSlctdDate(dateID) {
 	txtDate.text = dateID;
 	daySelected = new Date(dateID).getDate();
 	document.querySelector('.date .day_num').innerHTML = daySelected;
+
+	var officeId = $('#Office').val();
+	$.ajax({
+		url: "../../includes/load-slots.php",
+		type: "POST",
+		data: {
+			date: dateID,
+			office: officeId
+		},
+		cache: false,
+		beforeSend: function(){
+			document.getElementById("slots").style.display = "none";
+			document.getElementById("slotsload").style.display = "block";
+		},
+		success: function(dataResult){
+			var dataResult = JSON.parse(dataResult);
+
+		}
+	}).done(function(dataResult) {
+		document.getElementById("slotsload").style.display = "none";
+		document.getElementById("slots").style.display = "block";
+		var available_slots = JSON.parse(dataResult);
+
+		for(let i = 0; i < available_slots.length; i++) {
+			var tmslotbutton = document.getElementById(available_slots[i][0]);
+				
+			tmslotbutton.disabled = !(available_slots[i][1]);
+
+		}
+	});
+	  
 }
 function startCalendar() {
 	currentDate = new Date(available_dates[0]);
