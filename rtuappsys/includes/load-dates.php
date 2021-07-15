@@ -1,9 +1,8 @@
 <?php 
-    /////////////// SOURCE CODE TESTING PAGE 
-    /// DELETE test2.php ON PRODUCTION
+    // LACKS SESSION CHECKER!!!!!!!!!!!
 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/config.php");
 
     if(isset($_POST['officeCode'])) {
         $office = $_POST['officeCode'];
@@ -16,18 +15,19 @@
     date_default_timezone_set("Asia/Manila");
     $slctd_date = new DateTime();
     $startDate = $slctd_date->format('Y-m-d');
-    $endDate = date('Y-m-d', strtotime($startDate . ' + 30 days'));
 
     $availableDates = [];
 
-    $i = $startDate;
-    while($i <= $endDate) {
-        if(!(date('N', strtotime($i)) >= 6)) {
-            if(checkDaySched($i, $office)) {
-                array_push($availableDates, $i);
+    $date = $startDate;
+    $i = 1;
+    while($i <= (int)days_scheduling_span) {
+        if(!(date('N', strtotime($date)) >= 6)) {
+            if(checkDaySched($date, $office)) {
+                array_push($availableDates, $date);
+                $i += 1;
             }
         }
-        $i = date('Y-m-d', strtotime($i. ' + 1 days'));
+        $date = date('Y-m-d', strtotime($date. ' + 1 days'));
     }
     echo json_encode($availableDates);
 

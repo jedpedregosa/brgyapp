@@ -6,7 +6,6 @@ var finalDate;
 var daySelected;
 
 function setSlctdDate(dateID) {
-	console.log(dateID);
 	var txtDate = document.getElementById("slctdDate");
 	txtDate.text = dateID;
 	daySelected = new Date(dateID).getDate();
@@ -114,7 +113,7 @@ function isInArray(value) {
 			var dayAvailable = isInArray(rawDate);
 
 			if(i=== currentDate.getDate() && date.getMonth() === currentDate.getMonth() && date.getFullYear() == currentDate.getFullYear() && (loadDate.getDay() != 0 && loadDate.getDay() != 6) && dayAvailable) {
-				days += `<div class="today"><input type="radio" name="day" id="${i}" value="${finalDate}" onclick = "setSlctdDate('${finalDate}')">
+				days += `<div class="today"><input type="radio" name="day" id="${i}" value="${finalDate}" onclick = "setSlctdDate('${finalDate}')" checked>
 				<label for="${i}">${i}</label></div>`;
 			} else if(i < currentDate.getDate() && date.getMonth() === currentDate.getMonth() && date.getFullYear() == currentDate.getFullYear()) {
 				days += `<div class="prev-date">${i}</div>`;

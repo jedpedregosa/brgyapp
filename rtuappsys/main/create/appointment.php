@@ -1,29 +1,57 @@
 <?php 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		appointment.php (Web Page) -- 
+ *  Description:
+ * 		1. Provides an interface for the creation of appointments.
+ * 		2. Load available schedules.
+ * 
+ * 	Date Created: 7th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	Triggers for validation messages for the client side.
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ * **************************************************************************/
 
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
+
+    // Session Side
     session_name("id");
     session_start();
     
+    // Check if accessed from chck-appointment.php
     if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
         header("Location: ../rtuappsys.php");
         die();
     }
-    // Initialization
+
+    // Initialization of Session Values
     $fReqData = $_SESSION["userId"];
     $sReqData = $_SESSION["uLname"];
     $userType = $_SESSION["uType"];
 
+    // Checking of identification information status
     if(doesUserHasApp($fReqData, $userType)) {
         // *********** Needs error message
         header("Location: ../main/rtuappsys.php");
         die();
     }
 
+    // User type identifier
     $isStudent = false;
     $isEmp = false;
     $isGuest = false;
+
+    // Check whether has an existing information from the database
     $userExists = doesUserExists($fReqData, $userType);
-    $userData = null;
+    $userData = null;  // Array of user data
 
     // Check user type
     if($userType == "student") {
@@ -37,10 +65,14 @@
         die();
     }
 
+    // Check whether has an existing information from the database
     if($userExists) {
+        // Check if both user identification and lastname matches in the database
         if(doesUserMatch($fReqData, $sReqData, $userType)) {
+            // Load the user's data
             $userData = getUserData($fReqData, $userType);
         } else {
+            // if not, do not load (For Privacy)
             $userExists = false;
         }
     }
@@ -72,6 +104,11 @@
 </head>
 
 <body>
+    <div id="screen-overlay">
+        <div class="screen-cv-spinner">
+            <span class="screen-spinner"></span>
+        </div>
+    </div>
     <div class="container">
         <!-- HEADER -->
         <div class="apptlogo">
@@ -278,8 +315,8 @@
                         </div> 
                         <div class ="time" id = "slotsload">
                             <div id="timeslot-load" class = "overlay">
-                                <div class="cv-spinner">
-                                    <span class="spinner"></span>
+                                <div id ="timeslot-cv-spinner">
+                                    <span id ="timeslot-spinner"></span>
                                     <span style = "display: block; margin-left: 5%; font-family: 'Poppins', sans-serif; color: #808080"> 
                                         Please wait..
                                     </span>

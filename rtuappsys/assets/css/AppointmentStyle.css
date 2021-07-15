@@ -1033,14 +1033,14 @@ select option {
     height: 100%;
     display: block;
   }
-  .cv-spinner {
+#timeslot-cv-spinner {
     margin-top: 15%;
     height: 20%;
     vertical-align: middle;
     justify-content: center;
     align-items: center;
-  }
-  .spinner {
+}
+#timeslot-spinner {
     display: block;
     width: 40px;
     height: 40px;
@@ -1049,7 +1049,7 @@ select option {
     border-left: 4px #808080 solid;
     border-radius: 50%;
     animation: sp-anime 0.5s infinite linear;
-  }
+}
   @keyframes sp-anime {
     100% {
       transform: rotate(360deg);
@@ -1058,3 +1058,36 @@ select option {
   .is-hide {
     display: none;
   }
+
+  #screen-overlay {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+  }
+#screen-cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+#screen-spinner {
+    width: 80px;
+    height: 80px;
+    border: 20px #002060 solid;
+    border-top: 20px #eab800 solid;
+    border-radius: 50%;
+    animation: screen-sp-anime 0.8s infinite linear;
+  }
+  @keyframes screen-sp-anime {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .is-hide {
+    display: none;
+  }
+  

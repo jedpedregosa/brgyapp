@@ -28,14 +28,7 @@ nextBtnFirst.addEventListener("click", function(event) {
     var company = $('#affiliated-company').val();
     var govId = $('#government-ID').val();
     var officeId = $('#Office').val();
-    /*
-    var companyElement = document.getElementById("affiliated-company");
-    var govIdElement = document.getElementById("government-ID");
 
-    if(companyElement && govIdElement) {
-        company = companyElement.text;
-        govId = govIdElement.text;
-    } */
     var isAvail = true;
     if(validateEmail(email)) {
         $.ajax({
@@ -45,15 +38,19 @@ nextBtnFirst.addEventListener("click", function(event) {
 				email: email
 			},
 			cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(300);
+            },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
-					if(dataResult.hasEmail == 200){
-                        alert('Engk!! Email');
-                        isAvail = false;
-                    } 
-				}
-                
-			});
+				if(dataResult.hasEmail == 200){
+                    alert('Engk!! Email');
+                    isAvail = false;
+                } 
+			} 
+        }).done(function () {
+            $("#screen-overlay").fadeOut(300);
+        });
 
     } else {
         alert('Engk!! Email');
@@ -76,6 +73,9 @@ nextBtnFirst.addEventListener("click", function(event) {
                 govId: govId
 			},
 			cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(300);
+            },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
@@ -87,7 +87,10 @@ nextBtnFirst.addEventListener("click", function(event) {
                         alert("Email Taken");
                     }
 				}
-			});
+			}).done(function () {
+                $("#screen-overlay").fadeOut(300);
+            });
+    
 	}
     if(officeId!= null){
 		$.ajax({
@@ -97,6 +100,9 @@ nextBtnFirst.addEventListener("click", function(event) {
 				officeCode: officeId
 			},
 			cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(300);
+            },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
 
@@ -109,6 +115,8 @@ nextBtnFirst.addEventListener("click", function(event) {
             bullet[current - 1].classList.add("active");
             progressCheck[current - 1].classList.add("active");
             current += 1;
+
+            $("#screen-overlay").fadeOut(300);
 
             setSlctdDate(available_dates[0]);
             startCalendar();

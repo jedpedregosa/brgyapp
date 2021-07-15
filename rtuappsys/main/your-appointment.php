@@ -1,4 +1,27 @@
 <?php 
+
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		your-appointment.php (Web Page) -- 
+ *  Description:
+ * 		1. Displays the PDF resulted file of the whole
+ * 			appointment scheduling system.
+ * 		2. Generates the QR-Code, linking to the appointment
+ * 			result.
+ * 
+ * 	Date Created: 7th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ * **************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/phpqrcode/qrlib.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/create-pdf.php");
@@ -76,12 +99,15 @@
 				<!-- PDF DIV -->
 				<div class="pdf">
 					<!-- PUT HERE THE PDF VIEWER OR DOWNLOADER -->
-					<object data="../assets/files/RTUAppointment<?php echo $appId ?>.pdf" type="application/pdf" width="100%" height="100%">PDF Error</object>
+					<object data="../assets/files/RTUAppointment<?php echo $appId; ?>.pdf" type="application/pdf" width="100%" height="100%">
+                        <embed src="../assets/files/RTUAppointment<?php echo $appId; ?>.pdf" type="application/pdf" />
+                    </object>
 				</div>
 				<!-- //PDF DIV -->
                 
 				<!-- SEE YOU IN RTU -->
 				<div class="seeYou">
+					<p><span>You can </span> download <span>it <a href="../assets/files/RTUAppointment<?php echo $appId; ?>.pdf" >here</a> instead.</span></p>
 					<p>See you in <span>Rizal Technological University</span>!</p>
 				</div>
 				<!-- //SEE YOU IN RTU -->
