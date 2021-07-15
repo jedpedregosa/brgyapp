@@ -4,6 +4,7 @@
 var slctTimeSlt = null;
 var slctDate = null;
 var prevTimeButton;
+var timeButton;
 
 const slidePage = document.querySelector(".slide-page"); // important for flipping next
 const nextBtnFirst = document.querySelector(".firstNext"); // first next button
@@ -241,26 +242,29 @@ prevBtnThird.addEventListener("click", function(event) {
 // Fuctions
 
 function load_timeslot(tmslot) {
-    var timeButton = document.getElementById(tmslot);
+    timeButton = document.getElementById(tmslot);
     if(slctTimeSlt == tmslot) {
         slctTimeSlt = null;
 
         timeButton.style.backgroundColor = "white"; // SET THE SELECTED BUTTON TO UNHOLD
-        timeButton.style.color = "#00b050";
+        timeButton.style.color = "#002060";
+
+        timeButton.style.backgroundColor = ''; // SET THE SELECTED BUTTON TO UNHOLD
+        timeButton.style.color = '';
     } else if(slctTimeSlt == null) {
         slctTimeSlt = tmslot;
 
-        timeButton.style.backgroundColor = "#00b050"; // SET THE SELECTED BUTTON TO HOLD
+        timeButton.style.backgroundColor = "#002060"; // SET THE SELECTED BUTTON TO HOLD
         timeButton.style.color = "white";
 
     } else {
         slctTimeSlt = tmslot;
 
-        timeButton.style.backgroundColor = "#00b050"; // SET THE SELECTED BUTTON TO HOLD
+        timeButton.style.backgroundColor = "#002060"; // SET THE SELECTED BUTTON TO HOLD
         timeButton.style.color = "white";
 
-        prevTimeButton.style.backgroundColor = "white"; // SET THE PREVIOUS SELECTED BUTTON TO UNHOLD
-        prevTimeButton.style.color = "#00b050";
+        prevTimeButton.style.backgroundColor = ''; // SET THE PREVIOUS SELECTED BUTTON TO UNHOLD
+        prevTimeButton.style.color = '';
     }
     prevTimeButton = timeButton;
 }

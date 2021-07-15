@@ -693,27 +693,25 @@ li {
     /* designs for the buttons */
     background-color: white;
     border: 1px solid #bfbfbf;
-    color: #00b050;
+    color: #002060;
     height: 38px;
     width: 100px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    font-family: Arial;
+    font-weight: 600;
+    font-size: 14px;
     margin: 0px 18px;
     cursor: pointer;
     align-items: center;
 }
 
-.time input[type=button]:focus {
-    /* clicked button */
-    background-color: #00b050;
-    color: white;
-}
+
 
 .time input[type=button]:hover {
     /* color change when the arrow hovers above the button */
-    background-color: #00b050;
+    background-color: #002060;
     color: white;
 }
 

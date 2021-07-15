@@ -12,6 +12,13 @@ function setSlctdDate(dateID) {
 	daySelected = new Date(dateID).getDate();
 	document.querySelector('.date .day_num').innerHTML = daySelected;
 
+	if(timeButton) {
+		timeButton.style.backgroundColor = ''; // SET THE SELECTED BUTTON TO UNHOLD
+    	timeButton.style.color = '';
+		slctTimeSlt = null;
+	}
+	
+
 	var officeId = $('#Office').val();
 	$.ajax({
 		url: "../../includes/load-slots.php",
