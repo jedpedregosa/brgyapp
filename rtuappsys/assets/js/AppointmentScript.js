@@ -88,7 +88,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 				}
 			});
 	}
-    if(officeId!=""){
+    if(officeId!= null){
 		$.ajax({
 			url: "../../includes/load-dates.php",
 			type: "POST",
@@ -109,7 +109,8 @@ nextBtnFirst.addEventListener("click", function(event) {
             progressCheck[current - 1].classList.add("active");
             current += 1;
 
-           startCalendar();
+            setSlctdDate(available_dates[0]);
+            startCalendar();
         }); //Lacks Catch
 	}
 });
