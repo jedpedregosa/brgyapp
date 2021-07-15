@@ -215,9 +215,6 @@
                     <!-- important -->
                     <!-- Put here your codes -->
                     <div class="left_text"><b>SELECT DATE & TIME <font style color="#ffd22d">*</font></b></div>
-                    <div class="right_text"><b><font style color="#00b050">AVAILABLE</font>&nbsp;&nbsp;&nbsp;<font style color="#ff0000">FULLY BOOKED</b></font>
-                    </div>
-
                     <div class="calendar">
                         <div class="weekdays">
                             <div>Sun</div>
