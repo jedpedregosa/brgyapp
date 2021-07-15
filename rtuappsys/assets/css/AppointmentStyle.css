@@ -631,7 +631,7 @@ li {
     /* label hover designs for the radio inputs (1-31 days) || include the  :not(.fullybooked_cell) after the hover once you have available and fullybooked cell function*/
     background-color: #13377f;
     cursor: pointer;
-    border: .1rem solid #00b050;
+    border: .1rem solid gold;
 }
 
 .days label {
@@ -647,12 +647,12 @@ li {
 /* designs for the clicked cell */
 
 .days input[type="radio"]:checked+label {
-    background-color: #167e56;;
+    background-color: gold;;
     cursor: pointer;
 }
 
 .days input[type="radio"]:focus+label {
-    background-color: #167e56;;
+    background-color: gold;;
     cursor: pointer;
 }
 
