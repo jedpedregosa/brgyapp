@@ -624,12 +624,12 @@ li {
 /* designs for the clicked cell */
 
 .days input[type="radio"]:checked+label {
-    background-color: gold;;
+    background-color: #eab800;;
     cursor: pointer;
 }
 
 .days input[type="radio"]:focus+label {
-    background-color: gold;;
+    background-color: #eab800;;
     cursor: pointer;
 }
 
