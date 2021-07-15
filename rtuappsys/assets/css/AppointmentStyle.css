@@ -580,7 +580,6 @@ li {
     align-items: center;
     background-color: transparent;
     border: block;
-    button-style: none;
     text-decoration: none;
     display: flex;
     cursor: pointer;
@@ -880,6 +879,7 @@ p.specify {
     width: 420px;
     top: -150px;
     left: 90px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container-inputs {
@@ -889,8 +889,18 @@ p.specify {
     margin-right: auto;
     margin-top: 10px;
     height: 270px;
+    
 }
 
+#branch {
+    font-family: 'Poppins', sans-serif;
+}
+#Office {
+    font-family: 'Poppins', sans-serif;
+}
+#purpose {
+    font-family: 'Poppins', sans-serif;
+}
 .container-Appointment-Details {
     position: relative;
     display: block;
@@ -965,10 +975,11 @@ input {
     padding-left: 15px;
     position: relative;
     left: 4px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .form-group input::-webkit-input-placeholder {
-    font-family: Tw Cen MT;
+    font-family: 'Poppins', sans-serif;
     color: #767171;
 }
 
@@ -987,12 +998,12 @@ textarea {
 }
 
 textarea::-webkit-input-placeholder {
-    font-family: Tw Cen MT;
+    font-family: 'Poppins', sans-serif;
     color: #767171;
 }
 
 select {
-    font-family: Tw Cen MT;
+    font-family: 'Poppins', sans-serif;
     color: #767171;
     padding: 8px;
     text-overflow: ellipsis;
@@ -1007,7 +1018,7 @@ select {
 }
 
 select option {
-    font-family: Tw Cen MT;
+    font-family: 'Poppins', sans-serif;
     color: #767171;
 }
 
