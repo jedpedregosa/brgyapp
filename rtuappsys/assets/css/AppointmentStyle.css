@@ -12,7 +12,7 @@ html {
 
 @font-face {
     font-family: Tw Cen MT;
-    src: url('tw.ttf') format('truetype');
+    src: url('fontscorecomttwcenmt.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -845,7 +845,7 @@ p.specify {
 
 .selected2::after {
     content: "";
-    background: url("../Images/arrow.svg");
+    background: url("../img/arrow.svg");
     background-size: 20px;
     background-repeat: no-repeat;
     position: absolute;
@@ -1022,7 +1022,7 @@ select {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    background: url("../Images/arrow.svg") 95% / 15% no-repeat white;
+    background: url("../img/arrow.svg") 95% / 15% no-repeat white;
     background-size: 14px;
     -webkit-appearance: none;
     -moz-appearance: none;
