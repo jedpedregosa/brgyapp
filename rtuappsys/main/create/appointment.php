@@ -316,32 +316,32 @@
                             <?php 
                                 if($isStudent) {
                                     ?>
-                                        <b>Student Number&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
+                                        Student Number&emsp;&emsp;&emsp;:</b>&nbsp;
                                     <?php
                                 } else if($isEmp) {
                                     ?>
-                                        <b>Employee Number&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
+                                        Employee Number&emsp;&emsp;&emsp;:</b>&nbsp;
                                     <?php
                                 } else {
                                     ?>
-                                        <b>Email Address&nbsp;&nbsp;&emsp;&emsp;&emsp;:</b>&nbsp;
+                                        Email Address&emsp;&emsp;&emsp;:</b>&nbsp;
                                     <?php
                                 }
                             ?>
                             <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
-                            <b>Full Name&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; :</b>&nbsp;
+                            Full Name&emsp;&emsp;&emsp;&emsp;&ensp; :</b>&nbsp;
                             <span id = "visitor-fname"></span><br>
-                            <b>Contact Number&emsp;&ensp; :</b>&nbsp;
+                            Contact Number&emsp;&ensp;&ensp; :</b>&nbsp;
                             <span id = "visitor-contact"></span><br>
 
                             <?php 
                                 if($isGuest) {
                                     ?>
-                                        <b>Affiliated Company:</b>&nbsp;
+                                        Affiliated Company:</b>&nbsp;
                                     <?php
                                 } else {
                                     ?>
-                                        <b>Email Address :</b>&nbsp;
+                                        Email Address :</b>&nbsp;&emsp;&ensp;
                                     <?php
                                 }
                             ?>
@@ -353,9 +353,9 @@
 
                         <div class="div2">
                             <div class="column left">
-                                <b>RTU Branch&emsp;&ensp;&ensp;:</b>&nbsp;
+                                RTU Branch&emsp;&ensp;&ensp;:</b>&nbsp;
                                 <span id = "visitor-branch"></span><br>
-                                <b>Office Name&emsp;&ensp; :</b>&nbsp;
+                                Office Name&emsp;&ensp; :</b>&nbsp;
                                 <span id = "visitor-office"></span><br>
 
                                 <?php if($isGuest) { ?>
@@ -364,11 +364,11 @@
                                 <?php } ?>
                             </div>
                             <div class="column right">
-                                <b>Date&emsp;&emsp;&ensp;:</b>&nbsp;
+                                Date&emsp;&emsp;&ensp;:</b>&nbsp;
                                 <span id = "sched-date"></span><br>
-                                <b>Time&emsp;&emsp;&ensp; :</b>&nbsp;
+                                Time&emsp;&emsp;&ensp; :</b>&nbsp;
                                 <span id = "sched-time"></span><br>
-                                <b>PURPOSE&nbsp;:</b>&nbsp;
+                                PURPOSE&nbsp;:</b>&nbsp;
                                 <span id = "sched-purpose"></span><br>
                             </div>
                         </div>
@@ -388,7 +388,7 @@
                             <p class="pageName">Confirmation</p>
                         </div>
 
-                        <button class="submit button1" type="button">Confirm Appointment</button>
+                        <button class="submit button1" type="button">Confirm</button>
                     </div>
                 </div>
 
