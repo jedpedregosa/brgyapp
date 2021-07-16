@@ -172,6 +172,32 @@ nextBtnSec.addEventListener("click", function(event) {
             $("#screen-overlay").fadeOut(400);
         });
 
+        $.ajax({
+			url: "../../includes/schedule.php",
+			type: "POST",
+			data: {
+				officeCode: officeId,
+				timeCode: slctTimeSlt,
+                slctDate: slctDate			
+			},
+			cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(100);
+            },
+			success: function(dataResult){
+                    var dataResult = JSON.parse(dataResult);
+			}
+		}).done(function () {
+            if(dataResult.statusCode==200){
+                $("#screen-overlay").fadeOut(400);
+            }
+            else if(dataResult.statusCode==201){
+               alert("Please select another schedule");
+            } else if(dataResult.statusCode==202) {
+                window.location.replace("../rtuappsys.php");
+            }
+        });
+
         // For Date Formatting
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 

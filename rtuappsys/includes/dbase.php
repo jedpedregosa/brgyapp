@@ -383,18 +383,22 @@
         $currentTime = new DateTime();
         $selectedDate = new DateTime($date);
 
-        if($selectedDate == $currentTime) {
-            $selected_time_start = new Date(getTimeSlotStart($tmslot));
-            if($currentTime < $selected_time_start) {
-                $diff = date_diff($slctd_date, $currentTime);
-                $hour_difference = $diff->format('%h');
-                if(!($hour_difference < (int)hours_scheduling_span)) {
+        if(!(date('N', strtotime($date)) >= 6)) { // If selected day is not sunday or saturday
+            if($selectedDate == $currentTime) {
+                $selected_time_start = new Date(getTimeSlotStart($tmslot));
+                if($currentTime < $selected_time_start) {
+                    $diff = date_diff($slctd_date, $currentTime);
+                    $hour_difference = $diff->format('%h');
+                    if(!($hour_difference < (int)hours_scheduling_span)) {
+                        setScheduleToInvalid($schedId);
+                    }
+                } else {
                     setScheduleToInvalid($schedId);
                 }
-            } else {
+            } else if($selectedDate < $currentTime) {
                 setScheduleToInvalid($schedId);
             }
-        } else if($selectedDate < $currentTime) {
+        } else {
             setScheduleToInvalid($schedId);
         }
     }
