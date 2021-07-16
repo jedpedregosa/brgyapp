@@ -245,6 +245,11 @@
                                 <!-- CSS Line 171-184 -->
                                 <p class="pageName">Appointment Info</p>
                                 <button class="firstNext button2" type="button" style="position: relative; left: 18px; top: -0.5px;">Next</button>
+                                <div id="screen-overlay">
+                                    <div class="screen-cv-spinner">
+                                        <span class="screen-spinner"></span>
+                                    </div>
+                                </div>
                                 <!-- CSS Line 94-117 -->
                             </div>
                         </div>
