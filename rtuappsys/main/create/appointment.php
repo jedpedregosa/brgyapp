@@ -349,66 +349,81 @@
                         <!-- Put here the inputted personal information -->
                         <li class="li1"><strong>PERSONAL INFORMATION</strong></li>
 
-                        <div class="div1">
+<table class="div1 table1">
+                <tr><td class="table1">
                             <?php 
                                 if($isStudent) {
                                     ?>
-                                        <strong>Student Number&emsp;&emsp;&emsp;:</strong>&nbsp;
+                                        <strong>Student Number</strong>
                                     <?php
                                 } else if($isEmp) {
                                     ?>
-                                        <strong>Employee Number&emsp;&emsp;&emsp;:</strong>&nbsp;
+                                        <strong>Employee Number</strong>
                                     <?php
                                 } else {
                                     ?>
-                                        <strong>Email Address&emsp;&emsp;&emsp;:</strong>&nbsp;
+                                        <strong>Email Address</strong>
                                     <?php
                                 }
                             ?>
+                    </td><td>
                             <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
-                            <strong>Full Name&emsp;&emsp;&emsp;&emsp;&ensp; :</strong>&nbsp;
+                    </td></tr><tr><td>
+                            <strong>Full Name</strong>
+                    </td><td>
                             <span id = "visitor-fname"></span><br>
-                            <strong>Contact Number&emsp;&ensp;&ensp; :</strong>&nbsp;
+                    </td></tr><tr><td>
+                            <strong>Contact Number</strong>
+                    </td><td>
                             <span id = "visitor-contact"></span><br>
-
+                    </td></tr><tr><td>
                             <?php 
                                 if($isGuest) {
                                     ?>
-                                        <strong>Affiliated Company:</strong>&nbsp;
+                                        <strong>Affiliated Company</strong>
                                     <?php
                                 } else {
                                     ?>
-                                        <strong>Email Address :</strong>&nbsp;&emsp;&ensp;
+                                        <strong>Email Address</strong>
                                     <?php
                                 }
                             ?>
+                    </td><td>                
                             <span id = "visitor-email-com"></span><br>
-                        </div>
-
+                    </td>
+                </tr>
+            </table>
                         <!-- Put here the inputted appointment information -->
                         <li class="li2"><strong>APPOINTMENT INFORMATION</strong></li>
-
-                        <div class="div2">
-                            <div class="column left">
-                                <strong>RTU Branch&emsp;&ensp;&ensp;:</strong>&nbsp;
-                                <span id = "visitor-branch"></span><br>
-                                <strong>Office Name&emsp;&ensp; :</strong>&nbsp;
-                                <span id = "visitor-office"></span><br>
-
+                        <table class="div1 table2">
+                            <tr><td>                 
+                                <strong>RTU Branch</strong>
+                            </td><td>
+                                <span id = "visitor-branch"></span>
+                            </td><td>
+                                <strong>Date</strong>
+                            </td><td>
+                                <span id = "sched-date"></span>
+                            </td></tr><tr><td>
+                                <strong>Office Name</strong>
+                            </td><td style="width:40%;">                        
+                                <span id = "visitor-office"></span>
+                            </td><td>
+                                <strong>Time</strong>
+                            </td><td>
+                                <span id = "sched-time"></span>
+                            </td></tr><tr><td>
                                 <?php if($isGuest) { ?>
-                                    <strong>Government ID:</strong>&nbsp;
+                                    <strong>Government ID</strong>
+                            </td><td>
                                     <span id = "visitor-govId"></span>
                                 <?php } ?>
-                            </div>
-                            <div class="column right">
-                                <strong>Date&emsp;&emsp;&ensp;:</strong>&nbsp;
-                                <span id = "sched-date"></span><br>
-                                <strong>Time&emsp;&emsp;&ensp; :</strong>&nbsp;
-                                <span id = "sched-time"></span><br>
-                                <strong>Purpose&nbsp;:</strong>&nbsp;
-                                <span id = "sched-purpose"></span><br>
-                            </div>
-                        </div>
+                            </td><td>
+                                <strong>Purpose</strong>
+                            </td><td>
+                                <span id = "sched-purpose"></span>
+                            </td></tr>
+                        </table>
 
                         <!-- Confrimation Button
                    <p class="rectangle">
