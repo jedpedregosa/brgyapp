@@ -1082,6 +1082,20 @@ select option {
     border-radius: 50%;
     animation: screen-sp-anime 0.8s infinite linear;
   }
+.screen-cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.screen-spinner {
+    width: 80px;
+    height: 80px;
+    border: 20px #002060 solid;
+    border-top: 20px #eab800 solid;
+    border-radius: 50%;
+    animation: screen-sp-anime 0.8s infinite linear;
+  }
   @keyframes screen-sp-anime {
     100% {
       transform: rotate(360deg);
