@@ -353,9 +353,8 @@
 
                         <!-- Put here the inputted personal information -->
                         <li class="li1"><strong>PERSONAL INFORMATION</strong></li>
-
-<table class="div1 table1">
-                <tr><td class="table1">
+                    <table class="table table1">
+                        <tr><td class="td0">
                             <?php 
                                 if($isStudent) {
                                     ?>
@@ -371,17 +370,17 @@
                                     <?php
                                 }
                             ?>
-                    </td><td>
+                    </td><td class="td01">
                             <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
+                    </td><td class="td02">
+                            <strong>Contact Number</strong>
+                    </td><td class="td03">
+                            <span id = "visitor-contact"></span>
                     </td></tr><tr><td>
                             <strong>Full Name</strong>
                     </td><td>
                             <span id = "visitor-fname"></span><br>
-                    </td></tr><tr><td>
-                            <strong>Contact Number</strong>
                     </td><td>
-                            <span id = "visitor-contact"></span><br>
-                    </td></tr><tr><td>
                             <?php 
                                 if($isGuest) {
                                     ?>
@@ -400,55 +399,38 @@
             </table>
                         <!-- Put here the inputted appointment information -->
                         <li class="li2"><strong>APPOINTMENT INFORMATION</strong></li>
-                        <table class="div1 table2">
-                            <tr>
-                                <td>                 
-                                    <strong>RTU Branch</strong>
-                                </td>
-                                <td>
-                                    <span id = "visitor-branch"></span>
-                                </td>
-                                <td>
-                                    <strong>Date</strong>
-                                </td>
-                                <td>
-                                    <span id = "sched-date"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Office Name</strong>
-                                </td>
-                                <td style="width:40%;">                        
-                                    <span id = "visitor-office"></span>
-                                </td>
-                                <td>
-                                    <strong>Time</strong>
-                                </td>
-                                <td>
-                                    <span id = "sched-time"></span>
-                                </td>
-                            </tr>
-                            <tr>
+                        <table class="table table2">
+                            <tr><td class="tdl1">                 
+                                <strong>RTU Branch</strong>
+                            </td><td class="tdl2">
+                                <span id = "visitor-branch"></span>
+                            </td><td class="tdr1">
+                                <strong>Date</strong>
+                            </td><td class="tdr2">
+                                <span id = "sched-date"></span>
+                            </td></tr><tr><td>
+                                <strong>Office Name</strong>
+                            </td><td>                        
+                                <span id = "visitor-office"></span>
+                            </td><td>
+                                <strong>Time</strong>
+                            </td><td>
+                                <span id = "sched-time"></span>
+                            </td></tr><tr>
                                 <?php if($isGuest) { ?>
                                     <td>
-                                        
-                                            <strong>Government ID</strong>
-                                    </td>
-                                    <td>
-                                        <span id = "visitor-govId"></span>
-                                    
-                                    </td>
+                                    <strong>Government ID</strong>
+                            </td><td>
+                                    <span id = "visitor-govId"></span>
+                            </td>
                                 <?php } ?>
-                                <td>
-                                    <strong>Purpose</strong>
-                                </td>
-                                <td>
-                                    <span id = "sched-purpose"></span>
-                                </td>
-                            </tr>
+                            <td>
+                                <strong>Purpose</strong>
+                            </td><td>    
+                                <span id = "sched-purpose"></span>
+                            </td></tr>
                         </table>
-
+                        
                         <!-- Confrimation Button
                    <p class="rectangle">
                       &nbsp;&nbsp;&nbsp;CONFIRMATION &nbsp;&nbsp;&nbsp;<button class = "button1"><b>CONFIRM APPOINTMENT</b></button>
