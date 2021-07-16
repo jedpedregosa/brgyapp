@@ -401,33 +401,52 @@
                         <!-- Put here the inputted appointment information -->
                         <li class="li2"><strong>APPOINTMENT INFORMATION</strong></li>
                         <table class="div1 table2">
-                            <tr><td>                 
-                                <strong>RTU Branch</strong>
-                            </td><td>
-                                <span id = "visitor-branch"></span>
-                            </td><td>
-                                <strong>Date</strong>
-                            </td><td>
-                                <span id = "sched-date"></span>
-                            </td></tr><tr><td>
-                                <strong>Office Name</strong>
-                            </td><td style="width:40%;">                        
-                                <span id = "visitor-office"></span>
-                            </td><td>
-                                <strong>Time</strong>
-                            </td><td>
-                                <span id = "sched-time"></span>
-                            </td></tr><tr><td>
+                            <tr>
+                                <td>                 
+                                    <strong>RTU Branch</strong>
+                                </td>
+                                <td>
+                                    <span id = "visitor-branch"></span>
+                                </td>
+                                <td>
+                                    <strong>Date</strong>
+                                </td>
+                                <td>
+                                    <span id = "sched-date"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Office Name</strong>
+                                </td>
+                                <td style="width:40%;">                        
+                                    <span id = "visitor-office"></span>
+                                </td>
+                                <td>
+                                    <strong>Time</strong>
+                                </td>
+                                <td>
+                                    <span id = "sched-time"></span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <?php if($isGuest) { ?>
-                                    <strong>Government ID</strong>
-                            </td><td>
-                                    <span id = "visitor-govId"></span>
+                                    <td>
+                                        
+                                            <strong>Government ID</strong>
+                                    </td>
+                                    <td>
+                                        <span id = "visitor-govId"></span>
+                                    
+                                    </td>
                                 <?php } ?>
-                            </td><td>
-                                <strong>Purpose</strong>
-                            </td><td>
-                                <span id = "sched-purpose"></span>
-                            </td></tr>
+                                <td>
+                                    <strong>Purpose</strong>
+                                </td>
+                                <td>
+                                    <span id = "sched-purpose"></span>
+                                </td>
+                            </tr>
                         </table>
 
                         <!-- Confrimation Button
