@@ -6,4 +6,6 @@
     define("max_per_sched", 5);
     define("number_of_timeslots", 15);
     define("days_scheduling_span", 30);
+    define("hours_scheduling_span", 2)
+
 ?>

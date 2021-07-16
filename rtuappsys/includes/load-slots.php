@@ -23,8 +23,9 @@
     for($i = 1; $i <= (int)number_of_timeslots; $i++) {
         $timeId = $i <= 9 ? "0" . $i : $i;
         $schedId = $checkDate . $officeId . $timeId;
-            
+       
         $slot = "TMSLOT-" . $timeId;
+        checkTimeSlotValidity($slctDate, $slctOffice, $slot, $schedId);
         array_push($availableSlots, [$slot, isSchedAvailable($schedId)]);
 
     }

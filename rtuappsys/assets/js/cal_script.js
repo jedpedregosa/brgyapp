@@ -1,5 +1,6 @@
 
 var available_dates;
+var available_slots;
 var currentDate;
 var date;
 var finalDate;
@@ -41,7 +42,7 @@ function setSlctdDate(dateID) {
 		var available_slots = JSON.parse(dataResult);
 
 		for(let i = 0; i < available_slots.length; i++) {
-			var tmslotbutton = document.getElementById(available_slots[i][0]);
+			tmslotbutton = document.getElementById(available_slots[i][0]);
 				
 			tmslotbutton.disabled = !(available_slots[i][1]);
 

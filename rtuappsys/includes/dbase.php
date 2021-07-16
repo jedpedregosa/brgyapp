@@ -353,7 +353,7 @@
     function isSchedAvailable($schedId) {
         if(!doesSchedExist($schedId)) {
             return true;
-        }
+        } 
 
         $conn = connectDb();
 
@@ -361,12 +361,75 @@
         $stmt-> execute([$schedId]);
 
         $total_visitor = (int)$stmt->fetchColumn(); // Lacks Catch
-        if($total_visitor < (int)max_per_sched) {
+        if(($total_visitor < (int)max_per_sched) && isSchedOpen($schedId)) {
             return true;
         } else {
+            setScheduleToInvalid($schedId);
             return false;
         }
     }
+    function isSchedOpen($schedId) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT sched_is_available FROM tbl_schedule WHERE sched_id = ?");
+        $stmt-> execute([$schedId]);
+
+        return $stmt->fetchColumn();
+    }
+
+    function checkTimeSlotValidity($date, $office, $tmslot, $schedId) {
+        date_default_timezone_set("Asia/Manila");
+
+        $currentTime = new DateTime();
+        $selectedDate = new DateTime($date);
+
+        if($selectedDate == $currentTime) {
+            $selected_time_start = new Date(getTimeSlotStart($tmslot));
+            if($currentTime < $selected_time_start) {
+                $diff = date_diff($slctd_date, $currentTime);
+                $hour_difference = $diff->format('%h');
+                if(!($hour_difference < (int)hours_scheduling_span)) {
+                    setScheduleToInvalid($schedId);
+                }
+            } else {
+                setScheduleToInvalid($schedId);
+            }
+        } else if($selectedDate < $currentTime) {
+            setScheduleToInvalid($schedId);
+        }
+    }
+
+    function setScheduleToInvalid($schedId) {
+        $conn = connectDb();
+
+        if(!doesSchedExist($schedId)) {
+            date_default_timezone_set("Asia/Manila");
+            $ToDate = substr($schedId, 0, 6);
+            $month = substr($ToDate, 2, 2);
+            $day = substr($ToDate, 4, 2);
+            $year = substr($ToDate, 0, 2);
+            $date = new DateTime($year . "-" . $month . "-" .$day);
+            $dateToAdd = $date->format("Y-m-d");
+            $officeToAdd = "RTU-O" . substr($schedId, 6, 2);
+            $slotToAdd = "TMSLOT-" . substr($schedId, 8, 2);
+
+            createSched($schedId, $dateToAdd, $slotToAdd, $officeToAdd); 
+        }
+        $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_is_available = 0 WHERE sched_id = ?");
+        $stmt->execute([$schedId]);
+    }
+
+    function getTimeSlotStart($timeCode) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT tmslot_start FROM tbl_timeslot WHERE tmslot_id = ?");
+        $stmt-> execute([$timeCode]);
+        $timeValue = $stmt->fetchColumn();
+
+        // Catch if db fails 
+        return $timeValue;
+    }
+
 
     function doesSchedExist($schedId) {
         $conn = connectDb();
