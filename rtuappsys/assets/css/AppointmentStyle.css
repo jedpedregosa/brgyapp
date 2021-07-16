@@ -1106,7 +1106,7 @@ select option {
   }
 
 .table{
-    width: 100%
+    width: 100%;
     padding-top: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
@@ -1117,11 +1117,13 @@ select option {
 }
 .table1{
     position: relative;
-    width: 100%
+    width: 50%;
+    width: 100%;
 }
 .table2{
     position: relative;
 }
+
 .td0{
     width: 15%;
 }
@@ -1145,4 +1147,8 @@ select option {
 }
 .tdr2{
     width: 25%;
-}  
+} 
+.tdr3{
+    text-align:left;
+    float:left; 
+}
