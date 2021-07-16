@@ -39,7 +39,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 			},
 			cache: false,
             beforeSend: function() {
-                $("#screen-overlay").fadeIn(300);
+                $("#screen-overlay").fadeIn(100);
             },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
@@ -49,7 +49,7 @@ nextBtnFirst.addEventListener("click", function(event) {
                 } 
 			} 
         }).done(function () {
-            $("#screen-overlay").fadeOut(300);
+            $("#screen-overlay").fadeOut(400);
         });
 
     } else {
@@ -74,7 +74,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 			},
 			cache: false,
             beforeSend: function() {
-                $("#screen-overlay").fadeIn(300);
+                $("#screen-overlay").fadeIn(100);
             },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
@@ -88,7 +88,7 @@ nextBtnFirst.addEventListener("click", function(event) {
                     }
 				}
 			}).done(function () {
-                $("#screen-overlay").fadeOut(300);
+                $("#screen-overlay").fadeOut(400);
             });
     
 	}
@@ -101,7 +101,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 			},
 			cache: false,
             beforeSend: function() {
-                $("#screen-overlay").fadeIn(300);
+                $("#screen-overlay").fadeIn(100);
             },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
@@ -116,7 +116,7 @@ nextBtnFirst.addEventListener("click", function(event) {
             progressCheck[current - 1].classList.add("active");
             current += 1;
 
-            $("#screen-overlay").fadeOut(300);
+            $("#screen-overlay").fadeOut(400);
 
             setSlctdDate(available_dates[0]);
             startCalendar();
@@ -155,6 +155,9 @@ nextBtnSec.addEventListener("click", function(event) {
 				timeCode: slctTimeSlt				
 			},
 			cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(100);
+            },
 			success: function(dataResult){
                     var dataResult = JSON.parse(dataResult);
                     JSON.stringify(dataResult);
@@ -165,7 +168,9 @@ nextBtnSec.addEventListener("click", function(event) {
                     document.getElementById('sched-time').innerHTML = String(loadedtimeValue);
                     document.getElementById('visitor-office').innerHTML = String(loadedofficeValue);
 			}
-		});
+		}).done(function () {
+            $("#screen-overlay").fadeOut(400);
+        });
 
         // For Date Formatting
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
