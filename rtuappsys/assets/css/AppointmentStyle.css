@@ -1090,4 +1090,11 @@ select option {
   .is-hide {
     display: none;
   }
+.table1{
+    position: relative;
+    width: 50%
+}
+.table2{
+    position: relative;
+}
   
