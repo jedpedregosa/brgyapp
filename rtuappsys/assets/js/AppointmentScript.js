@@ -29,6 +29,7 @@ nextBtnFirst.addEventListener("click", function(event) {
     var govId = $('#government-ID').val();
     var officeId = $('#Office').val();
 
+    var isSuccess = true;
     var isAvail = true;
     if(validateEmail(email)) {
         $.ajax({
@@ -42,13 +43,14 @@ nextBtnFirst.addEventListener("click", function(event) {
                 $("#screen-overlay").fadeIn(100);
             },
 			success: function(dataResult){
-                var dataResult = JSON.parse(dataResult);
+			} 
+        }).done(function (dataResult) {
+            var dataResult = JSON.parse(dataResult);
 				if(dataResult.hasEmail == 200){
                     alert('Engk!! Email');
                     isAvail = false;
+                    isSuccess = false;
                 } 
-			} 
-        }).done(function () {
             $("#screen-overlay").fadeOut(400);
         });
 
@@ -77,6 +79,9 @@ nextBtnFirst.addEventListener("click", function(event) {
                 $("#screen-overlay").fadeIn(100);
             },
 			success: function(dataResult){
+
+            }
+			}).done(function (dataResult) {
                 var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
                         // Insert JS Form Validation
@@ -84,10 +89,9 @@ nextBtnFirst.addEventListener("click", function(event) {
 					else if(dataResult.statusCode==201){
 					   alert("Error occured !"); // Error Page
 					} else if(dataResult.statusCode==202) {
+                        isSuccess = false;
                         alert("Email Taken");
                     }
-				}
-			}).done(function () {
                 $("#screen-overlay").fadeOut(400);
             });
     
@@ -108,18 +112,21 @@ nextBtnFirst.addEventListener("click", function(event) {
 
 			}
 		}).done(function(dataResult) {
-            available_dates = JSON.parse(dataResult);
+            if(isSuccess) {
+                available_dates = JSON.parse(dataResult);
 
-            event.preventDefault();
-            slidePage.style.marginLeft = "-25%";
-            bullet[current - 1].classList.add("active");
-            progressCheck[current - 1].classList.add("active");
-            current += 1;
+                event.preventDefault();
+                slidePage.style.marginLeft = "-25%";
+                bullet[current - 1].classList.add("active");
+                progressCheck[current - 1].classList.add("active");
+                current += 1;
 
-            $("#screen-overlay").fadeOut(400);
+                $("#screen-overlay").fadeOut(400);
 
-            setSlctdDate(available_dates[0]);
-            startCalendar();
+                setSlctdDate(available_dates[0]);
+                startCalendar();
+            }
+            
         }); //Lacks Catch
 	}
 });
@@ -187,7 +194,8 @@ nextBtnSec.addEventListener("click", function(event) {
 			success: function(dataResult){
                     var dataResult = JSON.parse(dataResult);
 			}
-		}).done(function () {
+		}).done(function (dataResult) {
+            var dataResult = JSON.parse(dataResult);
             if(dataResult.statusCode==200){
                 $("#screen-overlay").fadeOut(400);
             }

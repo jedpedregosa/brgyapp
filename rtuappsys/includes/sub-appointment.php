@@ -36,6 +36,7 @@
         $timeId = str_replace("TMSLOT-", "", $time);
         $schedId = $submtDate . $officeId . $timeId;
         if ($submtDate !== false) { // Check if date formata is valid ::::::: Not reliable
+            checkTimeSlotValidity($date, $office, $time, $schedId);
             // !!!: Lacks Date Availability Checker
             if(isSchedAvailable($schedId)) {
                 if(!doesSchedExist($schedId)) {

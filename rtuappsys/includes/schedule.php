@@ -1,12 +1,16 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
     
+    // Session Side
+    session_name("id");
+    session_start();
+
     if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
         echo json_encode(array("statusCode"=>203)); // User is not sessioned
     } 
 
     if(isset($_POST["officeCode"]) && isset($_POST["timeCode"]) && isset($_POST["slctDate"])) {
-        $slctd_date = $_POST["slctDate"];
+        $date = $_POST["slctDate"];
         $office = $_POST["officeCode"];
         $time = $_POST["timeCode"];
 
@@ -17,7 +21,7 @@
         $timeId = str_replace("TMSLOT-", "", $time);
         $schedId = $submtDate . $officeId . $timeId;
 
-        checkTimeSlotValidity($slctd_date, $office, $time, $schedId);
+        checkTimeSlotValidity($date, $office, $time, $schedId);
         if(isSchedAvailable($schedId)) {
             echo json_encode(array("statusCode"=>200)); // Schedule is valid
         } else {

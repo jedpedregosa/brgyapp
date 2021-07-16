@@ -17,10 +17,15 @@
     function createVisitorId() {
         $conn = connectDb();
 
-        $stmt = $conn->query("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'rtuappsysdb' AND TABLE_NAME = 'tbl_visitor'");
+        $stmt = $conn->query("SELECT MAX(vstor_num) FROM tbl_visitor");
         $user = $stmt->fetchColumn(); 
 
-        return $user;
+        if($user) {
+            return $user + 1;
+        } else {
+            return 1;
+        }
+        
     }
 
     function getValues($officeCode, $timeCode) {
