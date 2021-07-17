@@ -196,6 +196,26 @@ nextBtnSec.addEventListener("click", function(event) {
             $("#screen-overlay").fadeOut(400);
         });
 
+
+        // For Date Formatting
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
+        document.getElementById('visitor-fname').innerHTML = fName + " " + lName;
+        document.getElementById('visitor-contact').innerHTML = contact;
+        
+        document.getElementById('visitor-branch').innerHTML = branch;
+
+        if(companyElement && govIdElement) {
+            document.getElementById('visitor-govId').innerHTML = govId;
+            document.getElementById('visitor-email-com').innerHTML = company;
+        } else {
+            document.getElementById('visitor-email-com').innerHTML = email;
+        }
+        
+        document.getElementById('sched-date').innerHTML = new Date(slctDate).toLocaleDateString("en-US", options);
+        
+        document.getElementById('sched-purpose').innerHTML = purpose;
+
         $.ajax({
 			url: "../../includes/schedule.php",
 			type: "POST",
@@ -218,7 +238,6 @@ nextBtnSec.addEventListener("click", function(event) {
 		}).done(function (dataResult) {
             var dataResult = JSON.parse(dataResult);
             if(dataResult.statusCode==200){
-                $("#screen-overlay").fadeOut(400);
             }
             else if(dataResult.statusCode==201){
                alert("Please select another schedule");
@@ -226,34 +245,15 @@ nextBtnSec.addEventListener("click", function(event) {
             } else if(dataResult.statusCode==202) {
                 window.location.replace("../rtuappsys.php");
             }
+            $("#screen-overlay").fadeOut(400);
+            if(isSuccess) {
+                event.preventDefault();
+                slidePage.style.marginLeft = "-50%";
+                bullet[current - 1].classList.add("active");
+                progressCheck[current - 1].classList.add("active");
+                current += 1;
+            }
         });
-
-        // For Date Formatting
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
-        document.getElementById('visitor-fname').innerHTML = fName + " " + lName;
-        document.getElementById('visitor-contact').innerHTML = contact;
-        
-        document.getElementById('visitor-branch').innerHTML = branch;
-
-        if(companyElement && govIdElement) {
-            document.getElementById('visitor-govId').innerHTML = govId;
-            document.getElementById('visitor-email-com').innerHTML = company;
-        } else {
-            document.getElementById('visitor-email-com').innerHTML = email;
-        }
-        
-        document.getElementById('sched-date').innerHTML = new Date(slctDate).toLocaleDateString("en-US", options);
-        
-        document.getElementById('sched-purpose').innerHTML = purpose;
-        
-        if(isSuccess) {
-            event.preventDefault();
-            slidePage.style.marginLeft = "-50%";
-            bullet[current - 1].classList.add("active");
-            progressCheck[current - 1].classList.add("active");
-            current += 1;
-        }
     }
 });
 
@@ -281,18 +281,28 @@ submitBtn.addEventListener("click", function() {
             time: slctTimeSlt			
         },
         cache: false,
+        beforeSend: function() {
+            $("#screen-overlay").fadeIn(100);
+        },
         success: function(dataResult){
+        },
+        error: function() {
+            alert('There might be some problem in the server, please try again later or contact RTU.');
+            $("#screen-overlay").fadeOut(400);
+        }
+    }).done(function (dataResult) {
             var dataResult = JSON.parse(dataResult);
-                if(dataResult.statusCode==200){
-                    // Insert JS Form Validation
-                    window.location.replace("../your-appointment.php");
-                }
-                else if(dataResult.statusCode==201){
-                   alert("Error occured !"); // Error Page
-                } else {
-                    alert("Your selected schedule is not available.");
-                }
+            if(dataResult.statusCode==200){
+                // Insert JS Form Validation
+                window.location.replace("../your-appointment.php");
+            } else if(dataResult.statusCode==201){
+                alert("Error occured !"); // Error Page
+                $("#screen-overlay").fadeOut(400);
+            } else {
+                alert("Your selected schedule is not available.");
+                $("#screen-overlay").fadeOut(400);
             }
+            
     });
 });
 prevBtnSec.addEventListener("click", function(event) {
