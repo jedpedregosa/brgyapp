@@ -166,7 +166,7 @@
                             <br><br>
                             <div class="container-purpose">
                                 <br>
-                                <textarea placeholder="State your purpose here..." id = "purpose" required></textarea>
+                                <textarea maxlength="150" placeholder="State your purpose here..." id = "purpose" required></textarea>
                             </div>
                             <div class="informationForm">
                                 <div class="form-row">
