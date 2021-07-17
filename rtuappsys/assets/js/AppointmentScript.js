@@ -43,7 +43,11 @@ nextBtnFirst.addEventListener("click", function(event) {
                 $("#screen-overlay").fadeIn(100);
             },
 			success: function(dataResult){
-			} 
+			},
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
+            }
         }).done(function (dataResult) {
             var dataResult = JSON.parse(dataResult);
 				if(dataResult.hasEmail == 200){
@@ -80,6 +84,10 @@ nextBtnFirst.addEventListener("click", function(event) {
             },
 			success: function(dataResult){
 
+            },
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
             }
 			}).done(function (dataResult) {
                 var dataResult = JSON.parse(dataResult);
@@ -87,7 +95,7 @@ nextBtnFirst.addEventListener("click", function(event) {
                         // Insert JS Form Validation
 					}
 					else if(dataResult.statusCode==201){
-					   alert("Error occured !"); // Error Page
+					   alert("Error occured!"); // Error Page
 					} else if(dataResult.statusCode==202) {
                         isSuccess = false;
                         alert("Email Taken");
@@ -109,8 +117,11 @@ nextBtnFirst.addEventListener("click", function(event) {
             },
 			success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
-
-			}
+			},
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
+            }
 		}).done(function(dataResult) {
             if(isSuccess) {
                 available_dates = JSON.parse(dataResult);
@@ -143,6 +154,8 @@ nextBtnSec.addEventListener("click", function(event) {
         var email = document.getElementById('email-address').value;
         var purpose = document.getElementById('purpose').value;
 
+        var isSuccess = true;
+
         var company = "none";
         var govId = "none";
 
@@ -174,7 +187,11 @@ nextBtnSec.addEventListener("click", function(event) {
 
                     document.getElementById('sched-time').innerHTML = String(loadedtimeValue);
                     document.getElementById('visitor-office').innerHTML = String(loadedofficeValue);
-			}
+			},
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
+            }
 		}).done(function () {
             $("#screen-overlay").fadeOut(400);
         });
@@ -193,7 +210,11 @@ nextBtnSec.addEventListener("click", function(event) {
             },
 			success: function(dataResult){
                     var dataResult = JSON.parse(dataResult);
-			}
+			},
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
+            }
 		}).done(function (dataResult) {
             var dataResult = JSON.parse(dataResult);
             if(dataResult.statusCode==200){
@@ -201,6 +222,7 @@ nextBtnSec.addEventListener("click", function(event) {
             }
             else if(dataResult.statusCode==201){
                alert("Please select another schedule");
+               isSuccess = false;
             } else if(dataResult.statusCode==202) {
                 window.location.replace("../rtuappsys.php");
             }
@@ -225,11 +247,13 @@ nextBtnSec.addEventListener("click", function(event) {
         
         document.getElementById('sched-purpose').innerHTML = purpose;
         
-        event.preventDefault();
-        slidePage.style.marginLeft = "-50%";
-        bullet[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        current += 1;
+        if(isSuccess) {
+            event.preventDefault();
+            slidePage.style.marginLeft = "-50%";
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            current += 1;
+        }
     }
 });
 
