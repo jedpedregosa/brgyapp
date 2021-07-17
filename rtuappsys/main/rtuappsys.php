@@ -44,9 +44,9 @@
   <button onclick="myFunction()"class ="dropbtn">Make an Appointment</button>
 
   <div id ="myDropdown"class="dropdown-content">
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">As Student</button>
-  <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">As Employee</button>
-  <button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">As Guest</button>
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; font-family: 'Poppins', sans-serif;">As Student</button>
+  <button onclick="document.getElementById('id02').style.display='block'" style="width:auto; font-family: 'Poppins', sans-serif;">As Employee</button>
+  <button onclick="document.getElementById('id03').style.display='block'" style="width:auto; font-family: 'Poppins', sans-serif;">As Guest</button>
   </div>
 </div>
 
