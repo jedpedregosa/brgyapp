@@ -365,8 +365,10 @@ span.psw {
   
 @keyframes animatezoom {
   from {transform: scale(0)} 
-  to {transform: scale(1)}
-
-    
+  to {transform: scale(1)}   
+}
+.text{
+  width:auto;
+  font-family: 'Poppins', sans-serif;
 }
 
