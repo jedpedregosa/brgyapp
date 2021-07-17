@@ -578,4 +578,17 @@
         return $result; // Lacks Catch
     }
 
+    function getOffices($branch) {
+        $conn = connectDb();
+        $result = [];
+
+        $stmt = $conn->prepare("SELECT office_id, office_name FROM tbl_office WHERE office_branch = ?");
+        $stmt-> execute([$branch]);
+
+        while($row = $stmt->fetchAll()) {
+            $result = array_merge($result, $row);
+        }
+
+        return $result; // Lacks Catch
+    }
 ?>

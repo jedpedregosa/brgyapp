@@ -10,15 +10,13 @@
         echo json_encode(array("statusCode"=>203)); // User is not sessioned
     } 
 
-    //if(isset($_POST["branch"])) {
-        //$campus = $_POST["branch"];
-        $campus = "Pasig Campus";
+    if(isset($_POST["branch"])) {
+        $campus = $_POST["branch"];
 
-        print_r(getOffices($campus));
-        //  echo json_encode(getOffices($campus));
-    //} else {
+        echo json_encode(getOffices($campus));
+    } else {
         // *********** Needs error message
-        //header("Location: ../main/rtuappsys.php");
-        //die();
-   // }
+        header("Location: ../main/rtuappsys.php");
+        die();
+    }
 ?>

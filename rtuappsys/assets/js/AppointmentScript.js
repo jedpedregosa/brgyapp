@@ -28,6 +28,7 @@ nextBtnFirst.addEventListener("click", function(event) {
     var company = $('#affiliated-company').val();
     var govId = $('#government-ID').val();
     var officeId = $('#Office').val();
+    var branch = $('#branch').val();
 
     var isSuccess = true;
     var isAvail = true;
@@ -104,7 +105,7 @@ nextBtnFirst.addEventListener("click", function(event) {
             });
     
 	}
-    if(officeId!= null){
+    if(officeId!= null && branch != null){
 		$.ajax({
 			url: "../../includes/load-dates.php",
 			type: "POST",
@@ -357,4 +358,38 @@ function validateEmail(value) {
     input.value = value;
   
     return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
+}
+
+function loadOffices() {
+    var branch = document.getElementById('branch').value;
+    var office_select = document.getElementById('Office');
+
+    office_select.innerHTML = "";
+    
+    if(branch != "") {
+        $.ajax({
+            url: "../../includes/load-offices.php",
+            type: "POST",
+            data: {
+                branch: branch,
+            },
+            cache: false,
+            beforeSend: function(){
+
+            },
+            success: function(dataResult){
+                var dataResult = JSON.parse(dataResult);
+            }
+        }).done(function(dataResult) {
+            var available_offices = JSON.parse(dataResult);
+
+            for(let i = 0; i < available_offices.length; i++) {
+                var opt = document.createElement('option');
+                opt.value = available_offices[i][0];
+                opt.innerHTML = available_offices[i][1];
+                office_select.appendChild(opt);
+                office_select.disabled = false;
+            }
+        });
+    }
 }
