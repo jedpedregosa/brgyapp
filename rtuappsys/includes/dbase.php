@@ -387,14 +387,16 @@
 
         $currentTime = new DateTime();
         $selectedDate = new DateTime($date);
+        $currentTime = strtotime($currentTime->format('Y-m-d'));
+        $selectedDate = strtotime($selectedDate->format('Y-m-d'));
 
         if(!(date('N', strtotime($date)) >= 6)) { // If selected day is not sunday or saturday
             if($selectedDate == $currentTime) {
-                $selected_time_start = new Date(getTimeSlotStart($tmslot));
-                if($currentTime < $selected_time_start) {
-                    $diff = date_diff($slctd_date, $currentTime);
+                $selected_time_start = strtotime(getTimeSlotStart($tmslot));
+                if(strtotime("now") < $selected_time_start) {
+                    $diff = date_diff(new DateTime(), new DateTime(getTimeSlotStart($tmslot)));
                     $hour_difference = $diff->format('%h');
-                    if(!($hour_difference < (int)hours_scheduling_span)) {
+                    if($hour_difference < (int)hours_scheduling_span) {
                         setScheduleToInvalid($schedId);
                     }
                 } else {
