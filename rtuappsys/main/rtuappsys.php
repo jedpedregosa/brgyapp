@@ -64,11 +64,11 @@
 
         <div class="container">
         <label for="studno"><b></b></label>
-        <input type="text" placeholder="Student Number" name="studentNum" required>
+        <input type="text" placeholder="Student Number" name="studentNum" required id="studentNum">
         <label for="ln"><b></b></label>
-        <input type="text" placeholder="Last Name" name="sLname" required>
+        <input type="text" placeholder="Last Name" name="sLname" required id="sLname">
     
-        <input type = "submit" class="button1" value = "Proceed">
+        <input type = "submit" class="button1" value = "Proceed" id="submit-student">
  
     </div>
   </form>
@@ -85,12 +85,12 @@
 
           <div class="container">
             <label for="empno"><b></b></label>
-            <input type="text" placeholder="Employee Number" name="empNum" required>
+            <input type="text" placeholder="Employee Number" name="empNum" required id="empNum">
 
             <label for="ln"><b></b></label>
-            <input type="text" placeholder="Last Name" name="eLname" required>
+            <input type="text" placeholder="Last Name" name="eLname" required id="eLname">
             
-            <input type = "submit" class="button1" value = "Proceed">
+            <input type = "submit" class="button1" value = "Proceed" id="submit-employee">
           </div>
      </form>
 </div>
@@ -107,12 +107,12 @@
 
             <div class="container">
               <label for="studno"><b></b></label>
-              <input type="text" placeholder="Email" name="email" required>
+              <input type="text" placeholder="Email" name="email" required id="email">
 
               <label for="ln"><b></b></label>
-              <input type="text" placeholder="Last Name" name="gLname" required>
+              <input type="text" placeholder="Last Name" name="gLname" required id="gLname">
                 
-              <input type = "submit" class="button1" value = "Proceed">
+              <input type = "submit" class="button1" value = "Proceed" id="submit-guest">
          
             </div>
           </form>
@@ -151,6 +151,99 @@
     <p class="p3">Submit Feedback here!</p>
   </a>
 
+  <script>
+
+    // Validation
+
+    // Unique ID's 
+    const studentNum = document.getElementById('studentNum');
+    const empNum = document.getElementById('empNum');
+    const email = document.getElementById('email');
+
+    // User's Lastname
+    const sLname = document.getElementById('sLname');
+    const eLname = document.getElementById('eLname');
+    const gLname = document.getElementById('gLname');
+
+    // Submit
+    const submitStudent = document.getElementById('submit-student');
+    const submitEmployee = document.getElementById('submit-employee');
+    const submitGuest = document.getElementById('submit-guest');
+
+    // Regex for validation
+    var lastnameRegex = /^[a-zA-Z]*$/;
+    var studentRegex = /^[0-9]+-[0-9]*$/;
+    var employeeRegex = /^[A-Z]+-[0-9]+-[0-9]+-[0-9]+-[0-9]*$/;
+    var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        
+    submitStudent.addEventListener('click',()=>{
+    // Student Modal Validation
+
+    // Student Number Validation
+    if(studentNum.value == null || studentNum.value == ''){
+      studentNum.setCustomValidity('Please fill out this field');
+    }else if (!studentNum.value.match(studentRegex) || studentNum.value.length != 11){
+      studentNum.setCustomValidity('Invalid Student Number');
+    } else {
+      studentNum.setCustomValidity('');
+    }
+
+    // Student Last Name Validation
+    if(sLname.value == null || sLname.value == ''){
+      sLname.setCustomValidity('Please fill out this field');
+    }else if (!sLname.value.match(lastnameRegex) || sLname.value.length < 2){
+      sLname.setCustomValidity('Invalid Last Name');
+    } else {
+      sLname.setCustomValidity('');
+    }
+
+    });
+
+    submitEmployee.addEventListener('click',()=>{
+    // Employee Modal Validation
+
+    // Employee Number Validation
+    if(empNum.value == null || empNum.value == ''){
+      empNum.setCustomValidity('Please fill out this field');
+    }else if (!empNum.value.match(employeeRegex) || empNum.value.length != 11){
+      empNum.setCustomValidity('Invalid Employee Number');
+    } else {
+      empNum.setCustomValidity('');
+    }
+
+    // Employee Last Name Validation
+    if(eLname.value == null || eLname.value == ''){
+      eLname.setCustomValidity('Please fill out this field');
+    }else if (!eLname.value.match(lastnameRegex) || eLname.value.length < 2){
+      eLname.setCustomValidity('Invalid Last Name');
+    } else {
+      eLname.setCustomValidity('');
+    }
+
+    });
+
+    submitGuest.addEventListener('click',()=>{
+    // Guest Modal Validation
+
+    // Guest Number Validation
+    if(email.value == null || email.value == ''){
+      email.setCustomValidity('Please fill out this field');
+    }else if (!email.value.match(emailRegex)){
+      email.setCustomValidity('Invalid Email Address');
+    } else {
+      email.setCustomValidity('');
+    }
+
+    // Guest Last Name Validation
+    if(gLname.value == null || gLname.value == ''){
+      gLname.setCustomValidity('Please fill out this field');
+    }else if (!gLname.value.match(lastnameRegex) || gLname.value.length < 2){
+      gLname.setCustomValidity('Invalid Last Name');
+    } else {
+      gLname.setCustomValidity('');
+    }
+    });
+  </script>
 
 </body>
 </html>
