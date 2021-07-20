@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `tbl_employee_data` (
   `employee_num` varchar(25) NOT NULL,
   PRIMARY KEY (`vstor_id`),
   UNIQUE KEY `employee_num` (`employee_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `tbl_guest_data` (
   `company` varchar(125) NOT NULL,
   `government_id` varchar(125) NOT NULL,
   PRIMARY KEY (`vstor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office` (
   `office_branch` varchar(50) NOT NULL,
   PRIMARY KEY (`office_id`),
   KEY `office_num` (`office_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_office`
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
   `sched_is_available` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`sched_id`),
   KEY `sched_num` (`sched_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=264 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_schedule`
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `tbl_student_data` (
   `student_num` varchar(25) NOT NULL,
   PRIMARY KEY (`vstor_id`),
   UNIQUE KEY `student_num` (`student_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `tbl_timeslot` (
   `tmslot_start` varchar(25) NOT NULL,
   `tmslot_end` varchar(25) NOT NULL,
   PRIMARY KEY (`tmslot_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_timeslot`
