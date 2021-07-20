@@ -451,6 +451,7 @@ li {
 
 
 /* CALENDAR DESIGN */
+
 .calendar {
     /* calendar container */
     width: 50rem;
@@ -624,12 +625,14 @@ li {
 /* designs for the clicked cell */
 
 .days input[type="radio"]:checked+label {
-    background-color: #eab800;;
+    background-color: #eab800;
+    ;
     cursor: pointer;
 }
 
 .days input[type="radio"]:focus+label {
-    background-color: #eab800;;
+    background-color: #eab800;
+    ;
     cursor: pointer;
 }
 
@@ -683,8 +686,6 @@ li {
     cursor: pointer;
     align-items: center;
 }
-
-
 
 .time input[type=button]:hover {
     /* color change when the arrow hovers above the button */
@@ -882,6 +883,18 @@ p.specify {
     font-family: 'Poppins', sans-serif;
 }
 
+.container-purpose label {
+    position: sticky;
+    text-align: left;
+    font-size: 10px;
+    font-family: Arial;
+    display: block;
+    margin-left: 4px;
+    color: red;
+    width: 90%;
+    margin-left: 20px;
+}
+
 .container-inputs {
     position: relative;
     width: 570px;
@@ -889,18 +902,20 @@ p.specify {
     margin-right: auto;
     margin-top: 10px;
     height: 270px;
-    
 }
 
 #branch {
     font-family: 'Poppins', sans-serif;
 }
+
 #Office {
     font-family: 'Poppins', sans-serif;
 }
+
 #purpose {
     font-family: 'Poppins', sans-serif;
 }
+
 .container-Appointment-Details {
     position: relative;
     display: block;
@@ -983,6 +998,18 @@ input {
     color: #767171;
 }
 
+.form-group label {
+    position: sticky;
+    text-align: left;
+    font-size: 10px;
+    font-family: Arial;
+    display: block;
+    margin-left: 4px;
+    color: red;
+    width: 90%;
+    margin-left: 20px;
+}
+
 textarea {
     top: 20px;
     max-width: 360px;
@@ -1032,7 +1059,8 @@ select option {
     width: 100%;
     height: 100%;
     display: block;
-  }
+}
+
 #timeslot-cv-spinner {
     margin-top: 15%;
     height: 20%;
@@ -1040,6 +1068,7 @@ select option {
     justify-content: center;
     align-items: center;
 }
+
 #timeslot-spinner {
     display: block;
     width: 40px;
@@ -1050,16 +1079,18 @@ select option {
     border-radius: 50%;
     animation: sp-anime 0.5s infinite linear;
 }
-  @keyframes sp-anime {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .is-hide {
-    display: none;
-  }
 
-  #screen-overlay {
+@keyframes sp-anime {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.is-hide {
+    display: none;
+}
+
+#screen-overlay {
     position: fixed;
     top: 0;
     z-index: 100;
@@ -1067,13 +1098,15 @@ select option {
     height: 100%;
     display: none;
     background: rgba(0, 0, 0, 0.6);
-  }
+}
+
 #screen-cv-spinner {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
 #screen-spinner {
     width: 80px;
     height: 80px;
@@ -1081,13 +1114,15 @@ select option {
     border-top: 20px #eab800 solid;
     border-radius: 50%;
     animation: screen-sp-anime 0.8s infinite linear;
-  }
+}
+
 .screen-cv-spinner {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
 .screen-spinner {
     width: 80px;
     height: 80px;
@@ -1095,17 +1130,19 @@ select option {
     border-top: 20px #eab800 solid;
     border-radius: 50%;
     animation: screen-sp-anime 0.8s infinite linear;
-  }
-  @keyframes screen-sp-anime {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .is-hide {
-    display: none;
-  }
+}
 
-.table{
+@keyframes screen-sp-anime {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.is-hide {
+    display: none;
+}
+
+.table {
     width: 100%;
     padding-top: 10px;
     font-family: 'Poppins', sans-serif;
@@ -1115,46 +1152,58 @@ select option {
     margin-left: 10%;
     text-align: left;
 }
-.table1{
+
+.table1 {
     position: relative;
     width: 50%;
     width: 100%;
 }
-.table2{
+
+.table2 {
     position: relative;
 }
 
-.td0{
+.td0 {
     width: 15%;
 }
-.td01{
+
+.td01 {
     width: 27%;
 }
-.td02{
+
+.td02 {
     width: 18%;
 }
-.td03{
+
+.td03 {
     width: 40%;
 }
-.tdl1{
+
+.tdl1 {
     width: 20%;
 }
-.tdl2{
+
+.tdl2 {
     width: 40%;
 }
-.tdr1{
+
+.tdr1 {
     width: 15%;
 }
-.tdr2{
+
+.tdr2 {
     width: 25%;
-} 
-.tdr3{
-    text-align:left;
-    float:left; 
 }
+
+.tdr3 {
+    text-align: left;
+    float: left;
+}
+
 .td1 {
     width: 30%;
 }
+
 .td2 {
     width: 30%;
 }
