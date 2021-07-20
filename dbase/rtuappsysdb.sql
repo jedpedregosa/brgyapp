@@ -186,7 +186,7 @@ INSERT INTO `tbl_timeslot` (`tmslot_num`, `tmslot_id`, `tmslot_start`, `tmslot_e
 (10, 'TMSLOT-10', '12:30 PM', '1:00 PM'),
 (11, 'TMSLOT-11', '1:00 PM', '1:30 PM'),
 (12, 'TMSLOT-12', '1:30 PM', '2:00 PM'),
-(13, 'TMSLOT-13', '2:30 PM', '3:00 PM'),
+(13, 'TMSLOT-13', '2:00 PM', '2:30 PM'),
 (14, 'TMSLOT-14', '2:30 PM', '3:00 PM'),
 (15, 'TMSLOT-15', '3:00 PM', '3:30 PM');
 
