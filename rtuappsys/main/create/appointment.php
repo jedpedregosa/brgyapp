@@ -86,7 +86,6 @@
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <title>Make an Appointment</title>
@@ -102,7 +101,6 @@
         }
     </script>
 </head>
-
 <body>
     <div id="screen-overlay">
         <div class="screen-cv-spinner">
@@ -357,7 +355,8 @@
                         <!-- Put here the inputted personal information -->
                         <li class="li1"><strong>PERSONAL INFORMATION</strong></li>
                     <table class="table table1">
-                        <tr><td class="td0">
+                        <tr>
+                            <td class="td0">
                             <?php 
                                 if($isStudent) {
                                     ?>
@@ -373,17 +372,25 @@
                                     <?php
                                 }
                             ?>
-                    </td><td class="td01">
-                            <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
-                    </td><td class="td02">
-                            <strong>Contact Number</strong>
-                    </td><td class="td03">
-                            <span id = "visitor-contact"></span>
-                    </td></tr><tr><td>
-                            <strong>Full Name</strong>
-                    </td><td>
-                            <span id = "visitor-fname"></span><br>
-                    </td><td>
+                            </td>
+                            <td class="td01">
+                                <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
+                            </td>
+                            <td class="td02">
+                                <strong>Contact Number</strong>
+                            </td>
+                            <td class="td03">
+                                <span id = "visitor-contact"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Full Name</strong>
+                            </td>
+                            <td>
+                                <span id = "visitor-fname"></span><br>
+                            </td>
+                            <td>
                             <?php 
                                 if($isGuest) {
                                     ?>
@@ -395,11 +402,13 @@
                                     <?php
                                 }
                             ?>
-                    </td><td>                
-                            <span id = "visitor-email-com"></span><br>
-                    </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <span id = "visitor-email-com"></span><br>
+                            </td>
+                        </tr>
                     </table>
+
                         <!-- Put here the inputted appointment information -->
                         <li class="li2"><strong>APPOINTMENT INFORMATION</strong></li>
                         <table class="table table2">
