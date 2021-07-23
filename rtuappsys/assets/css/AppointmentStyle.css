@@ -1004,10 +1004,9 @@ input {
     font-size: 10px;
     font-family: Arial;
     display: block;
-    margin-left: 4px;
     color: red;
     width: 90%;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 textarea {

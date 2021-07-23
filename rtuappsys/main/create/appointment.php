@@ -192,12 +192,12 @@
                                     <div class="form-group">
                                         <input type="text" id="first-name" class="first-name" placeholder="First Name" 
                                         value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" >
-                                        <label id = "error-firstname"></label>
+                                        <label id = "error-first-name"></label>
                                     </div>
 
                                     <div class="form-group">
                                         <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($sReqData)?>">
-                                        <label id = "error-lastname"></label>
+                                        <label id = "error-last-name"></label>
                                     </div>
                                 </div>
                                 <br>
@@ -535,7 +535,7 @@
             } else if (!first_name.value.match(wordRegex) || first_name.value.length < 2){
                 error_first_name.textContent = "Invalid First Name";
             } else{
-                error_first_name.textContent="";
+                error_first_name.textContent ="";
             }
         });
 
