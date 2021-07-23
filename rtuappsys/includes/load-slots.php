@@ -2,6 +2,12 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/config.php");
 
+    // Check if request is not from ajax
+    if(!IS_AJAX) {
+        header("Location: ../main/rtuappsys.php");
+		die();
+    }
+
     if(isset($_POST["date"]) && isset($_POST["office"])) {
         $slctDate = $_POST["date"];
         $slctOffice = $_POST["office"];

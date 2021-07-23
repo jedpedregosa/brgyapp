@@ -18,94 +18,94 @@ const progressCheck = document.querySelectorAll(".step .check");
 const bullet = document.querySelectorAll(".step .bullet");
 let current = 1;
 
+function isValidated() {
+    var officeId = $('#Office').val();
+    var branch = $('#branch').val();
+    
+    return isFormValidated() && officeId != null && branch != null;
+}
+
 nextBtnFirst.addEventListener("click", function(event) {
 
+    
     // Submit to db
     var lname = $('#last-name').val();
-	var fname = $('#first-name').val();
-	var email = $('#email-address').val();
-	var phone = $('#contact-number').val();
+    var fname = $('#first-name').val();
+    var email = $('#email-address').val();
+    var phone = $('#contact-number').val();
     var company = $('#affiliated-company').val();
     var govId = $('#government-ID').val();
     var officeId = $('#Office').val();
     var branch = $('#branch').val();
 
     var isSuccess = true;
-    var isAvail = true;
-    if(validateEmail(email)) {
+
+    if(isValidated()) {
+
+        // Check if email is under an appointment
         $.ajax({
-			url: "../../includes/chk-email.php",
-			type: "POST",
-			data: {
-				email: email
-			},
-			cache: false,
+            url: "../../includes/chk-email.php",
+            type: "POST",
+            data: {
+                email: email
+            },
+            cache: false,
             beforeSend: function() {
                 $("#screen-overlay").fadeIn(100);
             },
-			success: function(dataResult){
-			},
+            success: function(dataResult){
+            },
             error: function() {
                 alert('There might be some problem in the server, please try again later or contact RTU.');
                 isSuccess = false;
             }
         }).done(function (dataResult) {
             var dataResult = JSON.parse(dataResult);
-				if(dataResult.hasEmail == 200){
-                    alert('Engk!! Email');
-                    isAvail = false;
+                if(dataResult.hasEmail == 200){
+                    alert('This email is already registered to an appointment');
                     isSuccess = false;
                 } 
             $("#screen-overlay").fadeOut(400);
         });
-
-    } else {
-        alert('Engk!! Email');
-        return false; // Issue: Not stopping the whole block
-    }
-    if(!isAvail) {
-        return false;
-    }
-		
-    if(lname!="" && fname!="" && phone!="" && email!=""){
-		$.ajax({
-			url: "../../includes/reg-appointment.php",
-			type: "POST",
-			data: {
-				lname: lname,
-				email: email,
-				phone: phone,
-				fname: fname,
+    
+        // Register the personal information
+        $.ajax({
+            url: "../../includes/reg-appointment.php",
+            type: "POST",
+            data: {
+                lname: lname,
+                email: email,
+                phone: phone,
+                fname: fname,
                 company: company,
                 govId: govId
-			},
-			cache: false,
+            },
+            cache: false,
             beforeSend: function() {
                 $("#screen-overlay").fadeIn(100);
             },
-			success: function(dataResult){
-
+            success: function(dataResult){
+    
             },
             error: function() {
                 alert('There might be some problem in the server, please try again later or contact RTU.');
                 isSuccess = false;
             }
-			}).done(function (dataResult) {
+            }).done(function (dataResult) {
                 var dataResult = JSON.parse(dataResult);
-					if(dataResult.statusCode==200){
+                    if(dataResult.statusCode==200){
                         // Insert JS Form Validation
-					}
-					else if(dataResult.statusCode==201){
-					   alert("Error occured!"); // Error Page
-					} else if(dataResult.statusCode==202) {
+                    } else if(dataResult.statusCode==201){
+                       alert("Error occured!"); // Error Page
+                    } else if(dataResult.statusCode==202) {
                         isSuccess = false;
                         alert("Email Taken");
+                        
                     }
                 $("#screen-overlay").fadeOut(400);
             });
-    
-	}
-    if(officeId!= null && branch != null){
+
+        // Check schedules for the selected office, then continue to next page.
 		$.ajax({
 			url: "../../includes/load-dates.php",
 			type: "POST",
@@ -137,15 +137,19 @@ nextBtnFirst.addEventListener("click", function(event) {
 
                 setSlctdDate(available_dates[0]);
                 startCalendar();
-            }
-            
+            }   
         }); //Lacks Catch
-	}
+	} else if(branch == null && officeId == null) {
+        alert('Please select a branch and an office.');
+    }
 });
 nextBtnSec.addEventListener("click", function(event) {
     slctDate = slctdDate.text;
     if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
-        // Validation Here
+        // No proper schedule selected
+        alert('Please select your appointment schedule.');
+    } else if(!isValidated()){
+        alert('Please fill-up all the required information.');
     } else {
         var officeId = document.getElementById('Office').value;
         var branch = document.getElementById('branch').value;
@@ -269,42 +273,119 @@ submitBtn.addEventListener("click", function() {
     var officeId = document.getElementById('Office').value;
     var branch = document.getElementById('branch').value;
     var purpose = document.getElementById('purpose').value;
-    
-    // Confirm Appointment
-    $.ajax({ 
-        url: "../../includes/sub-appointment.php",
-        type: "POST",
-        data: {
-            branch: branch,
-            officeId: officeId,
-            date: slctDate,
-            purpose: purpose,	
-            time: slctTimeSlt			
-        },
-        cache: false,
-        beforeSend: function() {
-            $("#screen-overlay").fadeIn(100);
-        },
-        success: function(dataResult){
-        },
-        error: function() {
-            alert('There might be some problem in the server, please try again later or contact RTU.');
-            $("#screen-overlay").fadeOut(400);
-        }
-    }).done(function (dataResult) {
-            var dataResult = JSON.parse(dataResult);
-            if(dataResult.statusCode==200){
-                // Insert JS Form Validation
-                window.location.replace("../your-appointment.php");
-            } else if(dataResult.statusCode==201){
-                alert("Error occured !"); // Error Page
-                $("#screen-overlay").fadeOut(400);
-            } else {
-                alert("Your selected schedule is not available.");
-                $("#screen-overlay").fadeOut(400);
+
+    if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
+        // No proper schedule selected
+        alert('Please select your appointment schedule.');
+    } else if(!isValidated()){
+        alert('Please fill-up all the required information.');
+    } else { // Resubmit personal information & Confirm Appointment
+        var lname = $('#last-name').val();
+        var fname = $('#first-name').val();
+        var email = $('#email-address').val();
+        var phone = $('#contact-number').val();
+        var company = $('#affiliated-company').val();
+        var govId = $('#government-ID').val();
+
+        var isSuccess = true;
+
+        // Check if email is under an appointment
+        $.ajax({
+            url: "../../includes/chk-email.php",
+            type: "POST",
+            data: {
+                email: email
+            },
+            cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(100);
+            },
+            success: function(dataResult){
+            },
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
             }
-            
-    });
+        }).done(function (dataResult) {
+            var dataResult = JSON.parse(dataResult);
+                if(dataResult.hasEmail == 200){
+                    alert('This email is already registered to an appointment');
+                    isSuccess = false;
+                } 
+            $("#screen-overlay").fadeOut(400);
+        });
+
+        // Register the personal information
+        $.ajax({
+            url: "../../includes/reg-appointment.php",
+            type: "POST",
+            data: {
+                lname: lname,
+                email: email,
+                phone: phone,
+                fname: fname,
+                company: company,
+                govId: govId
+            },
+            cache: false,
+            beforeSend: function() {
+                $("#screen-overlay").fadeIn(100);
+            },
+            success: function(dataResult){
+
+            },
+            error: function() {
+                alert('There might be some problem in the server, please try again later or contact RTU.');
+                isSuccess = false;
+            }
+            }).done(function (dataResult) {
+                var dataResult = JSON.parse(dataResult);
+                    if(dataResult.statusCode==200){ // Continue to submit appointment
+                        if(isSuccess) {
+                            $.ajax({ 
+                                url: "../../includes/sub-appointment.php",
+                                type: "POST",
+                                data: {
+                                    branch: branch,
+                                    officeId: officeId,
+                                    date: slctDate,
+                                    purpose: purpose,	
+                                    time: slctTimeSlt			
+                                },
+                                cache: false,
+                                beforeSend: function() {
+                                    $("#screen-overlay").fadeIn(100);
+                                },
+                                success: function(dataResult){
+                                },
+                                error: function() {
+                                    alert('There might be some problem in the server, please try again later or contact RTU.');
+                                    $("#screen-overlay").fadeOut(400);
+                                }
+                            }).done(function (dataResult) {
+                                    var dataResult = JSON.parse(dataResult);
+                                    if(dataResult.statusCode==200){
+                                        // Insert JS Form Validation
+                                        window.location.replace("../your-appointment.php");
+                                    } else if(dataResult.statusCode==201){
+                                        alert("Error occured !"); // Error Page
+                                        $("#screen-overlay").fadeOut(400);
+                                    } else {
+                                        alert("Your selected schedule is not available.");
+                                        $("#screen-overlay").fadeOut(400);
+                                    }
+                                    
+                            });
+                        }
+                    } else if(dataResult.statusCode==201){
+                        alert("Error occured!"); // Error Page
+                    } else if(dataResult.statusCode==202) {
+                        isSuccess = false;
+                        alert("Email Taken");
+                    }
+                $("#screen-overlay").fadeOut(400);
+            });
+    }
 });
 prevBtnSec.addEventListener("click", function(event) {
     event.preventDefault();
@@ -349,15 +430,6 @@ function load_timeslot(tmslot) {
         prevTimeButton.style.color = '';
     }
     prevTimeButton = timeButton;
-}
-function validateEmail(value) {
-    var input = document.createElement('input');
-  
-    input.type = 'email';
-    input.required = true;
-    input.value = value;
-  
-    return typeof input.checkValidity === 'function' ? input.checkValidity() : /\S+@\S+\.\S+/.test(value);
 }
 
 function loadOffices() {

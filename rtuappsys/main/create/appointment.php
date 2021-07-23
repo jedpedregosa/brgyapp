@@ -164,7 +164,7 @@
                                 <label id="error-purpose"></label>
                             </div>
                             <div class="informationForm">
-                                <div class="form-row">
+                                <div class="form-row" id ="common-info-row">
                                     <?php 
                                         if($isStudent) {
                                             ?>
@@ -198,7 +198,7 @@
                                         <label id = "error-last-name"></label>
                                     </div>
                                 </div>
-                                <br>
+                
                                 <div class="form-row">
                                     <div class="form-group">
                                         <input type="text" id="contact-number" class="contact-number" placeholder="Contact Number" 
@@ -505,100 +505,7 @@
 
     <!-- JAVASCRIPTS USED -->
     <script src="../../assets/js/AppointmentScript.js"></script>
-    <script>
-        
-        // Input Fields
-        const purpose = document.getElementById('purpose');
-        const first_name = document.getElementById('first-name');
-        const last_name = document.getElementById('last-name');
-        const contact_number = document.getElementById('contact-number');
-        const affiliated_company = document.getElementById('affiliated-company');
-        const email_address = document.getElementById('email-address');
-        const governmentID = document.getElementById('government-ID');
-
-        // Error Labels
-        const error_purpose = document.getElementById('error-purpose');
-        const error_first_name = document.getElementById('error-first-name');
-        const error_last_name = document.getElementById('error-last-name');
-        const error_contact_number = document.getElementById('error-contact-number');
-        const error_affiliated_company = document.getElementById('error-affiliated-company');
-        const error_email_address = document.getElementById('error-email-address');
-        const error_governmentID = document.getElementById('error-government-ID');
-
-        var wordRegex = /^[a-zA-Z]*$/;
-        var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        var numberRegex = /^[0-9]*$/;
-
-
-        purpose.addEventListener("keyup", function(event){
-            if(purpose.value == null || purpose.value == ''){
-                error_purpose.textContent = "Please fill up this field";
-            } else {
-                error_purpose.textContent = "";
-            }
-        });
-
-        first_name.addEventListener("keyup", function(event){
-            if(first_name.value == null || first_name.value == ''){
-                error_first_name.textContent = "Please fill up this field";
-            } else if (!first_name.value.match(wordRegex) || first_name.value.length < 2){
-                error_first_name.textContent = "Invalid First Name";
-            } else{
-                error_first_name.textContent ="";
-            }
-        });
-
-        last_name.addEventListener("keyup", function(event){
-            if(last_name.value == null || last_name.value == ''){
-                error_last_name.textContent = "Please fill up this field";
-            } else if (!last_name.value.match(wordRegex) || last_name.value.length < 2){
-                error_last_name.textContent = "Invalid Last Name";
-            } else{
-                error_last_name.textContent="";
-            }
-        });
-
-        contact_number.addEventListener("keyup", function(event){
-            if(contact_number.value == null || contact_number.value == ''){
-                error_contact_number.textContent = "Please fill up this field";
-            } else if (!contact_number.value.match(numberRegex) || contact_number.value.length != 11){
-                error_contact_number.textContent = "Invalid Contact Number";
-            } else{
-                error_contact_number.textContent="";
-            }
-        });
-
-        affiliated_company.addEventListener("keyup", function(event){
-            if(affiliated_company.value == null || affiliated_company.value == ''){
-                error_affiliated_company.textContent = "Please fill up this field";
-            } else if (!affiliated_company.value.match(wordRegex) || affiliated_company.value.length < 2){
-                error_affiliated_company.textContent = "Invalid Company Name";
-            } else{
-                error_affiliated_company.textContent="";
-            }
-        });
-
-        email_address.addEventListener("keyup", function(event){
-            if(email_address.value == null || affiliemail_addressated_company.value == ''){
-                error_email_address.textContent = "Please fill up this field";
-            } else if (!email_address.value.match(emailRegex) || email_address.value.length < 2){
-                error_email_address.textContent = "Invalid Email Address";
-            } else{
-                error_email_address.textContent="";
-            }
-        });
-
-        governmentID.addEventListener("keyup", function(event){
-            if(governmentID.value == null || governmentID.value == ''){
-                error_governmentID.textContent = "Please fill up this field";
-            } else if (!governmentID.value.match(wordRegex) || governmentID.value.length < 2){
-                error_governmentID.textContent = "Invalid Governement ID";
-            } else{
-                error_governmentID.textContent="";
-            }
-        });
-
-    </script>
+    <script src="../../assets/js/appointment-validation.js"></script>
 </body>
 
 </html>

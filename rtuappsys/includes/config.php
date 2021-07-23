@@ -6,6 +6,7 @@
     define("max_per_sched", 5);
     define("number_of_timeslots", 15);
     define("days_scheduling_span", 30);
-    define("hours_scheduling_span", 2)
+    define("hours_scheduling_span", 2);
 
+    define("IS_AJAX", isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 ?>

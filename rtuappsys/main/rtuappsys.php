@@ -1,10 +1,11 @@
+<?php
 /******************************************************************************
  * 	Rizal Technological University Online Appointment System
  * 		
  * 	File: 
  * 		rtuappsys.php (Web Page) -- 
  *  Description:
- * 		1. Provides an interface for the user to choose.
+ * 		1. Provides an interface for the user to intialize an appointment.
  * 
  * 	Date Created: 7th of July, 2021
  * 	Github: https://github.com/jedpedregosa/rtuappsys
@@ -16,19 +17,17 @@
  * 	RTU Boni System Team
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
+?>
 
 <html>
-	<body>
-		<?php
-
-		?>
-		<html lang = "en">
-		<head>
+  <head>
 			<!-- Required meta tags -->
     		<meta charset="utf-8">
     		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     		<link rel="stylesheet" href="../assets/css/loginstyle.css">
     		<title>RTU Online Appointment System</title>
+  </head>
+  <body>
 			<!-- HEADER -->
   			<div class="header">
   				<img src="../assets/img/header2.png">
@@ -49,7 +48,7 @@
   			<p class="p1"> RTU APPOINTMENT <br> SYSTEM </p>
   			<p class="p2"> Welcome to Rizal Technological University! </p>
   			<div class="dropdown">
-  				<button onclick="myFunction()"class ="dropbtn">Make an Appointment</button>
+  				<button class ="dropbtn">Make an Appointment</button>
   				<div id ="myDropdown"class="dropdown-content">
   					<button onclick="document.getElementById('id01').style.display='block'" class="text">As Student</button>
   					<button onclick="document.getElementById('id02').style.display='block'" class="text">As Employee</button>
@@ -211,7 +210,5 @@
 					}
 				});
 			</script>
-		</head>
-		</html>
 	</body>
 </html>

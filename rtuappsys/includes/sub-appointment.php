@@ -1,6 +1,13 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/config.php");
+
+    // Check if request is not from ajax
+    if(!IS_AJAX) {
+        header("Location: ../main/rtuappsys.php");
+		die();
+    }
 
     // Check if from a page request 
 	if(isset($_POST['branch']) && isset($_POST['officeId']) && isset($_POST['date']) && isset($_POST['purpose'])) {
@@ -22,7 +29,15 @@
 
 	if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
         $isSessioned = false;
-    } 
+    } else {
+        // Check if the user sessioned has an appointment booked already.
+        /*
+        if(doesUserHasApp($_SESSION["userId"], "employee")) {
+            // *********** Needs error message
+            header("Location: ../main/rtuappsys.php");
+            die();
+        }*/
+    }
 
     if($isSessioned) {
         $userId = $_SESSION["userId"];
