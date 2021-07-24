@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Main Login with validation</title>
+
+	<link rel="stylesheet" href="MainLogin.css">
+</head>
+<body>
+	<!-- HEADER -->
+	<div class="headerBG">
+		<img src="Images/header2.png">
+	</div>
+	  
+	<div class="logoHeader">
+		<img src="Images/rtu_logo.png">
+	</div>
+	<!-- //HEADER -->
+	<!-- CONTENTS -->
+	<div class="main">
+
+		<!-- ROW -->
+		<div class="row">
+
+			<!-- COLUMN 1 -->
+			<div class="col-1">
+				
+
+				<!-- RTU APPOINTMENT SYSTEM -->
+				<div class="p1">
+					<p>RTU APPOINTMENT <br> SYSTEM</p><!-- PUT USER'S NAME INSIDE THE SPAN TAG -->
+				</div>
+				<!-- //RTU APPOINTMENT SYSTEM -->
+				
+				<!-- WLCOME -->
+				<div class="p2">
+					<p>Welcome to Rizal Technological University!</p>
+				</div>
+				<!-- //WELCOME -->
+
+				<!-- NOTE -->
+				<div class="p3">
+					<p>*For New Student and Alumni, please select Guest</p>
+				</div>
+				<!-- //NOTE -->
+
+				<!-- MAKE AN APPOINTMENT -->
+					<div class="dropdown">
+				  <button onclick="myFunction()"class ="dropbtn">Make an Appointment</button>
+
+				  <div id ="myDropdown"class="dropdown-content">
+				  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">As Student</button>
+				  <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">As Employee</button>
+				  <button onclick="document.getElementById('id03').style.display='block'" style="width:auto;">As Guest</button>
+				  </div>
+				</div>
+
+				<div id="id01" class="modal">
+				  
+				  <form class="modal-content animate" action="/action_page.php" method="post">
+				    <div class="imgcontainer">
+				      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+				      <img src="Images/user.png" alt="Avatar" class="avatar">
+				    </div>
+
+				     <p class="p4"> Hi Student! </p>
+				     <p class="p5">Make an appointment today at RTU!</p>
+				     <p class="p7">One appointment at a time.</p>
+
+
+				     <div class="container">
+				      <div class="container-inputs">
+                       <form>
+                        <div class="inputs">
+				        
+		               	<input type="text" id="student_number" placeholder="Student Number">
+		                <br>
+		                <label id="error_student_number" class="error_student_number" for="student_number"></label>
+		              	<br>
+						<input type="text" id="lastname" placeholder="Last Name" required="">
+		                <br>
+		                <label id="error_last_name" class="error_last_name" for="lastname"></label>
+						<br>
+                    
+                    	<input class="button1" type="submit" value="Proceed">
+
+				 
+					</div>
+				</form>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+				      <div id="id02" class="modal">
+				        
+				        <form class="modal-content animate" action="/action_page.php" method="post">
+				          <div class="imgcontainer">
+				            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+				            <img src="Images/user.png" alt="Avatar" class="avatar">
+				            </div>
+				               <p class="p4"> Hi Employee! </p>
+				               <p class="p5">Make an appointment today at RTU!</p>
+				               <p class="p7">One appointment at a time.</p>
+
+				          <div class="container">
+				           <div class="container-inputs">
+                       		<form>
+                             <div class="inputs">
+				        
+
+				            <input type="text" id="employee_number" placeholder="Employee Number">
+			                <br>
+			                <label id="error_employee_number" class="error_employee_number" for="employee_number"></label>
+				            <br>
+							<input type="text" id="lastname1" placeholder="Last Name" required="">
+			                <br>
+			                <label id="error_last_name1" class="error_last_name1" for="lastname1"></label>
+							<br>
+				            
+				            <input class="button1" type="submit" value="Proceed">
+				          
+				          </div>
+				     </form>
+				</div>
+			</div>
+		</form>
+	</div>
+				        <div id="id03" class="modal">
+				          
+				          <form class="modal-content animate" action="/action_page.php" method="post">
+				            <div class="imgcontainer">
+				              <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+				              <img src="Images/user.png" alt="Avatar" class="avatar">
+				            </div>
+				                 <p class="p4"> Hi Guest! </p>
+				                 <p class="p5">Make an appointment today at RTU!</p>
+				                 <p class="p7">One appointment at a time.</p>
+
+
+				             <div class="container">
+                    		  <div class="container-inputs">
+                     			<form>
+                     			 <div class="inputs">
+
+
+				               	<input type="text" id="email" placeholder="Email Address" required="">
+				               	<br>
+				              	<label id="error_email" class="error_email" for="email"></label>
+				              	<br>
+								<input type="text" id="lastname2" placeholder="Last Name" required="">
+				                <br>
+				                <label id="error_last_name2" class="error_last_name2" for="lastname2"></label>
+								<br>
+				                
+				            	<input class="button1" type="submit" value="Proceed">
+				         
+				         </div>
+				    </form>
+			   </div>
+		 </div>
+	</form>
+</div>
+
+
+				<!-- //MAKE AN APPOINTMENT -->
+
+
+				<!-- VIEW AAPPOINTMENT -->
+				
+          <div class="dropbtn1">
+              <div class ="button2" onclick="document.getElementById('id04').style.display='block'" style="width:auto;">View Appointment</div>
+              <div id="id04" class="modal">
+  
+              <form class="modal-content animate" action="/action_page.php" method="post">
+              <div class="imgcontainer">
+              <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <img src="Images/user.png" alt="Avatar" class="avatar">
+            </div>
+
+                <p class="p5">VIEW MY APPOINTMENT</p>
+
+                 <div class="container">
+                    <div class="container-inputs">
+                      <form>
+                      	<div class="inputs">
+
+				               	<input type="text" id="email1" placeholder="Email Address" required="">
+				               	<br>
+				              	<label id="error_email1" class="error_email1" for="email1"></label>
+				              	<br>
+								<input type="text" id="lastname3" placeholder="Last Name" required="">
+				                <br>
+				                <label id="error_last_name3" class="error_last_name2" for="lastname3"></label>
+								<br>
+                	
+                    
+                   				<input class="button1" type="submit" value="Proceed">
+								
+								 </form>                  
+							</div>
+						</form>
+					</div>
+				</form>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+
+				<!-- //VIEW APPOINTMENT -->
+
+				<!-- SUBMIT FEEDBACK -->
+						<a href="#">
+		    <p class="p8">Submit Feedback here!</p>
+		  </a>
+		</div>
+				<!-- //SUBMIT FEEDBACK -->
+
+
+				<!-- //COLUMN 1 -->
+			<!-- DESIGN -->
+			<div class="design">
+				<img src="Images/design.png">
+			</div>
+			<!-- //DESIGN -->
+
+			<!-- COLUMN 2 -->
+			<div class="col-2">
+				<img src="Images/frontgp.png" class="handBG">
+				<div class="color-box"></div>
+			</div>
+			<!-- //COLUMN 2 -->
+
+		</div>
+		<!-- //ROW -->
+	</div>
+	
+
+	<!-- //CONTENTS -->
+	<!-- FOOTER -->
+	<div class="footer">
+		<div class="footer-bottom">
+		COPYRIGHT &copy; 2021 RIZAL TECHNOLOGICAL UNIVERSITY<!-- COPYRIGHT -->
+		</div>
+	</div>
+	<!-- //FOOTER -->
+
+    <script src="MainLogin.js"></script>
+
+</body>
+</html>

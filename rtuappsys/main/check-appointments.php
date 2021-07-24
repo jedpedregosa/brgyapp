@@ -1,12 +1,15 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-    $app_id;
-    if(isset($_GET["app_id"])) {
-        $app_id = $_GET["app_id"];
+    
+    $app_key;
+    if(isset($_GET["cid"])) {
+        $app_key = $_GET["cid"];
     } else {
         header("Location: main/rtuappsys.php");
 		die();
     }
+
+    $app_id = getAppointmentIdByAppointmentKey($app_key);
 
     $conn = connectDb();
     $stmt = $conn->prepare("SELECT * FROM tbl_visitor WHERE vstor_id =

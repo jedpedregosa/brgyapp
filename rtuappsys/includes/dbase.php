@@ -1,5 +1,6 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/config.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
 
     function connectDb() {
         $conn;
@@ -471,6 +472,19 @@
         $current_queue = checkSchedTotalVisitor($schedId);
         $appId = $schedId . (string)$current_queue;
 
+        // Generate random string then translate into hash to set as an unreadable key for the appointment 
+        $randomString = generateRandomString();
+        $appointmentKey = md5($appId . $randomString);
+
+        $stmt = $conn -> prepare("INSERT INTO tbl_appointment_auth (app_id, app_key) VALUES (:appno, :appkey)");
+        $stmt-> bindParam(':appno', $appId);
+        $stmt-> bindParam(':appkey', $appointmentKey);
+        $submitResult = $stmt->execute();
+
+        if(!$submitResult) {
+            return false;
+        }
+
         $stmt = $conn -> prepare("INSERT INTO tbl_appointment (app_id, vstor_id, sched_id, office_id, app_branch, app_purpose)
             VALUES (:appno, :vstor, :sched, :office, :branch, :purpose)");
         $stmt-> bindParam(':appno', $appId);
@@ -482,6 +496,8 @@
 
         setVisitorApp($vstor_id);
         $stmt->execute(); //Lacks Catch
+
+        // Lacks: Dapat hindi mag save ng auth key pag pumalpak unang query ^
 
         return $appId;
 
@@ -592,5 +608,24 @@
         }
 
         return $result; // Lacks Catch
+    }
+    
+    function getAppointmentKeyByAppointmentId($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT app_key FROM tbl_appointment_auth WHERE app_id = ?");
+        $stmt-> execute([$app_id]);
+        $result = $stmt->fetchColumn();
+
+        return $result;
+    }
+    function getAppointmentIdByAppointmentKey($app_key) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT app_id FROM tbl_appointment_auth WHERE app_key = ?");
+        $stmt-> execute([$app_key]);
+        $result = $stmt->fetchColumn();
+
+        return $result;
     }
 ?>

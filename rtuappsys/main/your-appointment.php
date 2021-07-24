@@ -27,6 +27,7 @@
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/create-pdf.php");
 
     $appId;
+
     session_name("id");
 	session_start();
 
@@ -37,7 +38,6 @@
     }
 
     // Initialization
-    
 
     if(isset($_SESSION["applicationId"])) {
         $appId = $_SESSION["applicationId"];
@@ -45,16 +45,22 @@
         header("Location: rtuappsys.php");
 		die();
     }
+	
+	$appointmentKey = getAppointmentKeyByAppointmentId($appId);
+	$file_dir = $_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/assets/files/" . $appointmentKey . "/";
+	if(!is_dir($file_dir)) {
+		mkdir($file_dir);
+	}
+
     $flname = $appId . ".png";
-    $qrLoc = $_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/assets/img/source/";
-    $qrfilepath = $qrLoc . $flname;
+    $qrfilepath = $file_dir . $flname;
 
     if (!file_exists($qrfilepath)) {
-        QRcode::png($_SERVER['HTTP_HOST' ]. "/rtuappsys/main/check-appointments.php?app_id=". $appId, $qrfilepath); //should be a default link
+        QRcode::png($_SERVER['HTTP_HOST' ]. "/rtuappsys/main/check-appointments.php?cid=". $appointmentKey, $qrfilepath); //should be a default link
     }
 	$visitor_data = getVisitorDataByAppointmentId($appId);
 	
-	if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/rtuappsys/assets/files/RTUAppointment'. $appId .'.pdf')) {
+	if(!file_exists($file_dir . 'RTUAppointment-' . $appId .'.pdf')) {
 		generateAppointmentFile($appId);
 	}
 ?>
@@ -99,15 +105,15 @@
 				<!-- PDF DIV -->
 				<div class="pdf">
 					<!-- PUT HERE THE PDF VIEWER OR DOWNLOADER -->
-					<object data="../assets/files/RTUAppointment<?php echo $appId; ?>.pdf" type="application/pdf" width="100%" height="100%">
-                        <embed src="../assets/files/RTUAppointment<?php echo $appId; ?>.pdf" type="application/pdf" />
+					<object data="../assets/files/<?php echo $appointmentKey; ?>/RTUAppointment-<?php echo $appId; ?>.pdf" type="application/pdf" width="100%" height="100%">
+                        <embed src="../assets/files/<?php echo $appointmentKey; ?>/RTUAppointment-<?php echo $appId; ?>.pdf" type="application/pdf" />
                     </object>
 				</div>
 				<!-- //PDF DIV -->
                 
 				<!-- SEE YOU IN RTU -->
 				<div class="seeYou">
-					<p><span>You can </span> download <span>it <a href="../assets/files/RTUAppointment<?php echo $appId; ?>.pdf" >here</a> instead.</span></p>
+					<p><span>You can </span> download it <a href="../assets/files/<?php echo $appointmentKey; ?>/RTUAppointment-<?php echo $appId; ?>.pdf" >here</a> instead.</p>
 					<p>See you in <span>Rizal Technological University</span>!</p>
 				</div>
 				<!-- //SEE YOU IN RTU -->

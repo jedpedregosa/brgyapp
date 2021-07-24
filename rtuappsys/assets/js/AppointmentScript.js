@@ -356,18 +356,18 @@ submitBtn.addEventListener("click", function() {
                                 beforeSend: function() {
                                     $("#screen-overlay").fadeIn(100);
                                 },
-                                success: function(dataResult){
+                                success: function(appResult){
                                 },
                                 error: function() {
                                     alert('There might be some problem in the server, please try again later or contact RTU.');
                                     $("#screen-overlay").fadeOut(400);
                                 }
-                            }).done(function (dataResult) {
-                                    var dataResult = JSON.parse(dataResult);
-                                    if(dataResult.statusCode==200){
+                            }).done(function (appResult) {
+                                    var appResult = JSON.parse(appResult);
+                                    if(appResult.statusCode==200){
                                         // Insert JS Form Validation
                                         window.location.replace("../your-appointment.php");
-                                    } else if(dataResult.statusCode==201){
+                                    } else if(appResult.statusCode==201){
                                         alert("Error occured !"); // Error Page
                                         $("#screen-overlay").fadeOut(400);
                                     } else {

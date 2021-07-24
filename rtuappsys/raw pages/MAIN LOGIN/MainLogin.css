@@ -1,0 +1,576 @@
+/* RTU APPOINTMENT SYSTEM */
+
+/* Font Used */
+@font-face {
+  font-family: Product Sans;
+  font-style: normal;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+@font-face {
+font-family: Tw Cen MT;
+src: url('tw.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+/* BODY */
+body {
+  background-color: white;
+  margin: 0;
+  overflow: auto;
+}
+
+.container-inputs {
+  position: relative;
+  top: 30%;
+}
+    
+.container-inputs .inputs {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  font-family: Product Sans;
+  padding-top: 5px;
+
+    }
+    
+/* HEADER */
+/* Header BG */
+.headerBG img{
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+/* Header Logo */
+.logoHeader img {
+  width: 10%;
+  max-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  padding-top: 1.5%;
+  left: 0;
+  right: 0;
+}
+
+/* FOOTER */
+.footer {
+  position: relative;
+}
+
+/* COPYRIGHT TEXT */
+.footer .footer-bottom {
+  background-color: #003366;
+  width: 100%;
+  font-family: Century Gothic;
+  font-size: 11px;
+  text-align: center;
+  color: #A6A6A6;
+  margin: auto;
+  padding: 9px;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  
+}
+/* DESIGN */
+.design img {
+  width: 10%;
+  display: flex;
+  position: absolute;
+  transform: translateY(5px);
+  padding-bottom: 3%;
+  left: 2%;
+  top: 70%;
+}
+
+/* CONTENT CONTAINER */
+.main {
+  width: 100%;
+  min-height: 100vh;
+  padding-left: 8%;
+  box-sizing: border-box;
+  overflow: hidden;
+ 
+}
+
+/* ROW */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0 0 0;
+}
+
+/* COLUMN 1 */
+.col-1 {
+  flex-basis: 40%;
+  position: relative;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+/* RTU APPOINTMENT.. */
+.col-1 .p1 p {
+  font-size: 50px;
+  line-height: 1.0;
+  font-family: Product Sans;
+  color: #0F49AC;
+  margin-bottom: 0;
+  border-color: black;
+}
+
+/* WELCOME TO RIZAL.. */
+.col-1 .p2 p {
+  font-size: 20px;
+  font-family: Product Sans;
+  color: #7E6300;
+  padding-top: 10px;
+  margin-bottom: 0;
+
+}
+
+/* FOR NEW STUDENT.. */
+.col-1 .p3 p {
+  font-size: 10px;
+  font-family: Product Sans;
+  color: #002060;
+  padding-top: 10px;
+
+}
+
+
+/*HI GUEST..*/
+.col-1 .p4{
+  text-align: center;
+  color:#E6B500;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*MAKE AN APPOINTMENT TODAY*/
+.col-1 .p5{
+  color:#002060;
+  font-size: 15px;
+  text-align: center;
+  font-weight:bold;
+  font-family: Arial, Helvetica, sans-serif;
+    
+}
+/*FOR NEW STUDENT..*/
+.col-1 .p6{
+  color:red;
+  margin-left :180px ;
+  font-size: 10px;
+  font-weight: thin;
+  font-family: Arial, Helvetica, sans-serif;
+    
+}
+/*ONLY 1 APPOINTMENT..*/
+.col-1 .p7{
+  color:red;
+  margin-left :center ;
+  font-size: 8px;
+  font-weight: thin;
+  font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+/*SUBMIT FEEDBACK..*/
+.col-1 .p8{
+  position: absolute;
+  margin-left :130px ;
+  padding-bottom: 50px;
+  color: #0070C0;
+  font-size: 14px;
+  font-family: Tw Cen MT;
+}
+
+
+.col-1 .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.col-1 .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 2px solid #D2E9F7 ;
+  border-radius: 25px;
+  max-width: 250px;
+  max-height: 200px;
+  margin-left :100px;
+  z-index: 1;
+  text-align: center;
+ 
+}
+
+.col-1 .dropdown-content a {
+  color: black;
+  padding: 12px 15px;
+  text-decoration: none;
+  display: block;
+  border-radius: 25px;
+  z-index: 1;
+
+}
+
+.col-1 .dropdown-content a:hover {background-color: #f1f1f1}
+
+.col-1 .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.col-1 .dropdown:hover .dropbtn {
+  background-color: #ebedea;
+    
+}
+
+.col-1 .dropbtn {
+  background-color: #D2E9F7 ;
+  color: #002060;
+  width:200px;
+  border-radius: 25px;
+  padding: 16px;
+  font-size: 13px;
+  font-family: "Tw Cen MT";
+  border: none;
+  cursor: pointer;
+  margin-left :100px ;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  -moz-box-shadow: 10px 10px 5px #999999;
+  -webkit-box-shadow: 10px 10px 5px #999999;
+  box-shadow: 10px 5px 5px #999999;
+
+    
+}
+.col-1 .dropbtn::after {
+  content: "";
+  background: url(images/arrow.svg);
+  background-size: 18px;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 11px;
+  top: 35px;
+  bottom: 0;
+  transition: all 0.4s;
+}
+/**VIEW APPOINTMENT**/
+.col-1 .dropbtn1{
+  background-color: #D2E9F7 ;
+  color: #002060;
+  width:170px;
+  border-radius: 25px;
+  padding: 15px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-left :100px;
+  -moz-box-shadow: 10px 10px 5px #999999;
+  -webkit-box-shadow: 10px 10px 5px #999999;
+  box-shadow: 10px 5px 5px #999999;
+
+}
+.dropbtn1:hover {
+  background-color: #ebedea;
+  }
+
+
+/* FULL-WIDTH INPUT FIELDS */
+.col-1 input[type=text], input[type=password] {
+  width: 60%;
+  font-size: 12px;
+  font-family: "Tw Cen MT";
+  margin: fixed;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  border: none;
+  box-sizing: border-box;
+  background-color: #E8E8E8;
+}
+
+/* BUTTONS FOR STUDENT, EMPLOYEES AND GUEST*/
+.col-1 button {
+  background-color: white;
+  color: #002060;
+  padding: 15px 40px;
+  margin: 5px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  min-width: 180px;
+  transition: 0.3s ease;
+  z-index: 1;
+}
+
+.col-1 button:hover {
+  background-color: #ebedea;
+}
+
+/*PROCEED BUTTON*/
+.col-1 .button1 {
+  display: block;
+  margin: 0 auto;
+  background-color: #002060;
+  font-family: Arial;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  width: 80px;
+  padding: 10px;
+  margin-bottom: 25px;
+  margin-top: 10px;
+}
+
+.col-1 .button1:hover {
+  background-color: #00153E;
+}
+
+/*VIEW APPOINTMENTBUTTON*/
+.col-1 .button2 {
+  background-color: transparent;
+  color: #002060;
+  font-family: "Tw Cen MT";
+  font-size: 13px;
+  margin: 0px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+}
+
+
+/* CENTER ICON AND POSITION  */
+.col-1 .imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+.col-1 img.avatar {
+  width: 18%;
+  border-radius: 50%;
+
+}
+.col-1 .container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+} 
+
+
+/* THE MODAL (BACKGROUND) */
+.col-1 .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+  text-align: center;
+
+}
+
+/* MODAL CONTENT BOX */
+.col-1 .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 27%; /* Could be more or less, depending on screen size */
+  border-radius:50px; /*1*/
+  border: double .3em transparent; /*thickness of border*/
+  background-image: linear-gradient(#F5F5F5, #F5F5F5), 
+                    linear-gradient(to top left, #FFCB0D, #002060);
+  background-origin: border-box;
+  background-clip: content-box, border-box
+}
+
+
+/* CLOSE BUTTON */
+
+.col-1 .close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #002060;
+  font-size: 25px;
+  font-weight: bolder;
+}
+.col-1 .close:hover,
+.col-1 .close:focus {
+  color: #FFCB0D;
+  cursor: pointer;
+}
+
+/* COLUMN 2 */
+.col-2 {
+  position: relative;
+  flex-basis: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HAND BG */
+.col-2 .handBG {
+  width: 80%;
+  padding-top: 110px;
+}
+
+
+
+
+/* RESPONSIVE LAYOUT */
+@media only screen and (max-width: 700px) {
+  .main {
+    padding-left: 0;
+  }
+
+  .design img {
+    display: none;
+  }
+
+  .row {
+    flex-direction: column-reverse;
+    margin: 55px 0 0 0;
+  }
+
+  .col-2 {
+    flex-basis: 100%;
+    margin-bottom: 30px;
+  }
+
+  .col-2 .handBG {
+    width: 77%;
+  }
+
+  .color-box {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #002060;
+    border-radius: 20px 0 0 20px;
+    width: 93%;
+    height: 7%;
+    z-index: -1;
+  }
+  .col-1 .dropbtn::after {
+    background-size: 16px;
+  }
+
+  .col-1 {
+    flex-basis: 100%;
+    width: 90%;
+    margin-left: 0;
+    margin-bottom: 50px;
+ }
+
+  .col-1 .p1 p {
+    font-size: 45px;
+}
+
+  .col-1 .dropbtn {
+    font-size: 10px;
+    margin-left :70px ;
+} 
+  .col-1 .dropbtn1{
+    font-size: 10px;
+    margin-left :70px 
+
+}
+  .col-1 .dropdown-content {
+    margin-left :70px ;
+}
+ 
+  .col-1 .modal-content {
+    width: 70%; 
+
+}
+
+  .col-1 .p8{
+    margin-left: 110px;
+
+}
+.col-1 .button2 {
+  font-size: 10px;
+
+
+}
+}
+
+
+/* RESPONSIVE LAYOUT */
+@media only screen and (max-width: 700px) {
+  .main {
+    padding-left: 0;
+  }
+
+/* PAGE SCROLLBAR DESIGN */
+/* width */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+}
+ 
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #808080; 
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background: #002E8A; 
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom .5s;
+  animation: animatezoom 0.5s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+
+    
+}
+}
+}

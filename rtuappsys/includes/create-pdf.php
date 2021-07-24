@@ -4,8 +4,8 @@
     use Dompdf\Dompdf;
 
     function generateAppointmentFile($app_id) {
-        // reference the Dompdf namespace
-          
+        $appointmentKey = getAppointmentKeyByAppointmentId($app_id);
+	    $file_dir = $_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/assets/files/" . $appointmentKey . "/";          
 
         // For RTU Logo
         $path = $_SERVER['DOCUMENT_ROOT'] . '/rtuappsys/assets/img/rtu_logo.png';
@@ -16,7 +16,7 @@
         // RTU Logo
 
         // For QR Code
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/rtuappsys/assets/img/source/'. $app_id .'.png';
+        $path = $file_dir . $app_id .'.png';
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
 
@@ -161,7 +161,7 @@
         if (ob_get_length()) ob_end_clean();
         // Output the generated PDF to Browser
         $output = $dompdf->output();
-        file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/rtuappsys/assets/files/RTUAppointment'. $app_id .'.pdf', $output);
+        file_put_contents($file_dir . 'RTUAppointment-' . $app_id .'.pdf', $output);
 
 
     }
