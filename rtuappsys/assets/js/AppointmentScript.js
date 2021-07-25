@@ -42,32 +42,6 @@ nextBtnFirst.addEventListener("click", function(event) {
 
     if(isValidated()) {
 
-        // Check if email is under an appointment
-        $.ajax({
-            url: "../../includes/chk-email.php",
-            type: "POST",
-            data: {
-                email: email
-            },
-            cache: false,
-            beforeSend: function() {
-                $("#screen-overlay").fadeIn(100);
-            },
-            success: function(dataResult){
-            },
-            error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
-                isSuccess = false;
-            }
-        }).done(function (dataResult) {
-            var dataResult = JSON.parse(dataResult);
-                if(dataResult.hasEmail == 200){
-                    alert('This email is already registered to an appointment');
-                    isSuccess = false;
-                } 
-            $("#screen-overlay").fadeOut(400);
-        });
-    
         // Register the personal information
         $.ajax({
             url: "../../includes/reg-appointment.php",
@@ -88,7 +62,7 @@ nextBtnFirst.addEventListener("click", function(event) {
     
             },
             error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
+                Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                 isSuccess = false;
             }
             }).done(function (dataResult) {
@@ -96,10 +70,10 @@ nextBtnFirst.addEventListener("click", function(event) {
                     if(dataResult.statusCode==200){
                         // Insert JS Form Validation
                     } else if(dataResult.statusCode==201){
-                       alert("Error occured!"); // Error Page
+                        Fnon.Alert.Warning('An error occured, please try again later. ','We\'re Sorry','Okay'); // Error Page
                     } else if(dataResult.statusCode==202) {
                         isSuccess = false;
-                        alert("Email Taken");
+                        Fnon.Alert.Warning('This email is currently used in an appointment, please use another email.','Unfortunately,','Okay');
                         
                     }
                 $("#screen-overlay").fadeOut(400);
@@ -120,7 +94,7 @@ nextBtnFirst.addEventListener("click", function(event) {
                 var dataResult = JSON.parse(dataResult);
 			},
             error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
+                Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                 isSuccess = false;
             }
 		}).done(function(dataResult) {
@@ -140,16 +114,18 @@ nextBtnFirst.addEventListener("click", function(event) {
             }   
         }); //Lacks Catch
 	} else if(branch == null && officeId == null) {
-        alert('Please select a branch and an office.');
+        Fnon.Alert.Warning('Please select an office.','Your Appointment','Okay');
+    } else {
+        Fnon.Alert.Warning('Please fill-up all the required information.','Your Information','Okay');
     }
 });
 nextBtnSec.addEventListener("click", function(event) {
     slctDate = slctdDate.text;
     if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
         // No proper schedule selected
-        alert('Please select your appointment schedule.');
+        Fnon.Alert.Warning('You have not selected a schedule yet.','Unfortunately,','Okay');
     } else if(!isValidated()){
-        alert('Please fill-up all the required information.');
+        Fnon.Alert.Warning('Please fill-up all the required information.','Your Information','Okay');
     } else {
         var officeId = document.getElementById('Office').value;
         var branch = document.getElementById('branch').value;
@@ -194,7 +170,7 @@ nextBtnSec.addEventListener("click", function(event) {
                     document.getElementById('visitor-office').innerHTML = String(loadedofficeValue);
 			},
             error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
+                Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                 isSuccess = false;
             }
 		}).done(function () {
@@ -237,7 +213,7 @@ nextBtnSec.addEventListener("click", function(event) {
                     var dataResult = JSON.parse(dataResult);
 			},
             error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
+                Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                 isSuccess = false;
             }
 		}).done(function (dataResult) {
@@ -245,7 +221,7 @@ nextBtnSec.addEventListener("click", function(event) {
             if(dataResult.statusCode==200){
             }
             else if(dataResult.statusCode==201){
-               alert("Please select another schedule");
+                Fnon.Alert.Warning('Your schedule is not available anymore, please select another schedule.','Unfortunately,','Okay');
                isSuccess = false;
             } else if(dataResult.statusCode==202) {
                 window.location.replace("../rtuappsys.php");
@@ -276,9 +252,9 @@ submitBtn.addEventListener("click", function() {
 
     if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
         // No proper schedule selected
-        alert('Please select your appointment schedule.');
+        Fnon.Alert.Warning('You have not selected a schedule yet.','Unfortunately,','Okay');
     } else if(!isValidated()){
-        alert('Please fill-up all the required information.');
+        Fnon.Alert.Warning('Please fill-up all the required information.','Your Information','Okay');
     } else { // Resubmit personal information & Confirm Appointment
         var lname = $('#last-name').val();
         var fname = $('#first-name').val();
@@ -288,32 +264,6 @@ submitBtn.addEventListener("click", function() {
         var govId = $('#government-ID').val();
 
         var isSuccess = true;
-
-        // Check if email is under an appointment
-        $.ajax({
-            url: "../../includes/chk-email.php",
-            type: "POST",
-            data: {
-                email: email
-            },
-            cache: false,
-            beforeSend: function() {
-                $("#screen-overlay").fadeIn(100);
-            },
-            success: function(dataResult){
-            },
-            error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
-                isSuccess = false;
-            }
-        }).done(function (dataResult) {
-            var dataResult = JSON.parse(dataResult);
-                if(dataResult.hasEmail == 200){
-                    alert('This email is already registered to an appointment');
-                    isSuccess = false;
-                } 
-            $("#screen-overlay").fadeOut(400);
-        });
 
         // Register the personal information
         $.ajax({
@@ -335,7 +285,7 @@ submitBtn.addEventListener("click", function() {
 
             },
             error: function() {
-                alert('There might be some problem in the server, please try again later or contact RTU.');
+                Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                 isSuccess = false;
             }
             }).done(function (dataResult) {
@@ -359,7 +309,8 @@ submitBtn.addEventListener("click", function() {
                                 success: function(appResult){
                                 },
                                 error: function() {
-                                    alert('There might be some problem in the server, please try again later or contact RTU.');
+                                    isSuccess = false;
+                                    Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                                     $("#screen-overlay").fadeOut(400);
                                 }
                             }).done(function (appResult) {
@@ -368,20 +319,20 @@ submitBtn.addEventListener("click", function() {
                                         // Insert JS Form Validation
                                         window.location.replace("../your-appointment.php");
                                     } else if(appResult.statusCode==201){
-                                        alert("Error occured !"); // Error Page
+                                        Fnon.Alert.Warning('An error occured, please try again later. ','We\'re Sorry','Okay');
                                         $("#screen-overlay").fadeOut(400);
                                     } else {
-                                        alert("Your selected schedule is not available.");
+                                        Fnon.Alert.Warning('Your schedule is not available anymore, please select another schedule.','Unfortunately,','Okay');
                                         $("#screen-overlay").fadeOut(400);
                                     }
                                     
                             });
                         }
                     } else if(dataResult.statusCode==201){
-                        alert("Error occured!"); // Error Page
+                        Fnon.Alert.Danger('Unfortunately, we are experiencing a server error. Please try again later or contact RTU.','Server Error','Okay');
                     } else if(dataResult.statusCode==202) {
                         isSuccess = false;
-                        alert("Email Taken");
+                        Fnon.Alert.Warning('This email is currently used in an appointment, please use another email.','Unfortunately,','Okay');
                     }
                 $("#screen-overlay").fadeOut(400);
             });

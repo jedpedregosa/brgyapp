@@ -56,7 +56,7 @@
 
 		if(doesUserExists($userId, $userType)) {
 			if(!doesUserHasApp($userId, $userType)) {
-				if(!doesEmailHasApp($email, "guest")) { // Check if email
+				if(!doesEmailHasApp($email)) { // Check if email
 					if($isGuest) {
 						$userData = [$userId, $lname, $fname, $email, $phone, $company, $govId];					
 					} else {

@@ -89,7 +89,8 @@
 <head>
     <meta charset="utf-8">
     <title>Make an Appointment</title>
-    <link rel="stylesheet" href="../../assets/css/AppointmentStyle.css">
+    <link rel="stylesheet" href="../../assets/css/AppointmentStyle.css?version=3">
+    <link rel="stylesheet" href="../../assets/css/fnon.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -504,7 +505,8 @@
     </div>
 
     <!-- JAVASCRIPTS USED -->
-    <script src="../../assets/js/AppointmentScript.js"></script>
+    <script src="../../assets/js/fnon.min.js"></script>
+    <script src="../../assets/js/AppointmentScript.js?version=3"></script>
     <script src="../../assets/js/appointment-validation.js"></script>
 </body>
 

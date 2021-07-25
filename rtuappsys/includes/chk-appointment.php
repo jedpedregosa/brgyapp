@@ -37,8 +37,7 @@
             // Check if student number has an ongoing appointment
             if(doesUserHasApp($_POST["studentNum"], "student")) {
                 // *********** Needs error message
-                header("Location: ../main/rtuappsys.php");
-                die();
+                goBack();
             }
             $userId = $_POST["studentNum"];
             $uLname = $_POST["sLname"];
@@ -46,16 +45,14 @@
         } else if(isset($_POST["empNum"]) && isset($_POST["eLname"])) {
             if(doesUserHasApp($_POST["empNum"], "employee")) {
                 // *********** Needs error message
-                header("Location: ../main/rtuappsys.php");
-                die();
+                goBack();
             }
             $userId = $_POST["empNum"];
             $uLname = $_POST["eLname"];
         } else if(isset($_POST["email"]) && isset($_POST["gLname"])) { 
             if(doesEmailHasApp($_POST["email"])) {
                 // *********** Needs error message
-                header("Location: ../main/rtuappsys.php");
-                die();
+                goBack();
             }
             $userId = $_POST["email"];
             $uLname  = $_POST["gLname"];
@@ -88,4 +85,14 @@
 
     // Continue to creating appointment
     header("Location: ../main/create/appointment.php");
+
+    function goBack() {
+        session_name("err");
+        session_start();
+
+        $_SESSION["error_status"] = 200;
+
+        header("Location: ../main/rtuappsys.php");
+        die();
+    }
 ?>
