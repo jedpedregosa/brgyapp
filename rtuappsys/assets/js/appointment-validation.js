@@ -16,9 +16,11 @@ const error_affiliated_company = document.getElementById('error-affiliated-compa
 const error_email_address = document.getElementById('error-email-address');
 const error_governmentID = document.getElementById('error-government-ID');
 
-var wordRegex = /^[a-zA-Z]*$/;
+var wordRegex = /^[a-zA-Z ]*$/;
+var word2Regex = /^[A-Za-z0-9\-\_]*$/;
+var word3Regex = /^[A-Za-z0-9\-.' \_]*$/;
 var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-var numberRegex = /^[0-9]*$/;
+var numberRegex = /^[0-9-+]*$/;
 
 function isFormValidated() {
     return isPurposeValid() && isFirstNameValid() && isLastNameValid() && isContactValid() && isCompanyValid() && isEmailValid() && isGovermentIdValid();
@@ -60,7 +62,7 @@ function isLastNameValid() {
 function isContactValid() {
     if(contact_number.value == null || contact_number.value == ''){
         error_contact_number.textContent = "Please fill up this field";
-    } else if (!contact_number.value.match(numberRegex) || contact_number.value.length != 11){
+    } else if (!contact_number.value.match(numberRegex) || contact_number.value.length > 15 || contact_number.value.length < 6){
         error_contact_number.textContent = "Invalid Contact Number";
     } else{
         error_contact_number.textContent="";
@@ -73,7 +75,7 @@ function isCompanyValid() {
     if(affiliated_company) {
         if(affiliated_company.value == null || affiliated_company.value == ''){
             error_affiliated_company.textContent = "Please fill up this field";
-        } else if (!affiliated_company.value.match(wordRegex) || affiliated_company.value.length < 2){
+        } else if (!affiliated_company.value.match(word3Regex) || affiliated_company.value.length < 2){
             error_affiliated_company.textContent = "Invalid Company Name";
         } else{
             error_affiliated_company.textContent="";
@@ -102,7 +104,7 @@ function isGovermentIdValid() {
     if(governmentID) {
         if(governmentID.value == null || governmentID.value == ''){
             error_governmentID.textContent = "Please fill up this field";
-        } else if (!governmentID.value.match(wordRegex) || governmentID.value.length < 2){
+        } else if (!governmentID.value.match(word2Regex) || governmentID.value.length < 2){
             error_governmentID.textContent = "Invalid Governement ID";
         } else{
             error_governmentID.textContent="";

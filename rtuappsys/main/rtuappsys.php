@@ -199,10 +199,10 @@
 									<div class="container-inputs">
 										<form>
 											<div class="inputs">
-												<input type="text" name ="view_email" placeholder="Email Address" required="">
-												<input type="text" name ="view_lname" placeholder="Last Name" required="">
+												<input type="text" name ="view_email" id ="view_email" placeholder="Email Address" required>
+												<input type="text" name ="view_lname" id ="view_email" placeholder="Last Name" required>
 
-												<input class="button1" type="submit" value="Proceed">
+												<input class="button1" type="submit" id = "view_submit" value="Proceed">
 											</div>   
 										</form>              
 									</div>
@@ -258,36 +258,44 @@
     			const eLname = document.getElementById('eLname');
     			const gLname = document.getElementById('gLname');
 
+				// View appointment
+				const v_email = document.getElementById('view_email');
+    			const v_lname = document.getElementById('view_lname');
+
     			// Submit
     			const submitStudent = document.getElementById('submit-student');
     			const submitEmployee = document.getElementById('submit-employee');
     			const submitGuest = document.getElementById('submit-guest');
+				const submitView = document.getElementById('view_submit');
+
+				
 
     			// Regex for validation
-    			var lastnameRegex = /^[a-zA-Z]*$/;
+    			var lastnameRegex = /^[a-zA-Z ]*$/;
     			var studentRegex = /^[0-9]+-[0-9]*$/;
     			var employeeRegex = /^[A-Z]+-[0-9]+-[0-9]+-[0-9]+-[0-9]*$/;
     			var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-				submitStudent.addEventListener('click',()=>{
-    			// Student Modal Validation
-    			// Student Number Validation
-    			if(studentNum.value == null || studentNum.value == ''){
-    				studentNum.setCustomValidity('Please fill out this field');
-    			}else if (!studentNum.value.match(studentRegex) || studentNum.value.length != 11){
-    				studentNum.setCustomValidity('Invalid Student Number');
-    			} else {
-    				studentNum.setCustomValidity('');
-    			}
 
-    			// Student Last Name Validation
-    			if(sLname.value == null || sLname.value == ''){
-    				sLname.setCustomValidity('Please fill out this field');
-    			}else if (!sLname.value.match(lastnameRegex) || sLname.value.length < 2){
-    				sLname.setCustomValidity('Invalid Last Name');
-    			} else {
-    				sLname.setCustomValidity('');
-    			}
-    		});
+				submitStudent.addEventListener('click',()=>{
+					// Student Modal Validation
+					// Student Number Validation
+					if(studentNum.value == null || studentNum.value == ''){
+						studentNum.setCustomValidity('Please fill out this field');
+					}else if (!studentNum.value.match(studentRegex) || studentNum.value.length != 11){
+						studentNum.setCustomValidity('Invalid Student Number');
+					} else {
+						studentNum.setCustomValidity('');
+					}
+
+					// Student Last Name Validation
+					if(sLname.value == null || sLname.value == ''){
+						sLname.setCustomValidity('Please fill out this field');
+					}else if (!sLname.value.match(lastnameRegex) || sLname.value.length < 2){
+						sLname.setCustomValidity('Invalid Last Name');
+					} else {
+						sLname.setCustomValidity('');
+					}
+    			});
 				submitEmployee.addEventListener('click',()=>{
 					// Employee Modal Validation
 					// Employee Number Validation
@@ -324,6 +332,25 @@
 						gLname.setCustomValidity('Invalid Last Name');
 					} else {
 						gLname.setCustomValidity('');
+					}
+				});
+				submitView.addEventListener('click',()=>{
+					// Guest Modal Validation
+					// Guest Number Validation
+					if(v_email.value == null || v_email.value == ''){
+						v_email.setCustomValidity('Please fill out this field');
+					}else if (!v_email.value.match(emailRegex)){
+						v_email.setCustomValidity('Invalid Email Address');
+					} else {
+						v_email.setCustomValidity('');
+					}
+					// Guest Last Name Validation
+					if(v_lname.value == null || v_lname.value == ''){
+						v_lname.setCustomValidity('Please fill out this field');
+					}else if (!v_lname.value.match(lastnameRegex) || v_lname.value.length < 2){
+						v_lname.setCustomValidity('Invalid Last Name');
+					} else {
+						v_lname.setCustomValidity('');
 					}
 				});
 			</script>
