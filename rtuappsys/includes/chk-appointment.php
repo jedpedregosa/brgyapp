@@ -87,7 +87,7 @@
     header("Location: ../main/create/appointment.php");
 
     function goBack() {
-        session_name("err");
+        session_name("cid");
         session_start();
 
         $_SESSION["error_status"] = 200;

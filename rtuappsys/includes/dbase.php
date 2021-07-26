@@ -118,6 +118,35 @@
 
         return $result;
     }
+
+    function getUserDataByEmailLastN($v_email, $v_lname, $userType) {
+        $conn = connectDb();
+        $stmt = null;
+        $result = [];
+
+        $stmt = $conn->prepare("SELECT vstor_fname, vstor_contact FROM tbl_visitor WHERE vstor_email = ? AND vstor_lname = ?");
+        $stmt-> execute([$v_email, $v_lname]);
+
+        $result = $stmt->fetch();
+
+        if($userType == "student") {
+            $stmt = $conn->prepare("SELECT student_num FROM tbl_student_data 
+            WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ? AND vstor_lname = ?)");
+            $stmt-> execute([$v_email, $v_lname]);
+        } else if($userType == "employee") {
+            $stmt = $conn->prepare("SELECT employee_num FROM tbl_employee_data 
+            WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ? AND vstor_lname = ?)");
+            $stmt-> execute([$v_email, $v_lname]);
+        } else {
+            $stmt = $conn->prepare("SELECT company, government_id FROM tbl_guest_data 
+            WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ? AND vstor_lname = ?)");
+            $stmt-> execute([$v_email, $v_lname]);
+        }
+        //// Other User Types on Else-ifs
+        $result = array_merge($result, $stmt->fetch()); // Lacks checker if db fails (to error page)
+
+        return $result;
+    }
  
     function insertUserData($userData, $userType) {
         $conn = connectDb();
@@ -584,6 +613,28 @@
         $result = $stmt->fetch();
 
         return $result; // Lacks Catch
+    }
+
+    function getAppointmentDetailsByEmail($v_email) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT app_id, sched_id, office_id, app_branch, app_purpose FROM tbl_appointment 
+        WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ?)");
+        $stmt-> execute([$v_email]);
+        $result = $stmt->fetch();
+
+        return $result; // Lacks Catch
+    }
+
+    function isAppointmentDoneByEmail($v_email) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT app_is_done FROM tbl_appointment 
+        WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ?)");
+        $stmt-> execute([$v_email]);
+        $result = $stmt->fetchColumn();
+
+        return $result;  // Lacks Catch
     }
 
     function getScheduleDetailsByAppointmentId($app_id) {

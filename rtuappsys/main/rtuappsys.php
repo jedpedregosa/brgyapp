@@ -19,7 +19,7 @@
  ******************************************************************************/
 
 	// Session for internal errors
-	session_name("err");
+	session_name("cid");
 	session_start();
 
 	$alert = false;
@@ -30,6 +30,8 @@
 
 		if($error_code == 200) { // Information has an appointment booked.
 			$message = "This information has an appointment already, please try again using other email if you think this is an error.";
+		} else if($error_code == 201) {
+			$message = "We have not found an appointment under this email.";
 		}
 		unset($_SESSION["error_status"]);
 	}
@@ -185,7 +187,7 @@
 							View Appointment
 						</div>
 						<div id="id04" class="modal">
-							<form class="modal-content animate" action="/action_page.php" method="post">
+							<form class="modal-content animate" action="view-appointment.php" method="post">
 								<div class="imgcontainer">
 									<span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -197,8 +199,8 @@
 									<div class="container-inputs">
 										<form>
 											<div class="inputs">
-												<input type="text" id="email1" placeholder="Email Address" required="">
-												<input type="text" id="lastname3" placeholder="Last Name" required="">
+												<input type="text" name ="view_email" placeholder="Email Address" required="">
+												<input type="text" name ="view_lname" placeholder="Last Name" required="">
 
 												<input class="button1" type="submit" value="Proceed">
 											</div>   

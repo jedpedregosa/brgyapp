@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title> View Appointment </title>
+    <link rel="stylesheet" href="ViewAppointmentStyle.css"/>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="Images/rtu.png"/>
+            <div class="status">
+                <div class="greet">
+                    Welcome, <!-- insert data -->!
+                </div>
+
+                <div class="log_out">
+                    <a href=""><img src="Images/log_out.png"></a>
+                </div>
+
+                <div class="time">
+                </div>
+
+                <div class="date">
+                    <script src="JS/view_app_script.js"></script>
+                </div>
+            </div>
+        </div>  
+    </header>
+
+    <div class="information">
+        <h4><span style="color:#EAB800;"> my</span>&nbsp;<span style="color:#002060;">Appointment </span></h4>
+        <ul>
+            <!-- Put here the inputted personal information -->
+            <li class="li1"><b>PERSONAL INFORMATION</b></li>
+
+            <div class="div1">
+                <b>EMAIL ADDRESS&emsp;&emsp;&ensp;&nbsp; :</b>&nbsp;<!-- Put here the inputted value --><br>
+                <b>FULL NAME&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; :</b>&nbsp;<!-- Put here the inputted value --><br>
+                <b>CONTACT NUMBER&emsp;&ensp;&nbsp;:</b>&nbsp;<!-- Put here the inputted value --><br>
+                <b>AFFILIATED COMPANY :</b>&nbsp;<!-- Put here the inputted value --><br>
+            </div>
+
+            <!-- Put here the inputted appointment information -->
+            <li class="li2"><b>APPOINTMENT INFORMATION</b></li>
+
+            <div class="div2">
+                <div class="column left">
+                    <b>RTU BRANCH&emsp;&ensp;&ensp;:</b>&nbsp;<!-- Put here the inputted value --><br>
+                    <b>OFFICE NAME&emsp;&ensp; :</b>&nbsp;<!-- Put here the inputted value --><br>
+                    <b>GOVERNMENT ID :</b>&nbsp;<!-- Put here the inputted value --> <br>
+                    <b>DATE&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;:</b>&nbsp;<!-- Put here the inputted value --><br>
+                    <b>TIME&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp; :</b>&nbsp;<!-- Put here the inputted value --><br>
+                    <b>PURPOSE&emsp;&emsp;&emsp;&ensp;&nbsp;:</b>&nbsp;<!-- Put here the inputted value --><br><br>
+                </div>
+            </div>
+        </ul>
+        <div class="qr">
+            <img src="Images/QR.png"><br>
+            <button class="submit dlbutton" type="button" onclick=""> DOWNLOAD APPOINTMENT SLIP </button>
+        </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div class="design">
+        <div class="a">
+            <img src="Images/design.png" width="100" height="100"> 
+        </div>
+        <div class="b">
+            <img src="Images/design.png" width="100" height="100"> 
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-bottom">
+            COPYRIGHT &copy; 2021 RIZAL TECHNOLOGICAL UNIVERSITY<!-- COPYRIGHT -->
+        </div>
+    </div>
+
+</body>
+</html>
