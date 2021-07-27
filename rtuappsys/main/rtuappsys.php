@@ -357,7 +357,14 @@
 			<script src="../assets/js/fnon.min.js"></script>	
 			<?php 
 				if($alert) {
-					echo "<script> Fnon.Alert.Warning('". $message ."','Unfortunately,','Okay'); </script>";
+					echo "<script> Fnon.Alert.Warning({
+								message: '". $message ."',
+								title: 'Unfortunately,',
+								btnOkText: 'Okay',
+								titleBackground: '#002060',
+								titleColor: 'White',
+								fontFamily: 'Poppins, sans-serif'
+							}); </script>";
 				}
 			?>
 	</body>
