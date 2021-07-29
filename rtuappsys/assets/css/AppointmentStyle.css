@@ -1143,7 +1143,6 @@ select option {
 .is-hide {
     display: none;
 }
-
 .table {
     width: 100%;
     padding-top: 10px;
@@ -1157,12 +1156,12 @@ select option {
 
 .table1 {
     position: relative;
-    width: 50%;
     width: 100%;
 }
 
 .table2 {
     position: relative;
+    width: 90%;
 }
 
 .td0 {
@@ -1174,7 +1173,7 @@ select option {
 }
 
 .td02 {
-    width: 18%;
+    width: 15%;
 }
 
 .td03 {
@@ -1182,19 +1181,19 @@ select option {
 }
 
 .tdl1 {
-    width: 20%;
+    width: 50%;
 }
 
 .tdl2 {
-    width: 40%;
+    width: 26%;
 }
 
 .tdr1 {
-    width: 15%;
+    width: 40%;
 }
 
 .tdr2 {
-    width: 25%;
+    width: 20%;
 }
 
 .tdr3 {
@@ -1203,9 +1202,9 @@ select option {
 }
 
 .td1 {
-    width: 30%;
+    width: 32%;
 }
 
 .td2 {
-    width: 30%;
+    width: 35%;
 }
