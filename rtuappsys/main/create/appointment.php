@@ -355,7 +355,7 @@
 
                         <!-- Put here the inputted personal information -->
                         <li class="li1"><strong>PERSONAL INFORMATION</strong></li>
-                    <table class="table table1">
+<table class="table table1">
                         <tr>
                             <td class="td0">
                             <?php 
@@ -417,10 +417,10 @@
                                 <td class = "td1">
                                     <table>
                                         <tr>
-                                            <td>
+                                            <td class="tdl2">
                                                 <strong>RTU Branch</strong>
                                             </td>
-                                            <td>
+                                            <td class="tdl1">
                                                 <span id = "visitor-branch"></span>
                                             </td>
                                         </tr>
@@ -447,7 +447,7 @@
                                 <td class = "td2">
                                     <table>
                                         <tr>
-                                            <td>
+                                            <td class="tdr2">
                                                 <strong>Date</strong>
                                             </td>
                                             <td>
@@ -466,7 +466,7 @@
                                             <td>
                                                 <strong>Purpose</strong>
                                             </td>
-                                            <td>
+                                            <td class="tdr1">
                                                 <span id = "sched-purpose"></span>
                                             </td>
                                         </tr>
