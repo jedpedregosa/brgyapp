@@ -44,7 +44,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 
         // Register the personal information
         $.ajax({
-            url: "../../includes/reg-appointment.php",
+            url: "../../requests/reg-appointment",
             type: "POST",
             data: {
                 lname: lname,
@@ -84,7 +84,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 
         // Check schedules for the selected office, then continue to next page.
 		$.ajax({
-			url: "../../includes/load-dates.php",
+			url: "../../requests/load-dates",
 			type: "POST",
 			data: {
 				officeCode: officeId
@@ -186,7 +186,7 @@ nextBtnSec.addEventListener("click", function(event) {
         } 
 
         $.ajax({
-			url: "../../includes/schedule.php",
+			url: "../../requests/schedule",
 			type: "POST",
 			data: {
 				officeCode: officeId,
@@ -236,7 +236,7 @@ nextBtnSec.addEventListener("click", function(event) {
         document.getElementById('sched-purpose').innerHTML = purpose;
 
         $.ajax({
-			url: "../../includes/schedule.php",
+			url: "../../requests/schedule",
 			type: "POST",
 			data: {
 				officeCode: officeId,
@@ -263,7 +263,7 @@ nextBtnSec.addEventListener("click", function(event) {
                 showSchedNotAvailableError();
                 isSuccess = false;
             } else if(dataResult.statusCode==202) {
-                window.location.replace("../rtuappsys.php");
+                window.location.replace("../rtuappsys");
             }
             $("#screen-overlay").fadeOut(400);
             if(isSuccess) {
@@ -313,7 +313,7 @@ submitBtn.addEventListener("click", function() {
 
         // Register the personal information
         $.ajax({
-            url: "../../includes/reg-appointment.php",
+            url: "../../requests/reg-appointment",
             type: "POST",
             data: {
                 lname: lname,
@@ -340,7 +340,7 @@ submitBtn.addEventListener("click", function() {
                     if(dataResult.statusCode==200){ // Continue to submit appointment
                         if(isSuccess) {
                             $.ajax({ 
-                                url: "../../includes/sub-appointment.php",
+                                url: "../../requests/sub-appointment",
                                 type: "POST",
                                 data: {
                                     branch: branch,
@@ -364,7 +364,7 @@ submitBtn.addEventListener("click", function() {
                                     var appResult = JSON.parse(appResult);
                                     if(appResult.statusCode==200){
                                         // Insert JS Form Validation
-                                        window.location.replace("../your-appointment.php");
+                                        window.location.replace("../your-appointment");
                                     } else if(appResult.statusCode==201){
                                         showInternalError();
                                         $("#screen-overlay").fadeOut(400);
@@ -442,7 +442,7 @@ function loadOffices() {
     
     if(branch != "") {
         $.ajax({
-            url: "../../includes/load-offices.php",
+            url: "../../requests/load-offices",
             type: "POST",
             data: {
                 branch: branch,

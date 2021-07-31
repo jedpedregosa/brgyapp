@@ -21,7 +21,7 @@ function setSlctdDate(dateID) {
 
 	var officeId = $('#Office').val();
 	$.ajax({
-		url: "../../includes/load-slots.php",
+		url: "../../requests/load-slots",
 		type: "POST",
 		data: {
 			date: dateID,

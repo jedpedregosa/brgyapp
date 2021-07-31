@@ -91,7 +91,7 @@
 						</div>
 					</div>
 					<div id="id01" class="modal">
-						<form class="modal-content animate" action="../includes/chk-appointment.php?type=student" method="post">
+						<form class="modal-content animate" action="../requests/chk-appointment?type=student" method="post">
 							<div class="imgcontainer">
 								<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 								<img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -122,7 +122,7 @@
 						</form>
 					</div>
 					<div id="id02" class="modal">
-						<form class="modal-content animate" action="../includes/chk-appointment.php?type=employee" method="post">
+						<form class="modal-content animate" action="../requests/chk-appointment?type=employee" method="post">
 							<div class="imgcontainer">
 								<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 								<img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -151,7 +151,7 @@
 						</form>
 					</div>
 					<div id="id03" class="modal">
-						<form class="modal-content animate" action="../includes/chk-appointment.php?type=guest" method="post">
+						<form class="modal-content animate" action="../requests/chk-appointment?type=guest" method="post">
 							<div class="imgcontainer">
 								<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 								<img src="../assets/img/user.png" alt="Avatar" class="avatar">
@@ -187,7 +187,7 @@
 							View Appointment
 						</div>
 						<div id="id04" class="modal">
-							<form class="modal-content animate" action="view-appointment.php" method="post">
+							<form class="modal-content animate" action="view-appointment" method="post">
 								<div class="imgcontainer">
 									<span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<img src="../assets/img/user.png" alt="Avatar" class="avatar">

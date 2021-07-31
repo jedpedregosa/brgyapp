@@ -1,6 +1,6 @@
 <?php 
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 
 
     if(isset($_POST["email"])) {
@@ -12,6 +12,6 @@
         }
         
     } else {
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../main/rtuappsys");
     }
 ?>

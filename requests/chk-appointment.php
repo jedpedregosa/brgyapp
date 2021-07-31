@@ -22,8 +22,8 @@
  * **************************************************************************/
 
     // Includes
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
     
     // Initialization
     $userId;            // Student Number, Employee Number or Email
@@ -58,18 +58,18 @@
             $uLname  = $_POST["gLname"];
         } else {
             // If none of the post values were assigned, go back to main website page.
-            header("Location: ../main/rtuappsys.php");
+            header("Location: ../main/rtuappsys");
             die();
         }
     } else {
         // If none of the get value were assigned, go back to main website page.
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../main/rtuappsys");
         die();
     } 
 
     // If none of the get value were assigned, go back to main website page.
     if(!(isTypeValid($uType))) {
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../main/rtuappsys");
         die();
     }
 
@@ -84,7 +84,7 @@
     $_SESSION["uType"] = $uType;
 
     // Continue to creating appointment
-    header("Location: ../main/create/appointment.php");
+    header("Location: ../main/create/appointment");
 
     function goBack() {
         session_name("cid");
@@ -92,7 +92,7 @@
 
         $_SESSION["error_status"] = 200;
 
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../main/rtuappsys");
         die();
     }
 ?>

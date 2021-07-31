@@ -1,3 +1,3 @@
 <?php 
-    header("Location: rtuappsys/main/rtuappsys.php");
+    header("Location: main/rtuappsys");
 ?>

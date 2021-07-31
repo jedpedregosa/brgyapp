@@ -22,9 +22,9 @@
  * 	BS-IT (Batch of 2018-2022)
  * **************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/phpqrcode/qrlib.php");
-	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-	include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/create-pdf.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/api/phpqrcode/qrlib.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/create-pdf.php");
 
     $appId;
 
@@ -42,12 +42,12 @@
     if(isset($_SESSION["applicationId"])) {
         $appId = $_SESSION["applicationId"];
     } else {
-        header("Location: rtuappsys.php");
+        header("Location: rtuappsys");
 		die();
     }
 	
 	$appointmentKey = getAppointmentKeyByAppointmentId($appId);
-	$file_dir = $_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/assets/files/" . $appointmentKey . "/";
+	$file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $appointmentKey . "/";
 	if(!is_dir($file_dir)) {
 		mkdir($file_dir);
 	}
@@ -56,7 +56,7 @@
     $qrfilepath = $file_dir . $flname;
 
     if (!file_exists($qrfilepath)) {
-        QRcode::png($_SERVER['HTTP_HOST' ]. "/rtuappsys/main/check-appointments.php?cid=". $appointmentKey, $qrfilepath); //should be a default link
+        QRcode::png($_SERVER['HTTP_HOST' ]. "/main/check-appointments?cid=". $appointmentKey, $qrfilepath); //should be a default link
     }
 	$visitor_data = getVisitorDataByAppointmentId($appId);
 	

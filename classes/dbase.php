@@ -1,11 +1,11 @@
 <?php 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/config.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
 
     function connectDb() {
         $conn;
         try {
-            $conn = new PDO("mysql:host=localhost;dbname=" . db_name, db_user, db_pw);
+            $conn = new PDO("mysql:host=" . db_host . ";dbname=" . db_name, db_user, db_pw);
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {

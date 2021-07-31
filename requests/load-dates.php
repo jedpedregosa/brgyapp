@@ -1,12 +1,12 @@
 <?php 
     // LACKS SESSION CHECKER!!!!!!!!!!!
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/config.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     // Check if request is not from ajax
     if(!IS_AJAX) {
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../main/rtuappsys");
 		die();
     }
 
@@ -14,7 +14,7 @@
         $office = $_POST['officeCode'];
     } else {
         // *********** Needs error message
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../main/rtuappsys");
         die();
     }
 

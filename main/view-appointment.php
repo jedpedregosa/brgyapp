@@ -1,5 +1,5 @@
 <?php 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 
     // Session Side
     session_name("cid");
@@ -31,9 +31,9 @@
             $_SESSION["view_email"] = $_POST["view_email"];
             $_SESSION["view_lastname"] = $_POST["view_lname"];
     
-            header("Location: view-appointment.php");
+            header("Location: view-appointment");
         } else {
-            header("Location: rtuappsys.php");
+            header("Location: rtuappsys");
             die();
         }
     } else {
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="log_out">
-                    <a href="view-appointment.php?islogout=1"><img src="../assets/img/log_out.png"></a>
+                    <a href="view-appointment?islogout=1"><img src="../assets/img/log_out.png"></a>
                 </div>
 
                 <div class="time">

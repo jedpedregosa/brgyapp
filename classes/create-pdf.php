@@ -1,14 +1,14 @@
 <?php 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-    require_once 'dompdf/autoload.inc.php';
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+    require_once 'api/dompdf/autoload.inc.php';
     use Dompdf\Dompdf;
 
     function generateAppointmentFile($app_id) {
         $appointmentKey = getAppointmentKeyByAppointmentId($app_id);
-	    $file_dir = $_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/assets/files/" . $appointmentKey . "/";          
+	    $file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $appointmentKey . "/";          
 
         // For RTU Logo
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/rtuappsys/assets/img/rtu_logo.png';
+        $path = $_SERVER['DOCUMENT_ROOT'] . '/assets/img/rtu_logo.png';
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
 

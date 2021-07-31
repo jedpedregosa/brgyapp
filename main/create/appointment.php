@@ -19,8 +19,8 @@
  * 	BS-IT (Batch of 2018-2022)
  * **************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/dbase.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/rtuappsys/includes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
 
     // Session Side
     session_name("id");
@@ -28,7 +28,7 @@
     
     // Check if accessed from chck-appointment.php
     if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
-        header("Location: ../rtuappsys.php");
+        header("Location: ../rtuappsys");
         die();
     }
 
@@ -40,7 +40,7 @@
     // Checking of identification information status
     if(doesUserHasApp($fReqData, $userType)) {
         // *********** Needs error message
-        header("Location: ../rtuappsys.php");
+        header("Location: ../rtuappsys");
         die();
     }
 
@@ -61,7 +61,7 @@
     } else if($userType == "guest") {
         $isGuest = true;
     } else {
-        header("Location: ../rtuappsys.php");
+        header("Location: ../rtuappsys");
         die();
     }
 
