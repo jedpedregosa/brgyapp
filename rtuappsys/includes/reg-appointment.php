@@ -25,6 +25,7 @@
 	$isGuest = false;
 	$company = null;
 	$govId = null;
+	$isIdHasApp = false;
 
 	session_name("id");
 	session_start();
@@ -66,6 +67,8 @@
 					$isSuccess = updateUserData($userData, $userType);
 				}
 				
+			} else {
+				$isIdHasApp = true;
 			}
 
 		} else {
@@ -78,13 +81,15 @@
 		}
 		
 	}
-    
+	
     if ($isSuccess) {
 		echo json_encode(array("statusCode"=>200)); // 200 : Register Success
 	} else if(!$isSessioned) {
 		echo json_encode(array("statusCode"=>201)); // 201 : No Sessioned Appointees
+	} else if($isIdHasApp) {
+		echo json_encode(array("statusCode"=>202));	// 202 : Register Error (Employee/Studen Num is taken)
 	} else {
-		echo json_encode(array("statusCode"=>202)); // 202 : Register Error (Email is taken)
+		echo json_encode(array("statusCode"=>203)); // 203 : Register Error (Email is taken)
 	}
 
 ?>

@@ -72,10 +72,12 @@ nextBtnFirst.addEventListener("click", function(event) {
                         // Insert JS Form Validation
                     } else if(dataResult.statusCode==201){
                         showInternalError(); // Error Page
-                    } else if(dataResult.statusCode==202) {
+                    } else if(dataResult.statusCode==202) {             
+                        showIdNotAvailableError();
                         isSuccess = false;
+                    } else {
                         showEmailNotAvailableError();
-                        
+                        isSuccess = false;
                     }
                 $("#screen-overlay").fadeOut(400);
             });
@@ -377,8 +379,11 @@ submitBtn.addEventListener("click", function() {
                         showAlertServerError();
                         $("#screen-overlay").fadeOut(400);
                     } else if(dataResult.statusCode==202) {
+                        showIdNotAvailableError();
                         isSuccess = false;
-                        showEmailNotAvailableError()
+                        $("#screen-overlay").fadeOut(400);
+                    } else {
+                        showEmailNotAvailableError();
                         $("#screen-overlay").fadeOut(400);
                     }
             });
@@ -509,6 +514,17 @@ function showValidationError() {
     Fnon.Alert.Warning({
         message: 'Please fill-up all the required information.',
 		title: 'Your Information',
+		btnOkText: 'Okay',
+        titleBackground: '#002060',
+		titleColor: 'White',
+		fontFamily: 'Poppins, sans-serif'
+    });
+}
+
+function showIdNotAvailableError() {
+    Fnon.Alert.Warning({
+        message: 'Your information has an appointment already.',
+		title: 'Unfortunately,',
 		btnOkText: 'Okay',
         titleBackground: '#002060',
 		titleColor: 'White',

@@ -40,7 +40,7 @@
     // Checking of identification information status
     if(doesUserHasApp($fReqData, $userType)) {
         // *********** Needs error message
-        header("Location: ../main/rtuappsys.php");
+        header("Location: ../rtuappsys.php");
         die();
     }
 
