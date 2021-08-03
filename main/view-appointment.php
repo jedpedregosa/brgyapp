@@ -80,7 +80,7 @@
         unset($_SESSION["view_email"]);
         unset($_SESSION["view_lastname"]);
 
-        header("Location: rtuappsys.php");
+        header("Location: rtuappsys");
         die();
     }
 ?>

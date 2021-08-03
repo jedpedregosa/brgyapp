@@ -85,4 +85,24 @@
 
         return $total_count;
     }
+
+    function getNearAvailableDate() {
+        $currentDateTime = new DateTime();
+        $dateTime = $currentDateTime->format("Y-m-d");
+
+        while(true) {
+            if(!(date('N', strtotime($dateTime)) >= 6)) {
+                return $dateTime;
+            } else {
+                $dateTime = date('Y-m-d', strtotime($dateTime. ' + 1 days'));
+            }
+        }
+            
+    } 
+    function getMaxAvailableDate() {
+        $currentDateTime = new DateTime(getNearAvailableDate());
+        $dateTime = $currentDateTime->format("Y-m-d");
+
+        return date('Y-m-d', strtotime($dateTime. ' + 90 days'));
+    } 
 ?>

@@ -403,6 +403,7 @@
             return false;
         }
     }
+
     function isSchedOpen($schedId) {
         $conn = connectDb();
 
@@ -471,6 +472,16 @@
         return $timeValue;
     }
 
+    function getTimeSlotEnd($timeCode) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT tmslot_end FROM tbl_timeslot WHERE tmslot_id = ?");
+        $stmt-> execute([$timeCode]);
+        $timeValue = $stmt->fetchColumn();
+
+        // Catch if db fails 
+        return $timeValue;
+    }
 
     function doesSchedExist($schedId) {
         $conn = connectDb();
@@ -557,14 +568,15 @@
     function checkDaySched($Day, $office) {
         $conn = connectDb();
 
-        $stmt = $conn->prepare("SELECT SUM(sched_total_visitor) FROM tbl_schedule
-            WHERE sched_date = ? AND office_id = ?");
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_schedule WHERE (sched_date = ? AND office_id = ?) AND sched_is_available = 1");
         $stmt->execute([$Day, $office]);
-        $result = $stmt->fetchColumn();
+        $total_ava_slots = $stmt->fetchColumn();
 
-        $maxVisitorAllowed = (int)max_per_sched * (int)number_of_timeslots;
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_schedule WHERE sched_date = ? AND office_id = ?");
+        $stmt->execute([$Day, $office]);
+        $total_slots = $stmt->fetchColumn();
 
-        if($result < $maxVisitorAllowed) {
+        if($total_ava_slots > 0 || $total_slots < (int)number_of_timeslots) {
             return true;
         } else {
             return false;

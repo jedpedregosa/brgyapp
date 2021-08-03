@@ -1,3 +1,5 @@
+ErrorDocument 404 http://%{HTTP_HOST}/err/404
+
 php_value display_errors Off
 php_value mbstring.http_input auto
 php_value date.timezone Asia/Manila

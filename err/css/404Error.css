@@ -1,0 +1,477 @@
+/* RTU APPOINTMENT SYSTEM */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Font Used */
+@font-face {
+  font-family: Product Sans;
+  font-style: normal;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+@font-face {
+font-family: Tw Cen MT;
+src: url('tw.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+/* BODY */
+body {
+  background-color: #F5F5F5;
+  margin: 0;
+  overflow: auto;
+}
+
+/* CONTENT CONTAINER */
+.container {
+  margin: 0 50px 0 50px;
+}
+
+/* OOPS! TEXT */
+.oops {
+  text-align: center;
+  font-size: 27px;
+  margin-top: 7%;
+  color: #002060;
+  font-family: 'Righteous', cursive;
+  letter-spacing: 0.1em;
+}
+
+/* 404 ERROR DIV */
+.error{
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* 404 ERROR */
+h1 span {
+  position: relative;
+  font-family: 'Righteous', cursive;
+  top: 10px;
+  font-size: 140px;
+  color: #EAB800;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+  animation: bounce 1.0s infinite alternate;
+}
+
+/* RTU LOGO */
+#logo {
+  width: 140px;
+  vertical-align: middle;
+  background-color: #EAB800;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+  animation: bounce 1.0s infinite alternate;
+}
+
+/* BOUNCE ANIMATION */
+@keyframes bounce {
+  100% {
+    top: -10px;
+  }
+}
+
+/* BOUNCE DELAY EVERY NUMBER */
+h1 span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+h1 span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ERROR DESCRIPTION DIV */
+.desc {
+  margin-top: 40px;
+  text-align: center;
+  color: #002060;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.1em;
+}
+
+/* SORRY TEXT */
+.desc .sorry {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/* EXPLANATION TEXT */
+.desc .exp {
+  font-size: 17px;
+}
+
+/* BUTTON DIV */
+.buttons {
+  margin-top: 25px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BUTTON */
+.buttons .back_btn {
+  color: #002060;
+  text-decoration: none;
+  padding: 20px 40px;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+}
+
+
+/* BUTTON AFTER AND BEFORE */
+.desc .buttons .back_btn::after,
+.desc .buttons .back_btn::before {
+  border: 3px solid #002060;
+  content: "";
+  position: absolute;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 12px;
+  transition: transform 0.5s ease;
+}
+
+/* BUTTON AFTER AND BEFORE HOVER */
+.desc .buttons .back_btn:hover::after {
+  transform: translate(-5px, -5px);
+  border: 3px solid #EAB800;
+}
+
+.desc .buttons .back_btn:hover::before {
+  transform: translate(5px, 5px);
+  border: 3px solid #002060;
+}
+
+/* BUTTON ICON */
+.desc .buttons .back_btn i {
+  display: none;
+}
+
+/* BUTTON ICON HOVER */
+.desc .buttons .back_btn:hover i {
+  color: #EAB800;
+  display: inline-block;
+  font-weight: bolder;
+}
+
+/* BUTTON HOVER TEXT FONT-WEIGHT */
+.desc .buttons .back_btn:hover {
+  font-weight: 600;
+}
+
+
+/* RESPONSIVE LAYOUT (max-width: 300px) */
+@media only screen and (max-width: 300px) {
+  /* CONTENT CONTAINER */
+  .container {
+    margin: 110px 40px 0 40px;
+  }
+
+  /* OOPS! TEXT */
+  .oops {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 7%;
+    color: #002060;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 0.1em;
+  }
+
+  /* 404 ERROR DIV */
+  .error{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* 404 ERROR */
+  h1 span {
+    position: relative;
+    font-family: 'Righteous', cursive;
+    top: 10px;
+    font-size: 70px;
+    color: #EAB800;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+      0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+    animation: bounce 1.0s infinite alternate;
+  }
+
+  /* RTU LOGO */
+  #logo {
+    width: 70px;
+    vertical-align: middle;
+    background-color: #EAB800;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+      0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+    animation: bounce 1.0s infinite alternate;
+  }
+
+  /* BOUNCE ANIMATION */
+  @keyframes bounce {
+    100% {
+      top: -10px;
+    }
+  }
+
+  /* BOUNCE DELAY EVERY NUMBER */
+  h1 span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  h1 span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  /* ERROR DESCRIPTION DIV */
+  .desc {
+    margin-top: 30px;
+    text-align: center;
+    color: #002060;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.1em;
+  }
+
+  /* SORRY TEXT */
+  .desc .sorry {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  /* EXPLANATION TEXT */
+  .desc .exp {
+    font-size: 15px;
+  }
+
+  /* BUTTON DIV */
+  .buttons {
+    margin-top: 25px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* BUTTON */
+  .buttons .back_btn {
+    color: #002060;
+    text-decoration: none;
+    padding: 17px 20px;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+
+
+  /* BUTTON AFTER AND BEFORE */
+  .desc .buttons .back_btn::after,
+  .desc .buttons .back_btn::before {
+    border: 3px solid #002060;
+    content: "";
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+  }
+
+  /* BUTTON AFTER AND BEFORE HOVER */
+  .desc .buttons .back_btn:hover::after {
+    transform: translate(-5px, -5px);
+    border: 3px solid #EAB800;
+  }
+
+  .desc .buttons .back_btn:hover::before {
+    transform: translate(5px, 5px);
+    border: 3px solid #002060;
+  }
+
+  /* BUTTON ICON */
+  .desc .buttons .back_btn i {
+    display: none;
+  }
+
+  /* BUTTON ICON HOVER */
+  .desc .buttons .back_btn:hover i {
+    color: #EAB800;
+    display: inline-block;
+    font-weight: bolder;
+  }
+
+  /* BUTTON HOVER TEXT FONT-WEIGHT */
+  .desc .buttons .back_btn:hover {
+    font-weight: 600;
+  }
+}
+
+
+/* RESPONSIVE LAYOUT (max-width: 900px) and (min-width: 300px) */
+@media only screen and (max-width: 900px) and (min-width: 300px) {
+  /* CONTENT CONTAINER */
+  .container {
+    margin: 110px 40px 0 40px;
+  }
+
+  /* OOPS! TEXT */
+  .oops {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 7%;
+    color: #002060;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 0.1em;
+  }
+
+  /* 404 ERROR DIV */
+  .error{
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* 404 ERROR */
+  h1 span {
+    position: relative;
+    font-family: 'Righteous', cursive;
+    top: 10px;
+    font-size: 90px;
+    color: #EAB800;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+      0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+    animation: bounce 1.0s infinite alternate;
+  }
+
+  /* RTU LOGO */
+  #logo {
+    width: 90px;
+    vertical-align: middle;
+    background-color: #EAB800;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+      0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+    animation: bounce 1.0s infinite alternate;
+  }
+
+  /* BOUNCE ANIMATION */
+  @keyframes bounce {
+    100% {
+      top: -10px;
+    }
+  }
+
+  /* BOUNCE DELAY EVERY NUMBER */
+  h1 span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  h1 span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  /* ERROR DESCRIPTION DIV */
+  .desc {
+    margin-top: 40px;
+    text-align: center;
+    color: #002060;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.1em;
+  }
+
+  /* SORRY TEXT */
+  .desc .sorry {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  /* EXPLANATION TEXT */
+  .desc .exp {
+    font-size: 16px;
+  }
+
+  /* BUTTON DIV */
+  .buttons {
+    margin-top: 25px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* BUTTON */
+  .buttons .back_btn {
+    color: #002060;
+    text-decoration: none;
+    padding: 20px 40px;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+  }
+
+
+  /* BUTTON AFTER AND BEFORE */
+  .desc .buttons .back_btn::after,
+  .desc .buttons .back_btn::before {
+    border: 3px solid #002060;
+    content: "";
+    position: absolute;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+  }
+
+  /* BUTTON AFTER AND BEFORE HOVER */
+  .desc .buttons .back_btn:hover::after {
+    transform: translate(-5px, -5px);
+    border: 3px solid #EAB800;
+  }
+
+  .desc .buttons .back_btn:hover::before {
+    transform: translate(5px, 5px);
+    border: 3px solid #002060;
+  }
+
+  /* BUTTON ICON */
+  .desc .buttons .back_btn i {
+    display: none;
+  }
+
+  /* BUTTON ICON HOVER */
+  .desc .buttons .back_btn:hover i {
+    color: #EAB800;
+    display: inline-block;
+    font-weight: bolder;
+  }
+
+  /* BUTTON HOVER TEXT FONT-WEIGHT */
+  .desc .buttons .back_btn:hover {
+    font-weight: 600;
+  }
+}

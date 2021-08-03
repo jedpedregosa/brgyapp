@@ -1,11 +1,44 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
 
     $first_name = getFirstName($admin_id);
     $office_name = getOfficeName($assigned_office);
     $total_app_today = totalAppointmentToday($assigned_office);
     $total_app_week = totalAppointmentOfWeek($assigned_office);
     $total_app_month = totalAppointmentOfMonth($assigned_office);
+
+    $available_date = getNearAvailableDate();
+	$max_available_date = getMaxAvailableDate();
+
+	$closed_scheds = getClosedSchedules($assigned_office);
+
+	$closed_slots_toShow = [];
+	$index = 0;
+	
+	foreach($closed_scheds as $slots) {
+		if(empty($closed_slots_toShow)) {
+			array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
+			continue;
+		}
+		if($closed_slots_toShow[$index][0] == $slots[0]) {
+			if($closed_slots_toShow[$index][2] == getTimeSlotStart($slots[1])) {
+				$closed_slots_toShow[$index][2] = getTimeSlotEnd($slots[1]);
+			} else {
+				$index++;
+				array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
+			}
+		} else {
+			$index++;
+			array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
+		}
+	}
+
+	$date_to_check_r = new DateTime();
+	$date_to_check = $date_to_check_r->format("Y-m-d");
+	$availablity_status = !checkDaySched($date_to_check, $assigned_office);
+
+	$availablity_status = ($availablity_status ? 'OPEN' : 'CLOSED');
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +54,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body onload="initClock()">
-
+	<div id = "pickcontainer"></div>
 	<!-- Side Navigation Bar -->
 	<div class="sidebar">
 
@@ -249,9 +282,9 @@
 	                <div class="unavailable-schedule">
 	                	<!-- Font style uniform -->
 	                    <div class="status-uniform">
-	                        <span style="color: #002060; text-transform: uppercase;"> [<?php echo htmlspecialchars($office_name); ?>] <!-- insert data (Display Office Name) --> </span>
+	                        <span style="color: #002060; text-transform: uppercase;"> <?php echo htmlspecialchars($office_name); ?> <!-- insert data (Display Office Name) --> </span>
 	                        <span style="color: #002060;"> AVAILABILITY STATUS: </span>
-	                        <span style="color: #EAB800; font-weight: bold;"> OPEN </span> 
+	                        <span style="color: #EAB800; font-weight: bold;"> <?php echo htmlspecialchars($availablity_status); ?></span> 
 	                    </div><br>
 
 	                    <!-- Availability Status -->
@@ -261,8 +294,9 @@
 	                    		<!-- Availability Status Content-->
 	                    		<section class="child">
 	                    			<!-- Availability Status Responsive Table-->
+									
 		                    		<table>
-		                    			<caption>Unavailable Appointment Date/s</caption>
+										<caption>Unavailable Appointment Date/s</caption>
 		                    			<thead>
 		                    				<tr>
 		                    					<th scope="col" >Date</th> <!-- Date Table Header -->
@@ -271,25 +305,31 @@
 									    </thead>
 									    <!-- Display selected unavailable date/s -->
 									    <tbody>
-									    	<tr>
-									    		<td data-label="Date">02/01/2016</td> <!-- Display selected date (Date Picker) -->
-									    		<td data-label="Time">08:00 AM - 03:00 PM</td> <!-- Display selected time (Time Picker) --> 
+								<?php 
+									if(!empty($closed_slots_toShow)) {
+										foreach($closed_slots_toShow as $slots) {
+											$date = new DateTime($slots[0]);
+											$date_to_show = $date->format("F d, Y");
+								?>
+											<tr>
+									    		<td scope="row" data-label="Date"><?php echo htmlspecialchars($date_to_show); ?></td> <!-- Display selected date (Date Picker) -->
+									    		<td data-label="Time"><?php echo htmlspecialchars($slots[1] . ' - ' . $slots[2]); ?></td> <!-- Display selected time (Time Picker) -->
 									    	</tr>
-									    	<tr>
-									    		<td scope="row" data-label="Date">03/01/2016</td> <!-- Display selected date (Date Picker) -->
-									    		<td data-label="Time">08:00 AM - 03:00 PM</td> <!-- Display selected time (Time Picker) -->
-									    	</tr>
-									    	<tr>
-									    		<td scope="row" data-label="Date">03/01/2016</td> <!-- Display selected date (Date Picker) -->
-									    		<td data-label="Time">08:00 AM - 03:00 PM</td> <!-- Display selected time (Time Picker) -->
-									    	</tr>
-									    	<tr>
-									    		<td scope="row" data-label="Date">02/01/2016</td> <!-- Display selected date (Date Picker) -->
-									    		<td data-label="Time">08:00 AM - 03:00 PM</td> <!-- Display selected time (Time Picker) -->
-									    	</tr>
+								<?php
+										}
+									}
+								?>
+									    	
 									    </tbody>
 									    <!-- //Display selected unavailable date/s -->
 									</table>
+								<?php 
+									if(empty($closed_slots_toShow)) {
+										?>
+										<p>No closed schedules yet.</p>
+										<?php
+									}
+								?>
 									<!-- //Availability Status Responsive Table-->
 								</section>
 
@@ -303,14 +343,16 @@
 									<div class="availability-status">
 										<table>
 											<caption>Set Unavailable Date/s</caption>
-											<caption><input type="date" id="calendar"></caption> <!-- Insert Selected Date Unavailable Schedule -->
-											<caption><input type="time" id="time-from"> to <input type="time" id="time-to"></caption> <!-- Insert Selected Time Unavailable Schedule -->
-											<caption>
-												<div class="date-picker">
-									                <button>Reset</button> <!-- Reset Date and Time -->
-									                <button id="save">Save</button> <!-- Save Selected Unavailable Schedule -->
-									            </div>
-									        </caption>
+											<form action = "../controllers/close-sched" method = "post">
+												<caption><input type="date" id="calendar" id = "close_date" name = "close_date" min = "<?php echo $available_date; ?>" max = "<?php echo $max_available_date; ?>" required></caption> <!-- Insert Selected Date Unavailable Schedule -->
+												<caption><input type = "time" id="time-from" name="time_from" value = "08:00" required> to <input type = "time" id="time-to" name="time_to" required></caption> <!-- Insert Selected Time Unavailable Schedule -->
+												<caption>
+													<div class="date-picker">
+														<button type = "reset">Reset</button> <!-- Reset Date and Time -->
+														<button id="save" type = "submit" name = "close_sched_upd">Save</button> <!-- Save Selected Unavailable Schedule -->
+													</div>
+												</caption>
+											</form>
 										</table>
 									</div>
 								</section>
