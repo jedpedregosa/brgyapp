@@ -28,16 +28,19 @@
 
     $message;
     $title;
+    $alert = false;
 
     if(isset($_SESSION["err_oadmin"])) {
         if($_SESSION["err_oadmin"] == 200) {
             $affected_count = $_SESSION["close_sched_status"];
             
-            $title = "Closing Schdule Slots";
-            $message = "Total of " . $affected_count . " schedules are closed.";
+            $title = "Result";
+            $message = "Total of " . $affected_count . " schedules affected.";
             
+            $alert = true;
             unset($_SESSION["close_sched_status"]);
         }
         unset($_SESSION["err_oadmin"]);
     }
 ?>
+	
