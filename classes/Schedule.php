@@ -140,4 +140,13 @@
             return false;
         }
     }
+
+    function getScheduleDetailsBySchedId($sched_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT tmslot_id, sched_date, sched_isClosed FROM tbl_schedule WHERE sched_id = ?");
+        $stmt->execute([$sched_id]);
+
+        return $stmt->fetch();
+    }
 ?>
