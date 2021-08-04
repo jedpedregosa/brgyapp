@@ -10,7 +10,8 @@
     $admin_id;
     
     if(isset($_SESSION["admin_uname"]) && isset($_SESSION["admin_chng"])) {
-        if(!isPasswordValid($_SESSION["admin_uname"], $_SESSION["admin_chng"])) {
+        $doesDataExists = doesUserHasData($_SESSION["admin_uname"]);
+        if(!isPasswordValid($_SESSION["admin_uname"], $_SESSION["admin_chng"]) && $doesDataExists) {
             unset($_SESSION["admin_uname"]);
             unset($_SESSION["admin_chng"]);
 

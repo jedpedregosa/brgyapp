@@ -4,11 +4,19 @@
     function closeAllSelectSched($office, $date, $from, $to) {
         $conn = connectDb();
 
-        if(strtotime($from) > strtotime($to)) {
+        $date_now = new DateTime();
+        $date_now = $date_now->format('Y-m-d');
+
+        if(strtotime($from) >= strtotime($to)) {
             return 0;
         } else if(isDateWeekEnd($date)) {
             return 0;
+        } else if(strtotime($date) < strtotime($date_now)) {
+            return 0;
         }
+
+        $from = round_timestamp($from);
+        $to = round_timestamp($to);
 
         $stmt = $conn->prepare("SELECT tmslot_id FROM tbl_timeslot WHERE time_start >= CAST(? AS time) AND time_end <= CAST(? AS time)");
         $stmt->execute([$from, $to]);
@@ -52,6 +60,20 @@
         return $affected;
     }
 
+    function round_timestamp($timestamp){
+        $hour = date("H", strtotime($timestamp));
+        $minute = date("i", strtotime($timestamp));
+      
+        if ($minute<15) {
+          return date('H:i', strtotime("$hour:00"));
+        } elseif($minute>=15 and $minute<45){
+          return date('H:i', strtotime("$hour:30"));
+        } elseif($minute>=45) {
+          $hour = $hour + 1;
+          return date('H:i', strtotime("$hour:00"));
+        }
+    }
+ 
     function isSchedClosed($sched_id) {
         $conn = connectDb();
 
@@ -84,8 +106,28 @@
         while($row = $stmt->fetchAll()) {
             $closed_slots = array_merge($closed_slots, $row);
         }
-
-        return $closed_slots;
+        
+        $closed_slots_toShow = [];
+        $index = 0;
+        
+        foreach($closed_slots as $slots) {
+            if(empty($closed_slots_toShow)) {
+                array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
+                continue;
+            }
+            if($closed_slots_toShow[$index][0] == $slots[0]) {
+                if($closed_slots_toShow[$index][2] == getTimeSlotStart($slots[1])) {
+                    $closed_slots_toShow[$index][2] = getTimeSlotEnd($slots[1]);
+                } else {
+                    $index++;
+                    array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
+                }
+            } else {
+                $index++;
+                array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
+            }
+        }
+        return $closed_slots_toShow;
     }
 
     function isDateWeekEnd($date) {

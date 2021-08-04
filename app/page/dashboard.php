@@ -11,28 +11,7 @@
     $available_date = getNearAvailableDate();
 	$max_available_date = getMaxAvailableDate();
 
-	$closed_scheds = getClosedSchedules($assigned_office);
-
-	$closed_slots_toShow = [];
-	$index = 0;
-	
-	foreach($closed_scheds as $slots) {
-		if(empty($closed_slots_toShow)) {
-			array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
-			continue;
-		}
-		if($closed_slots_toShow[$index][0] == $slots[0]) {
-			if($closed_slots_toShow[$index][2] == getTimeSlotStart($slots[1])) {
-				$closed_slots_toShow[$index][2] = getTimeSlotEnd($slots[1]);
-			} else {
-				$index++;
-				array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
-			}
-		} else {
-			$index++;
-			array_push($closed_slots_toShow, [$slots[0], getTimeSlotStart($slots[1]), getTimeSlotEnd($slots[1])]);
-		}
-	}
+	$closed_slots_toShow = getClosedSchedules($assigned_office);
 
 	$date_to_check_r = new DateTime();
 	$date_to_check = $date_to_check_r->format("Y-m-d");
@@ -98,7 +77,7 @@
 				<span class="tooltip">Dashboard</span>
 			</li>
 			<li>
-				<a href="OA-Table-Student.html">
+				<a href="view/appointment">
 					<i class="bi bi-calendar3"></i>
 					<span class="links_name">APPOINTMENTS</span>
 				</a>
@@ -346,13 +325,13 @@
 									<div class="availability-status">
 										<table>
 											<caption>Set Unavailable Date/s</caption>
-											<form action = "../controllers/close-sched" method = "post">
+											<form action = "../controllers/close-sched" method = "post" id = "form_close_sched">
 												<caption><input type="date" id="calendar" id = "close_date" name = "close_date" min = "<?php echo $available_date; ?>" max = "<?php echo $max_available_date; ?>" required></caption> <!-- Insert Selected Date Unavailable Schedule -->
-												<caption><input type = "time" id="time-from" name="time_from" value = "08:00" required> to <input type = "time" id="time-to" name="time_to" required></caption> <!-- Insert Selected Time Unavailable Schedule -->
+												<caption><input type = "time" id="time-from" name="time_from" value = "08:00" required> to <input type = "time" id="time-to" name="time_to" value = "08:00" required></caption> <!-- Insert Selected Time Unavailable Schedule -->
 												<caption>
 													<div class="date-picker">
 														<button type = "reset">Reset</button> <!-- Reset Date and Time -->
-														<button id="save" type = "submit" name = "close_sched_upd">Save</button> <!-- Save Selected Unavailable Schedule -->
+														<button id="save" type="button">Save</button> <!-- Save Selected Unavailable Schedule -->
 													</div>
 												</caption>
 											</form>
@@ -450,7 +429,7 @@
 	<!-- //Content Ends -->
 
 	<!-- Javascript -->
-	<script src="../assets/js/DashboardScript.js"></script>
+	<script src="../assets/js/DashboardScript.js?version=2"></script>
 	<script src="../../assets/js/fnon.min.js"></script>
 	<?php 
 		if($alert) {

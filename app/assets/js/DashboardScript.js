@@ -3,6 +3,8 @@
 // JS for Side Navigation Bar
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
+let submit_close = document.querySelector("#save");
+let form_close_schd = document.querySelector('#form_close_sched');
 let searchBtn = document.querySelector(".bi-search");
 
 closeBtn.addEventListener("click", ()=>{
@@ -14,4 +16,33 @@ searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the 
   sidebar.classList.toggle("open");
   menuBtnChange(); //calling the function(optional)
 });
+
+submit_close.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+  if (!form_close_schd.checkValidity()) {
+    var tmpSubmit = document.createElement('button');
+    form_close_schd.appendChild(tmpSubmit);
+    tmpSubmit.click();
+    form_close_schd.removeChild(tmpSubmit);
+  } else {
+    Fnon.Ask.Warning({
+      message:'Are you sure? This process cannot be undone.',
+      title: 'Closing of Schedule',
+      titleColor: 'White',
+      btnOkText: 'Continue',
+      titleBackground: '#002060',
+      fontFamily: 'Poppins, sans-serif',
+      btnCancelText: 'Cancel', 
+      callback: (result)=>{
+        if(result) {
+          var tmpSubmit = document.createElement('button');
+          tmpSubmit.name = "close_sched_upd";
+          form_close_schd.appendChild(tmpSubmit);
+          tmpSubmit.click();
+          form_close_schd.removeChild(tmpSubmit);
+        } 
+      }
+    });
+  }
+});
+
 

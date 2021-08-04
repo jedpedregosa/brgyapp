@@ -84,6 +84,20 @@
         }
     }
 
+    function doesUserHasData($uname) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_office_admin WHERE oadmn_id = ?");
+        $stmt->execute([$uname]);
+        $result = $stmt->fetchColumn();
+
+        if($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function getUserGenString($uname) {
         $conn = connectDb();
 
