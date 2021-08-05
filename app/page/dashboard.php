@@ -261,13 +261,24 @@
 	                <br>
 
 	                <!-- Grid position of AVAILABITY STATUS box -->
-	                <div class="unavailable-schedule">
+					<div class="unavailable-schedule">
 	                	<!-- Font style uniform -->
 	                    <div class="status-uniform">
-	                        <span style="color: #002060; text-transform: uppercase;"> <?php echo htmlspecialchars($office_name); ?> <!-- insert data (Display Office Name) --> </span>
-	                        <span style="color: #002060;"> AVAILABILITY STATUS: </span>
-	                        <span style="color: #EAB800; font-weight: bold;"> <?php echo htmlspecialchars($availablity_status); ?></span> 
-	                    </div><br>
+	                    	<div class="set">
+		                    	<section class="parent">
+		                    		<section class="child">
+				                        <span style="color: #002060; text-transform: uppercase;"> <?php echo htmlspecialchars($office_name); ?> <!-- insert data (Display Office Name) --> </span>
+				                    </section>
+			                        <section class="child">
+				                        <span style="color: #002060;"> AVAILABILITY STATUS: </span>
+				                        <span style="color: #EAB800; font-weight: bold;"> <?php echo htmlspecialchars($availablity_status); ?> </span> <!-- insert data (Display Office Current Availability Status) -->
+				                    </section>
+				                </section>
+			                </div>
+	                    </div>
+	                    <div class="status-uniform child">
+	                        <span style="color: #002060; text-transform: uppercase;"> Campus <!-- insert data (Display Campus Branch) --> </span>
+	                    </div>
 
 	                    <!-- Availability Status -->
 	                    <div class="set">
@@ -276,42 +287,48 @@
 	                    		<!-- Availability Status Content-->
 	                    		<section class="child">
 	                    			<!-- Availability Status Responsive Table-->
-									
 		                    		<table>
-										<caption>Unavailable Appointment Date/s</caption>
-		                    			<thead>
-		                    				<tr>
-		                    					<th scope="col" >Date</th> <!-- Date Table Header -->
-		                    					<th scope="col">Time</th> <!-- Time Table Header-->
-		                    				</tr>
-									    </thead>
-									    <!-- Display selected unavailable date/s -->
-									    <tbody>
-								<?php 
-									if(!empty($closed_slots_toShow)) {
-										foreach($closed_slots_toShow as $slots) {
-											$date = new DateTime($slots[0]);
-											$date_to_show = $date->format("F d, Y");
-								?>
-											<tr>
-									    		<td scope="row" data-label="Date"><?php echo htmlspecialchars($date_to_show); ?></td> <!-- Display selected date (Date Picker) -->
-									    		<td data-label="Time"><?php echo htmlspecialchars($slots[1] . ' - ' . $slots[2]); ?></td> <!-- Display selected time (Time Picker) -->
-									    	</tr>
-								<?php
-										}
-									}
-								?>
-									    	
-									    </tbody>
-									    <!-- //Display selected unavailable date/s -->
-									</table>
-								<?php 
-									if(empty($closed_slots_toShow)) {
-										?>
-										<p>No closed schedules yet.</p>
-										<?php
-									}
-								?>
+		                    			<caption>Unavailable Appointment Date/s</caption>
+		                    		</table>
+		                    		<div class="table-scroll">
+		                    			<table>
+		                    				<thead>
+			                    				<tr>
+			                    					<th scope="col" >Date</th> <!-- Date Table Header -->
+			                    					<th scope="col">Time</th> <!-- Time Table Header-->
+			                    				</tr>
+										    </thead>
+
+										    <!-- Display selected unavailable date/s -->
+										    <!-- First Letter of Month for date column must be set to capital then lowercase the rest letters-->
+										    <!-- Time indicator (AM/PM) must be uppercase-->
+										    <tbody>
+											<?php 
+												if(!empty($closed_slots_toShow)) {
+													foreach($closed_slots_toShow as $slots) {
+														$date = new DateTime($slots[0]);
+														$date_to_show = $date->format("F d, Y");
+											?>
+														<tr>
+															<td scope="row" data-label="Date"><?php echo htmlspecialchars($date_to_show); ?></td> <!-- Display selected date (Date Picker) -->
+															<td data-label="Time"><?php echo htmlspecialchars($slots[1] . ' - ' . $slots[2]); ?></td> <!-- Display selected time (Time Picker) -->
+														</tr>
+											<?php
+													}
+												}
+											?>
+										    </tbody>
+										    <!-- //Display selected unavailable date/s -->
+										</table>
+									</div>
+									<?php 
+                                        if(empty($closed_slots_toShow)) {
+                                            ?>
+                                            <center>No closed schedules yet.</center> <!-- Display if NO ITEMS in the TABLE -->
+                                            <?php
+                                        }
+                                    ?>
+									
 									<!-- //Availability Status Responsive Table-->
 								</section>
 
@@ -328,13 +345,13 @@
 											<form action = "../controllers/close-sched" method = "post" id = "form_close_sched">
 												<caption><input type="date" id="calendar" id = "close_date" name = "close_date" min = "<?php echo $available_date; ?>" max = "<?php echo $max_available_date; ?>" required></caption> <!-- Insert Selected Date Unavailable Schedule -->
 												<caption><input type = "time" id="time-from" name="time_from" value = "08:00" required> to <input type = "time" id="time-to" name="time_to" value = "08:00" required></caption> <!-- Insert Selected Time Unavailable Schedule -->
-												<caption>
-													<div class="date-picker">
-														<button type = "reset">Reset</button> <!-- Reset Date and Time -->
-														<button id="save" type="button">Save</button> <!-- Save Selected Unavailable Schedule -->
-													</div>
-												</caption>
-											</form>
+											<caption>
+												<div class="date-picker">
+													<button type = "reset">Reset</button> <!-- Reset Date and Time -->
+													<button id="save" type="button">Save</button> <!-- Save Selected Unavailable Schedule -->
+												</div>
+									        </caption>
+										</form>
 										</table>
 									</div>
 								</section>
