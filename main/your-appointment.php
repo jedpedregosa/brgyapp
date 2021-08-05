@@ -25,6 +25,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/api/phpqrcode/qrlib.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/create-pdf.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 
     $appId;
 
@@ -35,8 +36,7 @@
         unset($_SESSION['userId']);
 		unset($_SESSION['uLname']);
 		unset($_SESSION['uType']);
-    }
-
+    } 
     // Initialization
 
     if(isset($_SESSION["applicationId"])) {
@@ -47,21 +47,39 @@
     }
 	
 	$appointmentKey = getAppointmentKeyByAppointmentId($appId);
+	$file_keys = getFileKeysByAppId($appId);
+
 	$file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $appointmentKey . "/";
 	if(!is_dir($file_dir)) {
 		mkdir($file_dir);
 	}
 
-    $flname = $appId . ".png";
+    $flname = $file_keys[0] . ".png";
     $qrfilepath = $file_dir . $flname;
 
     if (!file_exists($qrfilepath)) {
-        QRcode::png($_SERVER['HTTP_HOST' ]. "/main/check-appointments?cid=". $appointmentKey, $qrfilepath); //should be a default link
+        QRcode::png($_SERVER['HTTP_HOST' ]. "/r_appsys/direct?an_=". $appointmentKey, $qrfilepath); //should be a default link
     }
 	$visitor_data = getVisitorDataByAppointmentId($appId);
 	
-	if(!file_exists($file_dir . 'RTUAppointment-' . $appId .'.pdf')) {
+	if(!file_exists($file_dir . $file_keys[1] .'.pdf')) {
 		generateAppointmentFile($appId);
+	}
+
+	if(isset($_GET["dl"])) {
+		$original_filename = $file_dir . $file_keys[1] . '.pdf';
+		$new_filename = 'RTUAppointment-'. $appId .'.pdf';
+
+		// headers to send your file
+		header("Content-Type: application/pdf");
+		header("Content-Disposition: attachment; filename=" . $new_filename );
+
+		ob_clean();
+		flush();
+
+		// upload the file to the user and quit
+		readfile($original_filename);
+		exit;
 	}
 ?>
 
@@ -105,15 +123,15 @@
 				<!-- PDF DIV -->
 				<div class="pdf">
 					<!-- PUT HERE THE PDF VIEWER OR DOWNLOADER -->
-					<object data="../assets/files/<?php echo $appointmentKey; ?>/RTUAppointment-<?php echo $appId; ?>.pdf" type="application/pdf" width="100%" height="100%">
-                        <embed src="../assets/files/<?php echo $appointmentKey; ?>/RTUAppointment-<?php echo $appId; ?>.pdf" type="application/pdf" />
+					<object data="../assets/files/<?php echo $appointmentKey; ?>/<?php echo $file_keys[1]; ?>.pdf" type="application/pdf" width="100%" height="100%">
+                        <embed src="../assets/files/<?php echo $appointmentKey; ?>/<?php echo $file_keys[1]; ?>.pdf" type="application/pdf" />
                     </object>
 				</div>
 				<!-- //PDF DIV -->
                 
 				<!-- SEE YOU IN RTU -->
 				<div class="seeYou">
-					<p><span>You can </span> download it <a href="../assets/files/<?php echo $appointmentKey; ?>/RTUAppointment-<?php echo $appId; ?>.pdf" >here</a> instead.</p>
+					<p><span>You can </span> download it <a href="your-appointment?dl=1" >here</a> instead.</p>
 					<p>See you in <span>Rizal Technological University</span>!</p>
 				</div>
 				<!-- //SEE YOU IN RTU -->

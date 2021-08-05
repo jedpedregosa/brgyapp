@@ -27,4 +27,13 @@
 
         return $stmt->fetchColumn();
     }
+
+    function getGuestNextDataById($visitor_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT company FROM tbl_guest_data WHERE vstor_id = ?");
+        $stmt->execute([$visitor_id]);
+
+        return $stmt->fetchColumn();
+    }
 ?>

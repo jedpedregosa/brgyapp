@@ -1,5 +1,6 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 
     // Session Side
     session_name("cid");
@@ -20,6 +21,7 @@
     $v_app_data = [];
     $scheduled_date;
     $app_key;
+    $file_keys;
     
     $isStudent = false;
     $isEmp = false;
@@ -48,6 +50,7 @@
                 //Is appointment not done
                 if(!isAppointmentDoneByEmail($v_email)) {
                     $v_app_data = getAppointmentDetailsByEmail($v_email);
+                    $file_keys = getFileKeysByAppId($v_app_data[0]);
                     $sched_data = getScheduleDetailsByAppointmentId($v_app_data[0]);
                     $office_slot = getValues($v_app_data[2], $sched_data[2]);
                     
@@ -83,6 +86,23 @@
         header("Location: rtuappsys");
         die();
     }
+
+    $file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $app_key . "/";
+    if(isset($_GET["dl"])) {
+		$original_filename = $file_dir . $file_keys[1] . '.pdf';
+		$new_filename = 'RTUAppointment-'. $v_app_data[0] .'.pdf';
+
+		// headers to send your file
+		header("Content-Type: application/pdf");
+		header("Content-Disposition: attachment; filename=" . $new_filename );
+
+		ob_clean();
+		flush();
+
+		// upload the file to the user and quit
+		readfile($original_filename);
+		exit;
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -174,8 +194,8 @@
             </div>
         </ul>
         <div class="qr">
-            <img src="../assets/files/<?php echo $app_key; ?>/<?php echo $v_app_data[0];?>.png" width="796" height="153"><br>
-            <a class="submit dlbutton" href = "../assets/files/<?php echo $app_key; ?>/RTUAppointment-<?php echo $v_app_data[0];?>.pdf"> DOWNLOAD APPOINTMENT SLIP </a>
+            <img src="../assets/files/<?php echo $app_key; ?>/<?php echo $file_keys[0];?>.png" width="796" height="153"><br>
+            <a class="submit dlbutton" href = "view-appointment?dl=1"> DOWNLOAD APPOINTMENT SLIP </a>
         </div>
     </div>
 

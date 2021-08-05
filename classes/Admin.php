@@ -32,7 +32,7 @@
         $conn = connectDb();
 
         $gen_string = genString();
-        $password = md5($pass . $gen_string);
+        $password = hash('sha256',$pass . $gen_string);
         $date = new DateTime();
         $submit_date = $date->format('Y-m-d H:i:s');
 
@@ -69,7 +69,7 @@
             return false;
         }
 
-        $final_password = md5($password . $gen_string);
+        $final_password = hash('sha256',$password . $gen_string);
         $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_office_adm_auth WHERE oadmn_id = :username AND oadmn_pass = :pword");
         $stmt-> bindParam(':username', $uname);
         $stmt-> bindParam(':pword', $final_password);

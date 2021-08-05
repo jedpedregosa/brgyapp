@@ -514,25 +514,34 @@
 
         // Generate random string then translate into hash to set as an unreadable key for the appointment 
         $randomString = generateRandomString();
-        $appointmentKey = md5($appId . $randomString);
+        $appointmentKey = hash("sha256", $appId . $randomString);
+        $qr_key = $appId . generateRandomString(6);
 
-        $stmt = $conn -> prepare("INSERT INTO tbl_appointment_auth (app_id, app_key) VALUES (:appno, :appkey)");
+        $stmt = $conn -> prepare("INSERT INTO tbl_appointment_auth (app_id, app_key, f_key1, f_key2, qr_key) 
+            VALUES (:appno, :appkey, :fkey, :fkeyy, :qr)");
         $stmt-> bindParam(':appno', $appId);
         $stmt-> bindParam(':appkey', $appointmentKey);
+        $stmt-> bindParam(':fkey', generateRandomString());
+        $stmt-> bindParam(':fkeyy', generateRandomString());
+        $stmt-> bindParam(':qr', $qr_key);
         $submitResult = $stmt->execute();
 
         if(!$submitResult) {
             return false;
         }
 
-        $stmt = $conn -> prepare("INSERT INTO tbl_appointment (app_id, vstor_id, sched_id, office_id, app_branch, app_purpose)
-            VALUES (:appno, :vstor, :sched, :office, :branch, :purpose)");
+        $date_r = new DateTime();
+        $date = $date_r->format("Y-m-d H:i:s"); 
+
+        $stmt = $conn -> prepare("INSERT INTO tbl_appointment (app_id, vstor_id, sched_id, office_id, app_branch, app_purpose, app_sys_time)
+            VALUES (:appno, :vstor, :sched, :office, :branch, :purpose, :date)");
         $stmt-> bindParam(':appno', $appId);
         $stmt-> bindParam(':vstor', $vstor_id);
         $stmt-> bindParam(':sched', $schedId);
         $stmt-> bindParam(':office', $office);
         $stmt-> bindParam(':branch', $branch);
         $stmt-> bindParam(':purpose', $purpose);
+        $stmt-> bindParam(':date', $date);
 
         setVisitorApp($vstor_id);
         $stmt->execute(); //Lacks Catch

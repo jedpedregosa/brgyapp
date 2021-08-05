@@ -1,10 +1,13 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
     require_once 'api/dompdf/autoload.inc.php';
     use Dompdf\Dompdf;
 
     function generateAppointmentFile($app_id) {
         $appointmentKey = getAppointmentKeyByAppointmentId($app_id);
+        $file_keys = getFileKeysByAppId($app_id);
+
 	    $file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $appointmentKey . "/";          
 
         // For RTU Logo
@@ -16,7 +19,7 @@
         // RTU Logo
 
         // For QR Code
-        $path = $file_dir . $app_id .'.png';
+        $path = $file_dir . $file_keys[0] .'.png';
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
 
@@ -118,12 +121,17 @@
                                 </span>
                                 <br>
                                 <span> <strong>Purpose</strong> </span>
-                                <span style = 'font-size: 12px; display: block'>
+                                <span style = 'font-size: 12px; display: block; margin-bottom: 3%'>
                                     " . $appData[6] . "
+                                </span>
+                                <span> Assisted by: <strong>______________</strong> </span>
+                                <span style = 'display: block; margin-top: 1px'>
+                                    Date: <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>" . date("F j, Y", strtotime($schedData[4])) . "</strong>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> 
                                 </span>
                             </td>
                             <td width='20' valign = 'top' align = 'center' style = 'width: 40%;'>
-                                <span>
+                                <span style = 'display: block;'>
                                         <img
                                             width='123'
                                             height='123'
@@ -131,7 +139,9 @@
                                             
                                         />
                                 </span>
-                                <br>
+                                <span style = 'font-size: 10px; display: block; margin-bottom: 2%;'>
+                                    <strong> " . $file_keys[2] ." </strong>
+                                </span>
                                 <span style = 'font-size: 12px;'>
                                     <strong style = 'font-size: 15px;'>" . $appData[5]  . "</strong>
                                     <span style = 'display: block; width: 100%'>" . $fullAddress . "<span>
@@ -141,7 +151,6 @@
                     </tbody>
                 </table>
             </div>
-
             <p align='right'>
                 <em><span>\"Forever true to the gold and blue~\"</span></em>
             </p>
@@ -161,7 +170,7 @@
         if (ob_get_length()) ob_end_clean();
         // Output the generated PDF to Browser
         $output = $dompdf->output();
-        file_put_contents($file_dir . 'RTUAppointment-' . $app_id .'.pdf', $output);
+        file_put_contents($file_dir . $file_keys[1] .'.pdf', $output);
 
 
     }

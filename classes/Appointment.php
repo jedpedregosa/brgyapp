@@ -215,4 +215,85 @@
         }
         return $appointment_result;
     }
+
+    function getFileKeysByAppId($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT f_key1, f_key2, qr_key FROM tbl_appointment_auth WHERE app_id = ?");
+        $stmt-> execute([$app_id]);
+        $result = $stmt->fetch();
+
+        return $result;
+    }
+
+    function isAppKeyValid($app_key) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment_auth WHERE app_key = ?");
+        $stmt-> execute([$app_key]);
+        $result = $stmt->fetchColumn();
+
+        return $result;
+    }
+
+    function arrangeAppointmentData($app_id) {
+        $visitor_data = getVisitorDataByAppointmentId($app_id);
+        $app_data = getAppointmentDetails($app_id);
+        $sched_data = getScheduleDetailsByAppointmentId($app_id);
+
+        $type = $visitor_data[6];
+        $vstor_id = $visitor_data[1];
+        $v_key;
+
+        $result = [];
+
+        $date_r = new DateTime($sched_data[4]);
+        $date = $date_r->format("F, M d, Y");
+
+        $office_time = getValues($sched_data[3], $sched_data[2]);
+        $office_name = $office_time["officeValue"];
+        $time_span = $office_time["timeValue"];
+
+        if($type == "student") {
+            $v_key = getStudentDataById($vstor_id);
+        } else if($type == "employee") {
+            $v_key = getEmployeeDataById($vstor_id);
+        } else {
+            $gov_id = getGuestDataById($vstor_id);
+            $company = getGuestNextDataById($vstor_id);
+
+            $result = [
+                $type,
+                $sched_data[3],
+                $visitor_data[5],                           //Email, ID Nums
+                $visitor_data[3] . " " . $visitor_data[2],    // Full Name
+                $visitor_data[4],                           // Contact
+                $company,                                   // Company, Email
+                $app_data[5],                               // Campus
+                $date,                                      // Date
+                $office_name,
+                $time_span,
+                $app_data[6],
+                $gov_id
+            ];
+
+            return $result;
+            die();
+        }
+
+        $result = [
+            $type,
+            $sched_data[3],
+            $v_key,                                     //Email, ID Nums
+            $visitor_data[3] . " " . $visitor_data[2],    // Full Name
+            $visitor_data[4],                           // Contact
+            $visitor_data[5],                           // Company, Email
+            $app_data[5],                               // Campus
+            $date,                                      // Date
+            $office_name,
+            $time_span,
+            $app_data[6],
+        ];
+        return $result;
+    }
 ?>
