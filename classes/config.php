@@ -1,4 +1,13 @@
 <?php 
+    /* 
+        Sample Development Hosting (InfinityFree)
+        
+        Username: epiz_29135999
+        Password: eeuVG3nI1FktBwq
+        Name: epiz_29135999_rtuappsysdb
+        Host: sql103.epizy.com
+
+    */
     define("db_host", "localhost");
     define("db_user", "rtuappsys");
     define("db_pw", "rtusysapppw");
