@@ -62,6 +62,7 @@
     <link rel="stylesheet" href="../../assets/css/OA-TableStyle.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -236,13 +237,15 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Purpose</th>
-                            <th>Type</th>
+                            <th>Identification Type</th>
+                            <th>Status</th>
                         </tr>
 
             <?php 
                 foreach($appointees_table as $appointees) {
                     $date_to_show = new DateTime($appointees[6]);
                     $date_to_show = $date_to_show->format("M d, Y");
+                    //$appointees[8] = preg_replace('/\s+/', ' ', $appointees[8]);
                     ?>
             <tr>
                             <td><?php echo htmlspecialchars($appointees[0]); ?></td>
@@ -254,7 +257,39 @@
                             <td><?php echo htmlspecialchars($date_to_show); ?></td>
                             <td><?php echo htmlspecialchars($appointees[7]); ?></td>
                             <td><?php echo htmlspecialchars($appointees[8]); ?></td>
-                            <td><?php echo htmlspecialchars($appointees[9]); ?></td>
+                            <td>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-information">
+                                <?php 
+                                    if($appointees[9] == "student") {
+                                        echo "Student (RTU)";
+                                    } else if ($appointees[9] == "guest") {
+                                        echo "GOV ID";
+                                    } else {
+                                        echo "Employee (RTU)";
+                                    }
+                                ?>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <?php
+                                    if($appointees[10]) {
+                                        ?>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-success">Available</span>
+                                </div>
+                                        <?php
+                                    } else {
+                                        ?>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-error">Closed</span>
+                                </div>
+                                        <?php
+                                    }
+                                ?>
+                                
+                            </td> 
                         </tr>
                     <?php
                 }

@@ -30,7 +30,6 @@ body {
     overflow: auto;
 }
 
-
 /* PAGE SCROLLBAR DESIGN */
 
 
@@ -1233,7 +1232,6 @@ main .contents {
     overflow-x: auto;
 }
 
-
 /* Select, Input text and button */
 
 .select-table {
@@ -1481,3 +1479,50 @@ main .contents {
 .searchButton i {
     color: #0052cc;
 }
+
+/* BADGE */
+
+.build-badge {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    font-family: "Poppins", sans-serif;
+}
+  
+  .build-badge__label, .build-badge__status {
+    border-radius: 50px;
+    display: inline-block;
+    padding: 0 6px 1px 6px; 
+  }
+  
+  .build-badge__label {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .build-badge__status-success {
+    background-color: #0075b5;
+  color: #fff;
+  }
+  
+  .build-badge__status-warning {
+    background-color: #FEC006;
+    color: #000;
+  }
+  
+  .build-badge__status-error {
+    background-color: #E0E0E0;
+    color: #fff;
+  }
+  
+  .build-badge__status-information {
+    background-color: #878787;
+    color: #fff;
+  }
+  
+  .build-badge__status-indeterminate {
+    background-color: #E0E0E0;
+    color: #000;
+  }
+  

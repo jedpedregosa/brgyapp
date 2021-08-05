@@ -45,4 +45,14 @@
         return $result;
     }
     
+    function getCampusName($office) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT office_branch FROM tbl_office WHERE office_id = ?");
+        $stmt-> execute([$office]);
+
+        $result = $stmt->fetchColumn();
+
+        return $result;
+    }
 ?>

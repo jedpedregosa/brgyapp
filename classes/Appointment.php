@@ -208,7 +208,8 @@
                     $schedule_details[1],
                     $time,
                     $app[3],
-                    $appointee_data[6]
+                    $appointee_data[6],
+                    !isSchedClosed($app[2])
                 ]
             );
         }

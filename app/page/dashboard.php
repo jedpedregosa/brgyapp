@@ -4,6 +4,7 @@
 
     $first_name = getFirstName($admin_id);
     $office_name = getOfficeName($assigned_office);
+	$campus_name = getCampusName($assigned_office);
     $total_app_today = totalAppointmentToday($assigned_office);
     $total_app_week = totalAppointmentOfWeek($assigned_office);
     $total_app_month = totalAppointmentOfMonth($assigned_office);
@@ -277,7 +278,7 @@
 			                </div>
 	                    </div>
 	                    <div class="status-uniform child">
-	                        <span style="color: #002060; text-transform: uppercase;"> Campus <!-- insert data (Display Campus Branch) --> </span>
+	                        <span style="color: #002060; text-transform: uppercase;"> <?php echo htmlspecialchars($campus_name); ?> </span>
 	                    </div>
 
 	                    <!-- Availability Status -->
@@ -324,7 +325,7 @@
 									<?php 
                                         if(empty($closed_slots_toShow)) {
                                             ?>
-                                            <center>No closed schedules yet.</center> <!-- Display if NO ITEMS in the TABLE -->
+                                            	<center>No closed schedules yet.</center> <!-- Display if NO ITEMS in the TABLE -->
                                             <?php
                                         }
                                     ?>
