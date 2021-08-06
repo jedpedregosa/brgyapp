@@ -229,9 +229,9 @@
 	                            	<!-- Greetings Content -->
 	                                <div class="greet-content">
 	                                	<img src="../assets/img/greet.png"/>
-	                                    <h3><span style="color: #002060; font-weight: bold;">Hello,</span> 
+	                                    <h3><span style="color: #002060; font-weight: bold;">Hello</span> 
 				                            <span style="color: #EAB800; text-transform: uppercase;"> <?php echo htmlspecialchars($first_name); ?><!-- Display data (First Name of Admin) --> </span>
-				                            <span style="color: #002060;"></span></h3>
+				                            <span style="color: #002060;">,</span></h3>
 				                            <p> Welcome to your dashboard! </p>
 	                                    </h3> <br> <br>
 
