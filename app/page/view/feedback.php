@@ -15,7 +15,7 @@
 
     <title>Feedback</title>
 
-    <link rel="stylesheet" href="../../assets/css/OA-TableStyle.css">
+    <link rel="stylesheet" href="../../assets/css/OA-Interface.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
@@ -136,19 +136,34 @@
                     <h4>FEEDBACK</h4>
                 </div>
 
-                <div class="select-input-container">
-                    <select class="select-table">
-                        <option value="" hidden selected disabled>Select Table</option>
-                        <option value="Student">Student</option>
-                        <option value="Employee">Employee</option>
-                        <option value="Guest">Guest</option>
-                    </select>
-                    <select class="select-display">
-                        <option value="" hidden disabled selected>View By</option>
-                        <option value="">Default</option>
-                    </select>
-                    <input type="text" name="" id="" class="search-bar" placeholder="Search">
-                    <input type="button" value="" class="search-button">
+
+                <div class="functions-container">
+
+                    <div class="select-1-container">
+                        <select class="select-table">
+                            <option value="" hidden selected disabled>Select Table</option>
+                            <option value="Student">Student</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Guest">Guest</option>
+                        </select>
+                    </div>
+
+                    <div class="select-2-container">
+                        <!--Add Select View By Here-->
+                        <select class="select-display">
+                            <option value="" hidden disabled selected>View By</option>
+                            <option value="">Default</option>
+                        </select>
+                    </div>
+
+                    <div class="search-bar-container">
+                        <!--Add Search Bar Here-->
+                        <input type="text" class="searchTerm" placeholder="Search">
+                        <button class="searchButton" disabled>
+                          <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+
                 </div>
 
                 <div class="table-container">
