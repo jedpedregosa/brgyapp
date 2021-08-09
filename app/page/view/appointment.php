@@ -59,7 +59,7 @@
 
     <title>Appointments</title>
 
-    <link rel="stylesheet" href="../../assets/css/OA-TableStyle.css">
+    <link rel="stylesheet" href="../../assets/css/OA-Interface.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -193,22 +193,35 @@
                     </h4>
                 </div>
 
-                <div class="select-input-container">
+                
+                <div class="functions-container">
+
+                <div class="select-1-container">
                     <select class="select-table" id = "slct_class" onchange="sortTable(this)">
-                        <option value="" <?php echo ($hasNoClass ? "selected" : "");?>>View All</option>
+                    <option value="" <?php echo ($hasNoClass ? "selected" : "");?>>View All</option>
                         <option value="student" <?php echo ($isStudent ? "selected" : "");?>>Student</option>
                         <option value="employee"<?php echo ($isEmployee ? "selected" : "");?>>Employee</option>
                         <option value="guest"<?php echo ($isGuest ? "selected" : "");?>>Guest</option>
                     </select>
-                    <select class="select-display" id = "slct_tmestmp" onchange="sortTableBy(this)">
+                </div>
+
+                    <div class="select-2-container">
+                        <!--Add Select View By Here-->
+                        <select class="select-display" id = "slct_tmestmp" onchange="sortTableBy(this)">
                         <option value="" <?php echo ($hasNoStamp ? "selected" : "");?>>View All Dates</option>
                         <option value="today" <?php echo ($byToday ? "selected" : "");?>>Appointments Today</option>
                         <option value="week" <?php echo ($byWeek ? "selected" : "");?>>This Week</option>
-                    </select>
+                        </select>
+                    </div>
+
                     <div class="search-bar-container">
                         <!--Add Search Bar Here-->
                         <input type="text" class="searchTerm" id = "txt_search" placeholder="Search" onkeyup= "searchTable()">
+                        <button class="searchButton" disabled>
+                          <i class="bi bi-search"></i>
+                        </button>
                     </div>
+
                 </div>
 
                 <div class="table-container">
