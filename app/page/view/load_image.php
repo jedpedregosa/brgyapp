@@ -32,25 +32,21 @@
             ob_end_clean();
         }
         flush();
+    
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
 
         if(!is_file($uploaddir.$result['upld_key'])){
-            header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
             header('Content-Length: ' . filesize("../../assets/img/user-icon.png"));
             header("Content-Type: " . "image/png");
 
             readfile("../../assets/img/user-icon.png");
             die();
         } 
-
-        header('Content-Description: File Transfer');
-        header('Content-Disposition: attachment');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
+        
         header('Content-Length: ' . filesize($uploaddir.$result['upld_key']));
         header("Content-Type: " . $result['upld_mime']);
         
