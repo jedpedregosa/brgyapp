@@ -36,4 +36,13 @@
 
         return $stmt->fetchColumn();
     }
+
+    function setVisitorOpen($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("UPDATE tbl_visitor SET vstor_hasApp = 0 WHERE vstor_id = (SELECT vstor_id FROM tbl_appointment WHERE app_id = ?)");
+        $result = $stmt->execute([$app_id]);
+
+        return $result;
+    }
 ?>

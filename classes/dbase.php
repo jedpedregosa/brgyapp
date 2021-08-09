@@ -517,12 +517,15 @@
         $appointmentKey = hash("sha256", $appId . $randomString);
         $qr_key = $appId . generateRandomString(6);
 
+        $fkey1 = generateRandomString();
+        $fkey2 = generateRandomString();
+
         $stmt = $conn -> prepare("INSERT INTO tbl_appointment_auth (app_id, app_key, f_key1, f_key2, qr_key) 
             VALUES (:appno, :appkey, :fkey, :fkeyy, :qr)");
         $stmt-> bindParam(':appno', $appId);
         $stmt-> bindParam(':appkey', $appointmentKey);
-        $stmt-> bindParam(':fkey', generateRandomString());
-        $stmt-> bindParam(':fkeyy', generateRandomString());
+        $stmt-> bindParam(':fkey', $fkey1);
+        $stmt-> bindParam(':fkeyy', $fkey2);
         $stmt-> bindParam(':qr', $qr_key);
         $submitResult = $stmt->execute();
 

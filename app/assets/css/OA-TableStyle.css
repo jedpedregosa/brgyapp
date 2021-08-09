@@ -193,6 +193,36 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 1;
 }
 
+/* LIKE RESULT RATE */
+
+.like {
+    border: 2px solid #002060;
+    padding: 2px;
+    border-radius: 12px;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 5px 0 0;
+    width: 80px;
+    color: #002060;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+
+/* DISLIKE RESULT RATE */
+
+.dislike {
+    border: 2px solid #002060;
+    padding: 2px;
+    border-radius: 12px;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 5px 0 0;
+    width: 100px;
+    color: #002060;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
 
 /* LINE 2 */
 
@@ -1220,7 +1250,9 @@ main .contents {
     grid-area: select-input-container;
 }
 
-
+optgroup {
+    font-family: "Poppins," sans-serif;
+}
 /* Containers */
 
 .text-container {

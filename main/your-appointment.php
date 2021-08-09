@@ -58,7 +58,7 @@
     $qrfilepath = $file_dir . $flname;
 
     if (!file_exists($qrfilepath)) {
-        QRcode::png($_SERVER['HTTP_HOST' ]. "/r_appsys/direct?an_=". $appointmentKey, $qrfilepath); //should be a default link
+        QRcode::png(HTTP_PROTOCOL . $_SERVER['HTTP_HOST' ]. "/r_appsys/direct?an_=". $appointmentKey, $qrfilepath); //should be a default link
     }
 	$visitor_data = getVisitorDataByAppointmentId($appId);
 	

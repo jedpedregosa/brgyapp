@@ -15,7 +15,7 @@
             return ($weekday == 6 ? "Today's Saturday." : "Today's Sunday.");
         }
 
-        $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE office_id = ? AND sched_date = ?");
+        $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE office_id = ? AND sched_date = ? ");
         $stmt-> execute([$office, $sched_date]);
 
         $schedules = [];
@@ -27,7 +27,7 @@
         foreach((array)$schedules as $sched) {
             $sched_to_count = $sched[0];
 
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ?");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ? AND app_is_done = 0");
             $stmt-> execute([$sched_to_count]);
 
             $result = $stmt->fetchColumn();
@@ -52,7 +52,7 @@
 
         $total_count = 0;
         foreach((array)$schedules as $sched) {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ?");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ?  AND app_is_done = 0");
             $stmt-> execute([$sched[0]]);
 
             $result = $stmt->fetchColumn();
@@ -67,9 +67,10 @@
 
         $date = new DateTime();
         $sched_date = $date->format("m-Y");
+        $now_date = $date->format("Y-m-d");
 
-        $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where DATE_FORMAT(sched_date, '%m-%Y') = ? AND office_id = ?");
-        $stmt-> execute([$sched_date, $office]);
+        $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where DATE_FORMAT(sched_date, '%m-%Y') = ? AND (office_id = ? AND sched_date >= ?)");
+        $stmt-> execute([$sched_date, $office, $now_date]);
 
         $schedules = [];
         while($row = $stmt->fetchAll()) {
@@ -78,7 +79,7 @@
 
         $total_count = 0;
         foreach((array)$schedules as $sched) {
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ?");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ?  AND app_is_done = 0");
             $stmt-> execute([$sched[0]]);
 
             $result = $stmt->fetchColumn();
@@ -248,7 +249,7 @@
         $result = [];
 
         $date_r = new DateTime($sched_data[4]);
-        $date = $date_r->format("F, M d, Y");
+        $date = $date_r->format("D, F d, Y");
 
         $office_time = getValues($sched_data[3], $sched_data[2]);
         $office_name = $office_time["officeValue"];
@@ -294,6 +295,46 @@
             $time_span,
             $app_data[6],
         ];
+        return $result;
+    }
+
+    function getAppointmentOffice($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT office_id FROM tbl_appointment WHERE app_id = ?");
+        $stmt-> execute([$app_id]);
+
+        return $stmt->fetchColumn();
+    }
+
+    function getAppointmentDate($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT sched_id FROM tbl_appointment WHERE app_id = ?");
+        $stmt-> execute([$app_id]);
+        $sched_id = $stmt->fetchColumn();
+
+        $stmt = $conn->prepare("SELECT sched_date FROM tbl_schedule WHERE sched_id = ?");
+        $stmt-> execute([$sched_id]);
+
+        return $stmt->fetchColumn();
+    }
+
+    function deleteAppointmentKeys($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("DELETE FROM tbl_appointment_auth WHERE app_id = ?");
+        $result = $stmt->execute([$app_id]);
+
+        return $result;
+    }
+
+    function setAppointmentAsDone($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("UPDATE tbl_appointment SET app_is_done = 1 WHERE app_id = ?");
+        $result = $stmt->execute([$app_id]);
+
         return $result;
     }
 ?>

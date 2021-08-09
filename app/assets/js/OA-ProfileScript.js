@@ -4,6 +4,7 @@
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bi-search");
+let form_upload = document.querySelector("#form_upload");
 
 closeBtn.addEventListener("click", ()=>{
   sidebar.classList.toggle("open");
@@ -38,6 +39,12 @@ imgDiv.addEventListener('mouseleave', function()
 // Profile Image display
 file.addEventListener('change', function()
 {
+  var tmpSubmit = document.createElement('button');
+  tmpSubmit.name = "upload";
+  form_upload.appendChild(tmpSubmit);
+  tmpSubmit.click();
+  form_upload.removeChild(tmpSubmit);
+
   const choosedFile = this.files[0];
 
   if (choosedFile) {

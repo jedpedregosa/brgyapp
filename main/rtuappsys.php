@@ -29,9 +29,14 @@
 		$alert = true;
 
 		if($error_code == 200) { // Information has an appointment booked.
+			$title = "Unfortunately,";
 			$message = "This information has an appointment already, please try again using other email if you think this is an error.";
 		} else if($error_code == 201) {
+			$title = "Unfortunately,";
 			$message = "We have not found an appointment under this email.";
+		} else if($error_code == 300) {
+			$title = "Thank you.";
+			$message = "We really appreciate you taking the time to share your rating with us. We look forward to seeing you again soon. =)";
 		}
 		unset($_SESSION["error_status"]);
 	}
@@ -213,7 +218,7 @@
 					<!-- //VIEW APPOINTMENT -->
 					<!-- SUBMIT FEEDBACK -->
 					<div>
-						<a href="#" ><p class="p8">Submit Feedback here!</p></a>
+						<a href="feedback" ><p class="p8">Submit Feedback here!</p></a>
 					</div>
 					<!-- //SUBMIT FEEDBACK -->
 					
@@ -359,7 +364,7 @@
 				if($alert) {
 					echo "<script> Fnon.Alert.Warning({
 								message: '". $message ."',
-								title: 'Unfortunately,',
+								title: '" . $title . "',
 								btnOkText: 'Okay',
 								titleBackground: '#002060',
 								titleColor: 'White',

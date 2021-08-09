@@ -1,4 +1,9 @@
 // CATEGORY (Student, Employee or Guest)
+window.onload = () => {
+  likes();
+}
+
+let isSatisfied = document.querySelector("#isSatisfied");
 const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
 
@@ -19,6 +24,7 @@ optionsList.forEach(o => {
 const selected2 = document.querySelector(".selected2");
 const optionsContainer2 = document.querySelector(".options-container2");
 
+
 const optionsList2 = document.querySelectorAll(".option2");
 
 selected2.addEventListener("click", () => {
@@ -31,3 +37,24 @@ optionsList2.forEach(o => {
     optionsContainer2.classList.remove("active");
   });
 });
+
+
+
+// LIKE AND DISLIKE BUTTON
+function likes() {
+  document.querySelector("#like").style.color = "#EAB800";
+  document.querySelector("#like").style.borderColor = "#EAB800";
+  document.querySelector("#dislike").style.color = "#002060";
+  document.querySelector("#dislike").style.borderColor = "#002060";
+
+  isSatisfied.value = "1";  
+}
+
+function dislikes() {
+  document.querySelector("#dislike").style.color = "#EAB800";
+  document.querySelector("#dislike").style.borderColor = "#EAB800";
+  document.querySelector("#like").style.color = "#002060";
+  document.querySelector("#like").style.borderColor = "#002060";
+
+  isSatisfied.value = "0";  
+}

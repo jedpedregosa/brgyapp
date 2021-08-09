@@ -1,7 +1,7 @@
 <?php
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
 
-    $type;
+    $type = null;
     $byTime = 0;
 
     $isStudent = false;
@@ -77,7 +77,7 @@
             <div class="user-img">
                 <!-- User Image -->
                 <div class="bar-user-img">
-                    <img src="../../assets/img/user-icon.png" id="bar-pic">
+                    <img src="load_image" id="bar-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
                 </div>
                 <!-- //User Image -->
             </div>
@@ -114,14 +114,14 @@
                 <span class="tooltip">Appointments</span>
             </li>
             <li>
-                <a href="OA-Table-Feedback.html">
+                <a href="feedback">
                     <i class="bi bi-star"></i>
                     <span class="links_name">FEEDBACK</span>
                 </a>
                 <span class="tooltip">Feedback</span>
             </li>
             <li>
-                <a href="OA-Profile.html">
+                <a href="../profile">
                     <i class="bx bx-user"></i>
                     <span class="links_name">PROFILE</span>
                 </a>
@@ -155,14 +155,14 @@
 
                         <!-- User Image -->
                         <div class="header-user-img">
-                            <img src="../../assets/img/user-icon.png" id="header-pic">
+                            <img src="load_image" id="header-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
                         </div>
                         <!-- //User Image -->
                     </div>
                     <!-- //User Image Container -->
 
                     <div class="user-name">
-                        <a href="OA-Profile.html">
+                        <a href="../profile">
                             <h5><?php echo htmlspecialchars($full_name); ?></h5>
                         </a>
                     </div>

@@ -149,4 +149,17 @@
 
         return $stmt->fetch();
     }
+
+    function isSchedToday($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT sched_date FROM tbl_schedule WHERE sched_id = (SELECT sched_id FROM tbl_appointment WHERE app_id = ?)");
+        $stmt-> execute([$app_id]);
+        $result = $stmt->fetchColumn();
+
+        $date_r = new DateTime();
+        $date = $date_r->format("Y-m-d");
+
+        return (strtotime($result) == strtotime($date)); 
+    }
 ?>

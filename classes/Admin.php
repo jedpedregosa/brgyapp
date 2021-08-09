@@ -164,4 +164,30 @@
 
         return $result;
     }
+
+    function getAdminData($uname) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT oadmn_id, oadmn_lname, oadmn_fname, oadmn_email, oadmn_contact FROM tbl_office_admin WHERE oadmn_id = ?");
+        $stmt -> execute([$uname]);
+        $result = $stmt->fetch();
+
+        return $result;
+    }
+
+    function doesAdminHasUpload($uname) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_office_upld WHERE oadmn_id = :username");
+        $stmt-> bindParam(':username', $uname);
+        $stmt-> execute();
+
+        $result = $stmt-> fetchColumn();
+
+        if($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 ?>

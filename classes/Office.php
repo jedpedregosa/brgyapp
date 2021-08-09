@@ -55,4 +55,32 @@
 
         return $result;
     }
+    function loadAllOffice() {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT office_id, office_name, office_branch FROM tbl_office ORDER BY office_branch ASC");
+        $stmt->execute();
+
+        $offices = [];
+        while($row = $stmt->fetchAll()) {
+            $offices = array_merge($offices, $row);
+        }
+
+        return $offices;
+    }
+
+    function doesOfficeExist($office) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_office WHERE office_id = ?");
+        $stmt->execute([$office]);
+
+        $result = $stmt->fetchColumn();
+
+        if((int)$result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 ?>

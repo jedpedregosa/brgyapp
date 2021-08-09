@@ -1,6 +1,5 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/Appointment.php");
 
     $appointment_key;
     $hasRights = false;
@@ -22,9 +21,11 @@
 
     $app_id = getAppointmentIdByAppointmentKey($appointment_key);
     $appointment_data = arrangeAppointmentData($app_id);
+	$app_office_id = getAppointmentOffice($app_id);
 
-    if($appointment_data[2] == $assigned_office) {
-        $hasRights = true;
+    if($app_office_id == $assigned_office) {
+		$isSchedToday = isSchedToday($app_id);
+        $hasRights = true && $isSchedToday;
     }
     
     $type = $appointment_data[0];
@@ -52,6 +53,7 @@
 	<title>Appointment Status</title>
 
 	<link rel="stylesheet" href="../../assets/css/QRStyle.css">
+	<link rel="stylesheet" href="../../../assets/css/fnon.min.css" />
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
@@ -220,11 +222,20 @@
 			<!-- //Appointment Details -->
 
 			<!-- Appointment Done Button -->
+	<?php 
+		if($hasRights) {
+			?>
+			<div style = "display: none">
+				<form action = "../../controllers/done" method = "post" id = "frm_done">
+					<input name = "app_key" value = "<?php echo $appointment_key; ?>">
+				</form>
+			</div>
 			<div class="buttonD">
-				<button type="button" class="bi bi-circle" id="doneBtn" onclick="doneBtnChange()" <?php echo (!$hasRights ? "disabled" : "")?>>
+				<button type="button" class="bi bi-circle" id="doneBtn" onclick="doneBtnChange()">
 					</i>&ensp;Appointment Done
 				</button>
 			</div>
+	<?php } ?>
 			<!-- //Appointment Done Button -->
 		</div>
 		<!-- Contents Container -->
@@ -232,7 +243,8 @@
 	<!-- //Contents -->
 
 	<!-- Javascript -->
-	<script src="../../assets/js/QRScript.js"></script>
+	<script src="../../assets/js/QRScript.js?version=2"></script>
+	<script src="../../../assets/js/fnon.min.js"></script>
 	<!-- //Javascript -->
 </body>
 </html>

@@ -19,6 +19,9 @@
 	$availablity_status = !checkDaySched($date_to_check, $assigned_office);
 
 	$availablity_status = ($availablity_status ? 'OPEN' : 'CLOSED');
+
+	$feedback_view = getTwoFeedBack($assigned_office);
+	$feedback_size = sizeof($feedback_view);
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,7 +51,7 @@
 			<div class="user-img">
 				<!-- User Image -->
 				<div class="bar-user-img">
-					<img src="../assets/img/user-icon.png" id="bar-pic">
+					<img src="view/load_image" id="bar-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
 				</div>
 				<!-- //User Image -->
 			</div>
@@ -85,14 +88,14 @@
 				<span class="tooltip">Appointments</span>
 			</li>
 			<li>
-				<a href="OA-Table-Feedback.html">
+				<a href="view/feedback">
 					<i class="bi bi-star"></i>
 					<span class="links_name">FEEDBACK</span>
 				</a>
 				<span class="tooltip">Feedback</span>
 			</li>
 			<li>
-				<a href="OA-Profile.html">
+				<a href="profile">
 					<i class="bx bx-user"></i>
 					<span class="links_name">PROFILE</span>
 				</a>
@@ -126,14 +129,14 @@
 
 						<!-- User Image -->
 						<div class="header-user-img">
-							<img src="../assets/img/user-icon.png" id="header-pic">
+							<img src="view/load_image" id="header-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
 						</div>
 						<!-- //User Image -->
 					</div>
 					<!-- //User Image Container -->
 
 					<div class="user-name">
-						<a href="OA-Profile.html"><h5><?php echo htmlspecialchars($full_name); ?></h5></a>
+						<a href="profile"><h5><?php echo htmlspecialchars($full_name); ?></h5></a>
 					</div>
 				</div>
 			</div>
@@ -167,7 +170,7 @@
 	                    <!-- Display of Appointment Total Number -->
 	                    <div class="overview-total">
 							<div><h4 class="total"> <?php echo htmlspecialchars($total_app_today); ?> </h4></div> <!-- Display Data (Show total number of appointment today)-->
-							<div><a href="#" class="bi bi-clipboard-data"></a></div> <!-- Link for redirection to appointment-->
+							<div><a href="view/appointment?by=today" class="bi bi-clipboard-data"></a></div> <!-- Link for redirection to appointment-->
 						</div>
 						<!-- //Display of Appointment Total Number -->
 	                </div>
@@ -184,7 +187,7 @@
 	                    </div><br>
 	                    <div class="overview-total">
 							<div><h4 class="total"> <?php echo htmlspecialchars($total_app_week); ?> </h4></div> <!-- Display Data (Show total number of appointment this week)-->
-							<div><a href="#" class="bi bi-clipboard-data"></a></div> <!-- Link for redirection to appointments -->
+							<div><a href="view/appointment?by=week" class="bi bi-clipboard-data"></a></div> <!-- Link for redirection to appointments -->
 						</div>
 	                </div>
 	            </div>
@@ -198,7 +201,7 @@
 	                    </div><br>
 	                    <div class="overview-total">
 							<div><h4 class="total"> <?php echo htmlspecialchars($total_app_month); ?></h4></div> <!-- Display Data (Show total number of appointment this month)-->
-							<div><a href="#" class="bi bi-clipboard-data"></a></div> <!-- Link for redirection to appointments -->
+							<div><a href="view/appointment" class="bi bi-clipboard-data"></a></div> <!-- Link for redirection to appointments -->
 						</div>
 	                </div>
 	            </div>
@@ -325,7 +328,7 @@
 									<?php 
                                         if(empty($closed_slots_toShow)) {
                                             ?>
-                                            	<center>No closed schedules yet.</center> <!-- Display if NO ITEMS in the TABLE -->
+                                            	<center><em>No closed schedules yet.</em></center> <!-- Display if NO ITEMS in the TABLE -->
                                             <?php
                                         }
                                     ?>
@@ -367,51 +370,42 @@
 					<!-- Appointment Feedback Section  -->
 					<!-- Feedback Status -->
 					<div class="feedback-set">
+			<?php
+				if($feedback_size > 0) {
+					?>
 						<h5> APPOINTMENT FEEDBACK </h5>
+					<?php
+				}
+						
+			?>
                     	<section class="parent">
-                    		<div class="feedback">
-	                    		<section class="feedback-child">
-						            <table>
-									    <tbody>
-									    	<tr>
-									    		<th><p> Ezekiel Villanueva </p></th> <!-- Show Data (Display Full Name of User) -->
-									    		<th class="flex-header" style="justify-content: center;">
-									    			<div class="like" id="like">
-										    			<i class="bi bi-heart-fill"></i>
-								                    	<span class="like_dislike">Satisfied</span> <!-- Show Result Data (Display Rating) -->
-							                		</div>
-							                	</th>
-									    	</tr>
-									    </tbody>
-									</table>
-									<table>
-									    <tbody>
-									    	<tr>
-									    		<td class="flex-category">Employee</td> <!-- Show Data (Display User Category) -->
-										    	<td class="flex-classification">Boni - MIC</td> <!-- Show Data (Display BRANCH - Office) -->
-									    		<td class="flex-date">July 30, 2021</td> <!-- Show Data (Display DATE when feedback submitted) -->
-										    	<td class="flex-time"> 10:00 AM </td> <!-- Show Data (Display TIME when feedback submitted) -->
-									    	</tr>
-									    </tbody>
-									</table>
-									<div class="feedback-line"><br>
-				                        <h5 style="justify-content: center; align-content: center; color: #3B3838; font-family: Arial;"> 
-				                        	Fast Transaction <!-- Show Data (Display feedback) -->
-				                        </h5><br>
-                      				</div>
-					            </section>
-							</div>
+				<?php
+					foreach((array)$feedback_view as $feedback) {
+						?>
 							<div class="feedback">
 	                    		<section class="feedback-child">
 						            <table>
 									    <tbody>
 									    	<tr>
-									    		<th><p> Kassy Cute </p></th> <!-- Show Data (Display Full Name of User) -->
+									    		<th><p> <?php echo htmlspecialchars($feedback["fback_fname"]); ?> </p></th> <!-- Show Data (Display Full Name of User) -->
 									    		<th class="flex-header" style="justify-content: center;">
-									    			<div class="dislike" id="dislike">
+										<?php 
+											if($feedback["fback_is_stsfd"]) {
+												?>
+													<div class="like" id="like">
+										    			<i class="bi bi-heart-fill"></i>
+								                    	<span class="like_dislike">Satisfied</span> <!-- Show Result Data (Display Rating) -->
+							                		</div>
+												<?php
+											} else {
+												?>
+													<div class="dislike" id="dislike">
 										    			<i class="bi bi-heart-half"></i>
 								                    	<span class="like_dislike">Unsatisfied</span> <!-- Show Result Data (Display Rating) -->
 							                		</div>
+												<?php
+											}
+										?>
 							                	</th>
 									    	</tr>
 									    </tbody>
@@ -419,21 +413,29 @@
 									<table>
 									    <tbody>
 									    	<tr>
-									    		<td class="flex-category">Student</td> <!-- Show Data (Display User Category) -->
-										    	<td class="flex-classification">Boni - Registrar</td> <!-- Show Data (Display BRANCH - Office) -->
-									    		<td class="flex-date">August 30, 2021</td> <!-- Show Data (Display DATE when feedback submitted) -->
-										    	<td class="flex-time"> 12:30 AM </td> <!-- Show Data (Display TIME when feedback submitted) -->
+									    		<td class="flex-category"><?php echo htmlspecialchars(ucfirst($feedback["fback_cat"]))?></td> <!-- Show Data (Display User Category) -->
+										    	<td class="flex-classification"><?php echo htmlspecialchars($feedback["office_name"]); ?> </td> <!-- Show Data (Display BRANCH - Office) -->
+									    <?php 
+											$date_r = new DateTime($feedback["fback_sys_time"]);
+											$date = $date_r->format("M d, Y");		
+											$time = $date_r->format("h:i A");		
+										?>
+												
+												<td class="flex-date"><?php echo htmlspecialchars($date); ?> </td> <!-- Show Data (Display DATE when feedback submitted) -->
+										    	<td class="flex-time"><?php echo htmlspecialchars($time); ?> </td> <!-- Show Data (Display TIME when feedback submitted) -->
 									    	</tr>
 									    </tbody>
 									</table>
-									<div class="feedback-line">
-										<br>
+									<div class="feedback-line"><br>
 				                        <h5 style="justify-content: center; align-content: center; color: #3B3838; font-family: Arial;"> 
-				                        	Fast Transaction <!-- Show Data (Display feedback) -->
+										<?php echo htmlspecialchars($feedback["fback_msg"]); ?>  <!-- Show Data (Display feedback) -->
 				                        </h5><br>
                       				</div>
 					            </section>
 							</div>
+						<?php
+					}
+				?>
 						</section>
 					</div>
 					<!-- //Feedback Status -->
@@ -450,13 +452,20 @@
 	<script src="../assets/js/DashboardScript.js?version=2"></script>
 	<script src="../../assets/js/fnon.min.js"></script>
 	<?php 
-		if($alert) {
+		if($success) {
 			echo "<script> Fnon.Alert.Warning({
 				message: '". $message ."',
 				title: '" . $title . "',
 				btnOkText: 'Okay',
 				btnOkColor: 'White',
             	btnOkBackground: '#002060',
+				fontFamily: 'Poppins, sans-serif'
+			}); </script>";
+		} else if($task_error){
+			echo "<script> Fnon.Alert.Danger({
+				message: '". $message ."',
+				title: '" . $title . "',
+				btnOkText: 'Okay',
 				fontFamily: 'Poppins, sans-serif'
 			}); </script>";
 		}
