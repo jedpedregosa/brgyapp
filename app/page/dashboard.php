@@ -246,12 +246,7 @@
 										        <span id="year">Year</span>
 										    </div>
 										    <div class="day"><span id="dayname">Day</span></div>
-										    <div class="time">
-										    	<span id="hour">00</span>:
-										        <span id="minutes">00</span>:
-										        <span id="seconds">00</span>
-										        <span id="period">AM</span>
-										    </div>
+										    
 									    </div>
 									    <!--digital clock end--> 
 									</div>
@@ -369,15 +364,11 @@
 
 					<!-- Appointment Feedback Section  -->
 					<!-- Feedback Status -->
-					<div class="feedback-set">
-			<?php
+		<?php
 				if($feedback_size > 0) {
 					?>
+					<div class="feedback-set">
 						<h5> APPOINTMENT FEEDBACK </h5>
-					<?php
-				}
-						
-			?>
                     	<section class="parent">
 				<?php
 					foreach((array)$feedback_view as $feedback) {
@@ -438,6 +429,10 @@
 				?>
 						</section>
 					</div>
+					<?php
+				}
+						
+			?>
 					<!-- //Feedback Status -->
 				</header>
 				<!-- //Grid set position of GREETINGS, AVAILABILITY STATUS, and FEEDBACK box -->

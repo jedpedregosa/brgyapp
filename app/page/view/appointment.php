@@ -77,7 +77,7 @@
             <div class="user-img">
                 <!-- User Image -->
                 <div class="bar-user-img">
-                    <img src="load_image" id="bar-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
+                    <img src="load_image" id="bar-pic" alt="Not Found" onerror="this.src='../../assets/img/user-icon.png'">
                 </div>
                 <!-- //User Image -->
             </div>
@@ -155,7 +155,7 @@
 
                         <!-- User Image -->
                         <div class="header-user-img">
-                            <img src="load_image" id="header-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
+                            <img src="load_image" id="header-pic" alt="Not Found" onerror="this.src='../../assets/img/user-icon.png'">
                         </div>
                         <!-- //User Image -->
                     </div>

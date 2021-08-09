@@ -28,7 +28,7 @@
 			<div class="user-img">
 				<!-- User Image -->
 				<div class="bar-user-img">
-					<img src="view/load_image" id="bar-pic" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
+					<img src="view/load_image" id="bar-pic" alt="Not Found" onerror="this.src='../assets/img/user-ico'">
 				</div>
 				<!-- //User Image -->
 			</div>
