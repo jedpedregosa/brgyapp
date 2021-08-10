@@ -26,6 +26,7 @@
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/create-pdf.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     $appId;
 
@@ -92,7 +93,7 @@
 
 	<title>Thank You!</title>
 
-	<link rel="stylesheet" href="../assets/css/PDFStyle.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/PDFStyle.css" . FILE_VERSION ?>">
 </head>
 <body>
 	<!-- HEADER -->
