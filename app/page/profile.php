@@ -2,6 +2,26 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
 
     $admin_data = getAdminData($admin_id);
+
+	$message;
+    $title;
+	$errorCode;
+
+    if(isset($_SESSION["upd_alert"])) {
+		$errorCode = $_SESSION["upd_alert"];	
+		if($errorCode == 300) {
+			$title = "Update Profile";
+			$message = "Profile update executed successfully.";
+		} else if($errorCode == 303) {
+			$title = "Change Password";
+			$message = "Your old password does not match.";
+		}
+		else if($errorCode > 300) {
+			$title = "Appointment";
+            $message = "Oops, something went wrong. Please try again.";
+		}
+		unset($_SESSION["upd_alert"]);
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,11 +30,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Profile</title>
+	<title><?php echo htmlspecialchars($full_name); ?> | RTU Appointment System</title>
 
 	<link rel="stylesheet" href="../assets/css/OA-ProfileStyle.css">
+	<link rel="stylesheet" href="../../assets/css/fnon.min.css" />
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -140,7 +162,7 @@
                 <form action = "../controllers/upload" method = "post" id = "form_upload" name="upload" enctype="multipart/form-data">
                     <div class="profile-user-img">
                         <img src="view/load_image" id="profile-photo" alt="Not Found" onerror="this.src='../assets/img/user-icon.png'">
-                        <input type="file" name="image" id="file" required>
+                        <input type="file" name="image" id="file" accept="image/*" required>
                         <label for="file" id="uploadBtn">Upload Photo</label>
                     </div>
                 </form>
@@ -156,29 +178,29 @@
 			<!-- //Page Header -->
 
 			<!-- User Profile Info Form -->
-			<form class="user-infos">
+			<form class="user-infos" action = "../controllers/upd_profile" method = "POST">
 				<div class="user-info">
 					<div class="first column">
 						<div class="info-fields">
 							<label>Username</label>
-							<input type="text" name="username" id="username" placeholder="Username" value = "<?php echo htmlspecialchars($admin_data[0]); ?>" disabled>
+							<input type="text" id="username" placeholder="Username" value = "<?php echo htmlspecialchars($admin_data[0]); ?>" disabled>
 						</div>
 
 						<div class="info-fields">
 							<label>First Name</label>
-							<input type="text" name="first-name" id="first-name" placeholder="First Name" value = "<?php echo htmlspecialchars($admin_data[2]); ?>">
+							<input type="text" name="first-name" id="first-name" placeholder="First Name" value = "<?php echo htmlspecialchars($admin_data[2]); ?>" required>
 						</div>
 
 						<div class="info-fields">
 							<label>Last Name</label>
-							<input type="text" name="last-name" id="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($admin_data[1]); ?>">
+							<input type="text" name="last-name" id="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($admin_data[1]); ?>" required>
 						</div>
 					</div>
 
 					<div class="second column">
 						<div class="info-fields">
 							<label for="email-address">Email Address</label>
-							<input type="email" name="email-address" id="email-address" placeholder="sample@gmail.com" value = "<?php echo htmlspecialchars($admin_data[3]); ?>">
+							<input type="email" name="email-address" id="email-address" placeholder="sample@gmail.com" value = "<?php echo htmlspecialchars($admin_data[3]); ?>" required>
 						</div>
 
 						<div class="info-fields">
@@ -198,7 +220,7 @@
 				</div>
 
 				<div class="info-button">
-					<input type="button" value="Update Profile">
+					<input type="submit" class = "uptd_button" name = "upd_sbmt" value="Update Profile">
 				</div>
 			</form>
 			<!-- //User Profile Info Form -->
@@ -209,7 +231,7 @@
 		<div id="id01" class="modal">
 
 			<!-- Form -->
-			<form class="modal-content animate" action="" method="post">
+		<form class="modal-content animate" action="../controllers/chng-pass" method="POST">
 
 				<!-- Close Button Container -->
 				<div class="closeContainer">
@@ -300,7 +322,7 @@
     			<!-- Cancel and Update Password Buttons -->
     			<div class="buttons">
     				<button type="reset" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      			<button type="submit">Update Password</button>
+      				<button type="submit" name = "upd_pass">Update Password</button>
     			</div>
     			<!-- //Cancel and Update Password Buttons -->
     		</div>
@@ -314,6 +336,26 @@
 
 	<!-- Javascript -->
 	<script src="../assets/js/OA-ProfileScript.js"></script>
+	<script src="../../assets/js/fnon.min.js"></script>
+	<?php 
+		if($errorCode == 300) {
+			echo "<script> Fnon.Alert.Warning({
+				message: '". $message ."',
+				title: '" . $title . "',
+				btnOkText: 'Okay',
+				btnOkColor: 'White',
+            	btnOkBackground: '#002060',
+				fontFamily: 'Poppins, sans-serif'
+			}); </script>";
+		} else if($errorCode > 300){
+			echo "<script> Fnon.Alert.Danger({
+				message: '". $message ."',
+				title: '" . $title . "',
+				btnOkText: 'Okay',
+				fontFamily: 'Poppins, sans-serif'
+			}); </script>";
+		}
+	?>
 	<!-- //Javascript -->
 
 </body>

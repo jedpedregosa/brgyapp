@@ -73,3 +73,24 @@ function searchTable() {
     }
   }
 }
+
+function searchTableFeedback(field, txt_value) {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = txt_value;
+  filter = input.toUpperCase();
+  table = document.getElementById("tbl_fback");
+  tr = table.getElementsByTagName("tr");
+  
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[field];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

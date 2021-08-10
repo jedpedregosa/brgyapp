@@ -190,4 +190,25 @@
             return false;
         }
     }
+
+    function updateData($uname, $firstname, $lastname, $email, $phone) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("UPDATE tbl_office_admin SET oadmn_lname = ?, oadmn_fname = ?, oadmn_email = ?, oadmn_contact = ? WHERE oadmn_id = ?");
+        
+        return $stmt -> execute([$lastname, $firstname, $email, $phone, $uname]);
+    }
+
+    function changeAdminPassword($uname, $pass) {
+        $conn = connectDb();
+
+        $gen_string = genString();
+        $password = hash('sha256', $pass . $gen_string);
+        $date = new DateTime();
+        $submit_date = $date->format('Y-m-d H:i:s');
+
+        $stmt = $conn -> prepare("UPDATE tbl_office_adm_auth SET oadmn_pass = ?, oadmn_gen_string = ?, oadmn_pass_chng = ? WHERE oadmn_id = ?");
+        
+        return $stmt->execute([$password, $gen_string, $submit_date, $uname]);
+    }
 ?>

@@ -13,11 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Feedback</title>
+    <title>Feedback - RTU Appointment System</title>
 
     <link rel="stylesheet" href="../../assets/css/OA-Interface.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -140,25 +141,26 @@
                 <div class="functions-container">
 
                     <div class="select-1-container">
-                        <select class="select-table">
-                            <option value="" hidden selected disabled>Select Table</option>
-                            <option value="Student">Student</option>
-                            <option value="Employee">Employee</option>
-                            <option value="Guest">Guest</option>
+                        <select class="select-table" onchange = "searchTableFeedback(4, this.value)">
+                            <option value="" selected>View All Class</option>
+                            <option value="Student">By Student</option>
+                            <option value="Employee">By Employee</option>
+                            <option value="Guest">By Guest</option>
                         </select>
                     </div>
 
                     <div class="select-2-container">
                         <!--Add Select View By Here-->
-                        <select class="select-display">
-                            <option value="" hidden disabled selected>View By</option>
-                            <option value="">Default</option>
+                        <select class="select-display" onchange = "searchTableFeedback(6, this.value)">
+                            <option value="" selected>View All Reacts</option>
+                            <option value=" satisfied">View Satisfied</option>
+                            <option value="unsatisfied">View Unsatisfied</option>
                         </select>
                     </div>
 
                     <div class="search-bar-container">
                         <!--Add Search Bar Here-->
-                        <input type="text" class="searchTerm" placeholder="Search">
+                        <input type="text" class="searchTerm" placeholder="Search" onkeyup = "searchTableFeedback(0, this.value)">
                         <button class="searchButton" disabled>
                           <i class="bi bi-search"></i>
                         </button>
@@ -167,7 +169,7 @@
                 </div>
 
                 <div class="table-container">
-                    <table>
+                    <table id = "tbl_fback">
                         <tr class="table-header">
                             <th style="width: 15%;">FULL NAME</th>
                             <th style="width: 10%;">CONTACT NO.</th>

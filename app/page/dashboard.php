@@ -30,7 +30,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Dashboard</title>
+	<title>Dashboard - RTU Appointment System</title>
 
 	<link rel="stylesheet" href="../assets/css/OA-DashboardStyle.css">
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -232,9 +232,9 @@
 	                            	<!-- Greetings Content -->
 	                                <div class="greet-content">
 	                                	<img src="../assets/img/greet.png"/>
-	                                    <h3><span style="color: #002060; font-weight: bold;">Hello</span> 
-				                            <span style="color: #EAB800; text-transform: uppercase;"> <?php echo htmlspecialchars($first_name); ?><!-- Display data (First Name of Admin) --> </span>
-				                            <span style="color: #002060;">,</span></h3>
+	                                    <h3><span style="color: #002060; font-weight: bold;">Hello,</span> 
+				                            <span style="color: #EAB800; text-transform: uppercase;"> <?php echo htmlspecialchars($first_name); ?>.<!-- Display data (First Name of Admin) --> </span>
+				                            <span style="color: #002060;"></span></h3>
 				                            <p> Welcome to your dashboard! </p>
 	                                    </h3> <br> <br>
 
@@ -360,13 +360,14 @@
 						</div>
 						<!-- //Availability Status -->
 					</div>
-					<br>
+					
 
 					<!-- Appointment Feedback Section  -->
 					<!-- Feedback Status -->
 		<?php
 				if($feedback_size > 0) {
 					?>
+					<br>
 					<div class="feedback-set">
 						<h5> APPOINTMENT FEEDBACK </h5>
                     	<section class="parent">
@@ -494,8 +495,8 @@
 
           var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
           var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-          var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
-          var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2), pe];
+          var ids = ["dayname", "month", "daynum", "year"];
+          var values = [week[dname], months[mo], dnum.pad(2), yr];
           for(var i = 0; i < ids.length; i++)
           document.getElementById(ids[i]).firstChild.nodeValue = values[i];
     }

@@ -713,6 +713,24 @@ main .contents {
   color: #FFFFFF;
 }
 
+.uptd_button {
+  font-family: Arial;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  background-color: #002060;
+  border: none;
+  border-radius: 50px;
+  height: 30px;
+  padding: 0 13px;
+}
+
+.uptd_button:hover {
+  background-color: #1F4E79;
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
 /* INPUT FIELDS OUTLINE */
 .info-fields input:focus {
   outline: none;

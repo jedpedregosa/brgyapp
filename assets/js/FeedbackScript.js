@@ -1,12 +1,13 @@
-// CATEGORY (Student, Employee or Guest)
+// RTU APPOINTMENT SYSTEM - FEEDBACK FORM
+
 window.onload = () => {
   likes();
 }
 
-let isSatisfied = document.querySelector("#isSatisfied");
+// CATEGORY (Student, Employee or Guest)
 const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
-
+let isSatisfied = document.querySelector("#isSatisfied");
 const optionsList = document.querySelectorAll(".option");
 
 selected.addEventListener("click", () => {
@@ -23,7 +24,6 @@ optionsList.forEach(o => {
 // OFFICES
 const selected2 = document.querySelector(".selected2");
 const optionsContainer2 = document.querySelector(".options-container2");
-
 
 const optionsList2 = document.querySelectorAll(".option2");
 
@@ -47,7 +47,7 @@ function likes() {
   document.querySelector("#dislike").style.color = "#002060";
   document.querySelector("#dislike").style.borderColor = "#002060";
 
-  isSatisfied.value = "1";  
+  isSatisfied.value = "1";
 }
 
 function dislikes() {
@@ -56,5 +56,5 @@ function dislikes() {
   document.querySelector("#like").style.color = "#002060";
   document.querySelector("#like").style.borderColor = "#002060";
 
-  isSatisfied.value = "0";  
+  isSatisfied.value = "0";
 }

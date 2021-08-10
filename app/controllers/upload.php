@@ -4,8 +4,7 @@
     if(isset($_POST['upload']) && isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
 
         if($_FILES['image']['size'] > 10485760) { //10 MB (size is also in bytes)
-            header("Location: ../page/profile");
-            die();
+            goBack();
         } 
 
         $uploaddir = '../../files/ADMIN_PHOTO/';
@@ -29,8 +28,7 @@
         $pattern = "#^(image/)[^\s\n<]+$#i";
     
         if(!preg_match($pattern, $verifyimg['mime'])){
-            header("Location: ../page/profile");
-            die();
+            goBack();
         }
     
         /* Rename both the image and the extension */
@@ -76,13 +74,20 @@
                 // Remove the uploaded file
                 unlink($uploadfile);
     
-                die("Error!: " . $e->getMessage());
+                //die("Error!: " . $e->getMessage());
+                goBack();
             }
         } else {
-            header("Location: ../page/profile");
+            goBack();
         }
     } else {
-        header("Location: ../page/profile");
+        goBack();
     }
     header("Location: ../page/profile");
+
+    function goBack($error_code = 301) {
+        $_SESSION["upd_alert"] = $error_code;
+        header("Location: ../page/profile");
+        die();
+    }
 ?>

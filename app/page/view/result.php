@@ -50,7 +50,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Appointment Status</title>
+	<title>Appointment - <?php echo htmlspecialchars($app_id); ?></title>
 
 	<link rel="stylesheet" href="../../assets/css/QRStyle.css">
 	<link rel="stylesheet" href="../../../assets/css/fnon.min.css" />
@@ -72,7 +72,7 @@
 			<div class="user-img">
 				<!-- User Image -->
 				<div class="bar-user-img">
-					<img src="../../assets/img/user-icon.png" id="bar-pic">
+				<img src="load_image" id="bar-pic" alt="Not Found" onerror="this.src='../../assets/img/user-icon.png'">
 				</div>
 				<!-- //User Image -->
 			</div>
@@ -126,14 +126,14 @@
 
 						<!-- User Image -->
 						<div class="header-user-img">
-							<img src="../../assets/img/user-icon.png" id="header-pic">
+							<img src="load_image" id="header-pic" alt="Not Found" onerror="this.src='../../assets/img/user-icon.png'">
 						</div>
 						<!-- //User Image -->
 					</div>
 					<!-- //User Image Container -->
 
 					<div class="user-name">
-						<a href="#"><h5><?php echo htmlspecialchars($full_name); ?></h5></a><!-- Connect to Profile -->
+						<a href="profile"><h5><?php echo htmlspecialchars($full_name); ?></h5></a><!-- Connect to Profile -->
 					</div>
 				</div>
 			</div>

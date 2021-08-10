@@ -29,15 +29,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Appointment Feedback</title>
+	<title>Write a Feedback</title>
 
 	<link rel="stylesheet" href="../assets/css/FeedbackStyle.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-	 <link rel="stylesheet" href="../assets/css/fnon.min.css" />
-
+    <link rel="stylesheet" href="../assets/css/fnon.min.css" />
 </head>
 <body>
 	<!-- HEADER -->
@@ -51,7 +50,7 @@
 	<!-- //HEADER -->
 
 	<!-- CONTENTS -->
-	<div class="main">
+	<main>
 		<!-- RTU BG IMAGE -->
 		<div class="column">
 			<img src="../assets/img/rtu_bg.png">
@@ -60,70 +59,80 @@
 
 		<!--FORM DIV -->
 		<div class="column">
-			<div class="form">
+			<!-- FORM -->
+			<form id="formFeedback" action="../requests/sub-feedback" method = "POST">
+				<!-- FORM HEADER DESCRIPTION -->
+				<div class="desc">
+					<p class="header1">Give your feedback here!</p>
+					<p class="header2">Kindly write your feedback below in visiting RTU for better service.</p>
+				</div>
+				<!-- //FORM HEADER DESCRIPTION -->
 
-				<!-- FORM ACTION -->
-				<form action="../requests/submit-feedback" method = "post" id="formfeed">
-
-					<!-- FORM HEADER DESCRIPTION -->
-					<div class="desc">
-						<p class="header1">Give your feedback here!</p>
-						<p class="header2">Kindly write your feedback below in visiting RTU for better service.</p>
-					</div>
-					<!-- //FORM HEADER DESCRIPTION -->
-
-					<div class="appt">
-						<!-- FULLNAME INPUT -->
-                        <input type="text" id="fullname" name="fullname" placeholder="Last Name, First Name" required>
-				    		<!-- //FULLNAME INPUT -->
-			    	</div>
-
-			    	<!-- LINE 1 -->
-			    	<div class="row1">
-				    	<div class="column left1"><!-- LINE 1 LEFT COL -->
-                            <!-- CATEGORY (Student, Employee or Guest) -->
-						    <div class="container">
-							    <div class="select-box">
-							    	<div class="options-container">
-							    		<div class="option">
-							    			<input type="radio" class="radio" id="student" name="category" value = "student">
-							    			<label for="student">Student</label>
-							    		</div>
-
-							    		<div class="option">
-							    			<input type="radio" class="radio" id="employee" name="category" value = "employee">
-							    			<label for="employee">Employee</label>
-							    		</div>
-
-							    		<div class="option">
-							    			<input type="radio" class="radio" id="guest" name="category" value = "guest">
-							    			<label for="guest">Guest</label>
-							    		</div>
+				<!-- LINE 1 -->
+				<div class="row">
+					<div class="columns left">
+						<!-- USER CATEGORY -->
+			    		<div class="container">
+							<div class="select-box">
+							   	<div class="options-container">
+							    	<div class="option">
+							    		<input type="radio" class="radio" id="student" name="category" value = "student">
+							    		<label for="student">Student</label>
 							    	</div>
 
-							    	<div class="selected">
-							    			Write your feedback as...
+							    	<div class="option">
+							    		<input type="radio" class="radio" id="employee" name="category" value = "employee">
+							    		<label for="employee">Employee</label>
+							    	</div>
+
+							    	<div class="option">
+							    		<input type="radio" class="radio" id="guest" name="category" value = "guest">
+							    		<label for="guest">Guest</label>
 							    	</div>
 							    </div>
+
+							    <div class="selected">
+							    	Write your feedback as...
+							    </div>
 							</div>
-							<!-- //CATEGORY (Student, Employee or Guest) -->
-				    	</div><!-- //LINE 1 LEFT COL -->
+						</div>
+			    		<!-- //USER CATEGORY -->
+					</div>
 
-				    	<div class="column right1"><!-- LINE 1 RIGHT COL -->
-                            <input type="text" name="email" placeholder="Your Email" required>
-				    	</div><!-- //LINE 1 RIGHT COL -->
-				    </div>
-				    <!-- //LINE 1 -->
+					<div class="columns right">
+						<!-- USER FULLNAME INPUT -->
+					    <input type="text" id="fullname" name="fullname" placeholder="Last Name, First Name" required autocomplete="off">
+					    <!-- //USER FULLNAME INPUT -->
+					</div>
+				</div>
+				<!-- //LINE 1 -->
 
-				    <!-- LINE 2 -->
-				    <div class="row1">
-				    	<div class="column left2"><!-- LINE 2 LEFT COL -->
+				<!-- LINE 2 -->
+				<div class="row">
+					<div class="columns left">
+						<!-- USER EMAIL INPUT -->
+					    <input type="email" id="emailAdd" name="email" placeholder="Email Address" required autocomplete="off">
+					    <!-- //USER EMAIL INPUT -->
+					</div>
 
-				    		<!-- OFFICE NAMES -->
-				    		<div class="container2">
-						    	<div class="select-box2">
-						    		<div class="options-container2">
-								<?php 
+					<div class="columns right">
+						<!-- USER CONTACT NO. INPUT -->
+					    <input type="tel" id="contactNo" name="contact" placeholder="Contact Number" pattern="[0-9]{11}" required autocomplete="off">
+					    <!-- //USER CONTACT NO. INPUT -->
+					</div>
+					
+				</div>
+				<!-- //LINE 2 -->
+
+				<!-- LINE 3 -->
+				<div class="row">
+					<div class="office_names">
+						<!-- OFFICE NAMES -->
+					    <div class="container2">
+							<div class="select-box2">
+							    <div class="options-container2">
+
+                                <?php 
 									$i = 0;
 									foreach((array)$all_office as $office) {
 										$display = $office["office_name"] . ", " . $office["office_branch"];
@@ -136,67 +145,63 @@
 										$i++;
 									}
 								
-								?>						    			
-					    			</div>
-						  
-						   			<div class="selected2">
-						    			Office Name
-						    		</div>
+								?>
 						    	</div>
-						   	</div>
-						   	<!-- //OFFICE NAMES -->
+							  
+							   	<div class="selected2">
+							    	Office Name
+							    </div>
+							</div>
+						</div>
+						<!-- //OFFICE NAMES -->
+					</div>
+				</div>
+				<!-- //LINE 3 -->
 
-						</div><!-- //LINE 2 LEFT COL -->
-
-						<div class="column right2"><!-- LINE 2 RIGHT COL -->
-                            <input type="text" id="contact" name="contact" placeholder="Your Contact Number" required>
-				    	</div>
-				    	<!-- //LINE 2 RIGHT COL -->
-
+				<!-- LINE 4 -->
+				<div class="row">
+					<!-- TEXTAREA FEEDBACK -->
+					<div class="textarea">
+				    	<textarea placeholder="State your feedback here..." name ="feedback" required></textarea>
 				    </div>
-				    <!-- //LINE 2 -->
-                        <!-- TEXTAREA FEEDBACK -->
-                            <div class="textarea">
-                                <textarea placeholder="State your feedback here..." name ="feedback" required></textarea>
-                            </div>
-                        <!-- //TEXTAREA FEEDBACK -->
+				    <!-- //TEXTAREA FEEDBACK -->
+				</div>
+				<!-- //LINE 4 -->
 
-				    <div class="feedback_buttons">
-					    <!-- LIKE & DISLIKE BUTTON -->
-					    <div class="rating_wrapper">
-					    	<!-- LIKE -->
-					    	<div class="like" id="like" onclick="likes()">
-					    		<i class="bi bi-heart-fill" id="likeIcon"></i>
-					    		<span class="like_dislike">Satisfied</span>
-					    	</div>
-					    	<!-- //LIKE -->
+				<div class="row">
+					<div class="feedback_buttons">
+						<!-- LIKE & DISLIKE BUTTON -->
+						<div class="rating_wrapper">
+						    <!-- LIKE -->
+						    <div class="like" id="like" onclick="likes()">
+						    	<i class="bi bi-heart-fill" id="likeIcon"></i>
+						    	<span class="like_dislike">Satisfied</span>
+						    </div>
+						    <!-- //LIKE -->
 
-					    	<!-- DISLIKE -->
-					 		<div class="dislike" id="dislike" onclick="dislikes()">
-					 			<i class="bi bi-heart-half" id="dislikeIcon"></i>
-					    		<span class="like_dislike">Unsatisfied</span>
-					 		</div>
-					 		<!-- //DISLIKE -->
-					    </div>
-					    <!-- //LIKE & DISLIKE BUTTON -->
-						<div style = "display:none">
+						    <!-- DISLIKE -->
+						 	<div class="dislike" id="dislike" onclick="dislikes()">
+						 		<i class="bi bi-heart-half" id="dislikeIcon"></i>
+						    	<span class="like_dislike">Unsatisfied</span>
+						 	</div>
+						 	<!-- //DISLIKE -->
+						</div>
+						<!-- //LIKE & DISLIKE BUTTON -->
+                        <div style = "display:none">
 							<input type = "text" name = "isSatisfied" id = "isSatisfied">
 						</div>
-					    <!-- SUBMIT BUTTON -->
-					    <div class="submit">
-					    	<input type="submit" value="Submit Feedback" id="Submit" name = "sbmt_feedback">
-					    </div>
-					    <!-- //SUBMIT BUTTON -->
-				   </div>
-
-				</form>
-				<!-- //FORM ACTION -->
-
-			</div>	
+						<!-- SUBMIT BUTTON -->
+						<div class="submit">
+						   	<input type="submit" value="Submit Feedback" id="Submit" name = "sbmt_feedback">
+						</div>
+						<!-- //SUBMIT BUTTON -->
+					</div>
+				</div> 
+			</form>
+			<!-- //FORM -->
 		</div>
-		<!-- //FORM DIV -->
-
-	</div>
+		<!--FORM DIV -->
+	</main>
 	<!-- //CONTENTS -->
 
 	<!-- FOOTER -->
@@ -209,7 +214,7 @@
 
 	<!-- JAVASCRIPT USED -->
 	<script src="../assets/js/FeedbackScript.js"></script>
-	<script src="../assets/js/fnon.min.js"></script>
+    <script src="../assets/js/fnon.min.js"></script>
 	<?php 
 		if($alert) {
 			echo "<script> Fnon.Alert.Danger({

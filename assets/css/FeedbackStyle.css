@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
 /* Font Used */
@@ -12,18 +13,32 @@
   src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
 }
 
-@font-face {
-font-family: Tw Cen MT;
-src: url('tw.ttf') format('truetype');
-font-weight: normal;
-font-style: normal;
-}
-
 /* BODY */
 body {
   background-color: white;
   margin: 0;
   overflow: hidden;
+}
+
+/* PAGE SCROLLBAR DESIGN */
+/* width */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+}
+ 
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #808080; 
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background: #002E8A; 
 }
 
 /* HEADER */
@@ -87,220 +102,19 @@ body {
 }
 
 /* FORM COLUMN */
-.column .form {
+.column form {
   margin: 120px 70px 50px 70px;
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
 }
 
 /* CONTENT */
 /* Clearfix (clear floats) */
-.main::after {
+main::after {
   content: "";
   clear: both;
   display: table;
-}
-
-/* RESPONSIVE LAYOUT */
-@media screen and (max-width: 900px) {
-  /* BODY */
-  body {
-    background-color: white;
-    margin: 0;
-    overflow: auto;
-  }
-
-  .column {
-    width: 100%;
-  }
-
-  .column .form {
-    margin: 50px 50px 50px 50px;
-  }
-
-  .feedback_buttons {
-    flex-direction: column;
-  }
-
-  .submit {
-    padding-top: 20px;
-  }
-}
-
-/* RESPONSIVE LAYOUT */
-@media screen and (max-width: 1200px) {
-  /* BODY */
-  body {
-    background-color: white;
-    margin: 0;
-    overflow: auto;
-  }
-
-  .column {
-    width: 100%;
-  }
-
-  .column img {
-    padding: 0 0 0 0;
-    display: block;
-    width: 100%;
-    max-width: 1200px;
-  }
-
-  .column .form {
-    margin: 50px 50px 50px 50px;
-  }
-
-  .feedback_buttons {
-    flex-direction: column;
-  }
-
-  .submit {
-    padding-top: 20px;
-  }
-
-  /* INPUTS */
-  /* Input Fields */
-  .appt input[type=text],
-  .column .right1 input[type=text],
-  .column .left2 input[type=text] {
-    width: 100%;
-    max-width: 250px;
-    border-radius: 8px;
-    height: 50px;
-    border: none;
-    background-color: #F5F5F5;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    color: #AFABAB;
-    text-transform: capitalize;
-    padding: 12px;
-  }
-
-  .column .left1 .select-box {
-    display: flex;
-    width: 250px;
-    flex-direction: column;
-    padding-bottom: 8px;
-  }
-
-  .column .left1 .selected {
-    background: #F5F5F5;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #AFABAB;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    height: 50px;
-    position: relative;
-
-    order: 0;
-  }
-
-  .column .left1 .selected::after {
-    content: "";
-    background: url("../Images/arrow.svg");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 100%;
-    width: 32px;
-    right: 5px;
-    top: 15px;
-    transition: all 0.4s;
-  }
-
-  .column .left1 .select-box .options-container.active + .selected::after {
-    transform: rotateX(180deg);
-    top: -15px;
-  }
-
-  .column .right2 .select-box2 {
-    display: flex;
-    width: 250px;
-    flex-direction: column;
-    padding-bottom: 8px;
-  }
-
-  .column .right2 .selected2 {
-    background: #F5F5F5;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #AFABAB;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    height: 50px;
-    position: relative;
-
-    order: 0;
-  }
-
-  .column .right2 .selected2::after {
-    content: "";
-    background: url("../img/arrow.svg");
-    background-size: 20px;
-    background-repeat: no-repeat;
-    position: absolute;
-    height: 100%;
-    width: 32px;
-    right: 5px;
-    top: 15px;
-    transition: all 0.4s;
-  }
-
-  .column .right2 .select-box2 .options-container2.active + .selected2::after {
-    transform: rotateX(180deg);
-    top: -15px;
-  }
-
-  /* TEXTAREA */
-  /* Feedback Textarea */
-  .textarea textarea {
-    width: 100%;
-    max-width: 450px;
-    height: 150px;
-    padding: 12px;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 8px;
-    background-color: #F5F5F5;
-    font-size: 15px;
-    resize: none;
-    font-family: 'Poppins', sans-serif;
-    color: #AFABAB;
-  }
-
-  /* ROWS DIV STYLE */
-  .row1 {
-    float: left;
-    width: 100%;
-    padding: 0 0 0 0;
-    position: relative;
-    float: center;
-  }
-
-  /* CATEGORY COLUMN */
-  .column .left1 {
-    display: block;
-  }
-
-  /* FULLNAME COLUMN */
-  .column .right1 {
-    display: block;
-    padding-bottom: 16px;
-  }
-
-  /* RTU BRANCH */
-  .column .left2 {
-    display: block;
-    padding-bottom: 16px;
-  }
-
-  /* OFFICE NAMES */
-  .column .right2 {
-    display: block;
-  }
 }
 
 /* FORM HEADER DESCRIPTION */
@@ -319,21 +133,29 @@ body {
   color: #3B3838;
   padding-top: 10px;
   text-align: center;
+  padding-bottom: 18px;
 }
 
 /* INPUTS */
 /* Input Fields */
-input[type=text] {
+input[type=text],
+input[type=email],
+input[type=tel] {
   width: 100%;
   max-width: 250px;
   border-radius: 8px;
-  height: 40px;
+  height: 43px;
   border: none;
   background-color: #F5F5F5;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   color: #AFABAB;
   padding: 12px;
+  margin-bottom: 16px;
+}
+
+input[type=text] {
+  text-transform: capitalize;
 }
 
 /* Input Fields Placeholder */
@@ -386,56 +208,53 @@ textarea:focus {
   box-shadow: 0 0 5px #40E0D0;
 }
 
-/* APPOINTMENT ID */
-.appt {
-  padding: 15px 0 16px 0;
+/* ROWS DIV STYLE */
+.row {
+  float: left;
+  width: 100%;
+  padding: 0 0 0 0;
+  position: relative;
+}
+
+/* COLUMNS */
+.columns {
+  float: left;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ROWS DIV STYLE */
-.row1 {
-  float: left;
-  width: 100%;
-  padding: 0 0 0 0;
-  position: relative;
-  float: center;
-}
-
 /* CATEGORY COLUMN */
-.column .left1 {
+.columns .left {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 /* FULLNAME COLUMN */
-.column .right1 {
-  float: right;
+.columns .right {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 16px;
 }
 
-#fullname {
-  text-transform: capitalize;
-}
-
-/* RTU BRANCH */
-.column .left2 {
+/* OFFICE NAMES DIV */
+.office_names {
+  float: left;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 16px;
 }
 
-/* OFFICE NAMES */
-.column .right2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* CONTENT */
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 /* DROPDOWN CSS */
@@ -445,6 +264,7 @@ textarea:focus {
 }
 
 .select-box {
+  position: relative;
   display: flex;
   width: 250px;
   flex-direction: column;
@@ -454,8 +274,8 @@ textarea:focus {
 .select-box .options-container {
   background: #F5F5F5;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
   color: #767171;
+  font-size: 13px;
   max-height: 0;
   width: 100%;
   opacity: 0;
@@ -464,6 +284,9 @@ textarea:focus {
   overflow: hidden;
 
   order: 1;
+
+  position: absolute;
+  z-index: 100;
 }
 
 .selected {
@@ -481,14 +304,16 @@ textarea:focus {
 
 .selected::after {
   content: "";
-  background: url("../img/arrow.svg");
+  background: url("../Images/arrow.svg");
   background-size: 20px;
   background-repeat: no-repeat;
+
   position: absolute;
   height: 100%;
   width: 32px;
   right: 5px;
   top: 12px;
+
   transition: all 0.4s;
 }
 
@@ -496,6 +321,7 @@ textarea:focus {
   max-height: 240px;
   opacity: 1;
   overflow-y: scroll;
+  margin-top: 51px;
 }
 
 .select-box .options-container.active + .selected::after {
@@ -516,8 +342,12 @@ textarea:focus {
 
 .select-box .option,
 .selected {
-  padding: 12px 15px;
+  /*padding: 12px 15px;*/
   cursor: pointer;
+}
+
+.selected {
+  padding: 12px 15px;
 }
 
 .select-box .option:hover {
@@ -527,22 +357,22 @@ textarea:focus {
 .select-box label {
   cursor: pointer;
   display: block;
-  padding: 12px 34px;
-  background-color: pink;
+  padding: 12px 15px;
 }
 
 .select-box .option .radio {
   display: none;
 }
 
-/* OFFICE NAMES Dropdown CSS */
+/* OFFICES DROPDOWN CSS */
 .container2 {
   padding: none;
 }
 
 .select-box2 {
+  position: relative;
   display: flex;
-  width: 250px;
+  width: 520px;
   flex-direction: column;
   padding-bottom: 8px;
 }
@@ -550,8 +380,8 @@ textarea:focus {
 .select-box2 .options-container2 {
   background: #F5F5F5;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
   color: #767171;
+  font-size: 13px;
   max-height: 0;
   width: 100%;
   opacity: 0;
@@ -560,6 +390,9 @@ textarea:focus {
   overflow: hidden;
 
   order: 1;
+
+  position: absolute;
+  z-index: 100;
 }
 
 .selected2 {
@@ -569,33 +402,36 @@ textarea:focus {
   color: #AFABAB;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  vertical-align: middle;
   height: 43px;
   position: relative;
+
+  order: 0;
+
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-
-  order: 0;
 }
 
 .selected2::after {
   content: "";
-  background: url("../img/arrow.svg");
+  background: url("../Images/arrow.svg");
   background-size: 20px;
   background-repeat: no-repeat;
+
   position: absolute;
   height: 100%;
   width: 32px;
   right: 5px;
   top: 12px;
+
   transition: all 0.4s;
 }
 
 .select-box2 .options-container2.active {
-  max-height: 150px;
+  max-height: 180px;
   opacity: 1;
   overflow-y: scroll;
+  margin-top: 51px;
 }
 
 .select-box2 .options-container2.active + .selected2::after {
@@ -616,8 +452,12 @@ textarea:focus {
 
 .select-box2 .option2,
 .selected2 {
-  padding: 12px 15px;
+  /*padding: 12px 15px;*/
   cursor: pointer;
+}
+
+.selected2 {
+  padding: 12px 33px 12px 15px;
 }
 
 .select-box2 .option2:hover {
@@ -627,19 +467,20 @@ textarea:focus {
 .select-box2 label {
   cursor: pointer;
   display: block;
-  padding: 12px 34px;
-  background-color: pink;
+  padding: 12px 15px;
 }
 
 .select-box2 .option2 .radio2 {
   display: none;
 }
 
+
 /* FEEDBACK BUTTONS */
 .feedback_buttons {
   margin-top: 30px;
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 50px;
 }
 
 /* LIKE AND DISLIKE BUTTON WRAPPER */
@@ -702,7 +543,7 @@ textarea:focus {
 }
 
 /* SUBMIT BUTTON */
-.form input[type=submit]{
+form input[type=submit]{
   height: 34px;
   border-radius: 50px;
   border: none;
@@ -715,7 +556,7 @@ textarea:focus {
 }
 
 /* SUBMIT BUTTON HOVER */
-.form input[type=submit]:hover {
+form input[type=submit]:hover {
   background-color: #1E90FF; 
   color: #FFFFFF;
   cursor: pointer;
@@ -727,23 +568,295 @@ textarea:focus {
   text-align: center;
 }
 
-/* PAGE SCROLLBAR DESIGN */
-/* WIDTH */
-body::-webkit-scrollbar {
-  width: 10px;
+
+/* RESPONSIVE LAYOUT */
+@media only screen and (max-width: 340px)  {
+  /* BODY */
+  body {
+    background-color: white;
+    margin: 0;
+    overflow: auto;
+  }
+
+  /* COLUMN */
+  .column {
+    width: 100%;
+  }
+  
+  /* RTU BACKGROUND IMAGE */
+  .column img {
+    padding: 0 0 0 0;
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  /* FORM */
+  .column form {
+    margin: 50px 10px 50px 10px;
+  }
+
+  /* COLUMNS */
+  .columns {
+    width: 100%;
+  }
+
+  /* FEEDBACK BUTTONS */
+  .feedback_buttons {
+    flex-direction: column;
+  }
+
+  /* SUBMIT BUTTON DIV */
+  .submit {
+    padding-top: 20px;
+  }
+
+  /* OFFICE DROPDOWN WIDTH */
+  .office_names .select-box2 {
+    display: flex;
+    width: 250px;
+    flex-direction: column;
+    padding-bottom: 8px;
+  }
+
+  /* TEXTAREA */
+  /* Feedback Textarea */
+  .textarea textarea {
+    height: 150px;
+  }
 }
 
-/* TRACK */
-body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 2px grey; 
-}
- 
-/* HANDLE */
-body::-webkit-scrollbar-thumb {
-  background: #808080; 
+/* RESPONSIVE LAYOUT */
+@media only screen and (max-width: 900px) and (min-width: 350px) {
+  /* BODY */
+  body {
+    background-color: white;
+    margin: 0;
+    overflow: auto;
+  }
+
+  /* COLUMN */
+  .column {
+    width: 100%;
+  }
+  
+  /* RTU BACKGROUND IMAGE */
+  .column img {
+    padding: 0 0 0 0;
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  /* FORM */
+  .column form {
+    margin: 50px 50px 50px 50px;
+  }
+
+  /* COLUMNS */
+  .columns {
+    width: 100%;
+  }
+
+  /* FEEDBACK BUTTONS */
+  .feedback_buttons {
+    flex-direction: column;
+  }
+
+  /* SUBMIT BUTTON DIV */
+  .submit {
+    padding-top: 20px;
+  }
+
+  /* OFFICE DROPDOWN WIDTH */
+  .office_names .select-box2 {
+    display: flex;
+    width: 250px;
+    flex-direction: column;
+    padding-bottom: 8px;
+  }
+
+  /* TEXTAREA */
+  /* Feedback Textarea */
+  .textarea textarea {
+    height: 150px;
+  }
 }
 
-/* HANDLE ON HOVER */
-body::-webkit-scrollbar-thumb:hover {
-  background: #002E8A; 
+/* RESPONSIVE LAYOUT */
+@media screen and (max-width: 1200px) and (min-width: 1000px) {
+  /* BODY */
+  body {
+    background-color: white;
+    margin: 0;
+    overflow: auto;
+  }
+
+  /* COLUMN */
+  .column {
+    width: 100%;
+  }
+
+  /* RTU BACKGROUND IMAGE */
+  .column img {
+    padding: 0 0 0 0;
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  /* FORM */
+  .column form {
+    margin: 50px 50px 50px 50px;
+  }
+
+  /* FEEDBACK BUTTONS */
+  .feedback_buttons {
+    flex-direction: column;
+  }
+
+  /* SUBMIT BUTTON DIV */
+  .submit {
+    padding-top: 20px;
+  }
+
+  /* INPUTS */
+  /* Input Fields */
+  input[type=text],
+  input[type=tel],
+  input[type=email] {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 8px;
+    height: 50px;
+    border: none;
+    background-color: #F5F5F5;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #AFABAB;
+    padding: 12px;
+  }
+
+  /* USER CATEGORY DROPDOWN */
+  .select-box {
+    display: flex;
+    width: 450px;
+    flex-direction: column;
+    padding-bottom: 8px;
+  }
+
+  .selected {
+    background: #F5F5F5;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #AFABAB;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    height: 50px;
+    position: relative;
+
+    order: 0;
+  }
+
+  .selected::after {
+    content: "";
+    background: url("../Images/arrow.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 5px;
+    top: 15px;
+    transition: all 0.4s;
+  }
+
+  .select-box .options-container.active + .selected::after {
+    transform: rotateX(180deg);
+    top: -15px;
+  }
+
+  .select-box .options-container.active {
+    max-height: 220px;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 57px;
+  }
+
+  /* OFFICE NAME DROPDOWN */
+  .office_names .select-box2 {
+    display: flex;
+    width: 450px;
+    flex-direction: column;
+    padding-bottom: 8px;
+  }
+
+  .office_names .selected2 {
+    background: #F5F5F5;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #AFABAB;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    height: 50px;
+    position: relative;
+
+    order: 0;
+  }
+
+  .office_names .selected2::after {
+    content: "";
+    background: url("../Images/arrow.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 5px;
+    top: 15px;
+    transition: all 0.4s;
+  }
+
+  .office_names .select-box2 .options-container2.active + .selected2::after {
+    transform: rotateX(180deg);
+    top: -15px;
+  }
+
+  .office_names .select-box2 .options-container2.active {
+    max-height: 220px;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 57px;
+  }
+
+  /* TEXTAREA */
+  /* Feedback Textarea */
+  .textarea textarea {
+    width: 100%;
+    max-width: 450px;
+    height: 150px;
+    padding: 12px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    font-size: 15px;
+    resize: none;
+    font-family: 'Poppins', sans-serif;
+    color: #AFABAB;
+  }
+
+  /* ROWS DIV STYLE */
+  .row {
+    float: left;
+    width: 100%;
+    padding: 0 0 0 0;
+    position: relative;
+    float: center;
+  }
+
+ /* COLUMNS */
+ .columns {
+    width: 100%;
+ }
 }
