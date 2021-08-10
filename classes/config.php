@@ -14,6 +14,8 @@
     define("db_name", "rtuappsysdb");
 
     define("HTTP_PROTOCOL", "http://");      //Change to "HTTPS" If using an SSL
+    define('HOST', $_SERVER["HTTP_HOST"]);  
+    define("FILE_VERSION", "?v=1");
 
     define("max_per_sched", 5);
     define("number_of_timeslots", 15);
