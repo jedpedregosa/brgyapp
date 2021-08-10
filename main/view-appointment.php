@@ -1,6 +1,7 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     // Session Side
     session_name("cid");
@@ -110,7 +111,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title> View Appointment </title>
-    <link rel="stylesheet" href="../assets/css/ViewAppointmentStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/ViewAppointmentStyle.css" . FILE_VERSION ?>">
 </head>
 <body onload=display_ct();>
     <header class="header">
