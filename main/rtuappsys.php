@@ -17,6 +17,7 @@
  * 	RTU Boni System Team
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
 	// Session for internal errors
 	session_name("cid");
@@ -47,12 +48,13 @@
 		<!-- Required meta tags -->
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    	<link rel="stylesheet" href="../assets/css/loginstyle.css?version=3">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/loginstyle.css" . FILE_VERSION ?>">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="../assets/css/fnon.min.css" />
+	  	
 
     	<title>RTU Online Appointment System</title>
   </head>
