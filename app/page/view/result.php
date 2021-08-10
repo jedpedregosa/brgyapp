@@ -1,5 +1,6 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     $appointment_key;
     $hasRights = false;
@@ -52,7 +53,7 @@
 
 	<title>Appointment - <?php echo htmlspecialchars($app_id); ?></title>
 
-	<link rel="stylesheet" href="../../assets/css/QRStyle.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/QRStyle.css" . FILE_VERSION ?>">
 	<link rel="stylesheet" href="../../../assets/css/fnon.min.css" />
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
