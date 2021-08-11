@@ -1235,6 +1235,8 @@ select option {
     font-weight: lighter;
     padding: 10px 12px;
     text-transform: uppercase;
+    position: sticky;
+    top: 0;
 }
 
 .table-container tr {

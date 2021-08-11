@@ -293,7 +293,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .sidebar input {
     font-size: 15px;
-    font-family: "Poppins", sans-serif; 
+    font-family: "Poppins", sans-serif;
     color: #F5F5F5;
     font-weight: 400;
     outline: none;
@@ -937,7 +937,7 @@ main .contents {
     /* SIDEBAR SEARCH BAR INPUT */
     .sidebar input {
         font-size: 15px;
-        font-family: "Poppins", sans-serif; 
+        font-family: "Poppins", sans-serif;
         color: #F5F5F5;
         font-weight: 400;
         outline: none;
@@ -2440,7 +2440,7 @@ main .contents {
 }
 
 .searchTerm {
-    font-family: "Poppins", sans-serif; 
+    font-family: "Poppins", sans-serif;
     width: 74%;
     height: 36px;
     border: 3px solid #e8e8e8;
@@ -2502,6 +2502,8 @@ main .contents {
     font-weight: lighter;
     padding: 10px 12px;
     text-transform: uppercase;
+    position: sticky;
+    top: 0;
 }
 
 .table-container tr {
@@ -2584,10 +2586,11 @@ select {
 }
 
 select option {
-    font-family: "Poppins", sans-serif; 
+    font-family: "Poppins", sans-serif;
     color: #767171;
     background-color: white;
 }
+
 
 /* BADGE */
 
@@ -2598,44 +2601,46 @@ select option {
     font-size: 10px;
     font-family: "Poppins", sans-serif;
 }
-  
-  .build-badge__label, .build-badge__status {
+
+.build-badge__label,
+.build-badge__status {
     border-radius: 50px;
     display: inline-block;
-    padding: 0 6px 1px 6px; 
-  }
-  
-  .build-badge__label {
+    padding: 0 6px 1px 6px;
+}
+
+.build-badge__label {
     background-color: #333;
     color: #fff;
-  }
-  
-  .build-badge__status-success {
+}
+
+.build-badge__status-success {
     background-color: #0075b5;
-  color: #fff;
-  }
-  
-  .build-badge__status-warning {
+    color: #fff;
+}
+
+.build-badge__status-warning {
     background-color: #FEC006;
     color: #000;
-  }
-  
-  .build-badge__status-error {
+}
+
+.build-badge__status-error {
     background-color: #E0E0E0;
     color: #fff;
-  }
-  
-  .build-badge__status-information {
+}
+
+.build-badge__status-information {
     background-color: #878787;
     color: #fff;
-  }
-  
-  .build-badge__status-indeterminate {
+}
+
+.build-badge__status-indeterminate {
     background-color: #E0E0E0;
     color: #000;
-  }
-  
-  /* LIKE RESULT RATE */
+}
+
+
+/* LIKE RESULT RATE */
 
 .like {
     border: 2px solid #002060;

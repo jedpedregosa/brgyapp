@@ -1,6 +1,7 @@
 <?php 
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
-	
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
+
 	session_name("cid");
 	session_start();
 
@@ -31,7 +32,7 @@
 
 	<title>Write a Feedback</title>
 
-	<link rel="stylesheet" href="../assets/css/FeedbackStyle.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/FeedbackStyle.css" . FILE_VERSION ?>">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

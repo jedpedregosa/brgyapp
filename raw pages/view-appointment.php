@@ -299,8 +299,8 @@
 		                				<p> 
 			                				Status : &ensp; 
 			                				<b style="color: #002060"> Pending </b> &ensp;<!-- Show Data (Display Availabilty Status if Pending, Cancelled, or Ongoing) -->
-			                				<button class="reschedule" type="button" onclick="" id="myBtn" style="display: inline-flex;"> 
-												Reschedule Appointment
+			                				<button class="reschedule" type="button" onclick="" id="myBtn" style="display: inline-flex;" title="Reschedule Appointment"> 
+												Reschedule
 
 												<!-- The Modal -->
 												<div id="myModal" class="modal">

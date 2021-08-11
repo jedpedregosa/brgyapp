@@ -21,6 +21,7 @@
 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     // Session Side
     session_name("id");
@@ -89,7 +90,7 @@
 <head>
     <meta charset="utf-8">
     <title>Make an Appointment</title>
-    <link rel="stylesheet" href="../../assets/css/AppointmentStyle.css?version=3">
+    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/AppointmentStyle.css" . FILE_VERSION ?>">
     <link rel="stylesheet" href="../../assets/css/fnon.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,5 +1,6 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     $feedback_data = getAllFeedback($assigned_office);
     $feedback_size = sizeof($feedback_data);
@@ -15,7 +16,7 @@
 
     <title>Feedback - RTU Appointment System</title>
 
-    <link rel="stylesheet" href="../../assets/css/OA-Interface.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/OA-Interface.css" . FILE_VERSION ?>">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">

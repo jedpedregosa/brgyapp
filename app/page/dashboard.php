@@ -1,6 +1,7 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
-	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     $first_name = getFirstName($admin_id);
     $office_name = getOfficeName($assigned_office);
@@ -32,7 +33,7 @@
 
 	<title>Dashboard - RTU Appointment System</title>
 
-	<link rel="stylesheet" href="../assets/css/OA-DashboardStyle.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/OA-DashboardStyle.css" . FILE_VERSION ?>">
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="../../assets/css/fnon.min.css" />
