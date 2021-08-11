@@ -1,4 +1,4 @@
-<?php
+<?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
 
     $app_key;
@@ -26,16 +26,19 @@
     $today_r = new DateTime();
     $today = $today_r->format("Y-m-d");
 
-    if($assigned_office != $office_id) {
+    if($assigned_office == $office_id) {
         goBack();
     } else if(strtotime($today) != strtotime($app_date)) {
         goBack();
     }
 
-    $result2 = setVisitorOpen($appointment_id);
-    $result3 = setAppointmentAsDone($appointment_id);
+    if(isAppointmentWalkin($assigned_office, $appointment_id)) {
+        goBack();
+    }
 
-    if($result2 && $result3) {
+    $result = setAppointmentAsWalkin($assigned_office, $appointment_id);
+
+    if($result) {
         $errorCode = 300;
     }
 
