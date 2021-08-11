@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 09, 2021 at 02:50 AM
+-- Generation Time: Aug 11, 2021 at 10:04 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_appdone_vstr`
+--
+
+DROP TABLE IF EXISTS `tbl_appdone_vstr`;
+CREATE TABLE IF NOT EXISTS `tbl_appdone_vstr` (
+  `app_num` int NOT NULL AUTO_INCREMENT,
+  `app_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vstor_lname` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vstor_fname` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vstor_idnum` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vstor_contact` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vstor_email` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vstor_ip_add` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`app_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_appointment`
 --
 
@@ -38,10 +58,10 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `app_purpose` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `app_sys_time` datetime NOT NULL,
   `app_is_done` tinyint(1) DEFAULT '0',
-  `app_done_date` date DEFAULT NULL,
+  `app_done_date` datetime DEFAULT NULL,
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `app_num` (`app_num`)
-) ENGINE=MyISAM AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -68,19 +88,33 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment_auth` (
 
 DROP TABLE IF EXISTS `tbl_appointment_done`;
 CREATE TABLE IF NOT EXISTS `tbl_appointment_done` (
+  `app_num` int NOT NULL AUTO_INCREMENT,
   `app_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `office_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `office_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_no` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vstor_lname` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vstor_fname` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vstor_contact` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `vstor_email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `app_branch` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `app_date` date NOT NULL,
-  `tmslot_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tmslot` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `app_purpose` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `app_sys_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `app_sys_time` datetime NOT NULL,
+  `app_done_date` datetime NOT NULL,
+  PRIMARY KEY (`app_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_app_wlkin`
+--
+
+DROP TABLE IF EXISTS `tbl_app_wlkin`;
+CREATE TABLE IF NOT EXISTS `tbl_app_wlkin` (
+  `wlkin_num` int NOT NULL AUTO_INCREMENT,
+  `office_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `app_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `wlkin_date` datetime NOT NULL,
+  PRIMARY KEY (`wlkin_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -116,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `tbl_feedback` (
   `fback_is_stsfd` tinyint(1) NOT NULL,
   `fback_ip_add` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fback_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -183,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office_admin` (
   `oadmn_contact` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`oadmn_id`),
   UNIQUE KEY `oadmn_num` (`oadmn_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -214,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office_upld` (
   `upld_key` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `upld_mime` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`upld_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -234,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
   `sched_isClosed` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`sched_id`),
   KEY `sched_num` (`sched_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=878 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=898 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -304,10 +338,11 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   `vstor_email` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `vstor_type` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `vstor_hasApp` tinyint(1) DEFAULT '0' COMMENT 'If Visitor has an ongoing appointment.',
+  `vstor_ip_add` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`vstor_num`) USING BTREE,
   UNIQUE KEY `vstor_id` (`vstor_id`),
   UNIQUE KEY `vstor_email` (`vstor_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=328 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=337 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

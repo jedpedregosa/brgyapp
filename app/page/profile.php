@@ -33,7 +33,7 @@
 
 	<title><?php echo htmlspecialchars($full_name); ?> | RTU Appointment System</title>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/OA-ProfileStyle.css" . FILE_VERSION ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/OA-ProfileStyle.css" . FILE_VERSION ?>">
 	<link rel="stylesheet" href="../../assets/css/fnon.min.css" />
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
