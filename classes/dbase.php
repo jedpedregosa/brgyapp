@@ -160,8 +160,9 @@
             }
         }
         
-        $stmt = $conn -> prepare("INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email, vstor_type)
-        VALUES (:id, :lname, :fname, :phone, :email, :utype)");
+        $ip = USER_IP;
+        $stmt = $conn -> prepare("INSERT INTO tbl_visitor (vstor_id, vstor_lname, vstor_fname, vstor_contact, vstor_email, vstor_type, vstor_ip_add)
+        VALUES (:id, :lname, :fname, :phone, :email, :utype, :ipadd)");
 
         $stmt-> bindParam(':id', $visitorID);
         $stmt-> bindParam(':lname', $userData[1]);
@@ -169,6 +170,7 @@
         $stmt-> bindParam(':email', $userData[3]);
         $stmt-> bindParam(':phone', $userData[4]);
         $stmt-> bindParam(':utype', $userType);
+        $stmt-> bindParam(':ipadd', $ip);
 
         $firstReq = $stmt->execute();
         $secondReq = null;

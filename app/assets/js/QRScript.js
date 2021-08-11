@@ -24,6 +24,9 @@ var state = false;
 let done = document.querySelector("#doneBtn")
 
 function doneBtnChange() {
+  done.style.color = "#181717";
+  state = false;
+
   Fnon.Ask.Warning({
     message:'Are you sure? This process cannot be undone.',
     title: 'Appointment',
@@ -39,17 +42,10 @@ function doneBtnChange() {
         form_done.appendChild(tmpSubmit);
         tmpSubmit.click();
         form_done.removeChild(tmpSubmit);
-      } 
+      } else {
+        done.style.color = "#EAB800";
+        state = true;
+      }
     }
   });
-
-  if (state) {
-    done.style.color = "#181717";
-    state = false;
-  }
-
-  else {
-    done.style.color = "#EAB800";
-    state = true;
-  }
 }

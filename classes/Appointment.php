@@ -2,6 +2,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
 
     function totalAppointmentToday($office) {
         
@@ -329,12 +330,155 @@
         return $result;
     }
 
+    function doesAppointmentDoneDataExist($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_appointment_done WHERE app_id = ?");
+        $stmt->execute([$app_id]);
+        
+        return $stmt->fetchColumn();
+    }
+
+    function isAppointmentDone($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_appointment WHERE app_id = ? AND app_is_done = 1");
+        $stmt->execute([$app_id]);
+        
+        return $stmt->fetchColumn();
+    }
+
     function setAppointmentAsDone($app_id) {
         $conn = connectDb();
 
-        $stmt = $conn->prepare("UPDATE tbl_appointment SET app_is_done = 1 WHERE app_id = ?");
-        $result = $stmt->execute([$app_id]);
+        if(!isAppointmentDone($app_id)) {
+            $date_r = new DateTime();
+            $date = $date_r->format("Y-m-d H:i:s");
 
-        return $result;
+            $stmt = $conn->prepare("UPDATE tbl_appointment SET app_is_done = 1, app_done_date = ? WHERE app_id = ?");
+            $result1 = $stmt->execute([$date, $app_id]);
+    
+            if(doesAppointmentDoneDataExist($app_id)) {
+                $office_id = getAppointmentOffice($app_id);
+                $office_name = getOfficeName($office_id);
+    
+                $stmt = $conn->prepare("UPDATE tbl_appointment_done SET office_id = ?, office_name = ?, app_done_date = ? WHERE app_id = ?");
+                $result2 = $stmt->execute([$office_id, $office_name, $date,  $app_id]);
+            } else {
+                $result2 = insertAppointmentDone($app_id, false);
+            }
+            return $result1 && $result2;
+        }
+
+        return false;
+    }
+
+    function insertAppointmentDone($app_id, $isWalkin) {
+        $conn = connectDb();
+        
+        $date_r = new DateTime();
+        $date = $date_r->format("Y-m-d H:i:s");
+
+        $office_name = "WALKED-IN";
+        $office_id = "WALKED-IN";
+        
+        $raw_app = getAppointmentData($app_id);
+        $app_date = getAppointmentDate($app_id);
+        $sched_data = getScheduleDetailsByAppointmentId($app_id);
+        $for_time = getValues($sched_data[3], $sched_data[2]);
+        
+        if(!$isWalkin) {
+            $office_name = $for_time["officeValue"];
+            $office_id = $raw_app[0];
+        }
+    
+        $time_span = $for_time["timeValue"];
+
+        $query = "INSERT INTO tbl_appointment_done (app_id, office_id, office_name, app_branch, app_date, tmslot, app_purpose, app_sys_time, app_done_date) 
+            VALUES (:id, :offid, :oname, :branch, :adate, :atime, :purp, :systime, :done)";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":id", $app_id);
+        $stmt->bindParam(":offid", $office_id);
+        $stmt->bindParam(":oname", $office_name);
+        $stmt->bindParam(":branch", $raw_app[1]);
+        $stmt->bindParam(":adate", $app_date);
+        $stmt->bindParam(":atime", $time_span);
+        $stmt->bindParam(":purp", $raw_app[2]);
+        $stmt->bindParam(":systime", $raw_app[3]);
+        $stmt->bindParam(":done", $date);
+
+        $result1 = $stmt->execute();
+
+        $visitor_data = getVisitorDataByAppointmentId($app_id);
+        $type = $visitor_data[6];
+        $vstor_id = $visitor_data[1];
+        $v_key;
+
+        if($type == "student") {
+            $v_key = getStudentDataById($vstor_id);
+        } else if($type == "employee") {
+            $v_key = getEmployeeDataById($vstor_id);
+        } else {
+            $v_key = getGuestDataById($vstor_id);
+            $type = getGuestNextDataById($vstor_id);
+        }
+
+        $query = "INSERT INTO tbl_appdone_vstr (app_id, vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type, vstor_ip_add)
+            VALUES (:appid, :lname, :fname, :idnum, :contact, :email, :cat, :ip_add)";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":appid", $app_id);
+        $stmt->bindParam(":lname", $visitor_data[2]);
+        $stmt->bindParam(":fname", $visitor_data[3]);
+        $stmt->bindParam(":idnum", $v_key);
+        $stmt->bindParam(":contact", $visitor_data[4]);
+        $stmt->bindParam(":email", $visitor_data[5]);
+        $stmt->bindParam(":cat", $type);
+        $stmt->bindParam(":ip_add", $visitor_data[8]);
+
+        $result2 = $stmt->execute();
+
+        return $result1 && $result2;
+    }
+
+    function getAppointmentData($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT office_id, app_branch, app_purpose, app_sys_time FROM tbl_appointment WHERE app_id = ?");
+        $stmt->execute([$app_id]);
+
+        return $stmt->fetch();
+    }
+
+    function isAppointmentWalkin($office_id, $app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_app_wlkin WHERE office_id = ? AND app_id = ?");
+        $stmt->execute([$office_id, $app_id]);
+
+        return $stmt->fetchColumn();
+    }
+
+    function setAppointmentAsWalkin($office_id, $app_id) {
+        $conn = connectDb();
+
+        $date_r = new DateTime();
+        $date = $date_r->format("Y-m-d H:i:s");
+
+        $result1 = false;
+        $result2 = false;
+
+        if(!isAppointmentWalkin($office_id, $app_id)) {
+            $result1 = true;
+            if(!doesAppointmentDoneDataExist($app_id)) {
+                $result1 = insertAppointmentDone($app_id, true);
+            }
+
+            $stmt = $conn->prepare("INSERT INTO tbl_app_wlkin (office_id, app_id, wlkin_date)
+                VALUES (?, ?, ?)");
+            $result2 = $stmt->execute([$office_id, $app_id, $date]);
+        }
+
+        return $result1 && $result2;
     }
 ?>

@@ -14,11 +14,13 @@
     define("db_name", "rtuappsysdb");
 
     define("HTTP_PROTOCOL", "http://");      //Change to "HTTPS" If using an SSL
-
+    
     define("max_per_sched", 5);
     define("number_of_timeslots", 15);
     define("days_scheduling_span", 30);
     define("hours_scheduling_span", 2);
 
     define("IS_AJAX", (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'));
+    define("USER_IP", (isset($_SERVER['HTTP_CLIENT_IP'])?$_SERVER['HTTP_CLIENT_IP']:isset($_SERVER['HTTP_X_FORWARDE‌​D_FOR'])?$_SERVER['HTTP_X_FORWARDED_FOR']:$_SERVER['REMOTE_ADDR']));
+
 ?>

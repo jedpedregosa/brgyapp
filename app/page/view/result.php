@@ -7,6 +7,8 @@
     $first_label;
     $second_label = "Email Address";
     $isGuest = false;
+	$isDone = false;
+	$isDoneWalkin = false;
 
     if(isset($_GET["app_"])) {
         $appointment_key = $_GET["app_"];
@@ -22,11 +24,16 @@
     $app_id = getAppointmentIdByAppointmentKey($appointment_key);
     $appointment_data = arrangeAppointmentData($app_id);
 	$app_office_id = getAppointmentOffice($app_id);
+	$isSchedToday = isSchedToday($app_id);
 
     if($app_office_id == $assigned_office) {
-		$isSchedToday = isSchedToday($app_id);
+		$isDone = isAppointmentDone($app_id);
         $hasRights = true && $isSchedToday;
-    }
+		
+    } else {					
+		$isDoneWalkin = isAppointmentWalkin($assigned_office, $app_id);				// Change here if allowing only specific offices
+		$isWalkin = true && $isSchedToday;
+	}
     
     $type = $appointment_data[0];
  
@@ -224,6 +231,7 @@
 			<!-- Appointment Done Button -->
 	<?php 
 		if($hasRights) {
+			if(!$isDone) {
 			?>
 			<div style = "display: none">
 				<form action = "../../controllers/done" method = "post" id = "frm_done">
@@ -235,7 +243,40 @@
 					</i>&ensp;Appointment Done
 				</button>
 			</div>
-	<?php } ?>
+	<?php 	} else {
+				?>
+			<div class="buttonD">
+				<button type="button" class="bi-check-circle" id="clickedDoneBtn">
+					</i>&ensp;Appointment Done
+				</button>
+			</div>
+				<?php
+			}
+		} else {
+			if(!$isDoneWalkin) {
+			?>
+			<div style = "display: none">
+				<form action = "../../controllers/walk-in" method = "post" id = "frm_done">
+					<input name = "app_key" value = "<?php echo $appointment_key; ?>">
+				</form>
+			</div>
+			<div class="buttonD">
+				<button type="button" class="bi bi-circle" id="doneBtn" onclick="doneBtnChange()">
+					</i>&ensp;Mark as Walk-in Appointment
+				</button>
+			</div>
+			<?php
+			} else {
+				?>
+			<div class="buttonD">
+				<button type="button" class="bi-check-circle" id="clickedDoneBtn">
+					</i>&ensp;Marked as Walk-in Appointment
+				</button>
+			</div>
+				<?php
+			}
+		}?>
+
 			<!-- //Appointment Done Button -->
 		</div>
 		<!-- Contents Container -->

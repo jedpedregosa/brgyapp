@@ -5,7 +5,7 @@
 
 	$message;
     $title;
-	$errorCode;
+	$errorCode = null;
 
     if(isset($_SESSION["upd_alert"])) {
 		$errorCode = $_SESSION["upd_alert"];	
