@@ -60,7 +60,7 @@
 
     <title>Appointments - RTU Appointment System</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/OA-Interface.css" . FILE_VERSION ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/OA-Interface.css" . FILE_VERSION ?>">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@
 
             <!-- User Image Container -->
             <div class="user-img">
-                <!-- User Image -->
+                <!-- User Image --> 
                 <div class="bar-user-img">
                     <img src="load_image" id="bar-pic" alt="Not Found" onerror="this.src='../../assets/img/user-icon.png'">
                 </div>
@@ -329,6 +329,17 @@
 
             </div>
 
+            <div class="button-group-container">
+
+                <div class="done-walk-in-appointments">
+                    <button><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</button>
+                    <button><i class="bi bi-door-closed"></i> &nbsp; Walk-in Appointments</button>
+                </div>
+
+                <div class="download-all">
+                    <button><i class="bi bi-download"></i> &nbsp; Download All Appointments</button>
+                </div>
+            </div>
 
         </div>
         <!-- //Contents Container -->

@@ -16,7 +16,7 @@
 
     <title>Feedback - RTU Appointment System</title>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/OA-Interface.css" . FILE_VERSION ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/OA-Interface.css" . FILE_VERSION ?>">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -227,7 +227,11 @@
 
             </div>
 
-
+            <div class="button-group-container">
+                <div class="download-all">
+                    <button><i class="bi bi-download"></i> &nbsp; Download All Records</button>
+                </div>
+            </div>
         </div>
         <!-- //Contents Container -->
     </main>
