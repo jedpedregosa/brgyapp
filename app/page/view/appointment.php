@@ -228,7 +228,7 @@
                 <div class="table-container">
                     <table id = "tbl_appointments">
                         <tr class="table-header">
-                            <th>Appointment No.</th>
+                            <th style="width: 10%;">Appointment No.</th>
                 <?php 
                     if($isStudent) {
                         ?>
