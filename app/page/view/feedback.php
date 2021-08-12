@@ -230,11 +230,12 @@
 
             </div>
 
-            <div class="button-group-container">
-                <div class="download-all">
-                    <button><i class="bi bi-download"></i> &nbsp; Download All Records</button>
+            <div class="buttons-container">
+                    <div class="buttons-right">
+                        <a href="#" class="download"><i class="bi bi-download"></i> &nbsp; Download All Records</a>
+
+                    </div>
                 </div>
-            </div>
         </div>
         <!-- //Contents Container -->
     </main>
