@@ -481,4 +481,76 @@
 
         return $result1 && $result2;
     }
+
+    function getAppointmentKeyByQr($qr_key) {
+        $conn = connectDb();
+
+        $stmt=$conn->prepare("SELECT app_key FROM tbl_appointment_auth WHERE qr_key = ?");
+        $stmt->execute([$qr_key]);
+
+        return $stmt->fetchColumn();
+    }
+    function getDoneAppointments($office){
+        $conn = connectDb();
+
+        $done_appointments = [];
+        $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date 
+            FROM tbl_appointment_done WHERE office_id = ? ORDER BY app_num DESC, app_done_date desc LIMIT 50");
+        $stmt->execute([$office]);
+
+        $r_appdone = [];
+        while($row = $stmt->fetchAll()) {
+            $r_appdone = array_merge($r_appdone, $row);
+        }
+
+        foreach((array)$r_appdone as $app) {
+            $appointment = [];
+            $app_id = $app[0];
+            
+            $stmt_vstor = $conn->prepare("SELECT vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type 
+                FROM tbl_appdone_vstr WHERE app_id = ?");
+            $stmt_vstor ->execute([$app_id]);
+            $result = $stmt_vstor->fetch();
+
+            $appointment = array_merge($app, $result);
+            array_push($done_appointments, $appointment);
+        }
+
+        return $done_appointments;
+    }
+
+    function getWalkinAppointments($office) {
+        $conn = connectDb();
+
+        $walkin_app = [];
+
+        $stmt = $conn->prepare("SELECT app_id, wlkin_date FROM tbl_app_wlkin WHERE office_id = ? ORDER BY wlkin_num DESC, wlkin_date desc LIMIT 50");
+        $stmt->execute([$office]);
+
+        $r_walkin = [];
+        while($row = $stmt->fetchAll()) {
+            $r_walkin = array_merge($r_walkin , $row);
+        }
+
+        foreach((array)$r_walkin as $app) {
+            $app_id = $app[0];
+
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time
+                FROM tbl_appointment_done WHERE app_id = ?");
+            $stmt->execute([$app_id]);
+            $app_data = $stmt->fetch();
+
+            array_push($app_data, $app[1]);
+
+            $stmt_vstor = $conn->prepare("SELECT vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type 
+                FROM tbl_appdone_vstr WHERE app_id = ?");
+            $stmt_vstor ->execute([$app_id]);
+            $vstor_data = $stmt_vstor->fetch();
+    
+            $app_row = array_merge($app_data, $vstor_data);
+            array_push($walkin_app, $app_row);
+        }
+
+        return $walkin_app;
+    }
 ?>

@@ -52,6 +52,10 @@
             $title = "Appointment";
             $message = "Oops, something went wrong. Please try again.";
             $task_error = true;
+        } else if($_SESSION["err_oadmin"] == 302) {
+            $title = "Not Found";
+            $message = "Oops, this appointment cannot be found.";
+            $task_error = true;
         }
         unset($_SESSION["err_oadmin"]);
     }

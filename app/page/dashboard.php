@@ -40,7 +40,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 </head>
-<body onload="initClock()">
+<body>
 	<div id = "pickcontainer"></div>
 	<!-- Side Navigation Bar -->
 	<div class="sidebar">
@@ -70,9 +70,12 @@
 		<!-- Navigation List -->
 		<ul class="nav-list">
 			<li>
-				<i class="bi bi-search"></i>
-				<input type="text" placeholder="Search...">
-				<span class="tooltip">Search</span>
+				<i class="qr"><img src="../assets/img/qr_code_scan.svg"></i>
+				<input id="searchQR" type="text" placeholder="Search QR Key..." oninput="Typing()">
+				<a href="" onclick='return check(this)'>
+					<span class="bi bi-arrow-right-short" id="arrow"></span>
+				</a>
+				<span class="tooltip">Search QR</span>
 			</li>
 			<li>
 				<a href="javascript:window.location.reload(true)" class="active">

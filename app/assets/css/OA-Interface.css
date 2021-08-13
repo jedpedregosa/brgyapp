@@ -293,7 +293,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .sidebar input {
     font-size: 15px;
-    font-family: "Poppins", sans-serif;
+    font-family: Arial;
     color: #F5F5F5;
     font-weight: 400;
     outline: none;
@@ -317,7 +317,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* SIDEBAR SEARCH ICON */
 
-.sidebar .bi-search {
+.sidebar .qr {
     position: absolute;
     top: 50%;
     left: 0;
@@ -330,7 +330,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* OPEN SIDEBAR SEARCH ICON HOVER */
 
-.sidebar.open .bi-search:hover {
+.sidebar.open .qr:hover {
     background: #001642;
     color: #F5F5F5;
 }
@@ -338,10 +338,48 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* SIDEBAR SEARCH ICON HOVER */
 
-.sidebar .bi-search:hover {
+.sidebar .qr:hover {
     background: #002060;
     color: #F5F5F5;
 }
+
+.sidebar .qr img {
+    width: 30px;
+    vertical-align: middle;
+  }
+  
+  /* SIDEBAR ARROW ICON */
+  .sidebar #arrow {
+    height: 50px;
+    min-width: 40px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 12px;
+  }
+  /* ARROW RIGHT ICON */
+  .sidebar .bi-arrow-right-short {
+    display: none;
+  }
+  
+  /* SIDEBAR OPEN ARROW RIGHT ICON  */
+  .sidebar.open .bi-arrow-right-short {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    font-size: 22px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: #F5F5F5;
+    transition: all 0.5s ease;
+  }
+  
+  .sidebar.open .bi-arrow-right-short:hover {
+    color: #EAB800;
+    cursor: pointer;
+  }
+
 
 
 /* SIDEBAR NAVIGATION LINKS */
@@ -2695,10 +2733,10 @@ select option {
         grid-gap: 3px;
         grid-template-areas: "done-walk-in" "download-all";
     }
-    .done-walk-in-appointments button {
+    .done-walk-in-appointments a {
         width: auto;
     }
-    .download-all button {
+    .download-all a {
         width: 92%;
     }
 }
@@ -2709,10 +2747,10 @@ select option {
         bottom: 3px;
         height: 16vh;
     }
-    .done-walk-in-appointments button {
+    .done-walk-in-appointments a {
         width: 40%;
     }
-    .download-all button {
+    .download-all a {
         width: 82%;
     }
 }
@@ -2722,7 +2760,7 @@ select option {
         bottom: 3px;
         height: 6vh;
     }
-    .download-all button {
+    .download-all a {
         float: right;
     }
 }
@@ -2735,7 +2773,7 @@ select option {
     grid-area: download-all;
 }
 
-.button-group-container button {
+.button-group-container a {
     background-color: rgb(0, 32, 96);
     color: white;
     font-family: Poppins;
@@ -2745,12 +2783,15 @@ select option {
     border: none;
     outline: none;
     cursor: pointer;
+    text-decoration: none;
 }
-
-.button-group-container button:active {
+.button-group-container #current {
+    background-color: #33312b;
+}
+.button-group-container a:active {
     transform: scale(0.95);
 }
 
-.button-group-container button:hover {
+.button-group-container a:hover {
     box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8);
 }

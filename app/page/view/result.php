@@ -13,14 +13,17 @@
 
     if(isset($_GET["app_"])) {
         $appointment_key = $_GET["app_"];
-        if(!isAppKeyValid($appointment_key)) {
-            header("Location: ../dashboard");
-            die();
-        }
+    } else if(isset($_GET["qr_key"])){
+        $qr_key = $_GET["qr_key"];
+		$appointment_key = getAppointmentKeyByQr($qr_key);
     } else {
-        header("Location: ../dashboard");
+		header("Location: ../dashboard");
         die();
-    }
+	}
+
+	if(!isAppKeyValid($appointment_key)) {
+		goBack();
+	}
 
     $app_id = getAppointmentIdByAppointmentKey($appointment_key);
     $appointment_data = arrangeAppointmentData($app_id);
@@ -50,6 +53,11 @@
 
     $file_keys = getFileKeysByAppId($app_id);
 
+	function goBack($errorCode = 302) {
+		$_SESSION["err_oadmin"] = $errorCode;
+		header("Location: ../dashboard");
+		die();
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -253,7 +261,7 @@
 			</div>
 				<?php
 			}
-		} else {
+		} else if($isWalkin){
 			if(!$isDoneWalkin) {
 			?>
 			<div style = "display: none">
@@ -276,6 +284,14 @@
 			</div>
 				<?php
 			}
+		} else {
+			?>
+			<div class="buttonD">
+				<button type="button" class="bi" id="clickedNotDone">
+					</i>&ensp;Appointment is on <?php echo htmlspecialchars($appointment_data[7]);  ?>
+				</button>
+			</div>
+			<?php
 		}?>
 
 			<!-- //Appointment Done Button -->

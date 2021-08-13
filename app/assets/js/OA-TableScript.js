@@ -3,7 +3,15 @@
 // JS for Side Navigation Bar
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
-let searchBtn = document.querySelector(".bi-search");
+let searchBtn = document.querySelector(".qr");
+// Displaying arrow when typing
+let arrow = document.querySelector("#arrow");
+
+// When the page loaded
+window.onload = () => {
+  document.getElementById('searchQR').value = '';
+  arrow.style.display = "none";
+};
 
 closeBtn.addEventListener("click", ()=>{
   sidebar.classList.toggle("open");
@@ -14,6 +22,23 @@ searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the 
   sidebar.classList.toggle("open");
   menuBtnChange(); //calling the function(optional)
 });
+
+function check(aTag)
+{
+    var id = document.getElementById("searchQR").value;
+    aTag.href = "result?qr_key=" + id;
+    return true;
+}
+
+function Typing() {
+  arrow.style.display = "block";
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search icon
+    arrow.style.display = "none";
+  });
+  closeBtn.addEventListener("click", ()=>{
+    arrow.style.display = "none";
+  });
+}
 
 function sortTable(id) {
   let optn = id.value;
@@ -53,7 +78,7 @@ function sortTableBy(id) {
   }
 }
 
-function searchTable() {
+function searchTable(field, txt_value) {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("txt_search");
@@ -62,7 +87,7 @@ function searchTable() {
   tr = table.getElementsByTagName("tr");
   
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[field];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

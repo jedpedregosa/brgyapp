@@ -96,10 +96,13 @@
         <!-- Navigation List -->
         <ul class="nav-list">
             <li>
-                <i class="bi bi-search"></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
+				<i class="qr"><img src="../../assets/img/qr_code_scan.svg"></i>
+				<input id="searchQR" type="text" placeholder="Search QR Key..." oninput="Typing()">
+				<a href="" onclick='return check(this)'>
+					<span class="bi bi-arrow-right-short" id="arrow"></span>
+				</a>
+				<span class="tooltip">Search QR</span>
+			</li>
             <li>
                 <a href="../dashboard">
                     <i class="bi bi-columns-gap"></i>
@@ -217,7 +220,7 @@
 
                     <div class="search-bar-container">
                         <!--Add Search Bar Here-->
-                        <input type="text" class="searchTerm" id = "txt_search" placeholder="Search" onkeyup= "searchTable()">
+                        <input type="text" class="searchTerm" id = "txt_search" placeholder="Search" onkeyup= "searchTable(0, this.value)">
                         <button class="searchButton" disabled>
                           <i class="bi bi-search"></i>
                         </button>
@@ -332,12 +335,13 @@
             <div class="button-group-container">
 
                 <div class="done-walk-in-appointments">
-                    <button><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</button>
-                    <button><i class="bi bi-door-closed"></i> &nbsp; Walk-in Appointments</button>
+                    <a href = "appointment" id = "current"><i class="bi bi-circle"></i> &nbsp; On-going Appointments</a>
+                    <a href = "done"><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</a>
+                    <a href = "all-walk-in"><i class="bi bi-door-closed"></i> &nbsp; Walk-in Appointments</a>
                 </div>
 
                 <div class="download-all">
-                    <button><i class="bi bi-download"></i> &nbsp; Download All Appointments</button>
+                    <a href = "#"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>
                 </div>
             </div>
 

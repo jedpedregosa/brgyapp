@@ -236,6 +236,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 /* SIDEBAR SEARCH BAR INPUT */
+
 .sidebar input {
   font-size: 15px;
   font-family: Arial;
@@ -251,14 +252,18 @@ body::-webkit-scrollbar-thumb:hover {
   background: #001642;
 }
 
+
 /* OPEN SIDEBAR SEARCH INPUT */
+
 .sidebar.open input {
   padding: 0 20px 0 50px;
   width: 100%;
 }
 
+
 /* SIDEBAR SEARCH ICON */
-.sidebar .bi-search {
+
+.sidebar .qr {
   position: absolute;
   top: 50%;
   left: 0;
@@ -268,17 +273,59 @@ body::-webkit-scrollbar-thumb:hover {
   color: #F5F5F5;
 }
 
+
 /* OPEN SIDEBAR SEARCH ICON HOVER */
-.sidebar.open .bi-search:hover {
+
+.sidebar.open .qr:hover {
   background: #001642;
   color: #F5F5F5;
 }
 
+
 /* SIDEBAR SEARCH ICON HOVER */
-.sidebar .bi-search:hover {
+
+.sidebar .qr:hover {
   background: #002060;
   color: #F5F5F5;
 }
+
+.sidebar .qr img {
+  width: 30px;
+  vertical-align: middle;
+}
+
+/* SIDEBAR ARROW ICON */
+.sidebar #arrow {
+  height: 50px;
+  min-width: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 12px;
+}
+/* ARROW RIGHT ICON */
+.sidebar .bi-arrow-right-short {
+  display: none;
+}
+
+/* SIDEBAR OPEN ARROW RIGHT ICON  */
+.sidebar.open .bi-arrow-right-short {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  font-size: 22px;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  color: #F5F5F5;
+  transition: all 0.5s ease;
+}
+
+.sidebar.open .bi-arrow-right-short:hover {
+  color: #EAB800;
+  cursor: pointer;
+}
+
 
 /* SIDEBAR NAVIGATION LINKS */
 .sidebar li a {

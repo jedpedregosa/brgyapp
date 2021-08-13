@@ -1,11 +1,14 @@
-<?php 
+<?php
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
-    $feedback_data = getAllFeedback($assigned_office);
-    $feedback_size = sizeof($feedback_data);
-?>
+    $type = null;
+    $byTime = 0;
 
+    $appointees_table = getDoneAppointments($assigned_office);
+    $appointees_size = sizeof($appointees_table);
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Feedback - RTU Appointment System</title>
+    <title>Done Appointments - RTU Appointment System</title>
 
     <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/OA-Interface.css" . FILE_VERSION ?>">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -32,7 +35,7 @@
 
             <!-- User Image Container -->
             <div class="user-img">
-                <!-- User Image -->
+                <!-- User Image --> 
                 <div class="bar-user-img">
                     <img src="load_image" id="bar-pic" alt="Not Found" onerror="this.src='../../assets/img/user-icon.png'">
                 </div>
@@ -67,14 +70,14 @@
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="appointment">
+                <a href="javascript:window.location.reload(true)" class="active">
                     <i class="bi bi-calendar3"></i>
-                    <span class="links_name">APPOINTMENTS</span>
+                    <span class="links_name"> APPOINTMENTS</span>
                 </a>
                 <span class="tooltip">Appointments</span>
             </li>
             <li>
-                <a href="javascript:window.location.reload(true)" class="active">
+                <a href="feedback">
                     <i class="bi bi-star"></i>
                     <span class="links_name">FEEDBACK</span>
                 </a>
@@ -138,33 +141,14 @@
         <div class="contents">
             <div class="main-container">
                 <div class="text-container">
-                    <h4>FEEDBACK</h4>
+                    <h4>Done Appointments</h4>
                 </div>
 
-
+                
                 <div class="functions-container">
-
-                    <div class="select-1-container">
-                        <select class="select-table" onchange = "searchTableFeedback(4, this.value)">
-                            <option value="" selected>View All Class</option>
-                            <option value="Student">By Student</option>
-                            <option value="Employee">By Employee</option>
-                            <option value="Guest">By Guest</option>
-                        </select>
-                    </div>
-
-                    <div class="select-2-container">
-                        <!--Add Select View By Here-->
-                        <select class="select-display" onchange = "searchTableFeedback(6, this.value)">
-                            <option value="" selected>View All Reacts</option>
-                            <option value=" satisfied">View Satisfied</option>
-                            <option value="unsatisfied">View Unsatisfied</option>
-                        </select>
-                    </div>
-
                     <div class="search-bar-container">
                         <!--Add Search Bar Here-->
-                        <input type="text" class="searchTerm" placeholder="Search" onkeyup = "searchTableFeedback(0, this.value)">
+                        <input type="text" class="searchTerm" id = "txt_search" placeholder="Search" onkeyup= "searchTable(0, this.value)">
                         <button class="searchButton" disabled>
                           <i class="bi bi-search"></i>
                         </button>
@@ -173,68 +157,83 @@
                 </div>
 
                 <div class="table-container">
-                    <table id = "tbl_fback">
+                    <table id = "tbl_appointments">
                         <tr class="table-header">
-                            <th style="width: 15%;">FULL NAME</th>
-                            <th style="width: 10%;">CONTACT NO.</th>
-                            <th style="width: 10%;">EMAIL</th>
-                            <th style="width: 20%;">FEEDBACK MESSAGE</th>
-                            <th style="width: 10%;">USER CATEGORY</th>
-                            <th style="width: 20%;">SYSTEM TIME</th>
-                            <th style="width: 10%;">REACTION</th>
+                            <th style="width: 10%;">Appointment No.</th>
+                            <th>Identification No.</th>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Contact Number</th>
+                            <th>Email Address</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Purpose</th>
+                            <th>Identification Type</th>
+                            <th>Date & Time Visited</th>
                         </tr>
+
             <?php 
-                foreach((array)$feedback_data as $feedback) {
+                foreach($appointees_table as $appointees) {
+                    $date_to_show = new DateTime($appointees[1]);
+                    $date_to_show = $date_to_show->format("M d, Y");
+                    //$appointees[8] = preg_replace('/\s+/', ' ', $appointees[8]);
                     ?>
-                        <tr>
-                    
-                            <td><?php echo htmlspecialchars($feedback["fback_fname"])?></td>
-                            <td><?php echo htmlspecialchars($feedback["fback_contact"])?></td>
-                            <td><?php echo htmlspecialchars($feedback["fback_email"])?></td>
-                            <td><?php echo htmlspecialchars($feedback["fback_msg"])?></td>
+            <tr>
+                            <td><?php echo htmlspecialchars($appointees[0]); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[8]); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[6]); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[7]); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[9]); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[10]); ?></td>
+                            <td><?php echo htmlspecialchars($date_to_show); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[2]); ?></td>
+                            <td><?php echo htmlspecialchars($appointees[3]); ?></td>
                             <td>
                                 <div class="build-badge">
                                     <span class="build-badge__status build-badge__status-information">
-                                    <?php echo htmlspecialchars(strtoupper($feedback["fback_cat"]))?>
+                                <?php 
+                                    if($appointees[11] == "student") {
+                                        echo "Student (RTU)";
+                                    } else if ($appointees[11] == "guest") {
+                                        echo "GOV ID";
+                                    } else {
+                                        echo "Employee (RTU)";
+                                    }
+                                ?>
                                     </span>
                                 </div>
                             </td>
-                            <td><?php echo htmlspecialchars($feedback["fback_sys_time"])?></td>
                             <td>
-                <?php
-                        if($feedback["fback_is_stsfd"]) {
-                            ?>
-                                <div class="like" id="like">
-									<i class="bi bi-heart-fill"></i>
-								    <span class="like_dislike">Satisfied</span> <!-- Show Result Data (Display Rating) -->
-							    </div>
-                            <?php
-                        } else {
-                            ?>
-                                <div class="dislike" id="dislike">
-									<i class="bi bi-heart-half"></i>
-								    <span class="like_dislike">Unsatisfied</span> <!-- Show Result Data (Display Rating) -->
-							    </div>
-                            <?php
-                        }               
-                ?>
+                                <?php
+                                    echo $appointees[5];
+                                ?>
                                 
-                            </td>
+                            </td> 
                         </tr>
                     <?php
                 }
             ?>
                     </table>
-                    <p class="record-count" id="record-count">Total of <?php echo htmlspecialchars($feedback_size); ?> feedback(s). </p>
+                    <p class="record-count" id="record-count">Total of <?php echo $appointees_size; ?> Done Appointment(s).</p>
+
+                    
                 </div>
 
             </div>
 
             <div class="button-group-container">
+
+                <div class="done-walk-in-appointments">
+                    <a href = "appointment"><i class="bi bi-circle"></i> &nbsp; On-going Appointments</a>
+                    <a href = "done" id = "current"><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</a>
+                    <a href = "all-walk-in"><i class="bi bi-door-closed"></i> &nbsp; Walk-in Appointments</a>
+                </div>
+
                 <div class="download-all">
-                    <button><i class="bi bi-download"></i> &nbsp; Download All Records</button>
+                    <a href = "#"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>
                 </div>
             </div>
+
         </div>
         <!-- //Contents Container -->
     </main>

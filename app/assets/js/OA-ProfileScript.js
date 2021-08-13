@@ -3,8 +3,16 @@
 // JS for Side Navigation Bar
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
-let searchBtn = document.querySelector(".bi-search");
 let form_upload = document.querySelector("#form_upload");
+let searchBtn = document.querySelector(".qr");
+// Displaying arrow when typing
+let arrow = document.querySelector("#arrow");
+
+// When the page loaded
+window.onload = () => {
+  document.getElementById('searchQR').value = '';
+  arrow.style.display = "none";
+};
 
 closeBtn.addEventListener("click", ()=>{
   sidebar.classList.toggle("open");
@@ -15,6 +23,23 @@ searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the 
   sidebar.classList.toggle("open");
   menuBtnChange(); //calling the function(optional)
 });
+
+function check(aTag)
+{
+    var id = document.getElementById("searchQR").value;
+    aTag.href = "view/result?qr_key=" + id;
+    return true;
+}
+
+function Typing() {
+  arrow.style.display = "block";
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search icon
+    arrow.style.display = "none";
+  });
+  closeBtn.addEventListener("click", ()=>{
+    arrow.style.display = "none";
+  });
+}
 
 // Upload Profile Picture
 const imgDiv = document.querySelector(".profile-user-con");
