@@ -299,7 +299,7 @@
 		                				<p> 
 			                				Status : &ensp; 
 			                				<b style="color: #002060"> Pending </b> &ensp;<!-- Show Data (Display Availabilty Status if Pending, Cancelled, or Ongoing) -->
-			                				<button class="reschedule" type="button" onclick="" id="myBtn" style="display: inline-flex;" title="Reschedule Appointment"> 
+			                				<button  class="bi bi-calendar-check reschedule" type="button" onclick="" id="myBtn" style="display: inline-flex;" title="Reschedule Appointment"> 
 												Reschedule
 
 												<!-- The Modal -->
@@ -369,7 +369,7 @@
 												            	Appointment No: <!-- Show Data (Display Code) -->
 												        	</p> 
 												            <button class="submit dlbutton" type="button" onclick=""> 
-													            DOWNLOAD APPOINTMENT SLIP <!-- Appointment Download Button  -->
+													            Download Appointment Slip<!-- Appointment Download Button  -->
 													        </button>
 												        </div>
 												    </div>
