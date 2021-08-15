@@ -8,7 +8,7 @@
         $appointmentKey = getAppointmentKeyByAppointmentId($app_id);
         $file_keys = getFileKeysByAppId($app_id);
 
-	    $file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $appointmentKey . "/";          
+	    $file_dir = APP_FILES . $appointmentKey . "/";          
 
         // For RTU Logo
         $path = $_SERVER['DOCUMENT_ROOT'] . '/assets/img/rtu_logo.png';

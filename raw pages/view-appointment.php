@@ -113,7 +113,7 @@
 
 	<title> View Appointment </title>
 
-	<link rel="stylesheet" href="../assets/css/ViewAppointmentStyle.css">
+	<link rel="stylesheet" href="ViewAppointmentStyle.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">

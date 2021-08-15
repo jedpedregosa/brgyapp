@@ -3,6 +3,8 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/create-pdf.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/api/phpqrcode/qrlib.php");
 
     function totalAppointmentToday($office) {
         
@@ -324,10 +326,27 @@
     function deleteAppointmentKeys($app_id) {
         $conn = connectDb();
 
+        $app_key = getAppointmentKeyByAppointmentId($app_id);
+        $file_to_delete = APP_FILES . $app_key . "/";
+
+        deleteAppFiles($file_to_delete);
+
         $stmt = $conn->prepare("DELETE FROM tbl_appointment_auth WHERE app_id = ?");
         $result = $stmt->execute([$app_id]);
 
         return $result;
+    }
+
+    function deleteAppFiles($dir) {
+        foreach (glob($dir) as $file) {
+            if (is_dir($file)) { 
+                deleteAppFiles("$file/*");
+                rmdir($file);
+            } else {
+                unlink($file);
+            }
+        }
+
     }
 
     function doesAppointmentDoneDataExist($app_id) {
@@ -553,4 +572,127 @@
 
         return $walkin_app;
     }
+
+    function doesEmailHasAppData($email) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ?");
+        $stmt->execute([$email]);
+        $vstor_id = $stmt->fetchColumn();
+
+        if(!$vstor_id) {
+            return false;
+        }
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE vstor_id = ?");
+        $stmt->execute([$vstor_id]);
+        
+        return $stmt->fetchColumn();
+    }
+
+    function isReschedAllowed($app_id) {
+        $app_date = getAppointmentDate($app_id);
+
+        $interval;
+        $currentDateTime = new DateTime();
+        $current = $currentDateTime->format("Y-m-d");
+
+        $appDateTime = new DateTime($app_date);
+        $appdate = $appDateTime->format("Y-m-d");
+
+        if(strtotime($current) < strtotime($appdate)) {
+            $interval = $currentDateTime->diff($appDateTime);
+            $interval = $interval->format('%R%a');
+
+            if((int)days_rescheduling_span <= (int)$interval) {
+                return true;
+            }
+        }
+
+        return $interval;
+    }
+
+    function reschedAppointment($app_id, $new_date, $new_time) {
+        $conn = connectDb();
+
+        $office = getAppointmentOffice($app_id);
+        deleteAppointmentKeys($app_id);
+
+        $slctd_date = new DateTime($new_date);
+        $submtDate = $slctd_date->format('ymd');
+        $dateForSched = $slctd_date->format('Y-m-d');
+        $office_id = str_replace("RTU-O", "", $office);
+        $time_id = str_replace("TMSLOT-", "", $new_time);
+        $sched_id = $submtDate . $office_id . $time_id;
+
+        checkTimeSlotValidity($new_date, $office, $new_time, $sched_id);
+
+        if(isSchedAvailable($sched_id)) {
+            if(!doesSchedExist($sched_id)) {
+                // !!!: Lacks Time Slot Id && Office Id Availability Checker
+                createSched($sched_id, $dateForSched, $new_time, $office); // Lacks Query Catch
+            } 
+            addToSchedTotalVisitor($sched_id);
+
+            $new_queue_num = checkSchedTotalVisitor($sched_id);
+
+            $new_app_id = $sched_id . $new_queue_num;
+            $stmt = $conn->prepare("UPDATE tbl_appointment SET app_id = ?, sched_id = ? WHERE app_id = ?");
+            $result = $stmt->execute([$new_app_id, $sched_id, $app_id]);
+
+            $keys_result = createNewAppointmentKeys($new_app_id);
+            generateNewAppFiles($new_app_id);
+
+            return $result && $keys_result;
+        } else {
+            return 101;
+        }
+    }
+
+    function createNewAppointmentKeys($app_id) {
+        $conn = connectDb();
+
+        // Generate random string then translate into hash to set as an unreadable key for the appointment 
+        $randomString = generateRandomString();
+        $appointmentKey = hash("sha256", $app_id . $randomString);
+        $qr_key = $app_id . generateRandomString(6);
+
+        $fkey1 = generateRandomString();
+        $fkey2 = generateRandomString();
+
+        $stmt = $conn -> prepare("INSERT INTO tbl_appointment_auth (app_id, app_key, f_key1, f_key2, qr_key) 
+            VALUES (:appno, :appkey, :fkey, :fkeyy, :qr)");
+        $stmt-> bindParam(':appno', $app_id);
+        $stmt-> bindParam(':appkey', $appointmentKey);
+        $stmt-> bindParam(':fkey', $fkey1);
+        $stmt-> bindParam(':fkeyy', $fkey2);
+        $stmt-> bindParam(':qr', $qr_key);
+        $submitResult = $stmt->execute();
+
+        return $submitResult;
+    }
+
+    function generateNewAppFiles($app_id) {
+        $appointmentKey = getAppointmentKeyByAppointmentId($app_id);
+        $file_keys = getFileKeysByAppId($app_id);
+
+        $file_dir = APP_FILES . $appointmentKey . "/";
+        if(!is_dir($file_dir)) {
+            mkdir($file_dir);
+        }
+
+        $flname = $file_keys[0] . ".png";
+        $qrfilepath = $file_dir . $flname;
+
+        if (!file_exists($qrfilepath)) {
+            QRcode::png(HTTP_PROTOCOL . $_SERVER['HTTP_HOST' ]. "/rtuappsys/direct?an_=". $appointmentKey, $qrfilepath); //should be a default link
+        }
+        $visitor_data = getVisitorDataByAppointmentId($app_id);
+        
+        if(!file_exists($file_dir . $file_keys[1] .'.pdf')) {
+            generateAppointmentFile($app_id);
+        }
+
+    }
+
 ?>

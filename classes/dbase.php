@@ -392,12 +392,7 @@
             return true;
         } 
 
-        $conn = connectDb();
-
-        $stmt = $conn->prepare("SELECT sched_total_visitor FROM tbl_schedule WHERE sched_id = ?");
-        $stmt-> execute([$schedId]);
-
-        $total_visitor = (int)$stmt->fetchColumn(); // Lacks Catch
+        $total_visitor = countTotalAppointmentsBySched($schedId); // Lacks Catch
         if(($total_visitor < (int)max_per_sched) && isSchedOpen($schedId)) {
             return true;
         } else {
@@ -413,6 +408,15 @@
         $stmt-> execute([$schedId]);
 
         return $stmt->fetchColumn();
+    }
+
+    function countTotalAppointmentsBySched($sched_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE sched_id = ?");
+        $stmt->execute([$sched_id]);
+
+        return (int)$stmt->fetchColumn();
     }
 
     function checkTimeSlotValidity($date, $office, $tmslot, $schedId) {
@@ -565,8 +569,11 @@
         $stmt = $conn->prepare("SELECT sched_total_visitor FROM tbl_schedule WHERE sched_id = ?");
         $stmt-> execute([$schedId]);
 
-        $total_visitor = (int)$stmt->fetchColumn();
-        return $total_visitor;
+        $return = $stmt->fetchColumn();
+
+        $queue = strval($return);
+        $queue_num = base_convert($queue, 10, 36);
+        return strtoupper($queue_num);
     }
 
     function addToSchedTotalVisitor($schedId) {
@@ -574,9 +581,8 @@
 
         $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_total_visitor = sched_total_visitor + 1 WHERE sched_id = ?");
         $stmt->execute([$schedId]);
-
-        $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_is_available = 0 WHERE sched_id = ? AND sched_total_visitor = ?");
-        $stmt-> execute([$schedId, (int)max_per_sched]);
+        
+        isSchedAvailable($schedId);
     }
 
     function checkDaySched($Day, $office) {
@@ -644,7 +650,7 @@
     function getAppointmentDetailsByEmail($v_email) {
         $conn = connectDb();
 
-        $stmt = $conn->prepare("SELECT app_id, sched_id, office_id, app_branch, app_purpose FROM tbl_appointment 
+        $stmt = $conn->prepare("SELECT app_id, sched_id, office_id, app_branch, app_purpose, app_sys_time FROM tbl_appointment 
         WHERE vstor_id = (SELECT vstor_id FROM tbl_visitor WHERE vstor_email = ?)");
         $stmt-> execute([$v_email]);
         $result = $stmt->fetch();

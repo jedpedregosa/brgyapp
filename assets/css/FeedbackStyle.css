@@ -304,7 +304,7 @@ textarea:focus {
 
 .selected::after {
   content: "";
-  background: url("../Images/arrow.svg");
+  background: url("../img/arrow.svg");
   background-size: 20px;
   background-repeat: no-repeat;
 
@@ -414,7 +414,7 @@ textarea:focus {
 
 .selected2::after {
   content: "";
-  background: url("../Images/arrow.svg");
+  background: url("../img/arrow.svg");
   background-size: 20px;
   background-repeat: no-repeat;
 
@@ -760,7 +760,7 @@ form input[type=submit]:hover {
 
   .selected::after {
     content: "";
-    background: url("../Images/arrow.svg");
+    background: url("../img/arrow.svg");
     background-size: 20px;
     background-repeat: no-repeat;
     position: absolute;
@@ -806,7 +806,7 @@ form input[type=submit]:hover {
 
   .office_names .selected2::after {
     content: "";
-    background: url("../Images/arrow.svg");
+    background: url("../img/arrow.svg");
     background-size: 20px;
     background-repeat: no-repeat;
     position: absolute;

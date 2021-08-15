@@ -50,7 +50,7 @@
 	$appointmentKey = getAppointmentKeyByAppointmentId($appId);
 	$file_keys = getFileKeysByAppId($appId);
 
-	$file_dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/files/" . $appointmentKey . "/";
+	$file_dir = APP_FILES . $appointmentKey . "/";
 	if(!is_dir($file_dir)) {
 		mkdir($file_dir);
 	}
@@ -59,7 +59,7 @@
     $qrfilepath = $file_dir . $flname;
 
     if (!file_exists($qrfilepath)) {
-        QRcode::png(HTTP_PROTOCOL . $_SERVER['HTTP_HOST' ]. "/r_appsys/direct?an_=". $appointmentKey, $qrfilepath); //should be a default link
+        QRcode::png(HTTP_PROTOCOL . $_SERVER['HTTP_HOST' ]. "/rtuappsys/direct?an_=". $appointmentKey, $qrfilepath); //should be a default link
     }
 	$visitor_data = getVisitorDataByAppointmentId($appId);
 	
@@ -124,8 +124,8 @@
 				<!-- PDF DIV -->
 				<div class="pdf">
 					<!-- PUT HERE THE PDF VIEWER OR DOWNLOADER -->
-					<object data="../assets/files/<?php echo $appointmentKey; ?>/<?php echo $file_keys[1]; ?>.pdf" type="application/pdf" width="100%" height="100%">
-                        <embed src="../assets/files/<?php echo $appointmentKey; ?>/<?php echo $file_keys[1]; ?>.pdf" type="application/pdf" />
+					<object data="load_pdf" type="application/pdf" width="100%" height="100%">
+                        <embed src="load_pdf" type="application/pdf" />
                     </object>
 				</div>
 				<!-- //PDF DIV -->

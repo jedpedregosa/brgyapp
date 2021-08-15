@@ -221,16 +221,15 @@
 
             </div>
 
-            <div class="button-group-container">
-
-                <div class="done-walk-in-appointments">
-                    <a href = "appointment"><i class="bi bi-circle"></i> &nbsp; On-going Appointments</a>
-                    <a href = "done" id = "current"><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</a>
-                    <a href = "all-walk-in"><i class="bi bi-door-closed"></i> &nbsp; Walk-in Appointments</a>
+            <div class="buttons-container">
+                <div class="buttons-left">
+                    <a href="appointment"><i class="bi bi-circle"></i> &nbsp; On-going Appointments</a>
+                    <a href="done" id="current"><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</a>
+                    <a href="all-walk-in"><i class="bi bi-door-closed"></i> &nbsp; Walk-in Appointments</a>
                 </div>
 
-                <div class="download-all">
-                    <a href = "#"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>
+                <div class="buttons-right">
+                    <a href="#" class="download"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>    
                 </div>
             </div>
 

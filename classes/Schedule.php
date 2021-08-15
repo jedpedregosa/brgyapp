@@ -162,4 +162,26 @@
 
         return (strtotime($result) == strtotime($date)); 
     }
+
+    function loadAvailableDates($office) {
+        date_default_timezone_set("Asia/Manila");
+        $slctd_date = new DateTime();
+        $startDate = $slctd_date->format('Y-m-d');
+
+        $availableDates = [];
+
+        $date = $startDate;
+        $i = 1;
+        while($i <= (int)days_scheduling_span) {
+            if(!(date('N', strtotime($date)) >= 6)) {
+                if(checkDaySched($date, $office)) {
+                    array_push($availableDates, $date);
+                    $i += 1;
+                }
+            }
+            $date = date('Y-m-d', strtotime($date. ' + 1 days'));
+        }
+
+        return $availableDates;
+    }
 ?>
