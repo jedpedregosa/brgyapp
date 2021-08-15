@@ -338,15 +338,22 @@
     }
 
     function deleteAppFiles($dir) {
-        foreach (glob($dir) as $file) {
-            if (is_dir($file)) { 
-                deleteAppFiles("$file/*");
-                rmdir($file);
-            } else {
-                unlink($file);
-            }
-        }
+        $items = scandir($dir);
 
+        if($items) {
+            foreach ($items as $item) {
+                if ($item === '.' || $item === '..') {
+                    continue;
+                }
+                $path = $dir.'/'.$item;
+                if (is_dir($path)) {
+                    xrmdir($path);
+                } else {
+                    unlink($path);
+                }
+            }
+            rmdir($dir);
+        }  
     }
 
     function doesAppointmentDoneDataExist($app_id) {
@@ -616,8 +623,7 @@
         $conn = connectDb();
 
         $office = getAppointmentOffice($app_id);
-        deleteAppointmentKeys($app_id);
-
+        
         $slctd_date = new DateTime($new_date);
         $submtDate = $slctd_date->format('ymd');
         $dateForSched = $slctd_date->format('Y-m-d');
@@ -628,6 +634,9 @@
         checkTimeSlotValidity($new_date, $office, $new_time, $sched_id);
 
         if(isSchedAvailable($sched_id)) {
+
+            deleteAppointmentKeys($app_id);
+
             if(!doesSchedExist($sched_id)) {
                 // !!!: Lacks Time Slot Id && Office Id Availability Checker
                 createSched($sched_id, $dateForSched, $new_time, $office); // Lacks Query Catch

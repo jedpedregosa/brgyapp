@@ -142,6 +142,7 @@
 	<title> View Appointment - RTU Appointment System</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/ViewAppointmentStyle.css" . FILE_VERSION ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/ViewAppointmentStyleCA.css" . FILE_VERSION ?>">
 	<link rel="stylesheet" href="../assets/css/fnon.min.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
