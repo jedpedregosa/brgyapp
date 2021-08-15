@@ -430,7 +430,7 @@
 												            	<?php echo htmlspecialchars($file_keys[2]); ?><!-- Show Data (Display Code) -->
 												        	</p> 
 												            <a class="submit dlbutton" href = "view-appointment?dl=1"> 
-													            DOWNLOAD APPOINTMENT SLIP <!-- Appointment Download Button  -->
+													           Download Appointment Slip <!-- Appointment Download Button  -->
 															</a>
 												        </div>
 												    </div>
