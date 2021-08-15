@@ -1,26 +1,27 @@
 const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
 const optionsList = document.querySelectorAll(".option");
-const slots = ["8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM",
-	"10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM",
-	"1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM"];
+
+const selected2 = document.querySelector(".selected2");
+const optionsContainer2 = document.querySelector(".options-container2");
+const optionsList2 = document.querySelectorAll(".option2");
+
 selected.addEventListener("click", () => {
   optionsContainer.classList.toggle("active");
+  optionsContainer2.classList.remove("active2");
 });
 
 optionsList.forEach(o => {
   o.addEventListener("click", () => {
     selected.innerHTML = o.querySelector(".lbl_date").innerHTML;
     optionsContainer.classList.remove("active");
+	selected2.innerHTML = "Select timeslot..";
   });
 });
 
-const selected2 = document.querySelector(".selected2");
-const optionsContainer2 = document.querySelector(".options-container2");
-const optionsList2 = document.querySelectorAll(".option2");
-
 selected2.addEventListener("click", () => {
   optionsContainer2.classList.toggle("active2");
+  optionsContainer.classList.remove("active");
 });
 
 optionsList2.forEach(o2 => {

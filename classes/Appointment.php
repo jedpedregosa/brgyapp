@@ -327,9 +327,8 @@
         $conn = connectDb();
 
         $app_key = getAppointmentKeyByAppointmentId($app_id);
-        $file_to_delete = APP_FILES . $app_key . "/";
 
-        deleteAppFiles($file_to_delete);
+        deleteAppFiles($app_id);
 
         $stmt = $conn->prepare("DELETE FROM tbl_appointment_auth WHERE app_id = ?");
         $result = $stmt->execute([$app_id]);
@@ -337,23 +336,18 @@
         return $result;
     }
 
-    function deleteAppFiles($dir) {
-        $items = scandir($dir);
+    function deleteAppFiles($app_id) {
+        $app_key = getAppointmentKeyByAppointmentId($app_id);
+        $file_keys = getFileKeysByAppId($app_id);
 
-        if($items) {
-            foreach ($items as $item) {
-                if ($item === '.' || $item === '..') {
-                    continue;
-                }
-                $path = $dir.'/'.$item;
-                if (is_dir($path)) {
-                    xrmdir($path);
-                } else {
-                    unlink($path);
-                }
-            }
-            rmdir($dir);
-        }  
+        $delete_dir = APP_FILES . $app_key . "/";
+
+        $qr_dir = $delete_dir . $file_keys[0] . ".png";
+        $pdf_dir = $delete_dir . $file_keys[1] . ".pdf";
+
+        if(unlink($qr_dir) && unlink($pdf_dir)) {
+            rmdir($delete_dir);
+        }
     }
 
     function doesAppointmentDoneDataExist($app_id) {
@@ -365,6 +359,15 @@
         return $stmt->fetchColumn();
     }
 
+    function doesAppointmentExists($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_appointment WHERE app_id = ?");
+        $stmt->execute([$app_id]);
+        
+        return $stmt->fetchColumn();
+    }
+    
     function isAppointmentDone($app_id) {
         $conn = connectDb();
 
@@ -616,7 +619,7 @@
             }
         }
 
-        return $interval;
+        return false;
     }
 
     function reschedAppointment($app_id, $new_date, $new_time) {
@@ -702,6 +705,58 @@
             generateAppointmentFile($app_id);
         }
 
+    }
+
+    function getAppointmentVisitor($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT vstor_id FROM tbl_appointment WHERE app_id = ?");
+        $stmt->execute([$app_id]);
+        
+        return $stmt->fetchColumn();
+    }
+
+    function deleteAppointmentData($app_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("DELETE FROM tbl_appointment WHERE app_id = ?");
+        $stmt->execute([$app_id]);
+
+        deleteAppointmentKeys($app_id);
+    }
+
+    function checkAppointmentValidity($app_id) {
+        $conn = connectDb();
+
+        $date = getAppointmentDate($app_id);
+
+        $r_current = new DateTime();
+        $current_date = $r_current->format("Y-m-d");
+
+        $r_app_date = new DateTime($date);
+        $app_date = $r_app_date->format("Y-m-d");
+
+        if(strtotime($current_date) > strtotime($app_date)) {
+            $vstor_id = getAppointmentVisitor($app_id);
+            deleteVisitorData($vstor_id);
+            deleteAppointmentData($app_id);
+        }
+    }
+
+    function checkAllAppointments($office) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT app_id FROM tbl_appointment WHERE office_id = ?");
+        $stmt->execute([$office]);
+
+        $appointments = [];
+        while($row = $stmt->fetchAll()) {
+            $appointments = array_merge($appointments, $row);
+        }
+
+        foreach((array)$appointments as $app) {
+            checkAppointmentValidity($app[0]);
+        }
     }
 
 ?>

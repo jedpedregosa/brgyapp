@@ -1,6 +1,7 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
 
     function connectDb() {
         $conn;
@@ -393,6 +394,8 @@
         } 
 
         $total_visitor = countTotalAppointmentsBySched($schedId); // Lacks Catch
+        checkReopenSchedule($schedId);
+        
         if(($total_visitor < (int)max_per_sched) && isSchedOpen($schedId)) {
             return true;
         } else {
@@ -401,6 +404,35 @@
         }
     }
 
+    function checkReopenSchedule($schedId) {
+        $conn = connectDb();
+
+        if(!isSchedOpen($schedId) && !isSchedClosed($schedId)) {
+
+            $date = getScheduleDate($schedId);
+
+            $r_date = new DateTime($date);
+            $s_date = $r_date->format("Y-m-d");
+
+            $cr_date = new DateTime();
+            $c_date = $cr_date->format("Y-m-d");
+
+            if(strtotime($c_date) < strtotime($s_date)) {
+                $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_is_available = 1 
+                    WHERE sched_id = ?");
+                $stmt->execute([$schedId]);
+            } 
+        }
+    }
+
+    function getScheduleDate($schedId) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT sched_date FROM tbl_schedule WHERE sched_id = ?");
+        $stmt->execute([$schedId]);
+
+        return $stmt->fetchColumn();
+    }
     function isSchedOpen($schedId) {
         $conn = connectDb();
 

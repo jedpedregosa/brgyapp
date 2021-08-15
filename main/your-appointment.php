@@ -46,6 +46,13 @@
         header("Location: rtuappsys");
 		die();
     }
+
+	checkAppointmentValidity($appId);
+
+	if(!doesAppointmentExists($appId)) {
+		header("Location: rtuappsys");
+		die();
+	}
 	
 	$appointmentKey = getAppointmentKeyByAppointmentId($appId);
 	$file_keys = getFileKeysByAppId($appId);

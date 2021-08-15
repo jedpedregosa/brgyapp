@@ -294,7 +294,7 @@
                                     if($appointees[10]) {
                                         ?>
                                 <div class="build-badge">
-                                    <span class="build-badge__status build-badge__status-success">Available</span>
+                                    <span class="build-badge__status build-badge__status-success">Ongoing</span>
                                 </div>
                                         <?php
                                     } else {

@@ -50,14 +50,20 @@
             if($v_data) {
                 //Is appointment not done
                 $v_app_data = getAppointmentDetailsByEmail($v_email);
-                $file_keys = getFileKeysByAppId($v_app_data[0]);
-                $sched_data = getScheduleDetailsByAppointmentId($v_app_data[0]);
-                $office_slot = getValues($v_app_data[2], $sched_data[2]);
-                    
-                $schedDate = new DateTime($sched_data[4]);
-                $scheduled_date = $schedDate->format("F d, Y");
+				checkAppointmentValidity($v_app_data[0]);
 
-                $app_key = getAppointmentKeyByAppointmentId($v_app_data[0]);
+				if(doesEmailHasAppData($v_email)) {
+					$file_keys = getFileKeysByAppId($v_app_data[0]);
+					$sched_data = getScheduleDetailsByAppointmentId($v_app_data[0]);
+					$office_slot = getValues($v_app_data[2], $sched_data[2]);
+						
+					$schedDate = new DateTime($sched_data[4]);
+					$scheduled_date = $schedDate->format("F d, Y");
+
+					$app_key = getAppointmentKeyByAppointmentId($v_app_data[0]);
+				} else {
+					goBack();
+				}
             } else {
                 goBack();
             }

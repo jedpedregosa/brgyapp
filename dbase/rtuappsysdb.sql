@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 11, 2021 at 10:04 PM
+-- Generation Time: Aug 15, 2021 at 07:27 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appdone_vstr` (
   `type` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `vstor_ip_add` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`app_num`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `app_done_date` datetime DEFAULT NULL,
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `app_num` (`app_num`)
-) ENGINE=MyISAM AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment_done` (
   `app_sys_time` datetime NOT NULL,
   `app_done_date` datetime NOT NULL,
   PRIMARY KEY (`app_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tbl_app_wlkin` (
   `app_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `wlkin_date` datetime NOT NULL,
   PRIMARY KEY (`wlkin_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office_admin` (
   `oadmn_contact` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`oadmn_id`),
   UNIQUE KEY `oadmn_num` (`oadmn_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
   `sched_isClosed` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`sched_id`),
   KEY `sched_num` (`sched_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=898 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1020 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -342,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   PRIMARY KEY (`vstor_num`) USING BTREE,
   UNIQUE KEY `vstor_id` (`vstor_id`),
   UNIQUE KEY `vstor_email` (`vstor_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=337 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=362 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

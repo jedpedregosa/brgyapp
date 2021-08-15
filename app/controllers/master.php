@@ -30,6 +30,9 @@
     $full_name = getFullName($admin_id);
     $assigned_office = getAssignedOffice($admin_id);
 
+    // Checkers
+    checkAllAppointments($assigned_office);
+
     $message;
     $title;
     $success = false;

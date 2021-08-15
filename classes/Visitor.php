@@ -45,4 +45,42 @@
 
         return $result;
     }
+
+    function getVisitorType($visitor_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT vstor_type FROM tbl_visitor WHERE vstor_id = ?");
+        $stmt->execute([$visitor_id]);
+        
+        return $stmt->fetchColumn();
+    }
+
+    function deleteVisitorData($visitor_id) {
+        $conn = connectDb();
+
+        $type = getVisitorType($visitor_id);
+
+        $stmt = $conn->prepare("DELETE FROM tbl_visitor WHERE vstor_id = ?");
+        $stmt->execute([$visitor_id]);
+
+        if($type == "student") {
+            $stmt = $conn->prepare("DELETE FROM tbl_student_data WHERE vstor_id = ?");
+            $stmt->execute([$visitor_id]);
+        } else if($type == "employee") {
+            $stmt = $conn->prepare("DELETE FROM tbl_employee_data WHERE vstor_id = ?");
+            $stmt->execute([$visitor_id]);
+        } else {
+            $stmt = $conn->prepare("DELETE FROM tbl_guest_data WHERE vstor_id = ?");
+            $stmt->execute([$visitor_id]);
+        }
+    }
+
+    function getAppointmentIdByVisitor($vstor_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT app_id FROM tbl_appointment WHERE vstor_id = ?");
+        $stmt->execute([$vstor_id]);
+
+        return $stmt->fetchColumn();
+    }
 ?>

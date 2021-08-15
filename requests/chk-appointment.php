@@ -24,6 +24,8 @@
     // Includes
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
     
     // Initialization
     $userId;            // Student Number, Employee Number or Email
@@ -82,6 +84,20 @@
     $_SESSION["userId"] = $userId;
     $_SESSION["uLname"] = $uLname;
     $_SESSION["uType"] = $uType;
+
+    $vstor_id = getVisitorId($userId, $uType);
+
+    if($vstor_id) {
+        $app_id = getAppointmentIdByVisitor($vstor_id);
+
+        if($app_id) {
+            if(isAppointmentDone($app_id)) {
+                deleteAppointmentData($app_id);
+            } else {
+                goBack();
+            }
+        }
+    }
 
     // Continue to creating appointment
     header("Location: ../main/create/appointment");

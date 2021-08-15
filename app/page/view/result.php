@@ -229,8 +229,8 @@
 					</ul>
 					<div class="pdf">
 						<!-- Put here the pdf -->
-                        <object data="../../../assets/files/<?php echo $appointment_key; ?>/<?php echo $file_keys[1]; ?>.pdf" type="application/pdf" width="100%" height="100%">
-                            <embed src="../../../assets/files/<?php echo $appointment_key; ?>/<?php echo $file_keys[1]; ?>.pdf" type="application/pdf" />
+                        <object data="load_pdf?app=<?php echo $appointment_key?>" type="application/pdf" width="100%" height="100%">
+                            <embed src="load_pdf?app=<?php echo $appointment_key?>" type="application/pdf" />
                         </object>
 					</div>
 				</div>

@@ -2,6 +2,8 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 
     // Check if request is not from ajax
     if(!IS_AJAX) {
@@ -29,15 +31,7 @@
 
 	if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
         $isSessioned = false;
-    } else {
-        // Check if the user sessioned has an appointment booked already.
-        /*
-        if(doesUserHasApp($_SESSION["userId"], "employee")) {
-            // *********** Needs error message
-            header("Location: ../main/rtuappsys.php");
-            die();
-        }*/
-    }
+    } 
 
     if($isSessioned) {
         $userId = $_SESSION["userId"];
@@ -59,7 +53,22 @@
                     createSched($schedId, $dateForSched, $time, $office); // Lacks Query Catch
                 } 
                 $vstor_id = getVisitorId($userId, $userType);
-                $isSuccess = createAppointment($schedId, $vstor_id, $branch, $office, $purpose);
+
+                $app_id = getAppointmentIdByVisitor($vstor_id);
+
+                $allowed = true;
+
+                if($app_id) {
+                    if(isAppointmentDone($app_id)) {
+                        deleteAppointmentData($app_id);
+                    } else {
+                        $allowed = false;
+                    }
+                }
+
+                if($allowed) {
+                    $isSuccess = createAppointment($schedId, $vstor_id, $branch, $office, $purpose);
+                }
             }
         } else {
 
