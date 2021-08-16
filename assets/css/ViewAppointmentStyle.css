@@ -385,7 +385,7 @@ a:visited {
     border-radius: 20px;
     display: grid;
     padding: 0 1rem 0 0;
-    margin: 1rem;
+    margin: 0;
 }
 
 .appointment-qr span {
@@ -451,11 +451,11 @@ a:visited {
 }
 
 .flex-label {
-    width: 35%;
+    width: 40%;
 }
 
 .flex-data {
-    width: 65%;
+    width: 60%;
 }
 
 .information td:before {

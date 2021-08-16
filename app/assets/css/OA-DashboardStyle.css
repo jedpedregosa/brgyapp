@@ -1342,6 +1342,14 @@ a:visited {
     letter-spacing: 2px;
 }
 
+.dayname {
+    color: #2E94E3;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
 .day {
     color: #2E94E3;
     font-size: 1.5rem;
@@ -1815,7 +1823,7 @@ h4 {
         text-align: center;
         letter-spacing: 2px;
     }
-    .day {
+    .dayname {
         color: #2E94E3;
         font-size: 1.15rem;
         font-weight: 600;
