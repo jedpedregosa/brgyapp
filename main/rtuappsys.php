@@ -104,7 +104,7 @@
 								<img src="../assets/img/user.png" alt="Avatar" class="avatar">
 							</div>
 
-							<p class="p4"> Hello, Student. </p>
+							<p class="p4"> Hello, Student! </p>
 							<p class="p5">Make an appointment today at RTU!</p>
 
 							<div class = "p7-div">
@@ -119,8 +119,8 @@
 								<div class="container-inputs">
 									<form>
 										<div class="inputs">	
-											<input type="text" placeholder="Student Number" name="studentNum" required id="studentNum">
-											<input type="text" placeholder="Last Name" name="sLname" required id="sLname">
+											<input type="text" placeholder="Student Number" name="studentNum" required autocomplete="off" id="studentNum">
+											<input type="text" placeholder="Last Name" name="sLname" required autocomplete="off" id="sLname">
 											<input type = "submit" class="button1" value = "Proceed" id="submit-student">
 										</div>
 									</form>
@@ -135,7 +135,7 @@
 								<img src="../assets/img/user.png" alt="Avatar" class="avatar">
 							</div>
 
-							<p class="p4"> Hello, Employee. </p>
+							<p class="p4"> Hello, Employee! </p>
 							<p class="p5">Make an appointment today at RTU!</p>
 							<div class = "p7-div">
 								<div class="info-msg">
@@ -148,8 +148,8 @@
 								<div class="container-inputs">
 									<form>
 										<div class="inputs">
-										<input type="text" placeholder="Employee Number" name="empNum" required id="empNum">
-										<input type="text" placeholder="Last Name" name="eLname" required id="eLname">
+										<input type="text" placeholder="Employee Number" name="empNum" required autocomplete="off" id="empNum">
+										<input type="text" placeholder="Last Name" name="eLname" required autocomplete="off" id="eLname">
 										<input type = "submit" class="button1" value = "Proceed" id="submit-employee">
 										</div>
 									</form>
@@ -164,7 +164,7 @@
 								<img src="../assets/img/user.png" alt="Avatar" class="avatar">
 							</div>
 							
-							<p class="p4"> Hello and welcome. </p>
+							<p class="p4"> Hello, Guest! </p>
 							<p class="p5">Make an appointment today at RTU!</p>
 							<div class = "p7-div">
 								<div class="info-msg">
@@ -177,8 +177,8 @@
 								<div class="container-inputs">
 									<form>
 										<div class="inputs">
-											<input type="text" placeholder="Email" name="email" required id="email">
-											<input type="text" placeholder="Last Name" name="gLname" required id="gLname">
+											<input type="text" placeholder="Email" name="email" required autocomplete="off" id="email">
+											<input type="text" placeholder="Last Name" name="gLname" required autocomplete="off" id="gLname">
 											<input type = "submit" class="button1" value = "Proceed" id="submit-guest">
 										</div>
 									</form>
@@ -206,8 +206,8 @@
 									<div class="container-inputs">
 										<form>
 											<div class="inputs">
-												<input type="text" name ="view_email" id ="view_email" placeholder="Email Address" required>
-												<input type="text" name ="view_lname" id ="view_email" placeholder="Last Name" required>
+												<input type="text" name ="view_email" id ="view_email" placeholder="Email Address" required autocomplete="off" >
+												<input type="text" name ="view_lname" id ="view_email" placeholder="Last Name" required autocomplete="off">
 
 												<input class="button1" type="submit" id = "view_submit" value="Proceed">
 											</div>   
