@@ -221,13 +221,16 @@ body {
 /*SUBMIT FEEDBACK..*/
 .col-1 .p8{
   position: absolute;
-  margin-left: 120px ;
+  margin-left: 140px ;
   padding-bottom: 50px;
   color: #002060;
   font-size: 14px;
   font-family: Product Sans;
 }
 
+.p8:hover {
+  color: #EAB800;
+}
 
 .col-1 .dropdown {
   position: relative;
@@ -336,6 +339,7 @@ body {
   display: inline-block;
   border: none;
   box-sizing: border-box;
+  outline:none;
   background-color: #E8E8E8;
   margin-bottom: 2%;
 }
