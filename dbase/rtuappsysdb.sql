@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 15, 2021 at 07:27 PM
+-- Generation Time: Aug 16, 2021 at 06:28 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appdone_vstr` (
   `type` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `vstor_ip_add` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`app_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `app_done_date` datetime DEFAULT NULL,
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `app_num` (`app_num`)
-) ENGINE=MyISAM AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment_done` (
   `app_sys_time` datetime NOT NULL,
   `app_done_date` datetime NOT NULL,
   PRIMARY KEY (`app_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tbl_app_wlkin` (
   `app_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `wlkin_date` datetime NOT NULL,
   PRIMARY KEY (`wlkin_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `tbl_feedback` (
   `fback_is_stsfd` tinyint(1) NOT NULL,
   `fback_ip_add` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fback_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -180,25 +180,26 @@ CREATE TABLE IF NOT EXISTS `tbl_office` (
   `office_desc` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `office_branch` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `office_hasAdmin` tinyint(1) DEFAULT '0',
+  `accepts_app` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`office_id`),
   KEY `office_num` (`office_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_office`
 --
 
-INSERT INTO `tbl_office` (`office_num`, `office_id`, `office_name`, `office_desc`, `office_branch`, `office_hasAdmin`) VALUES
-(1, 'RTU-O01', 'Curriculum and Instructional Resources Development Center', '', 'Pasig Campus', 0),
-(2, 'RTU-O02', 'Alumni Relations and Placement Office', '', 'Pasig Campus', 0),
-(3, 'RTU-O03', 'Disaster Risk Protection Office', '', 'Pasig Campus', 0),
-(4, 'RTU-O04', 'University Data Protection Office', '', 'Pasig Campus', 0),
-(5, 'RTU-O05', 'Student Records and Admission Center', '', 'Boni Campus', 0),
-(6, 'RTU-O06', 'Scholarship and Grant Office', '', 'Boni Campus', 0),
-(7, 'RTU-O07', 'Graduate School', '', 'Boni Campus', 0),
-(8, 'RTU-O08', 'Human Resource Development Center', '', 'Boni Campus', 0),
-(9, 'RTU-O09', 'College of Engineering, Architecture and Technology', '', 'Boni Campus', 0),
-(10, 'RTU-O10', 'Guidance Services Center', '', 'Boni Campus', 0);
+INSERT INTO `tbl_office` (`office_num`, `office_id`, `office_name`, `office_desc`, `office_branch`, `office_hasAdmin`, `accepts_app`) VALUES
+(1, 'RTU-O01', 'Curriculum and Instructional Resources Development Center', '', 'Pasig Campus', 0, 1),
+(2, 'RTU-O02', 'Alumni Relations and Placement Office', '', 'Pasig Campus', 0, 1),
+(3, 'RTU-O03', 'Disaster Risk Protection Office', '', 'Pasig Campus', 0, 1),
+(4, 'RTU-O04', 'University Data Protection Office', '', 'Pasig Campus', 1, 1),
+(5, 'RTU-O05', 'Student Records and Admission Center', '', 'Boni Campus', 0, 1),
+(6, 'RTU-O06', 'Scholarship and Grant Office', '', 'Boni Campus', 0, 1),
+(7, 'RTU-O07', 'Graduate School', '', 'Boni Campus', 0, 1),
+(8, 'RTU-O08', 'Human Resource Development Center', '', 'Boni Campus', 0, 1),
+(9, 'RTU-O09', 'College of Engineering, Architecture and Technology', '', 'Boni Campus', 1, 1),
+(10, 'RTU-O10', 'Guidance Services Center', '', 'Boni Campus', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -217,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office_admin` (
   `oadmn_contact` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`oadmn_id`),
   UNIQUE KEY `oadmn_num` (`oadmn_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
   `sched_isClosed` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`sched_id`),
   KEY `sched_num` (`sched_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=1020 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1036 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -342,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   PRIMARY KEY (`vstor_num`) USING BTREE,
   UNIQUE KEY `vstor_id` (`vstor_id`),
   UNIQUE KEY `vstor_email` (`vstor_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=362 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=363 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

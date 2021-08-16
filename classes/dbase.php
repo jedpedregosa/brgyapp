@@ -715,7 +715,7 @@
         $conn = connectDb();
         $result = [];
 
-        $stmt = $conn->prepare("SELECT office_id, office_name FROM tbl_office WHERE office_branch = ?");
+        $stmt = $conn->prepare("SELECT office_id, office_name FROM tbl_office WHERE office_branch = ? AND accepts_app = 1");
         $stmt-> execute([$branch]);
 
         while($row = $stmt->fetchAll()) {

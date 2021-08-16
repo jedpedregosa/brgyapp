@@ -1,3 +1,3 @@
 <?php 
-    header("Location: create-admin");
+    header("Location: page/office");
 ?>
