@@ -232,7 +232,7 @@
 
             <div class="buttons-container">
                     <div class="buttons-right">
-                        <a href="#" class="download"><i class="bi bi-download"></i> &nbsp; Download All Records</a>
+                        <a href="../download/all_feedback" class="download"><i class="bi bi-download"></i> &nbsp; Download All Records</a>
 
                     </div>
                 </div>

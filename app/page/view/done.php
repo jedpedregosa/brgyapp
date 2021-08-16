@@ -194,10 +194,10 @@
                                 <?php 
                                     if($appointees[11] == "student") {
                                         echo "Student (RTU)";
-                                    } else if ($appointees[11] == "guest") {
-                                        echo "GOV ID";
-                                    } else {
+                                    } else if ($appointees[11] == "employee") {
                                         echo "Employee (RTU)";
+                                    } else {
+                                        echo "GOV ID";
                                     }
                                 ?>
                                     </span>
@@ -229,7 +229,7 @@
                 </div>
 
                 <div class="buttons-right">
-                    <a href="#" class="download"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>    
+                    <a href="../download/all_done_appointment" class="download"><i class="bi bi-download"></i> &nbsp; Download All Done Appointments</a>    
                 </div>
             </div>
 

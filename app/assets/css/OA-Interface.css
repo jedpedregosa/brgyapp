@@ -2330,7 +2330,7 @@
         color: rgb(0, 32, 96);
         text-overflow: ellipsis;
         white-space: nowrap;
-        background: url("../Images/arrow.svg") 95% / 15% no-repeat rgb(234, 234, 234);
+        background: url("../img/arrow.svg") 95% / 15% no-repeat rgb(234, 234, 234);
         padding: 8px;
         background-size: 14px;
         -webkit-appearance: none;

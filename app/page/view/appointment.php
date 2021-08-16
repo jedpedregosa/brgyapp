@@ -343,7 +343,7 @@
                     </div>
 
                     <div class="buttons-right">
-                        <a href="#" class="download"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>
+                        <a href="../download/all_appointment" class="download"><i class="bi bi-download"></i> &nbsp; Download All Appointments</a>
 
                     </div>
                 </div>
