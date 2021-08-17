@@ -169,6 +169,7 @@ input[type=password] {
     border: none;
     box-sizing: border-box;
     background-color: #E8E8E8;
+    outline:none;
 }
 
 
