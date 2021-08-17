@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		load_qr.php (Access Page) -- 
+ *  Description:
+ * 		1. Streams the PNG File (QR Code) stored from the secured folder.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: Catch if file system fails.
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");

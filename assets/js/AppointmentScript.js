@@ -41,47 +41,6 @@ nextBtnFirst.addEventListener("click", function(event) {
     var isSuccess = true;
 
     if(isValidated()) {
-
-        // Register the personal information
-        $.ajax({
-            url: "../../requests/reg-appointment",
-            type: "POST",
-            data: {
-                lname: lname,
-                email: email,
-                phone: phone,
-                fname: fname,
-                company: company,
-                govId: govId
-            },
-            cache: false,
-            beforeSend: function() {
-                $("#screen-overlay").fadeIn(100);
-            },
-            success: function(dataResult){
-    
-            },
-            error: function() {
-                showAlertServerError();
-                $("#screen-overlay").fadeOut(400);
-                isSuccess = false;
-            }
-            }).done(function (dataResult) {
-                var dataResult = JSON.parse(dataResult);
-                    if(dataResult.statusCode==200){
-                        // Insert JS Form Validation
-                    } else if(dataResult.statusCode==201){
-                        showInternalError(); // Error Page
-                    } else if(dataResult.statusCode==202) {             
-                        showIdNotAvailableError();
-                        isSuccess = false;
-                    } else {
-                        showEmailNotAvailableError();
-                        isSuccess = false;
-                    }
-                $("#screen-overlay").fadeOut(400);
-            });
-
         // Check schedules for the selected office, then continue to next page.
 		$.ajax({
 			url: "../../requests/load-dates",
@@ -304,8 +263,8 @@ submitBtn.addEventListener("click", function() {
         showValidationError();
     } else if(!isChecked) {
         Fnon.Alert.Warning({
-            message: 'To continue, please confirm below that you are giving <strong>Rizal Technological Univeristy the consent</strong>' + 
-            ' to ]collect and process your data.',
+            message: 'To continue, please confirm below that you are giving <strong>Rizal Technological University</strong> the consent' + 
+            ' to collect and process your data.',
             title: 'Please Confirm',
             btnOkText: 'Okay',
             btnOkColor: 'White',
@@ -451,6 +410,9 @@ function loadOffices() {
 
     office_select.innerHTML = "";
     
+    let off_wait = document.getElementById('off-wait');
+    let off_none = document.getElementById('off-none');
+
     if(branch != "") {
         $.ajax({
             url: "../../requests/load-offices",
@@ -460,12 +422,23 @@ function loadOffices() {
             },
             cache: false,
             beforeSend: function(){
-
+                var opt = document.createElement('option');
+                opt.disabled = true;
+                opt.selected = true;
+                opt.hidden = true;
+                opt.innerHTML = "Please wait...";
+                office_select.appendChild(opt);
+            },
+            error: function() {
+                showAlertServerError();
             },
             success: function(dataResult){
                 var dataResult = JSON.parse(dataResult);
+
             }
         }).done(function(dataResult) {
+            office_select.innerHTML = "";
+            
             var available_offices = JSON.parse(dataResult);
 
             for(let i = 0; i < available_offices.length; i++) {
@@ -475,6 +448,7 @@ function loadOffices() {
                 office_select.appendChild(opt);
                 office_select.disabled = false;
             }
+
         });
     }
 }

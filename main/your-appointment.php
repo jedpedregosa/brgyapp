@@ -15,6 +15,7 @@
  * 	Github: https://github.com/jedpedregosa/rtuappsys
  * 
  *	Issues:	
+ *	Lacks: An error catch if PDF stream fails (Front-end, Javascript)
  *  Changes:
  * 	
  * 	

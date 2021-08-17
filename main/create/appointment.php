@@ -90,8 +90,8 @@
 <head>
     <meta charset="utf-8">
     <title>Make an Appointment</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/AppointmentStyle.css" . FILE_VERSION ?>">
-    <link rel="stylesheet" href="../../assets/css/fnon.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/AppointmentStyle.css" . FILE_VERSION; ?>">
+    <link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -149,15 +149,15 @@
                         <div class="container-inputs">
                             <div class="container-office">
                                 <select style="width: 150px;" id = "branch" onchange = "loadOffices()">
-                                <option value="" disabled selected hidden>RTU Branch</option>
+                                <option value="" disabled selected hidden>RTU Campus</option>
                                 <option value="Boni Campus">Boni Campus</option>
                                 <option value="Pasig Campus">Pasig Campus</option>
                             </select>
                             </div><br><br>
                             <div class="container-office">
                                 <select name="Office" id="Office" class="Office" disabled>
-                                <option value="" disabled selected hidden>Office</option>
-                            </select>
+                                    <option value="" disabled selected hidden>Office</option>
+                                </select>
                             </div>
                             <br><br>
                             <div class="container-purpose">
@@ -485,7 +485,7 @@
                         position: relative;
                         top: 2px;">
                         <label for="agreement" style="font-family: Poppins; font-size: 0.65rem">I confirm that the above information is <strong> true and correct</strong>, 
-                        and <strong>I give Rizal Technological University consent</strong> to <strong>collect and process</strong> the given data in accordance to the standards of Data Protection and Privacy.</label>
+                        and <strong>I give Rizal Technological University</strong> the consent to <strong>collect and process</strong> the given data in accordance to the standards of Data Protection and Privacy.</label>
                    
                     </ul>
                     <!-- CONFIRMATION PAGE BUTTONS -->
@@ -511,9 +511,9 @@
     </div>
 
     <!-- JAVASCRIPTS USED -->
-    <script src="../../assets/js/fnon.min.js"></script>
-    <script src="../../assets/js/AppointmentScript.js?version=3"></script>
-    <script src="../../assets/js/appointment-validation.js"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST . "/assets/js/AppointmentScript.js" . FILE_VERSION; ?>"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST . "/assets/js/appointment-validation.js" . FILE_VERSION; ?>"></script>
 </body>
 
 </html>

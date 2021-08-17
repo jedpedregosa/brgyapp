@@ -1,4 +1,25 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		view-appointment.php (Web Page) -- 
+ *  Description:
+ * 		1. Previews appointment information to the visitor.
+ * 		2. Reschedule Feature
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: An error catch if file stream fails (Front-end, JavaScript)
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
