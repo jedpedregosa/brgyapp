@@ -412,8 +412,7 @@ a:visited {
 
 .information table {
     border-collapse: collapse;
-    margin: 0 0 0 1rem;
-    padding: 0;
+    padding: 0 0 0 2rem;
     width: 100%;
     table-layout: fixed;
     font-family: Poppins;
@@ -1344,7 +1343,7 @@ td.modal-grid {
     width: auto;
     overflow-y: auto;
     overflow-x: auto;
-    background: #FFFFFF;
+    background: transparent;
 }
 
 
