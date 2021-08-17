@@ -288,6 +288,7 @@ submitBtn.addEventListener("click", function() {
     var officeId = document.getElementById('Office').value;
     var branch = document.getElementById('branch').value;
     var purpose = document.getElementById('purpose').value;
+    var isChecked = document.getElementById("agreement").checked;
 
     if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
         // No proper schedule selected
@@ -301,7 +302,17 @@ submitBtn.addEventListener("click", function() {
         });
     } else if(!isValidated()){
         showValidationError();
-    } else { // Resubmit personal information & Confirm Appointment
+    } else if(!isChecked) {
+        Fnon.Alert.Warning({
+            message: 'To continue, please confirm below that you are giving <strong>Rizal Technological Univeristy the consent</strong>' + 
+            ' to ]collect and process your data.',
+            title: 'Please Confirm',
+            btnOkText: 'Okay',
+            btnOkColor: 'White',
+            btnOkBackground: '#002060',
+            fontFamily: 'Poppins, sans-serif'
+        });
+    }else { // Resubmit personal information & Confirm Appointment
         var lname = $('#last-name').val();
         var fname = $('#first-name').val();
         var email = $('#email-address').val();

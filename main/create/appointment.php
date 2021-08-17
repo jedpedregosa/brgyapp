@@ -481,10 +481,12 @@
                       &nbsp;&nbsp;&nbsp;CONFIRMATION &nbsp;&nbsp;&nbsp;<button class = "button1"><b>CONFIRM APPOINTMENT</b></button>
                    </p>
                    -->
-                   <input type="checkbox" name="agreement" id="agreement" style="display: inline;
-    position: relative;
-    top: 2px;">
-<label for="agreement" style="font-family: Poppins; font-size: 0.65rem">I confirm that the above information is true and correct, and I give consent RTU to collect and process the given data in accordance to the standards of Data Protection and Privacy.</label>
+                        <input type="checkbox" name="agreement" id="agreement" style="display: inline;
+                        position: relative;
+                        top: 2px;">
+                        <label for="agreement" style="font-family: Poppins; font-size: 0.65rem">I confirm that the above information is <strong> true and correct</strong>, 
+                        and <strong>I give Rizal Technological University consent</strong> to <strong>collect and process</strong> the given data in accordance to the standards of Data Protection and Privacy.</label>
+                   
                     </ul>
                     <!-- CONFIRMATION PAGE BUTTONS -->
                     <div class="PageNameAndButtons">

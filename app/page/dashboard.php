@@ -17,7 +17,7 @@
 
 	$date_to_check_r = new DateTime();
 	$date_to_check = $date_to_check_r->format("Y-m-d");
-	$availablity_status = !checkDaySched($date_to_check, $assigned_office);
+	$availablity_status = checkDaySched($date_to_check, $assigned_office);
 
 	$availablity_status = ($availablity_status ? 'OPEN' : 'CLOSED');
 
@@ -237,8 +237,8 @@
 	                                <div class="greet-content">
 	                                	<img src="../assets/img/greet.png"/>
 	                                    <h3><span style="color: #002060; font-weight: bold;">Hello,</span> 
-				                            <span style="color: #EAB800; text-transform: uppercase;"> <?php echo htmlspecialchars($first_name); ?>.<!-- Display data (First Name of Admin) --> </span>
-				                            <span style="color: #002060;"></span></h3>
+				                            <span style="color: #EAB800; text-transform: uppercase;"> <?php echo htmlspecialchars($first_name); ?><!-- Display data (First Name of Admin) --> </span>
+				                            <span style="color: #002060;">!</span></h3>
 				                            <p> Welcome to your dashboard! </p>
 	                                    </h3> <br> <br>
 
