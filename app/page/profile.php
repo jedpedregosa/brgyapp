@@ -189,15 +189,16 @@
 							<label>Username</label>
 							<input type="text" id="username" placeholder="Username" value = "<?php echo htmlspecialchars($admin_data[0]); ?>" disabled>
 						</div>
-
 						<div class="info-fields">
 							<label>First Name</label>
 							<input type="text" name="first-name" id="first-name" placeholder="First Name" value = "<?php echo htmlspecialchars($admin_data[2]); ?>" required>
+							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 11em;" id="error-first-name"></label>
 						</div>
 
 						<div class="info-fields">
 							<label>Last Name</label>
 							<input type="text" name="last-name" id="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($admin_data[1]); ?>" required>
+							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 11em;" id="error-last-name"></label>
 						</div>
 					</div>
 
@@ -205,6 +206,7 @@
 						<div class="info-fields">
 							<label for="email-address">Email Address</label>
 							<input type="email" name="email-address" id="email-address" placeholder="sample@gmail.com" value = "<?php echo htmlspecialchars($admin_data[3]); ?>" required>
+							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 14em;" id="error-email-address"></label>
 						</div>
 
 						<div class="info-fields">
@@ -218,7 +220,8 @@
 
 						<div class="info-fields">
 							<label for="phone-number">Phone Number</label>
-							<input type="tel" name="phone-number" id="phone-number" placeholder="xxxx-xxx-xxxx" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" value = "<?php echo htmlspecialchars($admin_data[4]); ?>" required>
+							<input type="tel" name="phone-number" id="phone-number" placeholder="xxxxxxxxxxx"value = "<?php echo htmlspecialchars($admin_data[4]); ?>" required>
+							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 14em;" id = "error-contact-number"></label>
 						</div>
 					</div>
 				</div>
