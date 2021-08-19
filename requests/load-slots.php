@@ -22,6 +22,9 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
+    session_name("cid");
+    session_start();
+    
     // Check if request is not from ajax
     if(!IS_AJAX) {
         header("Location: ../main/rtuappsys");

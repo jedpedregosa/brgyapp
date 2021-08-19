@@ -169,7 +169,7 @@
 	<title> View Appointment - RTU Appointment System</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/ViewAppointmentStyle.css" . FILE_VERSION ?>">
-	<link rel="stylesheet" href="../assets/css/fnon.min.css" />
+	<link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST ?>/assets/css/fnon.min.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -395,7 +395,7 @@
 		                				</span>
 		                			</center>
 		                			<center>
-		                				<p> 
+		                				<p style="color: #EAB800;"> 
 			                				Status : &ensp; 
 			                				<b style="color: #002060"> Closed </b> &ensp;<!-- Show Data (Display Availabilty Status if Pending, Cancelled, or Ongoing) -->
 			                			</p>
@@ -406,8 +406,9 @@
 									    <tbody>
 									    	<tr>
 									    		<caption>
-										    		<div class="overviewcard-qr"> 
-											            <button class="bi bi-calendar-check reschedule" type="button" onclick="document.getElementById('id01').style.display='block'" title="Reschedule Appointment">
+										    		<div class="overviewcard-qr">
+													<br><br><br> 
+											            <button class="bi bi-calendar-check reschedule-closed" type="button" onclick="document.getElementById('id01').style.display='block'" title="Reschedule Appointment">
 												            Reschedule <!-- Appointment Download Button  -->
 												        </button>
 												        
@@ -432,7 +433,7 @@
 		                				</span>
 		                			</center>
 		                			<center>
-		                				<p> 
+		                				<p style="color: #EAB800;"> 
 			                				Status : &ensp; 
 			                				<b style="color: #002060"> Ongoing </b> &ensp;<!-- Show Data (Display Availabilty Status if Pending, Cancelled, or Ongoing) -->
 			                		<?php 
