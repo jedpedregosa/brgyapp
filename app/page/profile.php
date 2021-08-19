@@ -34,7 +34,7 @@
 	<title><?php echo htmlspecialchars($full_name); ?> | RTU Appointment System</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/OA-ProfileStyle.css" . FILE_VERSION ?>">
-	<link rel="stylesheet" href="../../assets/css/fnon.min.css" />
+	<link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -339,8 +339,8 @@
 	<!-- //Contents -->
 
 	<!-- Javascript -->
-	<script src="../assets/js/OA-ProfileScript.js"></script>
-	<script src="../../assets/js/fnon.min.js"></script>
+	<script src="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/js/OA-ProfileScript.js" . FILE_VERSION; ?>"></script>
+	<script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>
 	<?php 
 		if($errorCode == 300) {
 			echo "<script> Fnon.Alert.Warning({

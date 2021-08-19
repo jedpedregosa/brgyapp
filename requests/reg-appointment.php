@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		reg-appointment.php (API, Ajax) -- 
+ *  Description:
+ * 		1. Registers the personal information of an appointment.
+ * 
+ * 	Date Created: 30th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");

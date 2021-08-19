@@ -1,4 +1,24 @@
 <?php
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		direct.php (Access Page) -- 
+ *  Description:
+ * 		1. Reads the appointment QR, and navigate to accessible page.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Admin.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 

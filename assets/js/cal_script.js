@@ -5,6 +5,7 @@ var currentDate;
 var date;
 var finalDate;
 var daySelected;
+let affect_months;
 
 function setSlctdDate(dateID) {
 	var txtDate = document.getElementById("slctdDate");
@@ -54,6 +55,8 @@ function startCalendar() {
 	currentDate = new Date(available_dates[0]);
 	date = new Date(currentDate);
 	daySelected = currentDate.getDate();
+
+	affect_months = available_dates.length / 30;
 	renderCalendar(); 
 }
 function n(n){
@@ -141,7 +144,7 @@ document.querySelector('.controls .prev_btn').addEventListener('click',()=>{
 });
 
 document.querySelector('.controls .next_btn').addEventListener('click',()=>{
-	if(currentDate.getMonth() + 1 > date.getMonth()) {
+	if(currentDate.getMonth() + affect_months > date.getMonth()) {
 		date.setMonth(date.getMonth()+1);
 		renderCalendar();
 	}

@@ -46,14 +46,14 @@
             if(doesSchedExist($sched_id)) {
                 if(!isSchedClosed($sched_id)) {
                     array_push($affected_slots, $slot[0]);
-                    setSchedAsClosed($sched_id);
+                    setSchedAsClosed($date, $office, $slot[0], $sched_id);
                 } else {
                     $affected--;
                 }
             } else {
                 array_push($affected_slots, $slot[0]);
                 createSched($sched_id, $date, $slot[0], $office);
-                setSchedAsClosed($sched_id);
+                setSchedAsClosed($date, $office, $slot[0], $sched_id);
             }
         }
 
@@ -84,10 +84,10 @@
         return $result;
     }
 
-    function setSchedAsClosed($sched_id) {
+    function setSchedAsClosed($date, $office, $tmslot, $sched_id) {
         $conn = connectDb();
 
-        setScheduleToInvalid($sched_id);
+        setScheduleToInvalid($date, $office, $tmslot, $sched_id);
 
         $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_isClosed = 1 WHERE sched_id = ?");
         $stmt->execute([$sched_id]);

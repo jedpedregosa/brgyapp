@@ -30,9 +30,9 @@
 
 	<title>Login - RTU Appointment System</title>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/admin-login.css" . FILE_VERSION ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/admin-login.css" . FILE_VERSION; ?>">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../assets/css/fnon.min.css" />
+    <link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -79,8 +79,8 @@
 			
 			<!-- //COLUMN 1 -->
 			<!--SCRIPT-->
-			<script src="assets/js/admin-login.js"></script>
-            <script src="../assets/js/fnon.min.js"></script>	
+			<script src="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/js/admin-login.js" . FILE_VERSION; ?>"></script>
+            <script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>	
 			<?php 
 				if($isError) {
 					echo "<script> Fnon.Alert.Warning({

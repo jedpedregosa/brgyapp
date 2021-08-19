@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		create-pdf.php (Access Page, Method Package) -- 
+ *  Description:
+ * 		1. Contains the process of generating a PDF (Appointment Slip).
+ * 
+ * 	Date Created: 30th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
     require_once 'api/dompdf/autoload.inc.php';

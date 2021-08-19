@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		dbase.php (Method Package) -- 
+ *  Description:
+ * 		1. Contains common required queries.
+ * 
+ * 	Date Created: 30th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
@@ -393,13 +413,12 @@
             return true;
         } 
 
-        $total_visitor = countTotalAppointmentsBySched($schedId); // Lacks Catch
+        $total_visitor = countTotalAppointmentsBySched($schedId);
         checkReopenSchedule($schedId);
         
         if(($total_visitor < (int)max_per_sched) && isSchedOpen($schedId)) {
             return true;
         } else {
-            setScheduleToInvalid($schedId);
             return false;
         }
     }
@@ -466,34 +485,34 @@
                     $diff = date_diff(new DateTime(), new DateTime(getTimeSlotStart($tmslot)));
                     $hour_difference = $diff->format('%h');
                     if($hour_difference < (int)hours_scheduling_span) {
-                        setScheduleToInvalid($schedId);
+                        setScheduleToInvalid($date, $office, $tmslot, $schedId);
+                    } else {
+                        $total_visitor = countTotalAppointmentsBySched($schedId); // Lacks Catch
+                        checkReopenSchedule($schedId);
+                        
+                        if(!($total_visitor < (int)max_per_sched)) {
+                            setScheduleToInvalid($date, $office, $tmslot, $schedId);
+                        }
                     }
                 } else {
-                    setScheduleToInvalid($schedId);
+                    setScheduleToInvalid($date, $office, $tmslot, $schedId);
                 }
             } else if($selectedDate < $currentTime) {
-                setScheduleToInvalid($schedId);
+                setScheduleToInvalid($date, $office, $tmslot, $schedId);
             }
         } else {
-            setScheduleToInvalid($schedId);
+            setScheduleToInvalid($date, $office, $tmslot, $schedId);
         }
     }
 
-    function setScheduleToInvalid($schedId) {
+    function setScheduleToInvalid($date, $office, $tmslot, $schedId) {
         $conn = connectDb();
 
         if(!doesSchedExist($schedId)) {
-            date_default_timezone_set("Asia/Manila");
-            $ToDate = substr($schedId, 0, 6);
-            $month = substr($ToDate, 2, 2);
-            $day = substr($ToDate, 4, 2);
-            $year = substr($ToDate, 0, 2);
-            $date = new DateTime($year . "-" . $month . "-" .$day);
-            $dateToAdd = $date->format("Y-m-d");
-            $officeToAdd = "RTU-O" . substr($schedId, 6, 2);
-            $slotToAdd = "TMSLOT-" . substr($schedId, 8, 2);
+            $r_date = new DateTime($date);
+            $dateToAdd = $r_date->format('Y-m-d');
 
-            createSched($schedId, $dateToAdd, $slotToAdd, $officeToAdd); 
+            createSched($schedId, $dateToAdd, $tmslot, $office); 
         }
         $stmt = $conn->prepare("UPDATE tbl_schedule SET sched_is_available = 0 WHERE sched_id = ?");
         $stmt->execute([$schedId]);

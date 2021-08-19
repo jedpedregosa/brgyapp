@@ -34,7 +34,7 @@
         $feedback = [];
 
         $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
-            FROM tbl_feedback WHERE office_id = ?");
+            FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC");
         $stmt->execute([$office]);
 
         while($row = $stmt->fetchAll()) {

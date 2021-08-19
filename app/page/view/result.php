@@ -69,7 +69,7 @@
 	<title>Appointment - <?php echo htmlspecialchars($app_id); ?></title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/QRStyle.css" . FILE_VERSION ?>">
-	<link rel="stylesheet" href="../../../assets/css/fnon.min.css" />
+	<link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
@@ -301,8 +301,8 @@
 	<!-- //Contents -->
 
 	<!-- Javascript -->
-	<script src="../../assets/js/QRScript.js?version=2"></script>
-	<script src="../../../assets/js/fnon.min.js"></script>
+	<script src="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/js/QRScript.js" . FILE_VERSION; ?>"></script>
+	<script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>
 	<!-- //Javascript -->
 </body>
 </html>

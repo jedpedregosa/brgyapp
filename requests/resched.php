@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		resched.php (Access Page) -- 
+ *  Description:
+ * 		1. Submits the reschedule request.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");

@@ -970,7 +970,7 @@ main .contents {
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 1000; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -993,6 +993,7 @@ main .contents {
                     linear-gradient(to top left, #FFCB0D, #002060);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  z-index: 1000;
 }
 
 /* CLOSE BUTTON */
@@ -1840,8 +1841,7 @@ main .contents {
   /* MODAL AND ITS BACKGROUND */
   .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed; /* Stay in place */ /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -1850,7 +1850,7 @@ main .contents {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
-    z-index: 100;
+    z-index: 1000;
   }
 
   /* MODAL CONTENT AND BOX */
@@ -1865,6 +1865,7 @@ main .contents {
                       linear-gradient(to top left, #FFCB0D, #002060);
     background-origin: border-box;
     background-clip: content-box, border-box;
+    z-index: 1000;
   }
 
   /* CLOSE BUTTON */

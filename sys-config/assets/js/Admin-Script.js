@@ -151,3 +151,39 @@ function searchTableOffice(field, txt_value) {
     }
   }
 }
+
+function confirmODelete(off_id, off_name, off_camp) {
+  Fnon.Ask.Warning({
+    message: 'Are you sure to delete' +
+    ' <strong>' + off_name + '</strong>, <strong> '+ off_camp +'</strong>? This cannot be undone.',
+    title: 'Confirm Delete',
+    btnOkText: 'Yes',
+    titleBackground: '#002060',
+		titleColor: 'White',
+    fontFamily: 'Poppins, sans-serif',
+    btnCancelText: 'Cancel', 
+      callback: (result)=>{
+        if(result) {
+          window.location.href = "../controllers/del-office?off_id=" + off_id;
+        } 
+      }
+  }); 
+}
+
+function confirmAdmDel(adm_id, adm_name) {
+  Fnon.Ask.Warning({
+    message: 'Are you sure to delete' +
+    ' office admin <strong>' + adm_name + ' (' + adm_id+ ')</strong>? This cannot be undone.',
+    title: 'Confirm Delete',
+    btnOkText: 'Yes',
+    titleBackground: '#002060',
+		titleColor: 'White',
+    fontFamily: 'Poppins, sans-serif',
+    btnCancelText: 'Cancel', 
+      callback: (result)=>{
+        if(result) {
+          window.location.href = "../controllers/del-admin?adm_id=" + adm_id;
+        } 
+      }
+  }); 
+}

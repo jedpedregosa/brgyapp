@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		Appointment.php (Class, Method Package) -- 
+ *  Description:
+ * 		1. Contains all methods related to Appointments.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
@@ -122,7 +142,7 @@
         $appointments = [];
 
         if($time_by == 1) {
-            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE office_id = ? AND sched_date = ?");
+            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE office_id = ? AND sched_date = ? ORDER BY tmslot_id ASC");
             $stmt-> execute([$office, $sched_date]);
 
             $schedules = [];
@@ -139,7 +159,8 @@
                 }
             }
         } else if($time_by == 7) {
-            $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where (sched_date BETWEEN ? AND DATE_ADD(?, INTERVAL 7 DAY)) AND office_id = ?");
+            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule 
+                WHERE (sched_date BETWEEN ? AND DATE_ADD(?, INTERVAL 7 DAY)) AND office_id = ? ORDER BY sched_date ASC");
             $stmt-> execute([$sched_date, $sched_date, $office]);
 
             $schedules = [];
@@ -157,7 +178,8 @@
                 }
             }
         } else {
-            $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment WHERE app_is_done = 0 AND office_id = ?");
+            $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment 
+                WHERE app_is_done = 0 AND office_id = ? ORDER BY app_id DESC");
             $stmt->execute([$office]); 
 
             while($row = $stmt->fetchAll()) {

@@ -1,5 +1,23 @@
 <?php 
-    // LACKS SESSION CHECKER!!!!!!!!!!!
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		load-dates.php (API, Ajax) -- 
+ *  Description:
+ * 		1. Loads all the available dates to JSON.
+ * 
+ * 	Date Created: 30th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");

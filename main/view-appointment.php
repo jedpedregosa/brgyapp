@@ -625,8 +625,8 @@
 	</div>
 
 	<!-- Javascript -->
-	<script src = "../assets/js/view_app_script.js"></script>
-	<script src="../assets/js/fnon.min.js"></script>	
+	<script src = "<?php echo HTTP_PROTOCOL . HOST . "/assets/js/view_app_script.js" . FILE_VERSION ?>"></script>
+	<script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>	
 	<?php 
 		if($isAlert) {
 			if($isSuccess) {

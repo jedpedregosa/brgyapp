@@ -122,12 +122,12 @@
         $stmt = $conn->prepare("SELECT MAX(office_num) FROM tbl_office");
         $stmt->execute();
 
-        $nextId = (int)$stmt->fetchColumn() + 1;
-
-        if($nextId < 10) {
-            $nextId = str_pad($nextId, 2, '0', STR_PAD_LEFT);
+        $id = (int)$stmt->fetchColumn() + 1;
+        $next_id = base_convert(strval($id), 10, 36);
+        if(strlen($next_id) < 2) {
+            $next_id = str_pad($next_id, 2, '0', STR_PAD_LEFT);
         }
-        return $nextId;
+        return strtoupper($next_id);
     }
 
     function createOffice($off_name, $off_camp, $off_desc, $off_accepts) {
@@ -144,5 +144,89 @@
         } else {
             return $result;
         }
+    }
+
+    function doesOfficeHasApp($office_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_appointment WHERE office_id = ?");
+        $stmt->execute([$office_id]);
+
+        $result = (int)$stmt->fetchColumn();
+
+        return ($result > 0); 
+    }
+
+    function getAdminIdByOffice($office_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT oadmn_id FROM tbl_office_admin WHERE office_id = ?");
+        $stmt->execute([$office_id]);
+
+        return $stmt->fetchColumn();
+    }
+
+    function deleteOffice($office_id) {
+        $conn = connectDb(); 
+
+        if(doesOfficeHasApp($office_id)) {
+            return 301;
+        } else {
+            $stmt = $conn->prepare("DELETE FROM tbl_office WHERE office_id = ?");
+            $stmt->execute([$office_id]);
+            $result = boolval($stmt->rowCount());
+
+            if($result) {
+                $admin_id = getAdminIdByOffice($office_id);
+                if(deleteOfficeAdmin($admin_id)) {
+                    return $admin_id;
+                } else {
+                    return 300;
+                }    
+            } else {
+                return false;
+            }
+        }
+    }
+
+    function deleteOfficeAdmin($admin_id) {
+        $conn = connectDb(); 
+        
+        $office_id = getOfficeIdByAdmin($admin_id);
+
+        $stmt = $conn->prepare("DELETE FROM tbl_office_admin WHERE oadmn_id = ?");
+        $stmt->execute([$admin_id]);
+        $admin_res = boolval($stmt->rowCount());
+
+        $stmt = $conn->prepare("DELETE FROM tbl_office_adm_auth WHERE oadmn_id = ?");
+        $stmt->execute([$admin_id]);
+        $auth_res = boolval($stmt->rowCount());
+
+        $stmt = $conn->prepare("DELETE FROM tbl_office_upld WHERE oadmn_id = ?");
+        $stmt->execute([$admin_id]);
+
+        if(boolval($office_id)) {
+            $res = setOfficeAsUnassigned($office_id);
+
+            return $admin_res && $auth_res && $res; 
+        }
+        return $admin_res && $auth_res;
+    }
+
+    function getOfficeIdByAdmin($admin_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("SELECT office_id FROM tbl_office_admin WHERE oadmn_id = ?");
+        $stmt->execute([$admin_id]);
+
+        return $stmt->fetchColumn();
+    }
+
+    function setOfficeAsUnassigned($office_id) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("UPDATE tbl_office SET office_hasAdmin = 0 WHERE office_id = ?");
+
+        return $stmt->execute([$office_id]);
     }
 ?>

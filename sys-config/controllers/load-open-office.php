@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		load-open-office.php (API, Ajax) -- 
+ *  Description:
+ * 		1. Loads all the offices that does not have assigned admin.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
@@ -7,14 +27,6 @@
         header("Location: ../main/rtuappsys");
 		die();
     }
-
-    // Session Side
-    //session_name("id");
-   // session_start();
-
-    //if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
-        //echo json_encode(array("statusCode"=>203)); // User is not sessioned
-    //} 
 
     if(isset($_POST["branch"])) {
         $campus = $_POST["branch"];

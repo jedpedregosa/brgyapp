@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		Admin.php (Class, Method Package) -- 
+ *  Description:
+ * 		1. Contains all methods related to Office Admins.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
@@ -9,6 +29,8 @@
             return false;
         }
         $office_to_id = str_replace("O","",$office);
+
+
         $oadmn_id = $office_to_id . '-' . getNextAdminId();
         $stmt = $conn -> prepare("INSERT INTO tbl_office_admin (oadmn_id, oadmn_lname, office_id, oadmn_fname, oadmn_email, oadmn_contact)
             VALUES (:oadmn_num, :lname, :office, :fname, :email, :contact)");
@@ -53,12 +75,19 @@
         $stmt = $conn -> query("SELECT MAX(oadmn_num) FROM tbl_office_admin");
         $result = $stmt->fetchColumn();
 
+        $id;
+
         if($result) {
-            return $result + 1;
+            $id = $result + 1;
         } else {
-            return 10;
+            $id = 1;
         }
         
+        $next_id = base_convert(strval($id), 10, 36);
+        if(strlen($next_id) < 2) {
+            $next_id = str_pad($next_id, 2, '0', STR_PAD_LEFT);
+        }
+        return strtoupper($next_id);
     }
 
     function userIsAuthenticated($uname, $password) {

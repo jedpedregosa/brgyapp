@@ -239,7 +239,7 @@
     <!-- //Contents -->
 
     <!-- Javascript -->
-    <script src="../../assets/js/OA-TableScript.js"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/js/OA-TableScript.js" . FILE_VERSION ?>"></script>
     <!-- //Javascript -->
 
 </body>

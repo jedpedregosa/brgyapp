@@ -1,9 +1,26 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		load-slots.php (API, Ajax) -- 
+ *  Description:
+ * 		1. Loads all the available timeslots to JSON.
+ * 
+ * 	Date Created: 30th of July, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
-
-    session_name("cid");
-    session_start();
 
     // Check if request is not from ajax
     if(!IS_AJAX) {
@@ -22,9 +39,6 @@
         header("Location: ../main/rtuappsys");
         die();
     }
-
-    //$slctDate = "07/15/2021";
-    //$slctOffice = "RTU-O01";
 
     $availableSlots = [];
 

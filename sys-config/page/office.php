@@ -1,4 +1,24 @@
 <?php 
+/******************************************************************************
+ * 	Rizal Technological University Online Appointment System
+ * 		
+ * 	File: 
+ * 		office.php (Access Page) -- 
+ *  Description:
+ * 		1. Displays the office and office admin table.
+ * 
+ * 	Date Created: 14th of August, 2021
+ * 	Github: https://github.com/jedpedregosa/rtuappsys
+ * 
+ *	Issues:	
+ *  Lacks: 
+ *  Changes:
+ * 	
+ * 	
+ * 	RTU Boni System Team
+ * 	BS-IT (Batch of 2018-2022)
+ ******************************************************************************/
+
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
 
@@ -40,7 +60,52 @@
             $msg = "Oops, it seems that we are experiencing an error.";
         }
         unset($_SESSION["err_code"]);
-    }
+    } else if(isset($_SESSION["off_dltres"])) {
+        $isAlert = true;
+        $val = $_SESSION["off_dltres"];
+
+        if(isset($_SESSION["off_dltd"])) {
+            if($val == 300) {
+                $off_id = $_SESSION["off_dltd"];
+                
+                if(isset($_SESSION["admn_dltd"])) {
+                    $title = "Delete Office";
+                    $msg = "Office <strong>" . $off_id . "</strong> and Admin <strong>" . $_SESSION["admn_dltd"] . "</strong> was deleted successfuly."; 
+                    
+                    unset($_SESSION["admn_dltd"]);
+                } else {
+                    $title = "Delete Office";
+                    $msg = "Office <strong>" . $off_id . "</strong> was deleted successfuly. ";  
+                }
+                
+            } else if($val == 301) {
+                $off_id = $_SESSION["off_dltd"];
+    
+                $title = "Can\'t Delete Office";
+                $msg = "Unable to delete <strong>" . $off_id . "</strong>. The office is still under an appointment.";
+            } else {
+                $title = "Error";
+                $msg = "Oops, it seems that we are experiencing an error on deleting this office.";
+            }
+            $isSuccess = true;
+            unset($_SESSION["off_dltd"]);
+        } else if($val == 302){
+            if(isset($_SESSION["admn_dltd"])) {
+                $title = "Delete Office Admin";
+                $msg = "Office Admin <strong>" . $_SESSION["admn_dltd"] . "</strong> was deleted successfuly.";  
+
+                $isSuccess = true;
+                unset($_SESSION["admn_dltd"]);
+            } else {
+                $title = "Error";
+                $msg = "Oops, it seems that we are experiencing an error on deleting this admin office.";
+            }         
+        } else {
+            $title = "Error";
+            $msg = "Oops, it seems that we are experiencing an error on deleting this office.";
+        }
+        unset($_SESSION["off_dltres"]);
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +118,8 @@
 
     <title>All Offices - RTU Appointment System</title>
 
-    <link rel="stylesheet" href="../assets/css/SA-Office.css">
-    <link rel="stylesheet" href="../../assets/css/fnon.min.css" />
+    <link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST . "/sys-config/assets/css/SA-Office.css" . FILE_VERSION; ?>">
+    <link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
 
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -241,7 +306,9 @@
                                     }
                                 ?>
                             </td>
-                            <td><button class="delete" title="Delete Record">
+                            <td>
+                            <button class="delete" title="Delete Record" href = "office1aaa" 
+                                onclick = "confirmODelete('<?php echo htmlspecialchars($office[0]); ?>','<?php echo addslashes($office[1]); ?>', '<?php echo htmlspecialchars($office[3]); ?>')">
                                 <img src="../assets/img/delete_icon.png">
                             </button>
                             <button class="edit" title="Edit Record" id="add_admin" onclick="document.getElementById('id11').style.display='block'" style="width:auto;">
@@ -298,7 +365,7 @@
                             <td><?php echo htmlspecialchars($admin[3])?></td>
                             <td><?php echo htmlspecialchars($admin[4])?></td>
                             <td><?php echo htmlspecialchars($admin[5])?></td>
-                            <td><button class="delete" title="Delete Record">
+                            <td><button class="delete" title="Delete Record" onclick = "confirmAdmDel('<?php echo htmlspecialchars($admin[1])?>', '<?php echo htmlspecialchars($admin[2])?>')">
                                     <img src="../assets/img/delete_icon.png">
                             </button>
                             <button class="edit" title="Edit Record" id="add_admin" onclick="document.getElementById('id12').style.display='block'" style="width:auto;">
@@ -466,8 +533,8 @@
     <!-- //Contents -->
 
     <!-- Javascript -->
-    <script src="../assets/js/Admin-Script.js"></script>
-    <script src="../../assets/js/fnon.min.js"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST . "/sys-config/assets/js/Admin-Script.js" . FILE_VERSION; ?>"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>
 
     <?php 
 		if($isAlert) {
