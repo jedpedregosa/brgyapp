@@ -229,4 +229,45 @@
 
         return $stmt->execute([$office_id]);
     }
+
+    function updateOfficeData($office_id, $name, $desc, $accepts) {
+        $conn = connectDb();
+
+        $branch = getCampusName($office_id);
+
+        if($branch) {
+            if(validateOffice($name, $branch, $office_id)) {
+                $stmt = $conn->prepare("UPDATE tbl_office SET office_name = ?, office_desc= ?, accepts_app = ?
+                    WHERE office_id = ?");
+                $result = $stmt->execute([$name, $desc, $accepts, $office_id]);
+
+                if($result) {
+                    return 300;
+                } else {
+                    return 302;
+                }
+            } else {
+                return 301;
+            }
+        } else {
+            return 302;
+        }
+    }
+
+    function validateOffice($name, $campus, $office_id = null) {
+        $conn = connectDb();
+
+
+        if(empty($office_id)) {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_office WHERE office_branch = ? AND office_name = ?");
+            $stmt->execute([$campus, $name]);
+        } else {
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_office 
+                WHERE (office_branch = ? AND office_name = ?) AND office_id != ?");
+            $stmt->execute([$campus, $name, $office_id]);
+        }
+        $result = $stmt->fetchColumn();
+
+        return !boolval($result);
+    }
 ?>

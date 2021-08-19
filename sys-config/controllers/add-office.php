@@ -48,6 +48,10 @@
     if($off_camp != "Boni Campus" && $off_camp != "Pasig Campus") {
         goBack();
     }
+    
+    if(!validateOffice($off_name, $off_camp, null)) {
+        goBack(301);
+    }
 
     $result = createOffice($off_name, $off_camp, $off_desc, $off_accepts);
 
@@ -58,7 +62,7 @@
 
     goBack();
 
-    function goBack($errorCode = 301) {
+    function goBack($errorCode = 302) {
         $_SESSION["err_code"] = $errorCode;
         header("Location: ../page/office");
         die();

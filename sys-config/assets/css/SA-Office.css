@@ -219,7 +219,6 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 1;
 }
 
-
 /* SIDEBAR ICONS */
 
 .sidebar i {
@@ -1486,11 +1485,27 @@ form {
   text-decoration: none;
   font-size: 12px;
   cursor: pointer;
-  width: 80px;
+  width: 40%;
   padding: 10px;
   margin-bottom: 30px;
   margin-top: 10px;
 }
+
+.edit_admin {
+    margin: 2%;
+    background-color: #505050;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    cursor: pointer;
+    max-width: 40%;
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
 
 .add_office:hover {
   background-color: #00153E;
@@ -1665,7 +1680,7 @@ input[type=password] {
     font-family: "Poppins", sans-serif;
     font-size: 10px;
     display: inline;
-    margin: 2%;
+    margin: 3%;
 }
 #oa-office {
     display: none;
@@ -1673,7 +1688,7 @@ input[type=password] {
 #office-wait {
     font-family: "Poppins", sans-serif;
     font-size: 10px;
-    margin: 2%;
+    margin: 3%;
     display: none;
 }
 .form-inline select {
@@ -1734,7 +1749,7 @@ input[type=password] {
     text-decoration: none;
     font-size: 12px;
     cursor: pointer;
-    width: 80px;
+    width: 40%;
     padding: 10px;
     margin-bottom: 25px;
     margin-top: 10px;
@@ -1876,4 +1891,11 @@ span.psw {
 
 .button-group-container button:hover {
     box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8);
+}
+
+.edit-txt {
+    margin: 1%;
+}
+.edit-txt2 {
+    margin-bottom: 3%;
 }

@@ -55,6 +55,9 @@
                 unset($_SESSION["add-admin-id"]);
                 unset($_SESSION["add-admin-pw"]);
             }
+        } else if($_SESSION["err_code"] == 301) {
+            $title = "Error Add Office";
+            $msg = "The office has an identical office existing.";
         } else {
             $title = "Error";
             $msg = "Oops, it seems that we are experiencing an error.";
@@ -105,7 +108,50 @@
             $msg = "Oops, it seems that we are experiencing an error on deleting this office.";
         }
         unset($_SESSION["off_dltres"]);
-    } 
+    } else if(isset($_SESSION["updt_res"])) {
+        $isAlert = true;
+        if($_SESSION["updt_res"] == 300) {
+            if(isset($_SESSION["updt_office"])) {
+                $title = "Update Office";
+                $msg = "Office <strong>" . $_SESSION["updt_office"] . "</strong> was updated successfuly.";  
+                $isSuccess = true;
+
+                unset($_SESSION["updt_office"]);
+            } else {
+                $title = "Error";
+                $msg = "Oops, it seems that we are experiencing an error updating this office.";
+            }
+        } else if($_SESSION["updt_res"] == 301) {
+            $title = "Error Update Office";
+            $msg = "Update on office <strong>" . $_SESSION["updt_office"] . "</strong> will create an identical office.";
+
+            unset($_SESSION["updt_office"]);
+        } else if($_SESSION["updt_res"] == 400) {
+            if(isset($_SESSION["updt_pass"]) && isset($_SESSION["updt_admid"])) {
+                $title = "Password Reset";
+                $msg = "Created <strong>" . $_SESSION["updt_pass"] . "</strong> as new password for office admin <strong>" . $_SESSION["updt_admid"] . "</strong>.";  
+                
+                $isSuccess = true;
+
+                unset($_SESSION["updt_pass"]);
+                unset($_SESSION["updt_admid"]);
+            } else if(isset($_SESSION["updt_admid"])) {
+                $title = "Update Office Admin";
+                $msg = "Office Admin <strong>" . $_SESSION["updt_admid"] . "</strong> successfuly updated.";
+                
+                $isSuccess = true;
+                
+                unset($_SESSION["updt_admid"]);
+            } else {
+                $title = "Error";
+                $msg = "Oops, it seems that we are experiencing an error updating this admin.";
+            }
+        } else {
+            $title = "Error";
+            $msg = "Oops, it seems that we are experiencing an error updating this office.";
+        }
+        unset($_SESSION["updt_res"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -299,19 +345,22 @@
                             <td><?php echo htmlspecialchars($office[2]); ?></td>
                             <td>
                                 <?php 
+                                    $isOpen = "true";
                                     if($office[4]) {
                                         echo "OPEN";
                                     } else {
+                                        $isOpen = "false";
                                         echo "CLOSED";
                                     }
                                 ?>
                             </td>
                             <td>
-                            <button class="delete" title="Delete Record" href = "office1aaa" 
+                            <button class="delete" title="Delete Record"
                                 onclick = "confirmODelete('<?php echo htmlspecialchars($office[0]); ?>','<?php echo addslashes($office[1]); ?>', '<?php echo htmlspecialchars($office[3]); ?>')">
                                 <img src="../assets/img/delete_icon.png">
                             </button>
-                            <button class="edit" title="Edit Record" id="add_admin" onclick="document.getElementById('id11').style.display='block'" style="width:auto;">
+                            <button class="edit" title="Edit Record" id="add_admin" 
+                                onclick="editOffice('<?php echo htmlspecialchars($office[0]); ?>', '<?php echo addslashes($office[1]); ?>', '<?php echo htmlspecialchars($office[2]); ?>', <?php echo $isOpen; ?>)" style="width:auto;">
                                 <img src="../assets/img/edit_icon.png">
                             </button>
                             </td>
@@ -365,10 +414,12 @@
                             <td><?php echo htmlspecialchars($admin[3])?></td>
                             <td><?php echo htmlspecialchars($admin[4])?></td>
                             <td><?php echo htmlspecialchars($admin[5])?></td>
-                            <td><button class="delete" title="Delete Record" onclick = "confirmAdmDel('<?php echo htmlspecialchars($admin[1])?>', '<?php echo htmlspecialchars($admin[2])?>')">
+                            <td><button class="delete" title="Delete Record" 
+                                onclick = "confirmAdmDel('<?php echo htmlspecialchars($admin[1])?>', '<?php echo htmlspecialchars($admin[2])?>')">
                                     <img src="../assets/img/delete_icon.png">
                             </button>
-                            <button class="edit" title="Edit Record" id="add_admin" onclick="document.getElementById('id12').style.display='block'" style="width:auto;">
+                            <button class="edit" title="Edit Record" id="add_admin" 
+                                onclick="editAdmin('<?php echo htmlspecialchars($admin[1])?>', '<?php echo htmlspecialchars($admin[2])?>', '<?php echo htmlspecialchars($admin[3])?>', '<?php echo htmlspecialchars($admin[4])?>', '<?php echo htmlspecialchars($admin[5])?>')" style="width:auto;">
                                 <img src="../assets/img/edit_icon.png">
                             </button>
                             </td>
@@ -410,12 +461,12 @@
                         <option value = "Pasig Campus">Pasig Campus</option>
                     </select>
                     <br>
-                    <p><textarea placeholder="Description" name="desc" autocomplete="off" required=""></textarea></p>
+                    <p><textarea placeholder="Description" name="desc" autocomplete="off"></textarea></p>
                     <br>
                     <input type = "checkbox" name = "accepts_app" id = "accepts_app" checked>
                     <label for = "accepts_app" id = "lbl_accepts_app">Open for appointments</label> 
                 </div>
-                <input class="add_office" type="submit" value = "ADD" name = "sbmt_add"/>
+                <input class="add_office" type="submit" value = "Add Office" name = "sbmt_add"/>
             </form>
         </div>
 
@@ -457,13 +508,13 @@
                         </span>
                     </form>
                     <br>
-                    <input class="add_admin" type="submit" name = "add_admin" value = "ADD"/>
+                    <input class="add_admin" type="submit" name = "add_admin" value = "Add Office Admin"/>
                 </div>
             </form>
         </div>
 
         <div id="id11" class="modal">
-            <form class="modal-content animate" action="/action_page.php" method="post">
+            <form class="modal-content animate" action="../controllers/edit-office" method="POST">
 
                 <div class="imgcontainer">
                   <span onclick="document.getElementById('id11').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -473,22 +524,19 @@
                 <p class="greetings">Hi Administrator!<span><br>Edit Office Table here</span></p>
 
                 <div class="offc-container">
-                    <p><input type="text" placeholder="Office Name" name="ofcname" autocomplete="off" required></input></p>
-                    <br>
-                    <p><textarea placeholder="Description" name="desc" autocomplete="off" required></textarea></p>
-                    <br>
-                    <select class="off_status" required> 
-                        <option value="" disabled="" selected="" hidden="">Status</option>
-                        <option value="open">Open</option>
-                        <option value="closed">Close</option>
-                    </select>
+                    <p><input type="text" class = "edit-txt edit-txt2" id = "editoffid" name="editoffid" autocomplete="off" readonly></input></p>
+                    <p><input type="text" class = "edit-txt" placeholder="Office Name" id="editoffn" name="editoffn" autocomplete="off" required></input></p>
+                    <p><textarea class = "edit-txt" placeholder="Description" id="editoffdsc" name="editoffdsc" autocomplete="off"></textarea></p>
+
+                    <input type = "checkbox" name = "editaccept" id = "editaccept">
+                    <label for = "editaccept" id = "lbl_accepts_app">Open for appointments</label> 
                 </div>
-                <button class="add_office" type="submit">UPDATE</button>
+                <input class="add_office" type="submit" value = "Update Office" name = "updoffice">
             </form>
         </div>
 
         <div id="id12" class="modal">
-            <form class="modal-content animate" action="/action_page.php" method="post">
+            <form class="modal-content animate" action="../controllers/edit-admin" method="post">
 
                 <div class="imgcontainer">
                   <span onclick="document.getElementById('id12').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -501,30 +549,19 @@
                 
                 <div class="ad_container">
                     <form class="form-inline">
-                      <input type="text" id="firstname" placeholder="First Name" name="firstname" autocomplete="off" required>
-                      <input type="text" id="lastname" placeholder="Last Name" name="lastname" autocomplete="off" required>
+                        <input type="text" id="editadmid" name="editadmid" autocomplete="off" readonly>
+                      <input type="text" id="editadmfname" placeholder="First Name" name="editadmfname" autocomplete="off" required>
 
-                      <input type="email" id="email" placeholder="Email" name="email" autocomplete="off" required>
-                      <input type="text" id="contact" placeholder="Contact" name="contact" autocomplete="off" required>
+                      <input type="text" id="editadmlname" placeholder="Last Name" name="editadmlname" autocomplete="off" required>
+                      <input type="email" id="editadmail" placeholder="Email" name="editadmail" autocomplete="off" required>
 
                         <span class="form-inline">
-                            <select id="branch" required> 
-                                <option value="" disabled="" selected="" hidden="">RTU Branch</option>
-                                <option value="pasig">Pasig</option>
-                                <option value="boni">Boni</option>
-                            </select>
-
-                            <select id="office" required> 
-                                <option value="" disabled="" selected="" hidden="">Office Name</option>
-                                <option value="pasig">Sample Office1</option>
-                                <option value="boni">Sample Office2</option>
-                                <option value="pasig">Sample Office3</option>
-                                <option value="boni">Sample Office5</option>
-                            </select>
+                            <input type="text" id="editadmcntct" placeholder="Contact" name="editadmcntct" autocomplete="off" required>
+                            <input class = "edit_admin" type="submit" name = "edt_adm_pass" value = "Reset Password">
                         </span>
                     </form>
                     <br>
-                    <button class="add_admin" type="submit">UPDATE</button>
+                    <input class="add_admin" type="submit" name = "edt_adm" value = "Update Office Admin">
                 </div>
             </form>
         </div>

@@ -187,3 +187,24 @@ function confirmAdmDel(adm_id, adm_name) {
       }
   }); 
 }
+
+function editOffice(off_id, off_name, off_desc, accepts) {
+  
+  document.getElementById('editoffid').value = off_id;
+  document.getElementById('editoffn').value = off_name;
+  document.getElementById('editoffdsc').value = off_desc;
+  document.getElementById('editaccept').checked = accepts;
+
+  document.getElementById('id11').style.display='block';
+}
+
+function editAdmin(adm_id, lname, fname, email, contact) {
+  
+  document.getElementById('editadmid').value = adm_id;
+  document.getElementById('editadmlname').value = lname;
+  document.getElementById('editadmfname').value = fname;
+  document.getElementById('editadmail').value = email;
+  document.getElementById('editadmcntct').value = contact;
+
+  document.getElementById('id12').style.display='block'
+}
