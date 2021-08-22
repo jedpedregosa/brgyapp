@@ -980,6 +980,7 @@ div.b {
 }
 
 .li3 {
+  direction: ltr;
   list-style-type: square;
   color: #EAB800;
   font-family: Poppins;
@@ -989,6 +990,7 @@ div.b {
 }
 
 .li4 {
+  direction: ltr;
   list-style-type: square;
   color: #EAB800;
   font-family: Poppins;
@@ -1004,6 +1006,7 @@ div.b {
 }
 
 .content {
+  direction: ltr;
   padding-left: 3rem;
   font-size: .8rem;
 }
@@ -1015,6 +1018,7 @@ caption {
 
 /* INFORMATION TABLE SCROLLBAR DESIGN */
 .information {
+  direction: rtl;
   height: 325px;
   width: auto;
   overflow-y: auto;
