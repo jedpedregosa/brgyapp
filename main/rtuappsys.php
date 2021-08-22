@@ -41,6 +41,7 @@
 		}
 		unset($_SESSION["error_status"]);
 	}
+
 ?>
 
 <html>
@@ -372,6 +373,15 @@
 								titleColor: 'White',
 								fontFamily: 'Poppins, sans-serif'
 							}); </script>";
+				} else {
+					if(boolval(sys_in_maintenance)) {
+						echo "<script> Fnon.Alert.Dark({
+							message: 'The system is currently undergoing a maintenance. Please wait for a while.',
+							title: 'System Maintenance',
+							btnOkText: 'Okay',
+							fontFamily: 'Poppins, sans-serif'
+						}); </script>";
+					}
 				}
 			?>
 	</body>

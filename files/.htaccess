@@ -1,0 +1,3 @@
+# Server Configuration File for RTU Online Appointment System (For Requests Package)
+
+deny from all

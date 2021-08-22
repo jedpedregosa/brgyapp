@@ -19,11 +19,7 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
-
-    session_name("cid");
-    session_start();
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php");
 
     $all_office = getAllOffice();
     $all_office_size = sizeof($all_office);
@@ -196,7 +192,7 @@
             <!-- //User Image Container -->
 
             <!-- User Name, Title and Line -->
-            <div class="name">Kassy Meatloaf</div>
+            <div class="name"><?php echo $config_admin_id; ?></div>
             <div class="job">Administrator</div>
             <div class="line"></div>
             <!-- //User Name, Title and Line -->
@@ -209,13 +205,13 @@
             <li>
                 <i class="qr"><img src="../assets/img/qr_code_scan.svg"></i>
                 <input id="searchQR" type="text" placeholder="Search QR Key..." oninput="Typing()">
-                <a href="#">
-                    <span class="bi bi-arrow-right-short" id="arrow"></span>
-                </a>
-                <span class="tooltip">Search</span>
+                <a href="" onclick='return check(this, 0)'>
+					<span class="bi bi-arrow-right-short" id="arrow"></span>
+				</a>
+				<span class="tooltip">Search QR</span>
             </li>
             <li>
-                <a href="SA-Dashboard.html">
+                <a href="main">
                     <i class="bi bi-columns-gap"></i>
                     <span class="links_name">DASHBOARD</span>
                 </a>
@@ -229,32 +225,33 @@
                 <span class="tooltip">Offices</span>
             </li>
             <li>
-                <a href="SA-Appointments-Student.html">
+                <a href="view/appointment">
                     <i class="bi bi-calendar3"></i>
                     <span class="links_name">APPOINTMENTS</span>
                 </a>
                 <span class="tooltip">Appointments</span>
             </li>
             <li>
-                <a href="SA-Feedback.html">
+                <a href="view/feedback">
                     <i class="bi bi-star"></i>
                     <span class="links_name">FEEDBACK</span>
                 </a>
                 <span class="tooltip">Feedback</span>
             </li>
             <li>
-                <a href="SA-Settings.html">
+                <a href="sys-settings">
                     <i class="bi bi-gear"></i>
                     <span class="links_name">SETTINGS</span>
                 </a>
                 <span class="tooltip">Settings</span>
             </li>
             <div class="line2"></div>
-
-            <li class="logout">
-                <i class='bi bi-box-arrow-right' id="log_out"></i>
-                <span class="logout-label">Logout</span>
-            </li>
+            <a href = "logout">
+                <li class="logout">
+                    <i class='bi bi-box-arrow-right' id="log_out"></i>
+                    <span class="logout-label">Logout</span>  
+                </li>
+            </a>
         </ul>
         <!-- //Navigation List -->
 
@@ -282,8 +279,8 @@
                     <!-- //User Image Container -->
 
                     <div class="user-name">
-                        <a href="SA-Settings.html">
-                            <h5>Kassy Meatloaf</h5>
+                        <a href="sys-settings">
+                            <h5><?php echo $config_admin_id; ?></h5>
                         </a>
                     </div>
                 </div>
@@ -307,12 +304,19 @@
                 </div>
                 <div class="functions-container">
 
-                    <div class="select-2-container">
+                    <div class="select-1-container">
                         <!--Add Select View By Here-->
                         <select class="select-table" onchange = "searchTableOffice(2, this.value)">
                             <option value="">All Campus</option>
                             <option value="Boni Campus">Boni Campus</option>
                             <option value="Pasig Campus">Pasig Campus</option>
+                        </select>
+                    </div>
+                    <div class="select-2-container">
+                        <select class="select-table" onchange = "searchTableOffice(4, this.value)">
+                            <option value="">All Offices</option>
+                            <option value="Open">Open Offices</option>
+                            <option value="Closed">Closed Offices</option>
                         </select>
                     </div>
 
@@ -330,7 +334,7 @@
                         <tr class="table-header">
                             <th style="width: 20%;">OFFICE ID</th>
                             <th style="width: 20%;">OFFICE NAME</th>
-                            <th style="width: 20%;">RTU BRANCH</th>
+                            <th style="width: 20%;">RTU CAMPUS</th>
                             <th style="width: 30%;">DESCRIPTION</th>
                             <th style="width: 20%;">STATUS</th>
                             <th colspan="2" style="width: 5%;">ACTIONS</th>
@@ -339,7 +343,11 @@
                 foreach((array)$all_office as $office) {
                     ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($office[0]); ?></td>
+                            <td style = "white-space: nowrap">
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-warning"><?php echo htmlspecialchars($office[0]); ?></span>
+                                </div>
+                            </td>
                             <td><?php echo htmlspecialchars($office[1]); ?></td>
                             <td><?php echo htmlspecialchars($office[3]); ?></td>
                             <td><?php echo htmlspecialchars($office[2]); ?></td>
@@ -347,10 +355,18 @@
                                 <?php 
                                     $isOpen = "true";
                                     if($office[4]) {
-                                        echo "OPEN";
+                                        ?>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-success">OPEN</span>
+                                </div>
+                                        <?php
                                     } else {
                                         $isOpen = "false";
-                                        echo "CLOSED";
+                                        ?>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-error">CLOSED</span>
+                                </div>
+                                        <?php
                                     }
                                 ?>
                             </td>
@@ -408,8 +424,16 @@
                 foreach((array)$all_admin as $admin) {
                     ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($admin[0])?></td>
-                            <td><?php echo htmlspecialchars($admin[1])?></td>
+                            <td style = "white-space: nowrap">
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-warning"><?php echo htmlspecialchars($admin[0])?></span>
+                                </div>
+                            </td>
+                            <td style = "white-space: nowrap">
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-indeterminate"><?php echo htmlspecialchars($admin[1])?></span>
+                                </div>
+                            </td>
                             <td><?php echo htmlspecialchars($admin[2])?></td>
                             <td><?php echo htmlspecialchars($admin[3])?></td>
                             <td><?php echo htmlspecialchars($admin[4])?></td>
@@ -436,8 +460,8 @@
             <div class="button-group-container">
 
                 <div class="done-walk-in-appointments">
-                    <button><i class="bi bi-check2-circle"></i> &nbsp; Download List of Offices</button>
-                    <button><i class="bi bi-door-closed"></i> &nbsp; Download List of Admins</button>
+                    <a href = "download/all-office"><i class="bi bi-check2-circle"></i> &nbsp; Download List of Offices</a>
+                    <a href = "download/all-office-admin"><i class="bi bi-door-closed"></i> &nbsp; Download List of Admins</a>
                 </div>
             </div>
         </div>
@@ -501,6 +525,9 @@
                             </div>
                             <div id ="office-wait"> 
                                 <span>Please wait.</span>
+                            </div>
+                            <div id ="office-empt"> 
+                                <span>No offices available.</span>
                             </div>
                             <select id="oa-office" name="oa-office" required> 
                                 <option value="" disabled="" selected="" hidden="">Please select an office</option>
@@ -593,7 +620,26 @@
                 }); </script>";
             }
 			
-		} 
+		} else {
+            $lack = $all_office_size - $all_admin_size;
+            if($lack > 0) {
+                echo "<script> Fnon.Alert.Warning({
+                    message: 'You still have (<strong>" . $lack. "</strong>) office with unassigned office admininistrators.',
+                    title: 'Hello, <strong>" . $config_admin_id . "</strong>',
+                    btnOkText: 'Okay',
+                    btnOkColor: 'White',
+                    btnOkBackground: '#002060',
+                    fontFamily: 'Poppins, sans-serif'
+                }); </script>";
+            } else if($is_under_maintenance) {
+				echo "<script> Fnon.Alert.Dark({
+					message: 'The system is still under maintenance, all users except system administrators are still prohibited to use the system.',
+					title: '<strong>Reminder</strong>',
+					btnOkText: 'Okay',
+					fontFamily: 'Poppins, sans-serif'
+				}); </script>";
+			}
+        }
 	?>
     <!-- //Javascript -->
 

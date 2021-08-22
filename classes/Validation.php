@@ -23,4 +23,17 @@
         
         return $stmt->fetchColumn();
     }
+
+    function secureStringValidation($str, $minLength = 8, $maxLength = 18) {
+        $uppercase = preg_match('@[A-Z]@', $str);
+        $lowercase = preg_match('@[a-z]@', $str);
+        $number = preg_match('@[0-9]@', $str);
+        $specialChars = preg_match('@[^\w]@', $str);
+
+        if(!$uppercase || !$lowercase || !$number || !$str || strlen($str) < $minLength || strlen($str) > $maxLength) {
+            return false;
+        }
+
+        return true;
+    }
 ?>

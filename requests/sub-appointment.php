@@ -46,7 +46,7 @@
     $isSessioned = true;
     $isSuccess = null;
 
-    session_name("id");
+    session_name("cid");
 	session_start();
 
 	if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {

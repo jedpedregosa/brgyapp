@@ -19,11 +19,8 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php");
     
-    session_name("cid");
-    session_start();
-
     $office_id;
     $office_name;
     $office_desc = null;

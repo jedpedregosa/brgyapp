@@ -329,7 +329,7 @@
     			<!-- Cancel and Update Password Buttons -->
     			<div class="buttons">
     				<button type="reset" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      				<button type="submit" name = "upd_pass">Update Password</button>
+      				<button type="submit" name = "upd_pass" id = "upd_pass">Update Password</button>
     			</div>
     			<!-- //Cancel and Update Password Buttons -->
     		</div>

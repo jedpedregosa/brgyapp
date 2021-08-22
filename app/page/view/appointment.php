@@ -61,6 +61,8 @@
     <title>Appointments - RTU Appointment System</title>
 
     <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/css/OA-Interface.css" . FILE_VERSION; ?>">
+    <link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
+
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -259,13 +261,18 @@
                         </tr>
 
             <?php 
+                $closed_count = 0;
+
                 foreach($appointees_table as $appointees) {
                     $date_to_show = new DateTime($appointees[6]);
                     $date_to_show = $date_to_show->format("M d, Y");
-                    //$appointees[8] = preg_replace('/\s+/', ' ', $appointees[8]);
                     ?>
             <tr>
-                            <td><?php echo htmlspecialchars($appointees[0]); ?></td>
+                            <td>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-appid"><?php echo htmlspecialchars($appointees[0]); ?></span>
+                                </div>    
+                            </td>
                             <td><?php echo htmlspecialchars($appointees[1]); ?></td>
                             <td><?php echo htmlspecialchars($appointees[2]); ?></td>
                             <td><?php echo htmlspecialchars($appointees[3]); ?></td>
@@ -280,10 +287,10 @@
                                 <?php 
                                     if($appointees[9] == "student") {
                                         echo "Student (RTU)";
-                                    } else if ($appointees[9] == "guest") {
-                                        echo "GOV ID";
-                                    } else {
+                                    } else if ($appointees[9] == "employee") {
                                         echo "Employee (RTU)";
+                                    } else {
+                                        echo htmlspecialchars(strtoupper($appointees[9]));
                                     }
                                 ?>
                                     </span>
@@ -291,6 +298,7 @@
                             </td>
                             <td>
                                 <?php
+                                    
                                     if($appointees[10]) {
                                         ?>
                                 <div class="build-badge">
@@ -303,6 +311,7 @@
                                     <span class="build-badge__status build-badge__status-error">Closed</span>
                                 </div>
                                         <?php
+                                        $closed_count++;
                                     }
                                 ?>
                                 
@@ -358,6 +367,19 @@
 
     <!-- Javascript -->
     <script src="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/js/OA-TableScript.js" . FILE_VERSION ?>"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>
+    <?php 
+		if($closed_count > 0) {
+			echo "<script> Fnon.Alert.Warning({
+				message: 'Total of (<strong>" . strval($closed_count) . "</strong>) appointment affected by the schedule closure.',
+				title: '<strong>Reminder</strong>',
+				btnOkText: 'Okay',
+				btnOkColor: 'White',
+            	btnOkBackground: '#002060',
+				fontFamily: 'Poppins, sans-serif'
+			}); </script>";
+		}
+    ?>
     <!-- //Javascript -->
 
 </body>

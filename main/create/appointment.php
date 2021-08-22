@@ -24,7 +24,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 
     // Session Side
-    session_name("id");
+    session_name("cid");
     session_start();
     
     // Check if accessed from chck-appointment.php
@@ -196,14 +196,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($sReqData)?>">
+                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" maxlength = "15" value = "<?php echo htmlspecialchars($sReqData)?>">
                                         <label id = "error-last-name"></label>
                                     </div>
                                 </div>
                 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <input type="text" id="contact-number" class="contact-number" placeholder="Contact Number" 
+                                        <input type="text" id="contact-number" class="contact-number" maxlength = "20" placeholder="Contact Number" 
                                             value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>">
                                             <label id = "error-contact-number"></label>
                                     </div>
@@ -212,7 +212,7 @@
                                     if($isGuest) {
                                         ?>
                                             <div class="form-group">
-                                                <input type="text" id="affiliated-company" class="affiliated-company" placeholder="Affiliated Company"
+                                                <input type="text" id="affiliated-company" class="affiliated-company" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
                                                     value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
                                                     <label id = "error-affiliated-company"></label>
                                             </div>
@@ -231,7 +231,7 @@
                                 ?>
 
                                     <div class="form-group">
-                                        <input type="text" id="government-ID" class="government-ID" placeholder="Government ID"
+                                        <input type="text" id="government-ID" class="government-ID" placeholder="Government ID No."
                                             value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
                                             <label id = "error-government-ID"></label>
                                     </div>
@@ -396,7 +396,7 @@
                             <?php 
                                 if($isGuest) {
                                     ?>
-                                        <strong>Affiliated Company</strong>
+                                        <strong>Type of ID</strong>
                                     <?php
                                 } else {
                                     ?>

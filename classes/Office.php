@@ -104,8 +104,8 @@
     function getAllOfficeAdmin() {
         $conn = connectDb();
 
-        $stmt = $conn->prepare("SELECT office_id, oadmn_id, oadmn_lname, oadmn_fname, oadmn_email, oadmn_contact
-            FROM tbl_office_admin ORDER BY office_id ASC"); // Change here if includes has_Admin
+        $stmt = $conn->prepare("SELECT office_id, tbl_office_admin.oadmn_id, oadmn_lname, oadmn_fname, oadmn_email, oadmn_contact, tbl_office_adm_auth.oadmn_date_crtd
+            FROM tbl_office_admin LEFT JOIN tbl_office_adm_auth ON tbl_office_adm_auth.oadmn_id = tbl_office_admin.oadmn_id ORDER BY tbl_office_admin.oadmn_id ASC"); // Change here if includes has_Admin
         $stmt->execute();
 
         $offices = [];
@@ -118,10 +118,22 @@
 
     function getNextOfficeId() {
         $conn = connectDb();
-
+ 
         $stmt = $conn->prepare("SELECT MAX(office_num) FROM tbl_office");
         $stmt->execute();
 
+        /*
+        !!! Must set information_schema_stats_expiry = 0 to use
+
+        $stmt = $conn->prepare("SHOW TABLE STATUS LIKE 'tbl_office'");
+        $stmt->execute();
+
+        $col = $stmt->fetch();
+        $last_insert = $col['Auto_increment'];
+
+        $id = (int)$last_insert + 1;*/
+
+        
         $id = (int)$stmt->fetchColumn() + 1;
         $next_id = base_convert(strval($id), 10, 36);
         if(strlen($next_id) < 2) {

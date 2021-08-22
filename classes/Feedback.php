@@ -28,14 +28,23 @@
         return $result;
     }
 
-    function getAllFeedBack($office) {
+    function getAllFeedBack($office = null) {
         $conn = connectDb();
 
         $feedback = [];
 
-        $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
-            FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC");
-        $stmt->execute([$office]);
+        $stmt; 
+
+        if(!empty($office)) {
+            $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
+                FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC LIMIT 50");
+            $stmt->execute([$office]);
+        } else {
+            $stmt = $conn->prepare("SELECT office_id, fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd,
+                fback_ip_add FROM tbl_feedback ORDER BY fback_id DESC LIMIT 50");
+            $stmt->execute();
+        }
+        
 
         while($row = $stmt->fetchAll()) {
             $feedback = array_merge($feedback, $row);
@@ -44,14 +53,23 @@
         return $feedback;
     }
 
-    function getTwoFeedBack($office) {
+    function getTwoFeedBack($office = null) {
         $conn = connectDb();
 
         $feedback = [];
 
-        $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, office_name, fback_cat, fback_sys_time, fback_is_stsfd 
-            FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC, fback_sys_time desc LIMIT 2");
-        $stmt->execute([$office]);
+        
+        $stmt;
+
+        if(!empty($office)) {
+            $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, office_name, fback_cat, fback_sys_time, fback_is_stsfd 
+                FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC, fback_sys_time desc LIMIT 2");
+            $stmt->execute([$office]);
+        } else {
+            $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, office_name, fback_cat, fback_sys_time, fback_is_stsfd 
+                FROM tbl_feedback ORDER BY fback_id DESC, fback_sys_time desc LIMIT 2");
+            $stmt->execute();
+        }
 
         while($row = $stmt->fetchAll()) {
             $feedback = array_merge($feedback, $row);

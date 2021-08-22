@@ -27,7 +27,7 @@
         } else if ($appointees[11] == "employee") {
             $type = "Employee (RTU)";
         } else {
-            $type = "GOV ID";
+            $type = $appointees[11];
         }
 
         $table .= "<tr>

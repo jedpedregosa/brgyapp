@@ -19,6 +19,7 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/main/master.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
 

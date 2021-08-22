@@ -43,7 +43,7 @@
  
     if($type == "guest") {
         $first_label = "Email Address";
-        $second_label = "Affiliated Company";
+        $second_label = "Type of ID";
         $isGuest = true;
     } else if($type == "student") {
         $first_label = "Student Number";

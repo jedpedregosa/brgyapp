@@ -19,11 +19,7 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Admin.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
-
-    session_name("cid");
-    session_start();
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php"); 
 
     if(isset($_POST["add_admin"])) {
         $post_valid1 = isset($_POST["oa-lastname"]) && isset($_POST["oa-firstname"]) && isset($_POST["oa-email"]);

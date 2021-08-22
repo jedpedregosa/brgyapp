@@ -1,3 +1,3 @@
 <?php 
-    header("Location: page/office");
+    header("Location: login");
 ?>

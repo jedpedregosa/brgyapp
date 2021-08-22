@@ -19,10 +19,7 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
-
-    session_name("cid");
-    session_start();
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php");
 
     $off_name;
     $off_camp;

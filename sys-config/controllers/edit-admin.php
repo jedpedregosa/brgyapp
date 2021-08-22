@@ -20,11 +20,7 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Admin.php");
-
-    session_name("cid");
-    session_start();
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php");
 
     if(isset($_POST["edt_adm"])) {
         $post1 = isset($_POST["editadmid"]) && isset($_POST["editadmfname"]) && isset($_POST["editadmlname"]);

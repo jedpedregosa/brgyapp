@@ -1177,9 +1177,9 @@ a.active span.links_name {
 .functions-container {
     grid-area: functions-container;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "select-1 search-bar";
+    grid-template-areas: "select-1 select-2 search-bar";
 }
 
 .table-container {
@@ -1192,6 +1192,11 @@ a.active span.links_name {
 .select-1-container {
     grid-area: select-1;
 }
+
+.select-2-container {
+    grid-area: select-2;
+}
+
 
 .search-bar-container {
     grid-area: search-bar;
@@ -1682,6 +1687,13 @@ input[type=password] {
     display: inline;
     margin: 3%;
 }
+#office-empt {
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    display: none;
+    margin: 3%;
+}
+
 #oa-office {
     display: none;
 }
@@ -1873,7 +1885,7 @@ span.psw {
     grid-area: download-all;
 }
 
-.button-group-container button {
+.button-group-container a {
     background-color: rgb(0, 32, 96);
     color: white;
     font-family: Poppins;
@@ -1883,13 +1895,14 @@ span.psw {
     border: none;
     outline: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.button-group-container button:active {
+.button-group-container a:active {
     transform: scale(0.95);
 }
 
-.button-group-container button:hover {
+.button-group-container a:hover {
     box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8);
 }
 
@@ -1899,3 +1912,53 @@ span.psw {
 .edit-txt2 {
     margin-bottom: 3%;
 }
+
+.build-badge {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    font-family: "Poppins", sans-serif;
+}
+  
+  .build-badge__label, .build-badge__status {
+    border-radius: 50px;
+    display: inline-block;
+    padding: 0 6px 1px 6px; 
+  }
+  
+  .build-badge__label {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .build-badge__status-success {
+    background-color: #0075b5;
+  color: #fff;
+  }
+  
+  .build-badge__status-warning {
+    background-color: #FEC006;
+    color: #000;
+  }
+  
+  .build-badge__status-error {
+    background-color: #E0E0E0;
+    color: #fff;
+  }
+  
+  .build-badge__status-appid {
+    background-color: #00153E;
+    color: #fff;
+  }
+  
+
+  .build-badge__status-information {
+    background-color: #878787;
+    color: #fff;
+  }
+  
+  .build-badge__status-indeterminate {
+    background-color: #000443d4;
+    color: #fff;
+  }

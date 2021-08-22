@@ -12,6 +12,8 @@ let arrow = document.querySelector("#arrow");
 window.onload = () => {
   document.getElementById('searchQR').value = '';
   arrow.style.display = "none";
+  document.getElementById("upd_pass").disabled = true;
+  
 };
 
 closeBtn.addEventListener("click", ()=>{
@@ -150,6 +152,7 @@ getpassword.onblur=function(){
 
 // Checking the Strength
 function password(){
+  document.getElementById("upd_pass").disabled = true;
   if (getpassword.value.match(/[A-Z]/g)) {
     document.getElementById("upper").style.color='green';
   }
@@ -195,6 +198,7 @@ function password(){
   }
 
   if (getpassword.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z\d])(?=.{8,})/gm)) {
+    document.getElementById("upd_pass").disabled = false;
     getpassword.style.borderBottom = "2px solid green";
   }
 
@@ -268,6 +272,7 @@ function valid() {
   var newPassword = document.getElementById("newPassword").value;
   var confirmPassword = document.getElementById("cNewPassword").value;
   var conPass = document.getElementById("cNewPassword");
+  document.getElementById("upd_pass").disabled = true;
 
   var alertMessage = document.getElementById("alertMessage");
 
@@ -290,6 +295,7 @@ function valid() {
   }
 
   else {
+    document.getElementById("upd_pass").disabled = false;
     alertMessage.innerHTML = "Password match"
     alertMessage.style.color = "green";
     conPass.style.borderBottom = "2px solid green";

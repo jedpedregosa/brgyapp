@@ -22,10 +22,12 @@
  * **************************************************************************/
 
     // Includes
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/main/master.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
+    
     
     // Initialization
     $userId;            // Student Number, Employee Number or Email
@@ -77,7 +79,7 @@
 
 
     // Session Side
-    session_name("id");
+    session_name("cid");
     session_start();
 
     // Assigning Session
@@ -103,9 +105,6 @@
     header("Location: ../main/create/appointment");
 
     function goBack() {
-        session_name("cid");
-        session_start();
-
         $_SESSION["error_status"] = 200;
 
         header("Location: ../main/rtuappsys");

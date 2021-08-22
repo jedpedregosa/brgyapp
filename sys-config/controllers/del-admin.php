@@ -19,29 +19,26 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php");
 
-session_name("cid");
-session_start();
+    $admin_id;
 
-$admin_id;
+    if(isset($_GET["adm_id"])) {
+        $admin_id = $_GET["adm_id"];
+    } else {
+        goBack();
+    }
 
-if(isset($_GET["adm_id"])) {
-    $admin_id = $_GET["adm_id"];
-} else {
-    goBack();
-}
+    $result = deleteOfficeAdmin($admin_id);
 
-$result = deleteOfficeAdmin($admin_id);
-
-if($result) {
-    $_SESSION["admn_dltd"] = $admin_id;
-    goBack(302);
-} else {
-    goBack();
-}
-function goBack($errorCode = 303) {
-    $_SESSION["off_dltres"] = $errorCode;
-    header("Location: ../page/office");
-}
+    if($result) {
+        $_SESSION["admn_dltd"] = $admin_id;
+        goBack(302);
+    } else {
+        goBack();
+    }
+    function goBack($errorCode = 303) {
+        $_SESSION["off_dltres"] = $errorCode;
+        header("Location: ../page/office");
+    }
 ?>

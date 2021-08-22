@@ -26,7 +26,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/create-pdf.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/api/phpqrcode/qrlib.php");
 
-    function totalAppointmentToday($office) {
+    function totalAppointmentToday($office = null) {
         
         $conn = connectDb();
 
@@ -38,8 +38,16 @@
             return ($weekday == 6 ? "Today's Saturday." : "Today's Sunday.");
         }
 
-        $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE office_id = ? AND sched_date = ? ");
-        $stmt-> execute([$office, $sched_date]);
+        $stmt;
+
+        if(!empty($office)) {
+            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE office_id = ? AND sched_date = ? ");
+            $stmt-> execute([$office, $sched_date]);
+        } else {
+            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE sched_date = ? ");
+            $stmt-> execute([$sched_date]);
+        }
+        
 
         $schedules = [];
         while($row = $stmt->fetchAll()) {
@@ -59,14 +67,20 @@
 
         return $total_count;
     }
-    function totalAppointmentOfWeek($office) {
+    function totalAppointmentOfWeek($office = null) {
         $conn = connectDb();
 
         $date = new DateTime();
         $sched_date = $date->format("Y-m-d");
 
-        $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where (sched_date BETWEEN ? AND DATE_ADD(?, INTERVAL 7 DAY)) AND office_id = ?");
-        $stmt-> execute([$sched_date, $sched_date, $office]);
+        if(!empty($office)) {
+            $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where (sched_date BETWEEN ? AND DATE_ADD(?, INTERVAL 7 DAY)) AND office_id = ?");
+            $stmt-> execute([$sched_date, $sched_date, $office]);
+        } else {
+            $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where (sched_date BETWEEN ? AND DATE_ADD(?, INTERVAL 7 DAY))");
+            $stmt-> execute([$sched_date, $sched_date]);
+        }
+        
 
         $schedules = [];
         while($row = $stmt->fetchAll()) {
@@ -85,15 +99,21 @@
         return $total_count;
     }
 
-    function totalAppointmentOfMonth($office) {
+    function totalAppointmentOfMonth($office = null) {
         $conn = connectDb();
 
         $date = new DateTime();
         $sched_date = $date->format("m-Y");
         $now_date = $date->format("Y-m-d");
 
-        $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where DATE_FORMAT(sched_date, '%m-%Y') = ? AND (office_id = ? AND sched_date >= ?)");
-        $stmt-> execute([$sched_date, $office, $now_date]);
+        if(!empty($office)) {
+            $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where DATE_FORMAT(sched_date, '%m-%Y') = ? AND (office_id = ? AND sched_date >= ?)");
+            $stmt-> execute([$sched_date, $office, $now_date]);
+        } else {
+            $stmt = $conn->prepare("SELECT sched_id from tbl_schedule where DATE_FORMAT(sched_date, '%m-%Y') = ? AND (sched_date >= ?)");
+            $stmt-> execute([$sched_date, $now_date]);
+        }
+        
 
         $schedules = [];
         while($row = $stmt->fetchAll()) {
@@ -179,7 +199,7 @@
             }
         } else {
             $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment 
-                WHERE app_is_done = 0 AND office_id = ? ORDER BY app_id DESC");
+                WHERE app_is_done = 0 AND office_id = ? ORDER BY sched_id ASC");
             $stmt->execute([$office]); 
 
             while($row = $stmt->fetchAll()) {
@@ -206,6 +226,7 @@
             } else {
                 $isGuest = true;
                 $identification_no = getGuestDataById($appointee_data[1]);
+                $appointee_data[6] = getGuestNextDataById($appointee_data[1]);
             }
 
             if($type == "student") {
@@ -765,11 +786,17 @@
         }
     }
 
-    function checkAllAppointments($office) {
+    function checkAllAppointments($office = null) {
         $conn = connectDb();
 
-        $stmt = $conn->prepare("SELECT app_id FROM tbl_appointment WHERE office_id = ?");
-        $stmt->execute([$office]);
+        if(!empty($office)) {
+            $stmt = $conn->prepare("SELECT app_id FROM tbl_appointment WHERE office_id = ?");
+            $stmt->execute([$office]);
+        } else {
+            $stmt = $conn->prepare("SELECT app_id FROM tbl_appointment");
+            $stmt->execute();
+        }
+        
 
         $appointments = [];
         while($row = $stmt->fetchAll()) {
@@ -781,4 +808,169 @@
         }
     }
 
+    function getAllAppointmentsConfig($type, $time_by) {
+        $conn = connectDb();
+
+        $date = new DateTime();
+        $sched_date = $date->format("Y-m-d");
+
+        $appointments = [];
+
+        if($time_by == 1) {
+            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule WHERE sched_date = ? ORDER BY tmslot_id ASC");
+            $stmt-> execute([$sched_date]);
+
+            $schedules = [];
+            while($row = $stmt->fetchAll()) {
+                $schedules = array_merge($schedules, $row);
+            } // Lacks checker if db fails (to error page)
+            
+            foreach((array)$schedules as $sched) {
+                $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment WHERE sched_id = ?  AND app_is_done = 0");
+                $stmt-> execute([$sched[0]]);
+
+                while($row = $stmt->fetchAll()) {
+                    $appointments = array_merge($appointments, $row);
+                }
+            }
+        } else if($time_by == 7) {
+            $stmt = $conn->prepare("SELECT sched_id FROM tbl_schedule 
+                WHERE (sched_date BETWEEN ? AND DATE_ADD(?, INTERVAL 7 DAY)) ORDER BY sched_date ASC");
+            $stmt-> execute([$sched_date, $sched_date]);
+
+            $schedules = [];
+            while($row = $stmt->fetchAll()) {
+                $schedules = array_merge($schedules, $row);
+            }
+
+            $total_count = 0;
+            foreach((array)$schedules as $sched) {
+                $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment WHERE sched_id = ? AND app_is_done = 0");
+                $stmt-> execute([$sched[0]]);
+
+                while($row = $stmt->fetchAll()) {
+                    $appointments = array_merge($appointments, $row);
+                }
+            }
+        } else {
+            $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose, office_id FROM tbl_appointment 
+                WHERE app_is_done = 0 ORDER BY sched_id ASC");
+            $stmt->execute(); 
+
+            while($row = $stmt->fetchAll()) {
+                $appointments = array_merge($appointments, $row);
+            }
+        }
+
+        $appointment_result = [];
+        foreach((array)$appointments as $app) {
+            $appointee_data = getVisitorDataByAppointmentId($app[0]);
+            $schedule_details = getScheduleDetailsBySchedId($app[2]);
+
+            $isGuest = false;
+            $isStudent = false;
+            $isEmp = false;
+
+            $identification_no;
+            if($appointee_data[6] == "student") {
+                $isStudent = true;
+                $identification_no = getStudentDataById($appointee_data[1]);
+            } else if($appointee_data[6] == "employee") {
+                $isEmp = true;
+                $identification_no = getEmployeeDataById($appointee_data[1]);
+            } else {
+                $isGuest = true;
+                $identification_no = getGuestDataById($appointee_data[1]);
+                $appointee_data[6] = getGuestNextDataById($appointee_data[1]);
+            }
+
+            if($type == "student") {
+                if(!$isStudent) {
+                    continue;
+                }
+            } else if($type == "employee") {
+                if(!$isEmp) {
+                    continue;
+                }
+            } else if($type == "guest") {
+                if(!$isGuest) {
+                    continue;
+                }
+            }
+
+            $time = getTimeSlotStart($schedule_details[0]) . " - " . getTimeSlotEnd($schedule_details[0]);
+            array_push($appointment_result, 
+                [
+                    $app[0], 
+                    $identification_no, 
+                    $app[4],
+                    $appointee_data[2] . ", " . $appointee_data[3], 
+                    $appointee_data[4], 
+                    $appointee_data[5],
+                    $schedule_details[1],
+                    $time,
+                    $app[3],
+                    $appointee_data[6],
+                    !isSchedClosed($app[2]),
+                    $appointee_data[8]
+                ]
+            );
+        }
+        return $appointment_result;
+    }
+
+    function getDoneAppointmentsConfig(){
+        $conn = connectDb();
+
+        $done_appointments = [];
+        $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date, office_id
+            FROM tbl_appointment_done ORDER BY app_num DESC, app_done_date desc LIMIT 50");
+        $stmt->execute();
+
+        $r_appdone = [];
+        while($row = $stmt->fetchAll()) {
+            $r_appdone = array_merge($r_appdone, $row);
+        }
+
+        foreach((array)$r_appdone as $app) {
+            $appointment = [];
+            $all_office = [];
+            $app_id = $app[0];
+
+            $office_visited = getOfficeVisitedAsWalkin($app_id);
+            
+            $office_done = $app["office_id"];
+            if(sizeof($office_visited) > 0) {
+                foreach((array)$office_visited as $office) {
+                    array_push($all_office, $office[0]);
+                }
+                array_unshift($all_office, $office_done);
+                $app[6] = $all_office;
+            }
+            
+            $stmt_vstor = $conn->prepare("SELECT vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type, vstor_ip_add
+                FROM tbl_appdone_vstr WHERE app_id = ?");
+            $stmt_vstor ->execute([$app_id]);
+            $result = $stmt_vstor->fetch();
+
+            $appointment = array_merge($app, $result);
+            array_push($done_appointments, $appointment);
+        }
+
+        return $done_appointments;
+    }
+
+    function getOfficeVisitedAsWalkin($app_id) {
+        $conn = connectDb();
+
+        $office_visited = [];
+        $stmt = $conn->prepare("SELECT office_id FROM tbl_app_wlkin WHERE app_id = ?");
+        $stmt->execute([$app_id]);
+
+        while($row = $stmt->fetchAll()) {
+            $office_visited = array_merge($office_visited, $row);
+        }
+
+        return $office_visited;
+    }
 ?>

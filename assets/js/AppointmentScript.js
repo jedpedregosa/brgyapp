@@ -428,6 +428,7 @@ function loadOffices() {
                 opt.hidden = true;
                 opt.innerHTML = "Please wait...";
                 office_select.appendChild(opt);
+                office_select.disabled = true;
             },
             error: function() {
                 showAlertServerError();
@@ -441,14 +442,23 @@ function loadOffices() {
             
             var available_offices = JSON.parse(dataResult);
 
-            for(let i = 0; i < available_offices.length; i++) {
+            if(available_offices.length > 0) {
+                for(let i = 0; i < available_offices.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.value = available_offices[i][0];
+                    opt.innerHTML = available_offices[i][1];
+                    office_select.appendChild(opt);
+                    office_select.disabled = false;
+                }
+            } else {
                 var opt = document.createElement('option');
-                opt.value = available_offices[i][0];
-                opt.innerHTML = available_offices[i][1];
+                opt.disabled = true;
+                opt.selected = true;
+                opt.hidden = true;
+                opt.innerHTML = "No Office Available";
                 office_select.appendChild(opt);
-                office_select.disabled = false;
+                office_select.disabled = true;
             }
-
         });
     }
 }

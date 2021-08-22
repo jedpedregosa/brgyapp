@@ -2485,6 +2485,12 @@
     background-color: #E0E0E0;
     color: #fff;
   }
+
+  .build-badge__status-appid {
+    background-color: #00153E;
+    color: #fff;
+    font-size: 12px;
+  }
   
   .build-badge__status-information {
     background-color: #878787;

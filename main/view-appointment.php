@@ -20,9 +20,11 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/main/master.php");	
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/SystemLog.php");
 
     // Session Side
     session_name("cid");
@@ -53,10 +55,11 @@
     if(!(isset($_SESSION["view_email"]) && isset($_SESSION["view_lastname"]))) {
         if(isset($_POST["view_email"]) && isset($_POST["view_lname"])) {
             $_SESSION["view_email"] = $_POST["view_email"];
-            $_SESSION["view_lastname"] = $_POST["view_lname"];
-    
+            $_SESSION["view_lastname"] = $_POST["view_lname"];	
+
             header("Location: view-appointment");
         } else {
+			
             header("Location: rtuappsys");
             die();
         }
@@ -69,6 +72,9 @@
             $v_data = getUserDataByEmailLastN($v_email, $v_lname, $v_user_type);
 
             if($v_data) {
+
+				createLog($v_email, "2", USER_IP);
+
                 //Is appointment not done
                 $v_app_data = getAppointmentDetailsByEmail($v_email);
 				checkAppointmentValidity($v_app_data[0]);
@@ -89,6 +95,7 @@
                 goBack();
             }
         } else {
+			createLog("A user", "1", USER_IP);
             goBack();
         }
     }
@@ -318,7 +325,7 @@
 										<?php 
 											if($isGuest) {
 												?>
-													<th class="flex-label">Affiliated Company</th>
+													<th class="flex-label">Type of ID</th>
 										    		<td class="flex-data"><?php echo htmlspecialchars($v_data[2]);?></td>
 												<?php
 											} else {

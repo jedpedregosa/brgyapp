@@ -180,7 +180,11 @@
                     //$appointees[8] = preg_replace('/\s+/', ' ', $appointees[8]);
                     ?>
             <tr>
-                            <td><?php echo htmlspecialchars($appointees[0]); ?></td>
+                            <td>
+                                <div class="build-badge">
+                                    <span class="build-badge__status build-badge__status-appid"><?php echo htmlspecialchars($appointees[0]); ?></span>
+                                </div>    
+                            </td>
                             <td><?php echo htmlspecialchars($appointees[8]); ?></td>
                             <td><?php echo htmlspecialchars($appointees[6]); ?></td>
                             <td><?php echo htmlspecialchars($appointees[7]); ?></td>
@@ -198,7 +202,7 @@
                                     } else if ($appointees[11] == "employee") {
                                         echo "Employee (RTU)";
                                     } else {
-                                        echo "GOV ID";
+                                        echo strtoupper($appointees[11]);
                                     }
                                 ?>
                                     </span>

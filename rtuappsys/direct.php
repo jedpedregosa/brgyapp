@@ -35,6 +35,8 @@
                 infoFail();
             }
             header("Location: ../app/page/view/result?app_=" . $_GET["an_"]);
+        } else if (isset($_SESSION["config_admin_uname"]) && isset($_SESSION["config_admin_chng"])) {
+            header("Location: ../sys-config/page/view/result?app_=" . $_GET["an_"]);
         } else {
             infoFail();
         }
@@ -47,4 +49,5 @@
         header("Location: ../main/rtuappsys");
         die();
     }
+
 ?>

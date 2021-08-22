@@ -31,10 +31,10 @@
         $type = "";
         if($appointees[9] == "student") {
             $type = "Student (RTU)";
-        } else if ($appointees[9] == "guest") {
-            $type = "GOV ID";
-        } else {
+        } else if ($appointees[9] == "employee") {
             $type = "Employee (RTU)";
+        } else {
+            $type = $appointees[9];
         }
 
         $table .= "<tr>

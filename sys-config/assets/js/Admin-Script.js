@@ -76,6 +76,7 @@ function loadOffices() {
 
   let owait = document.getElementById('office-wait');
   let onone = document.getElementById('office-none');
+  let oempt = document.getElementById('office-empt');
 
   office_select.innerHTML = "";
   
@@ -90,22 +91,30 @@ function loadOffices() {
           beforeSend: function(){
             owait.style.display = "inline";
             onone.style.display = "none";
+            oempt.style.display = "none";
           },
           success: function(dataResult){
               var dataResult = JSON.parse(dataResult);
           }
       }).done(function(dataResult) {
           owait.style.display = "none";
-          office_select.style.display = "inline";
           var available_offices = JSON.parse(dataResult);
 
-          for(let i = 0; i < available_offices.length; i++) {
+          if(available_offices.length > 0) {
+            for(let i = 0; i < available_offices.length; i++) {
               var opt = document.createElement('option');
               opt.value = available_offices[i][0];
               opt.innerHTML = available_offices[i][1];
               office_select.appendChild(opt);
               office_select.disabled = false;
+            }
+
+            office_select.style.display = "inline";
+          } else {
+            oempt.style.display = "inline";
+            office_select.style.display = "none";
           }
+          
       });
   }
 }
@@ -207,4 +216,95 @@ function editAdmin(adm_id, lname, fname, email, contact) {
   document.getElementById('editadmcntct').value = contact;
 
   document.getElementById('id12').style.display='block'
+}
+
+function searchTableFeedback(field, txt_value) {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = txt_value;
+  filter = input.toUpperCase();
+  table = document.getElementById("tbl_fback");
+  tr = table.getElementsByTagName("tr");
+  
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[field];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function sortTable(id) {
+  let optn = id.value;
+  let optn_stmp = document.getElementById("slct_tmestmp").value;
+
+  if(optn) {
+    if(optn_stmp) {
+      window.location.href = "appointment?class=" + optn + "&by=" + optn_stmp;
+    } else {
+      window.location.href = "appointment?class=" + optn;
+    }
+  } else {
+    if(optn_stmp) {
+      window.location.href = "appointment" + "?by=" + optn_stmp;
+    } else {
+      window.location.href = "appointment";
+    }
+  }
+  
+}
+function sortTableBy(id) {
+  let optn_stmp = id.value;
+  let optn = document.getElementById("slct_class").value;
+
+  if(optn_stmp) {
+    if(optn) {
+      window.location.href = "appointment" + "?by=" + optn_stmp + "&class=" + optn;
+    } else {
+      window.location.href = "appointment" + "?by=" + optn_stmp;
+    }
+  } else {
+    if(optn) {
+      window.location.href = "appointment" + "?class=" + optn;
+    } else {
+      window.location.href = "appointment";
+    }
+  }
+}
+
+function searchTable(field, txt_value) {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("txt_search");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tbl_appointments");
+  tr = table.getElementsByTagName("tr");
+  
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[field];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function check(aTag, from)
+{
+    var id = document.getElementById("searchQR").value;
+    if(from == 1) { 
+      aTag.href = "result?qr_key=" + id;
+    } else {
+      aTag.href = "view/result?qr_key=" + id;
+    }
+    return true;
 }

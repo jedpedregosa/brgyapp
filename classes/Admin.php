@@ -22,6 +22,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/SystemLog.php");
 
     function addAdminAccount($lname, $fname, $email, $contact, $pass, $office) {
         $conn = connectDb();
@@ -239,5 +240,56 @@
         $stmt = $conn -> prepare("UPDATE tbl_office_adm_auth SET oadmn_pass = ?, oadmn_gen_string = ?, oadmn_pass_chng = ? WHERE oadmn_id = ?");
         
         return $stmt->execute([$password, $gen_string, $submit_date, $uname]);
+    }
+
+    function doesAdminExist($uname) {
+        $conn = connectDb();
+
+        $stmt = $conn -> prepare("SELECT COUNT(*) FROM tbl_office_admin WHERE oadmn_id = ?");
+        $stmt -> execute([$uname]);
+        $result = $stmt->fetchColumn();
+
+        if($result > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isAdminBlocked($username) {
+        $conn = connectDb();
+
+        $hour_ago = time() - 60*30;
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM tbl_office_auth_attmp WHERE oadmn_id = ? AND attmp_stmp > ?");
+        $stmt->execute([$username, $hour_ago]);
+
+        $result = (int)$stmt->fetchColumn();
+
+        if($result < max_attmp_per_halfhour) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function addAdminAttempt($username) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("INSERT INTO tbl_office_auth_attmp (oadmn_id, attmp_stmp, attmp_ip)
+            VALUES (?, ?, ?)");
+        $result = $stmt->execute([$username, time(), USER_IP]);
+
+        if(isAdminBlocked($username)) {
+            createLog($username, "C", USER_IP);
+        }
+
+        return $result;
+    }
+
+    function deleteAllAdminAttempt($username) {
+        $conn = connectDb();
+
+        $stmt = $conn->prepare("DELETE FROM tbl_office_auth_attmp WHERE oadmn_id = ?");
+        $stmt->execute([$username]);
     }
 ?>

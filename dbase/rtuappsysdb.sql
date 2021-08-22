@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 16, 2021 at 06:28 PM
+-- Generation Time: Aug 22, 2021 at 11:52 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appdone_vstr` (
   `type` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `vstor_ip_add` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`app_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment` (
   `app_done_date` datetime DEFAULT NULL,
   PRIMARY KEY (`app_id`),
   UNIQUE KEY `app_num` (`app_num`)
-) ENGINE=MyISAM AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `tbl_appointment_done` (
   `app_sys_time` datetime NOT NULL,
   `app_done_date` datetime NOT NULL,
   PRIMARY KEY (`app_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,87 @@ CREATE TABLE IF NOT EXISTS `tbl_app_wlkin` (
   `app_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `wlkin_date` datetime NOT NULL,
   PRIMARY KEY (`wlkin_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_config_admin`
+--
+
+DROP TABLE IF EXISTS `tbl_config_admin`;
+CREATE TABLE IF NOT EXISTS `tbl_config_admin` (
+  `admn_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admn_pass` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admn_gen_str` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admn_pass_chng` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admn_is_lckd` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`admn_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_config_admin`
+--
+
+INSERT INTO `tbl_config_admin` (`admn_id`, `admn_pass`, `admn_gen_str`, `admn_pass_chng`, `admn_is_lckd`) VALUES
+('3RTU2021_mic', '0cc8cebd3d50e2b6611e153fabbe70a7accbae8e088883ac81958461f9fe93ea', '#2Ihzl5AqS*z', 'UNDEFINED', 0),
+('eRTUmic_2021', '077b858b29587365bf9c9d4ddf65159fc79c4e14e7a6f5088371c4bdba626e6d', 'AOM4YWauT*Ur', 'UNDEFINED', 0),
+('m1c2021_eRTU', '4d1bb10147f64746150a4d87acd5e9b4136fc3ae15a728d182231b3f6a5dacb4', '5oNfI%TRZ#pH', 'UNDEFINED', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_config_attmp`
+--
+
+DROP TABLE IF EXISTS `tbl_config_attmp`;
+CREATE TABLE IF NOT EXISTS `tbl_config_attmp` (
+  `attmp_id` int NOT NULL AUTO_INCREMENT,
+  `admn_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attmp_stmp` int NOT NULL,
+  `attmp_ip` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`attmp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_config_log`
+--
+
+DROP TABLE IF EXISTS `tbl_config_log`;
+CREATE TABLE IF NOT EXISTS `tbl_config_log` (
+  `log_num` int NOT NULL AUTO_INCREMENT,
+  `log_tmstmp` datetime NOT NULL,
+  `log_type` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `log_owner` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `log_source` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`log_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_config_var`
+--
+
+DROP TABLE IF EXISTS `tbl_config_var`;
+CREATE TABLE IF NOT EXISTS `tbl_config_var` (
+  `config_attrb` int NOT NULL,
+  `max_per_sched` int NOT NULL,
+  `days_resched_span` int NOT NULL,
+  `hour_sched_span` int NOT NULL,
+  `days_sched_span` int NOT NULL,
+  `is_in_maintenance` tinyint(1) NOT NULL,
+  PRIMARY KEY (`config_attrb`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_config_var`
+--
+
+INSERT INTO `tbl_config_var` (`config_attrb`, `max_per_sched`, `days_resched_span`, `hour_sched_span`, `days_sched_span`, `is_in_maintenance`) VALUES
+(1, 5, 5, 5, 60, 0);
 
 -- --------------------------------------------------------
 
@@ -150,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `tbl_feedback` (
   `fback_is_stsfd` tinyint(1) NOT NULL,
   `fback_ip_add` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fback_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -183,23 +263,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office` (
   `accepts_app` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`office_id`),
   KEY `office_num` (`office_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_office`
---
-
-INSERT INTO `tbl_office` (`office_num`, `office_id`, `office_name`, `office_desc`, `office_branch`, `office_hasAdmin`, `accepts_app`) VALUES
-(1, 'RTU-O01', 'Curriculum and Instructional Resources Development Center', '', 'Pasig Campus', 0, 1),
-(2, 'RTU-O02', 'Alumni Relations and Placement Office', '', 'Pasig Campus', 0, 1),
-(3, 'RTU-O03', 'Disaster Risk Protection Office', '', 'Pasig Campus', 0, 1),
-(4, 'RTU-O04', 'University Data Protection Office', '', 'Pasig Campus', 1, 1),
-(5, 'RTU-O05', 'Student Records and Admission Center', '', 'Boni Campus', 0, 1),
-(6, 'RTU-O06', 'Scholarship and Grant Office', '', 'Boni Campus', 0, 1),
-(7, 'RTU-O07', 'Graduate School', '', 'Boni Campus', 0, 1),
-(8, 'RTU-O08', 'Human Resource Development Center', '', 'Boni Campus', 0, 1),
-(9, 'RTU-O09', 'College of Engineering, Architecture and Technology', '', 'Boni Campus', 1, 1),
-(10, 'RTU-O10', 'Guidance Services Center', '', 'Boni Campus', 0, 1);
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -218,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office_admin` (
   `oadmn_contact` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`oadmn_id`),
   UNIQUE KEY `oadmn_num` (`oadmn_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -239,6 +303,21 @@ CREATE TABLE IF NOT EXISTS `tbl_office_adm_auth` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_office_auth_attmp`
+--
+
+DROP TABLE IF EXISTS `tbl_office_auth_attmp`;
+CREATE TABLE IF NOT EXISTS `tbl_office_auth_attmp` (
+  `attmp_id` int NOT NULL AUTO_INCREMENT,
+  `oadmn_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attmp_stmp` int NOT NULL,
+  `attmp_ip` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`attmp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_office_upld`
 --
 
@@ -249,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `tbl_office_upld` (
   `upld_key` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `upld_mime` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`upld_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -269,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `tbl_schedule` (
   `sched_isClosed` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`sched_id`),
   KEY `sched_num` (`sched_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=1036 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -343,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   PRIMARY KEY (`vstor_num`) USING BTREE,
   UNIQUE KEY `vstor_id` (`vstor_id`),
   UNIQUE KEY `vstor_email` (`vstor_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=363 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

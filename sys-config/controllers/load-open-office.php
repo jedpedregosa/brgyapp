@@ -19,8 +19,7 @@
  * 	BS-IT (Batch of 2018-2022)
  ******************************************************************************/
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/sys-config/controllers/master.php");
 
     // Check if request is not from ajax
     if(!IS_AJAX) {

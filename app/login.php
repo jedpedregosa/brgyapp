@@ -9,15 +9,23 @@
         die();
     }
 
+	$isAlert = false;
+	$isSuccess = true;
+
     $isError = null;
 
     if(isset($_SESSION["admin_err"])) {
         $isError = $_SESSION["admin_err"];
         unset($_SESSION["admin_err"]);
+		$isAlert = true;
 
         if($isError == 201) {
-            $message = "Username or password is incorrect.";
-        }
+            $message = "You reached the maximum login attempts. Please wait or ask for a password reset to a System Administrator.";
+        } else if($isError == 505) {
+			$isSuccess = false;
+		} else {
+			$message = "Username or password is incorrect.";
+		}
     }
 ?>
 
@@ -82,15 +90,24 @@
 			<script src="<?php echo HTTP_PROTOCOL . HOST . "/app/assets/js/admin-login.js" . FILE_VERSION; ?>"></script>
             <script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>	
 			<?php 
-				if($isError) {
-					echo "<script> Fnon.Alert.Warning({
-								message: '". $message ."',
-								title: 'Unfortunately,',
-								btnOkText: 'Okay',
-								titleBackground: '#002060',
-								titleColor: 'White',
-								fontFamily: 'Poppins, sans-serif'
-							}); </script>";
+				if($isAlert) {
+					if($isSuccess) {
+						echo "<script> Fnon.Alert.Warning({
+							message: '". $message ."',
+							title: 'Unfortunately,',
+							btnOkText: 'Okay',
+							titleBackground: '#002060',
+							titleColor: 'White',
+							fontFamily: 'Poppins, sans-serif'
+						}); </script>";
+					} else {
+						echo "<script> Fnon.Alert.Dark({
+							message: 'The system is currently undergoing a maintenance, please try again later.',
+							title: 'System Maintenance',
+							btnOkText: 'Okay',
+							fontFamily: 'Poppins, sans-serif'
+						}); </script>";
+					}
 				}
 			?>
 			<!--//SCRIPT-->
