@@ -22,19 +22,16 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
 
-    $appId;
+    $appointmentKey;
 
-    session_name("id");
-	session_start();
-
-    if(isset($_SESSION["applicationId"])) {
-        $appId = $_SESSION["applicationId"];
+    if(isset($_GET["c"])) {
+        $appointmentKey = $_GET["c"];
     } else {
         header("Location: rtuappsys");
 		die();
     }
 
-    $appointmentKey = getAppointmentKeyByAppointmentId($appId);
+    $appId = getAppointmentIdByAppointmentKey($appointmentKey);
 	$file_keys = getFileKeysByAppId($appId);
     $file_dir = APP_FILES . $appointmentKey . "/";
 

@@ -96,7 +96,7 @@
     }
 
     if ($isSuccess) { // If create appointment succeed
-        $_SESSION["applicationId"] = $isSuccess;
+        $_SESSION["your_applicationId"] = $isSuccess;
 		echo json_encode(array("statusCode"=>200)); // 200 : Register Success
 	} else if(!$isSessioned) {
 		echo json_encode(array("statusCode"=>201)); // 201 : No Sessioned Appointees

@@ -59,7 +59,7 @@
                     $msg = " [OFFICE_ADMIN] logged <strong>in</strong> at ";
                     break;
                 case "5":
-                    $msg = " tried to log in an config admin account at ";
+                    $msg = " tried to log in a config admin account at ";
                     break;
                 case "6":
                     $msg = " [SYS_ADMIN] logged <strong>in</strong> at ";

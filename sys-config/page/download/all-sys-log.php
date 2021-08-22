@@ -18,10 +18,10 @@
     $table ="";
     foreach($log_data as $log) {
         $table .= "<tr>
-            <td class = 'itd'>[" . htmlspecialchars($log[1]) ."]</td>
-            <td class = 'itd'>" . $log[3] ." </td>
-            <td class = 'itd'>" . $log[2] ." </td>
-            <td class = 'itd'>" . $log[4] ." </td>
+            <td>[" . htmlspecialchars($log[1]) ."]</td>
+            <td style = 'text-align: right;'>" . $log[3] ." </td>
+            <td>" . $log[2] ." </td>
+            <td>" . $log[4] ." </td>
         </tr>";
     }
 

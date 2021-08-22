@@ -31,7 +31,7 @@
 
     $appId;
 
-    session_name("id");
+    session_name("cid");
 	session_start();
 
 	if(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"])) {
@@ -41,8 +41,8 @@
     } 
     // Initialization
 
-    if(isset($_SESSION["applicationId"])) {
-        $appId = $_SESSION["applicationId"];
+    if(isset($_SESSION["your_applicationId"])) {
+        $appId = $_SESSION["your_applicationId"];
     } else {
         header("Location: rtuappsys");
 		die();
@@ -132,8 +132,8 @@
 				<!-- PDF DIV -->
 				<div class="pdf">
 					<!-- PUT HERE THE PDF VIEWER OR DOWNLOADER -->
-					<object data="load_pdf" type="application/pdf" width="100%" height="100%">
-                        <embed src="load_pdf" type="application/pdf" />
+					<object data="load_pdf?c=<?php echo $appointmentKey; ?>" type="application/pdf" width="100%" height="100%">
+                        <embed src="load_pdf?c=<?php echo $appointmentKey; ?>" type="application/pdf" />
                     </object>
 				</div>
 				<!-- //PDF DIV -->
