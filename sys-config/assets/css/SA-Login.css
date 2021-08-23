@@ -10,7 +10,7 @@ form {
   margin: 9% auto; /* 5% from the top, 15% from the bottom and centered */
   margin-bottom: 0;
   border: 1px solid #888;
-  width: 25%; /* Could be more or less, depending on screen size */
+  width: 27%; /* Could be more or less, depending on screen size */
   border-radius:40px; /*1*/
   border: double .3em transparent; /*thickness of border*/
   background-image: linear-gradient(#F5F5F5, #F5F5F5), 
@@ -84,7 +84,7 @@ img.avatar {
   margin: 0 auto;
   font-family: "Tw Cen MT";
   margin-bottom: 5px;
-  padding: 7px;
+  padding: 8px;
   box-sizing: border-box;
   display: block;
   box-sizing: border-box;
@@ -140,7 +140,7 @@ form {
 
   form{
   margin: 50% auto ; /* 5% from the top, 15% from the bottom and centered */
-  width: 60%;
+  width: 80%;
   }
 
   input[type=text], input[type=password] {
