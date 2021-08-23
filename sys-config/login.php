@@ -84,7 +84,7 @@
 			</form>
 		</div>
 		
-			<script src="<?php echo HTTP_PROTOCOL . HOST . "/sys-config/assets/css/SA-Login.js" . FILE_VERSION; ?>"></script>
+			<script src="<?php echo HTTP_PROTOCOL . HOST . "/sys-config/assets/js/SA-Login.js" . FILE_VERSION; ?>"></script>
             <?php 
                 if($isError) {
                     ?>
