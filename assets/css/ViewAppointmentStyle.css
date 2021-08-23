@@ -652,7 +652,6 @@ a, a:visited {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 40px;
     /* box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8); */
   }
 
