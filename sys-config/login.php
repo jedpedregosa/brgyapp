@@ -66,7 +66,7 @@
 
 					  <div class="container">
 					    <input type="text" placeholder=" Username" name="adm_uname" autocomplete="off" required>
-				        <input type="password" placeholder="Password" name="adm_pass" id="password" autocomplete="off" required />
+				        <input type="password" placeholder=" Password" name="adm_pass" id="password" autocomplete="off" required />
 					      	<span class="show">
 					        <i class="bi bi-eye" id="togglePassword" onclick="toggle()"></i>
 					      </span>

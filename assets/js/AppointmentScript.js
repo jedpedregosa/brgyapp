@@ -114,7 +114,7 @@ nextBtnSec.addEventListener("click", function(event) {
     } else if(slctTimeSlt == null) {
         Fnon.Alert.Warning({
             message: 'Please select a time for your appointment.',
-            title: 'Selected Timeslot',
+            title: 'Timeslot',
             btnOkText: 'Okay',
             btnOkColor: 'White',
             btnOkBackground: '#002060',

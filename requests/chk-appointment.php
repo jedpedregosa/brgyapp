@@ -28,6 +28,9 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
     
+    // Session Side
+    session_name("cid");
+    session_start();
     
     // Initialization
     $userId;            // Student Number, Employee Number or Email
@@ -76,11 +79,6 @@
         header("Location: ../main/rtuappsys");
         die();
     }
-
-
-    // Session Side
-    session_name("cid");
-    session_start();
 
     // Assigning Session
     $_SESSION["userId"] = $userId;

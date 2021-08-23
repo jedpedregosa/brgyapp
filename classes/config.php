@@ -53,7 +53,7 @@
     define("max_per_sched", $config_vals[1]);             /* This limits the visitor for each schedule */
     define("days_scheduling_span", $config_vals[4]);     /* This sets the span of dates that are available for appointments */
     define("hours_scheduling_span", $config_vals[3]);     /* This sets the span of hour applicable for slots on same day appointments */
-    define("days_rescheduling_span", $config_vals[1]);    /* This sets the span of days required for a reschedule */
+    define("days_rescheduling_span", $config_vals[2]);    /* This sets the span of days required for a reschedule */
 
     define("sys_in_maintenance", $config_vals[5]);
 

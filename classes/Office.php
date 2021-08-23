@@ -282,4 +282,15 @@
 
         return !boolval($result);
     }
+
+    function isOfficeOpen($office_id) {
+        $conn = connectDb();
+        
+        $stmt = $conn->prepare("SELECT accepts_app FROM tbl_office WHERE office_id = ?");
+        $stmt->execute([$office_id]);
+
+        $result = $stmt->fetchColumn();
+
+        return $result;
+    }
 ?>

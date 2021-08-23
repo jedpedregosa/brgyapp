@@ -149,6 +149,7 @@
                                     Date: <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>" . date("F j, Y", strtotime($schedData[4])) . "</strong>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> 
                                 </span>
+                                <span style = 'display: block; margin-top: 1%'><strong>Reminder:</strong> Bring your specified ID. </span>
                             </td>
                             <td width='20' valign = 'top' align = 'center' style = 'width: 40%;'>
                                 <span style = 'display: block;'>

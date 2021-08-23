@@ -26,8 +26,9 @@
     if(!boolval(sys_in_maintenance)) {
         goBack(401);
     }
-    $is_valid = is_int($day_rsched) && is_int($day_span);
-    if(!(is_int($max_visitor) && is_int($hours_span) && $is_valid)) {
+    $is_valid = is_numeric($day_rsched) && is_numeric($day_span);
+    $is_valid2 = is_numeric($max_visitor) && is_numeric($hours_span);
+    if(!($is_valid2 && $is_valid)) {
         goBack();
     }
 
@@ -37,6 +38,7 @@
         goBack();
     } else if($day_rsched < 1 || $day_rsched > 5) {
         goBack();
+
     } else if($day_span < 15 || $day_span > 90) {
         goBack();
     }
@@ -54,5 +56,6 @@
     function goBack($errorCode = 402) {
         $_SESSION["upd_sys_config"] = $errorCode;
         header("Location: ../page/sys-settings");
+        die();
     }
 ?>

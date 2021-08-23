@@ -124,17 +124,10 @@ main::after {
   font-size: 30px;
   color: #009ED6;
   text-align: center;
+  padding: 20px 0 25px 0;
 }
 
 /* Write you comments... Text */
-.desc p.header2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  color: #3B3838;
-  padding-top: 10px;
-  text-align: center;
-  padding-bottom: 18px;
-}
 
 /* INPUTS */
 /* Input Fields */
@@ -624,6 +617,11 @@ form input[type=submit]:hover {
   .textarea textarea {
     height: 150px;
   }
+  /* FORM HEADER DESCRIPTION */
+  /* Give your feedback here! Text */
+  #formFeedback .desc p.header1 {
+    padding: 0 0 25px 0;
+  }
 }
 
 /* RESPONSIVE LAYOUT */
@@ -680,6 +678,11 @@ form input[type=submit]:hover {
   /* Feedback Textarea */
   .textarea textarea {
     height: 150px;
+  }
+  /* FORM HEADER DESCRIPTION */
+  /* Give your feedback here! Text */
+  #formFeedback .desc p.header1 {
+    padding: 0 0 25px 0;
   }
 }
 
@@ -859,4 +862,9 @@ form input[type=submit]:hover {
  .columns {
     width: 100%;
  }
+ /* FORM HEADER DESCRIPTION */
+  /* Give your feedback here! Text */
+  #formFeedback .desc p.header1 {
+    padding: 0 0 25px 0;
+  }
 }

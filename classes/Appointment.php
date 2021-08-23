@@ -826,7 +826,7 @@
             } // Lacks checker if db fails (to error page)
             
             foreach((array)$schedules as $sched) {
-                $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment WHERE sched_id = ?  AND app_is_done = 0");
+                $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose, office_id FROM tbl_appointment WHERE sched_id = ?  AND app_is_done = 0");
                 $stmt-> execute([$sched[0]]);
 
                 while($row = $stmt->fetchAll()) {
@@ -845,7 +845,7 @@
 
             $total_count = 0;
             foreach((array)$schedules as $sched) {
-                $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose FROM tbl_appointment WHERE sched_id = ? AND app_is_done = 0");
+                $stmt = $conn->prepare("SELECT app_id, vstor_id, sched_id, app_purpose, office_id FROM tbl_appointment WHERE sched_id = ? AND app_is_done = 0");
                 $stmt-> execute([$sched[0]]);
 
                 while($row = $stmt->fetchAll()) {

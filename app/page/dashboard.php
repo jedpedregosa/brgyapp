@@ -17,9 +17,9 @@
 
 	$date_to_check_r = new DateTime();
 	$date_to_check = $date_to_check_r->format("Y-m-d");
-	$availablity_status = checkDaySched($date_to_check, $assigned_office);
+	
+	$availablity = checkDaySched($date_to_check, $assigned_office) && isOfficeOpen($assigned_office);
 
-	$availablity_status = ($availablity_status ? 'OPEN' : 'CLOSED');
 
 	$feedback_view = getTwoFeedBack($assigned_office);
 	$feedback_size = sizeof($feedback_view);
@@ -273,14 +273,28 @@
 				                        <span style="color: #002060; text-transform: uppercase;"> <?php echo htmlspecialchars($office_name); ?> <!-- insert data (Display Office Name) --> </span>
 				                    </section>
 			                        <section class="child">
-				                        <span style="color: #002060;"> AVAILABILITY STATUS: </span>
-				                        <span style="color: #EAB800; font-weight: bold;"> <?php echo htmlspecialchars($availablity_status); ?> </span> <!-- insert data (Display Office Current Availability Status) -->
+										 	<?php 
+											 	if($availablity) {
+													 ?>
+												<div class="build-badge">
+													<span class="build-badge__status build-badge__status-warning">OPEN</span>
+												</div>
+													 <?php
+												 } else {
+													 ?>
+												<div class="build-badge">
+													<span class="build-badge__status build-badge__status-information">CLOSED</span>
+												</div>
+													 <?php
+												 }
+											?> 
+										 <!-- insert data (Display Office Current Availability Status) -->
 				                    </section>
 				                </section>
 			                </div>
 	                    </div>
 	                    <div class="status-uniform child">
-	                        <span style="color: #002060; text-transform: uppercase;"> <?php echo htmlspecialchars($campus_name); ?> </span>
+	                        <span style="color: #2E94E3; text-transform: uppercase;"> <?php echo htmlspecialchars($campus_name); ?> </span>
 	                    </div>
 
 	                    <!-- Availability Status -->

@@ -1965,6 +1965,55 @@ h4 {
         font-family: Arial;
     }
 }
+.build-badge {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+}
+  
+  .build-badge__label, .build-badge__status {
+    border-radius: 50px;
+    display: inline-block;
+    padding: 0 6px 1px 6px; 
+  }
+  
+  .build-badge__label {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .build-badge__status-success {
+    background-color: #0075b5;
+  color: #fff;
+  }
+  
+  .build-badge__status-warning {
+    background-color: #FEC006;
+    color: #fff;
+  }
+  
+  .build-badge__status-error {
+    background-color: #E0E0E0;
+    color: #fff;
+  }
+
+  .build-badge__status-appid {
+    background-color: #00153E;
+    color: #fff;
+    font-size: 12px;
+  }
+  
+  .build-badge__status-information {
+    background-color: #878787;
+    color: #fff;
+  }
+  
+  .build-badge__status-indeterminate {
+    background-color: #E0E0E0;
+    color: #000;
+  }
 
 
 /** Adjust responsiveness of each elements and widgets **/

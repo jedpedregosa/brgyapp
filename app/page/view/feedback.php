@@ -146,7 +146,7 @@
 
                     <div class="select-1-container">
                         <select class="select-table" onchange = "searchTableFeedback(4, this.value)">
-                            <option value="" selected>View All Class</option>
+                            <option value="" selected>View All Users</option>
                             <option value="Student">By Student</option>
                             <option value="Employee">By Employee</option>
                             <option value="Guest">By Guest</option>
@@ -156,7 +156,7 @@
                     <div class="select-2-container">
                         <!--Add Select View By Here-->
                         <select class="select-display" onchange = "searchTableFeedback(6, this.value)">
-                            <option value="" selected>View All Reacts</option>
+                            <option value="" selected>View All Reactions</option>
                             <option value=" satisfied">View Satisfied</option>
                             <option value="unsatisfied">View Unsatisfied</option>
                         </select>

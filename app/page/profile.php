@@ -12,7 +12,7 @@
 		$errorCode = $_SESSION["upd_alert"];	
 		if($errorCode == 300) {
 			$title = "Update Profile";
-			$message = "Profile update executed successfully.";
+			$message = "Profile was updated successfully.";
 		} else if($errorCode == 303) {
 			$title = "Change Password";
 			$message = "Your old password does not match.";

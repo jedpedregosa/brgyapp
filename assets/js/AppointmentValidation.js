@@ -27,9 +27,7 @@ function isFormValidated() {
 }
 function isPurposeValid() {
     if(purpose.value == null || purpose.value == ''){
-        error_purpose.textContent = "Please fill up this field";
     } else {
-        error_purpose.textContent = "";
         return true;
     }
     return false;

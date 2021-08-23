@@ -90,8 +90,10 @@
 <head>
     <meta charset="utf-8">
     <title>Make an Appointment</title>
+    
     <link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/AppointmentStyle.css" . FILE_VERSION; ?>">
     <link rel="stylesheet" href="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/css/fnon.min.css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,6 +104,7 @@
             return "<?php echo $dateTime; ?>";
         }
     </script>
+       
 </head>
 <body>
     <div id="screen-overlay">
@@ -109,34 +112,37 @@
             <span class="screen-spinner"></span>
         </div>
     </div>
-    <div class="container">
+    <div class="main-container">
         <!-- HEADER -->
-        <div class="apptlogo">
+        <div class="logo-container">
             <img src="../../assets/img/LOGO_appt.png">
         </div>
 
         <!-- STEP PROGRESS BAR -->
-        <div class="progress-bar">
-            <div class="step">
-                <div class="bullet">
-                    <span><img src="../../assets/img/app_info_icon_fullwhite.png" title="Location and Purpose"></span>
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="step">
+                    <div class="bullet">
+                        <span><img src="../../assets/img/app_info_icon_fullwhite.png" title="Location and Purpose"></span>
+                    </div>
+                    <div class="check fas fa-check"></div>
                 </div>
-                <div class="check fas fa-check"></div>
-            </div>
-            <div class="step">
-                <div class="bullet">
-                    <span><img src="../../assets/img/date_time.png" title="Date and Time"></span>
+                <div class="step">
+                    <div class="bullet">
+                        <span><img src="../../assets/img/date_time.png" title="Date and Time"></span>
+                    </div>
+                    <div class="check fas fa-check"></div>
                 </div>
-                <div class="check fas fa-check"></div>
-            </div>
 
-            <div class="step">
-                <div class="bullet">
-                    <span><img src="../../assets/img/confirm.png" title="Confirmation"></span>
+                <div class="step">
+                    <div class="bullet">
+                        <span><img src="../../assets/img/confirm.png" title="Confirmation"></span>
+                    </div>
+                    <div class="check fas fa-check"></div>
                 </div>
-                <div class="check fas fa-check"></div>
             </div>
         </div>
+
 
         <!-- LOCATION AND PURPOSE PAGE -->
         <div class="form-outer">
@@ -144,127 +150,148 @@
                 <!-- ACTION FOR PHP -->
                 <div class="page slide-page">
                     <!-- Put here your codes -->
-                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Fill out the fields to make an appointment</h4>
-                        <hr style="position: relative; top: -10px;">
-                        <div class="container-inputs">
-                            <div class="container-office">
-                                <select style="width: 150px;" id = "branch" onchange = "loadOffices()">
-                                <option value="" disabled selected hidden>RTU Campus</option>
-                                <option value="Boni Campus">Boni Campus</option>
-                                <option value="Pasig Campus">Pasig Campus</option>
-                            </select>
-                            </div><br><br>
-                            <div class="container-office">
-                                <select name="Office" id="Office" class="Office" disabled>
-                                    <option value="" disabled selected hidden>Office</option>
+                    <h4>Fill out the fields to make an appointment</h4>
+                    <hr>
+
+                    <div class="inputs-row1">
+                        <div class="select-branch">
+                            <select id = "branch" onchange = "loadOffices()">
+                                    <option value="" disabled selected hidden>RTU Branch</option>
+                                    <option value="Boni Campus">Boni Campus</option>
+                                    <option value="Pasig Campus">Pasig Campus</option>
                                 </select>
-                            </div>
-                            <br><br>
-                            <div class="container-purpose">
-                                <br>
-                                <textarea maxlength="150" placeholder="State your purpose here..." id = "purpose" required></textarea>
-                                <label id="error-purpose"></label>
-                            </div>
-                            <div class="informationForm">
-                                <div class="form-row" id ="common-info-row">
-                                    <?php 
-                                        if($isStudent) {
-                                            ?>
-                                                <div class="form-group">
-                                                    <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
-                                                </div>
-                                            <?php
-                                        } else if($isEmp){
-                                            ?>
-                                                <div class="form-group">
-                                                    <input type="text" id="employee-number" class="student-number" placeholder="Employee Number" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
-                                                </div>
-                                            <?php 
-                                        } else {
-                                            ?>
-                                                <div class="form-group">
-                                                    <input type="text" id="email-address" class="email-address" placeholder="Email Address" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
-                                                </div>
-                                            <?php
-                                        }
-                                    ?>
-                                    
-                                    <div class="form-group">
-                                        <input type="text" id="first-name" class="first-name" placeholder="First Name" 
-                                        value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" >
-                                        <label id = "error-first-name"></label>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <input type="text" id="last-name" class="last-name" placeholder="Last Name" maxlength = "15" value = "<?php echo htmlspecialchars($sReqData)?>">
-                                        <label id = "error-last-name"></label>
-                                    </div>
-                                </div>
-                
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <input type="text" id="contact-number" class="contact-number" maxlength = "20" placeholder="Contact Number" 
-                                            value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>">
-                                            <label id = "error-contact-number"></label>
-                                    </div>
+                        </div>
 
-                                <?php
-                                    if($isGuest) {
+                        <div class="select-office">
+                            <select name="Office" id="Office" class="Office" disabled>
+                                    <option value="" disabled selected hidden>Office</option>
+                                    <option value="">Curriculum and Instructional Resources Development Center</option>
+                                </select>
+                        </div>
+
+                        <div class="purpose">
+                            <textarea maxlength="150" placeholder="State your purpose here" id="purpose"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="inputs-row2">
+                                <?php 
+                                    if($isStudent) {
                                         ?>
-                                            <div class="form-group">
-                                                <input type="text" id="affiliated-company" class="affiliated-company" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
-                                                    value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
-                                                    <label id = "error-affiliated-company"></label>
+                                            <div class="primary">
+                                                <input type="text" id="student-number" class="student-number" placeholder="Student Number" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
                                             </div>
                                         <?php
+                                    } else if($isEmp){
+                                        ?>
+                                                <div class="primary">
+                                                <input type="text" id="employee-number" class="employee-number" placeholder="Employee Number" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
+                                            </div>
+                                        <?php 
                                     } else {
                                         ?>
-                                            <div class="form-group">
-                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address"
-                                                    value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>">
-                                                    <label id = "error-email-address"></label>
+                                            <div class="primary">
+                                                <input type="text" id="email-address" class="email-address" placeholder="Email Address" value = "<?php echo htmlspecialchars($fReqData); ?>" disabled required>
                                             </div>
                                         <?php
                                     }
-
-                                    if($isGuest) {
                                 ?>
 
-                                    <div class="form-group">
-                                        <input type="text" id="government-ID" class="government-ID" placeholder="Government ID No."
-                                            value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
-                                            <label id = "error-government-ID"></label>
-                                    </div>
-                                    <?php } ?>
+                                <div class="first-name">
+                                    <input type="text" id="first-name" class="first-name" placeholder="First Name" 
+                                    value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" >
+                                    <label id = "error-first-name"></label>
                                 </div>
-                            </div>
-                        </div>
 
+                                <div class="last-name">
+                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" maxlength = "15" value = "<?php echo htmlspecialchars($sReqData)?>">
+                                    <label id = "error-last-name"></label>
+                                </div>
+                                <div class="contact-number">
+                                    <input type="text" id="contact-number" class="contact-number" maxlength = "20" placeholder="Contact Number" 
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>">
+                                        <label id = "error-contact-number"></label>
+                                </div>
 
+                                <?php
+                                if($isGuest) {
+                                    ?>
+                                        <div class="email-address">
+                                            <input type="text" id="affiliated-company" class="affiliated-company" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
+                                                value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
+                                                <label id = "error-affiliated-company"></label>
+                                        </div>
+                                    <?php
+                                } else {
+                                    ?>
+                                        <div class="email-address">
+                                            <input type="text" id="email-address" class="email-address" placeholder="Email Address"
+                                                value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>">
+                                                <label id = "error-email-address"></label>
+                                        </div>
+                                    <?php
+                                }
 
-                        <!-- LOCATION AND PURPOSE PAGE BUTTONS -->
+                                if($isGuest) {
+                            ?>
+
+                                <div class="govID">
+                                    <input type="text" id="government-ID" class="government-ID" placeholder="Government ID No."
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
+                                        <label id = "error-government-ID"></label>
+                                </div>
+                                <?php } ?>
+                    </div>
+
+                    <div class="button-page-name">
                         <div class="PageNameAndButtons">
-                            <div class="pageName2-border">
-                                <!-- CSS Line 171-184 -->
-                                <p class="pageName">Appointment Info</p>
-                                <button class="firstNext button2" type="button" style="position: relative; left: 18px; top: -0.5px;">Next</button>
-                                <div id="screen-overlay">
-                                    <div class="screen-cv-spinner">
-                                        <span class="screen-spinner"></span>
+                        <div class="pageName2-border">
+                            <!-- CSS Line 171-184 -->
+                                    <p class="pageName">Appointment Info</p>
+                                    <button class="firstNext button2" type="button" style="position: relative; left: 18px; top: -0.5px;">Next</button>
+                                    <div id="screen-overlay">
+                                        <div class="screen-cv-spinner">
+                                            <span class="screen-spinner"></span>
+                                        </div>
                                     </div>
+                                    <!-- CSS Line 94-117 -->
                                 </div>
-                                <!-- CSS Line 94-117 -->
                             </div>
                         </div>
-                </div>
+                    </div>           
+        
 
                 <!-- DATE AND TIME PAGE -->
                 <div class="page">
-                    <!-- important -->
                     <!-- Put here your codes -->
-                    <h4 style="top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Select date and time</h4>
-                    <div class="calendar">
-                        <div class="weekdays">
+                    <div class="row">
+                        <!--Page-->
+                        <div class="head">
+                           <h4 style="top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Select date and time</h4>
+                            <hr>
+                        </div>
+
+                        <div class="column2_row1">
+                            <!-- RIGHT COL-->
+                            <div class="month">
+                                <div class="controls">
+                                    <span class="prev_btn">&and;</span>
+                                    <br>
+                                    <span class="next_btn">&or;</span>
+                                </div>
+                                <div class="date">
+                                    <span class="month_ttl"></span>
+                                    <span class="year_ttl"></span>
+                                    <span class="day_num"></span>
+                                    <span class="day_ttl">Day</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column_row2">
+                            <!--LEFT COL-->
+                            <div class="weekdays">
                             <div>Sun</div>
                             <div>Mon</div>
                             <div>Tue</div>
@@ -273,55 +300,46 @@
                             <div>Fri</div>
                             <div>Sat</div>
                         </div>
-                        <div class="month">
-                            <div class="controls">
-                                <span class="prev_btn">&and;</span>
-                                <span class="next_btn">&or;</span>
+                            <div class="days">
+                                <div class="prev-date"></div>
+                                <div></div>
+                                <div class="next-date"></div>
                             </div>
-                            <div class="date">
-                                <span class="month_ttl"></span>
-                                <span class="year_ttl"></span>
-                                <span class="day_num"></span>
-                                <span class="day_ttl">Day</span>
+                            <div style="display: none;">
+                                <input type="text" id="slctdDate" />
                             </div>
                         </div>
 
-                        <div class="days">
-                            <div class="prev-date"></div>
-                            <div></div>
-                            <div class="next-date"></div>
-                        </div>
-                        <div style="display: none;">
-                            <input type = "text" id = "slctdDate"/>
-                        </div>
-                        <div class="time" id = "slots">
+                        <div class="column2_row3">
+                            <div class="time" id="slots">
+                                <!-- RIGHT COL -->
                                 <div>
-                                    <input type="button" id = "TMSLOT-01" name="btn1" value="08:00 AM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-02" name="btn2" value="08:30 AM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-03" name="btn3" value="09:00 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-01" name="btn1" value="08:00 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-02" name="btn2" value="08:30 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-03" name="btn3" value="09:00 AM" onclick="load_timeslot(this.id)" disabled/>
                                 </div>
                                 <div>
-                                    <input type="button" id = "TMSLOT-04" name="btn4" value="09:30 AM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-05" name="btn5" value="10:00 AM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-06" name="btn6" value="10:30 AM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-04" name="btn4" value="09:30 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-05" name="btn5" value="10:00 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-06" name="btn6" value="10:30 AM" onclick="load_timeslot(this.id)" disabled/>
                                 </div>
                                 <div>
-                                    <input type="button" id = "TMSLOT-07" name="btn7" value="11:00 AM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-08" name="btn8" value="11:30 AM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-09" name="btn9" value="12:00 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-07" name="btn7" value="11:00 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-08" name="btn8" value="11:30 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-09" name="btn9" value="12:00 PM" onclick="load_timeslot(this.id)" disabled/>
                                 </div>
                                 <div>
-                                    <input type="button" id = "TMSLOT-10" name="btn10" value="12:30 PM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-11" name="btn11" value="01:00 PM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-12" name="btn12" value="01:30 PM" onclick = "load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-10" name="btn10" value="12:30 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-11" name="btn11" value="01:00 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-12" name="btn12" value="01:30 PM" onclick="load_timeslot(this.id)" disabled/>
                                 </div>
                                 <div>
-                                    <input type="button" id = "TMSLOT-13" name="btn13" value="02:00 PM" onclick = "load_timeslot(this.id)" disabled/>
-                                    <input type="button" id = "TMSLOT-14" name="btn14" value="02:30 PM" onclick = "load_timeslot(this.id)" disabled/> 
-                                    <input type="button" id = "TMSLOT-15" name="btn15" value="03:00 PM" onclick = "load_timeslot(this.id)" disabled/> 
+                                    <input type="button" id="TMSLOT-13" name="btn13" value="02:00 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-14" name="btn14" value="02:30 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-15" name="btn15" value="03:00 PM" onclick="load_timeslot(this.id)" disabled/>
                                 </div>
-                        </div> 
-                        <div class ="time" id = "slotsload">
+                            </div>
+                            <div class ="time" id = "slotsload">
                             <div id="timeslot-load" class = "overlay">
                                 <div id ="timeslot-cv-spinner">
                                     <span id ="timeslot-spinner"></span>
@@ -331,8 +349,9 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        <!-- scripts -->
                     </div>
-                    <script src="../../assets/js/cal_script.js"></script>
 
                     <!-- DATE AND TIME PAGE BUTTONS -->
                     <div class="PageNameAndButtons">
@@ -346,149 +365,109 @@
                     </div>
                 </div>
 
-                <!-- PERSONAL INFORMATION PAGE -->
-                <!-- CONFIRMATION PAGE -->
-                <div class="page">
-                    
-                    <h4 style="position: relative; top: -5px; color: #3B3838; font-family: 'Poppins', sans-serif;">Appointment Summary</h4>
-                    <hr></hr>
-                    <ul>
 
-                        <!-- Put here the inputted personal information -->
-                        <li class="li1"><strong>PERSONAL INFORMATION</strong></li>
-<table class="table table1">
-                        <tr>
-                            <td class="td0">
+                            <!--Confimation Page -->
+                            <div class="page">
+                    <h4>Appointment Summary</h4>
+                    <hr>
+
+                    <div class="confirmation-content-container">
+
+                        <div class="personal-info-container">
+                            <div class="personal-info-text">
+                                <li><b>PERSONAL INFORMATION</b></li>
+                            </div>
+
+                            <!--Visitor Identification-->
                             <?php 
                                 if($isStudent) {
                                     ?>
-                                        <strong>Student Number</strong>
+                                        <strong class="primary-con">Student Number</strong>
                                     <?php
                                 } else if($isEmp) {
                                     ?>
-                                        <strong>Employee Number</strong>
+                                        <strong class="primary-con">Employee Number</strong>
                                     <?php
                                 } else {
                                     ?>
-                                        <strong>Email Address</strong>
+                                        <strong class="primary-con">Email Address</strong>
                                     <?php
                                 }
                             ?>
-                            </td>
-                            <td class="td01">
-                                <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span><br>
-                            </td>
-                            <td class="td02">
-                                <strong>Contact Number</strong>
-                            </td>
-                            <td class="td03">
-                                <span id = "visitor-contact"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Full Name</strong>
-                            </td>
-                            <td>
-                                <span id = "visitor-fname"></span><br>
-                            </td>
-                            <td>
+                            <span id = "visitor-identification"><?php echo htmlspecialchars($fReqData); ?></span>
+                             <!--Visitor Identification-->
+
+                            <!--Contact Number-->
+                            <strong class="contact-number-con">Contact Number</strong>
+                            <span id="visitor-contact"></span>
+                            <!--Contact Number-->
+
+                            <!--Full Name-->
+                            <strong class="full-name-con">Full Name</strong>
+                            <span id="visitor-fname"></span>
+                            <!--Full Name-->
+
+
+                            <!--Email Address-->
                             <?php 
                                 if($isGuest) {
                                     ?>
-                                        <strong>Type of ID</strong>
+                                        <strong class="email-con">Type of ID</strong>
                                     <?php
                                 } else {
                                     ?>
-                                        <strong>Email Address</strong>
+                                        <strong class="email-con">Email Address</strong>
                                     <?php
                                 }
                             ?>
-                            </td>
-                            <td>
-                                <span id = "visitor-email-com"></span><br>
-                            </td>
-                        </tr>
-                    </table>
+                            <span id="visitor-email-com"></span>
+                            <!--Email Address-->
 
-                        <!-- Put here the inputted appointment information -->
-                        <li class="li2"><strong>APPOINTMENT INFORMATION</strong></li>
-                        <table class="table table2">
-                            <tr>
-                                <td class = "td1">
-                                    <table>
-                                        <tr>
-                                            <td class="tdl2">
-                                                <strong>RTU Branch</strong>
-                                            </td>
-                                            <td class="tdl1">
-                                                <span id = "visitor-branch"></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Office Name</strong>
-                                            </td>
-                                            <td>
-                                                <span id = "visitor-office"></span>
-                                            </td>
-                                        </tr>
-                                        <?php if($isGuest) { ?>
-                                            <tr>
-                                                <td>
-                                                    <strong>Government ID</strong>
-                                                </td>
-                                                <td>
-                                                    <span id = "visitor-govId"></span>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </table>
-                                </td>
-                                <td class = "td2">
-                                    <table>
-                                        <tr>
-                                            <td class="tdr2">
-                                                <strong>Date</strong>
-                                            </td>
-                                            <td>
-                                                <span id = "sched-date"></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Time</strong>
-                                            </td>
-                                            <td>
-                                                <span id = "sched-time"></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Purpose</strong>
-                                            </td>
-                                            <td class="tdr1">
-                                                <span id = "sched-purpose"></span>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                        
-                        <!-- Confrimation Button
-                   <p class="rectangle">
-                      &nbsp;&nbsp;&nbsp;CONFIRMATION &nbsp;&nbsp;&nbsp;<button class = "button1"><b>CONFIRM APPOINTMENT</b></button>
-                   </p>
-                   -->
-                        <input type="checkbox" name="agreement" id="agreement" style="display: inline;
-                        position: relative;
-                        top: 2px;">
-                        <label for="agreement" style="font-family: Poppins; font-size: 0.65rem">I confirm that the above information is <strong> true and correct</strong>, 
-                        and <strong>I give Rizal Technological University</strong> the consent to <strong>collect and process</strong> the given data in accordance to the standards of Data Protection and Privacy.</label>
-                   
-                    </ul>
-                    <!-- CONFIRMATION PAGE BUTTONS -->
+
+                        </div>
+
+                        <div class="appointment-info-container">
+
+                            <div class="appointment-info-text">
+                                <li><b>APPOINTMENT INFORMATION</b></li>
+                            </div>
+
+                            <strong class="rtu-branch-con">RTU Branch</strong>
+                            <span id="visitor-branch"></span>
+
+                            <strong class="office-name-con">Office Name</strong>
+                            <span id="visitor-office"></span>
+
+                            <strong class="date-con">Date</strong>
+                            <span id="sched-date"></span>
+
+                            <strong class="time-con">Time</strong>
+                            <span id="sched-time"></span>
+
+                            <strong class="purpose-con">Purpose</strong>
+                            <span id="sched-purpose"></span>
+
+                            <?php if($isGuest) { ?>
+                                <tr>
+                                    <td>
+                                    <strong class="govID-con">Government ID</strong>
+                                    </td>
+                                    <span id="visitor-govId"></span>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+
+
+                        </div>
+
+                        <div class="agreement-container">
+                            <input type="checkbox" name="agreement" id="agreement">
+                            <label for="agreement">I confirm that the above information is <b> true and correct</b>, 
+                                and <b>I give Rizal Technological University</b> the consent to <b>collect and process</b> the given data in accordance to the standards of Data Protection and Privacy.</label>
+                        </div>
+
+                    </div>
+
                     <div class="PageNameAndButtons">
                         <button class="prev-2 button1">Back</button>
 
@@ -496,24 +475,23 @@
                             <p class="pageName">Confirmation</p>
                         </div>
 
-                        <button class="submit button1" type="button">Confirm</button>
+                        <button class="submit button1 confirm" type="button">Confirm Appointment</button>
                     </div>
                 </div>
-
-
             </form>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <div class="footer">
+    <div class="footer-container">
         <img src="../../assets/img/footer.png">
     </div>
 
     <!-- JAVASCRIPTS USED -->
     <script src="<?php echo HTTP_PROTOCOL . HOST; ?>/assets/js/fnon.min.js"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST . "/assets/js/AppointmentValidation.js" . FILE_VERSION; ?>"></script>
+    <script src="<?php echo HTTP_PROTOCOL . HOST . "/assets/js/Calendar.js" . FILE_VERSION; ?>"></script>
     <script src="<?php echo HTTP_PROTOCOL . HOST . "/assets/js/AppointmentScript.js" . FILE_VERSION; ?>"></script>
-    <script src="<?php echo HTTP_PROTOCOL . HOST . "/assets/js/appointment-validation.js" . FILE_VERSION; ?>"></script>
 </body>
 
 </html>

@@ -51,7 +51,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Write a Feedback</title>
+	<title>Write a Feedback - RTU Appointment System</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/FeedbackStyle.css" . FILE_VERSION; ?>">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -86,7 +86,6 @@
 				<!-- FORM HEADER DESCRIPTION -->
 				<div class="desc">
 					<p class="header1">Give your feedback here!</p>
-					<p class="header2">Kindly write your feedback below in visiting RTU for better service.</p>
 				</div>
 				<!-- //FORM HEADER DESCRIPTION -->
 
@@ -184,7 +183,7 @@
 				<div class="row">
 					<!-- TEXTAREA FEEDBACK -->
 					<div class="textarea">
-				    	<textarea placeholder="State your feedback here..." name ="feedback" required></textarea>
+				    	<textarea placeholder="Write your feedback here..." name ="feedback" required></textarea>
 				    </div>
 				    <!-- //TEXTAREA FEEDBACK -->
 				</div>

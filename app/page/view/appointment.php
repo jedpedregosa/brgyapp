@@ -187,11 +187,11 @@
                     <h4>
                         <?php 
                             if($isStudent) {
-                                echo "Student Appointments";
+                                echo "Students";
                             } else if($isEmployee) {
-                                echo "Employee Appointments";
+                                echo "Employees";
                             } else if($isGuest) {
-                                echo "Guest Appointments";
+                                echo "Guests";
                             } else {
                                 echo "All Appointments";
                             }
@@ -204,7 +204,7 @@
 
                 <div class="select-1-container">
                     <select class="select-table" id = "slct_class" onchange="sortTable(this)">
-                        <option value="" <?php echo ($hasNoClass ? "selected" : "");?>>View All Class</option>
+                        <option value="" <?php echo ($hasNoClass ? "selected" : "");?>>View All Users</option>
                         <option value="student" <?php echo ($isStudent ? "selected" : "");?>>By Student</option>
                         <option value="employee"<?php echo ($isEmployee ? "selected" : "");?>>By Employee</option>
                         <option value="guest"<?php echo ($isGuest ? "selected" : "");?>>By Guest</option>
