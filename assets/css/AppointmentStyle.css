@@ -66,7 +66,7 @@
     .inputs-row2 input[type="text"] {
         height: 30px;
         width: 86%;
-        font-size: 10px;
+        font-size: 9px;
     }
     .inputs-row2 input[type="text"]::-webkit-input-placeholder {
         font-size: 10px;
@@ -960,7 +960,7 @@ textarea::-webkit-input-placeholder {
 @media only screen and (max-width: 415px) {
     .confirmation-content-container {
         height: auto;
-        grid-template-rows: 0.6fr 0.8fr 0.2fr;
+        grid-template-rows: 0.8fr 0.9fr 0.2fr;
         grid-template-areas: "personal-info" "appointment-info" "agreement";
         font-size: 10px;
         grid-row-gap: 20px;
