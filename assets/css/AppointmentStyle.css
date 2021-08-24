@@ -66,6 +66,7 @@
     .inputs-row2 input[type="text"] {
         height: 30px;
         width: 86%;
+        font-size: 10px;
     }
     .inputs-row2 input[type="text"]::-webkit-input-placeholder {
         font-size: 10px;
@@ -962,19 +963,19 @@ textarea::-webkit-input-placeholder {
         grid-template-rows: 0.6fr 0.8fr 0.2fr;
         grid-template-areas: "personal-info" "appointment-info" "agreement";
         font-size: 10px;
-        grid-row-gap: 10px;
+        grid-row-gap: 20px;
     }
     .personal-info-container {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 0.1fr 0.1fr 0.1fr 0.1fr 0.1fr;
         grid-template-areas: "personal-info-text personal-info-text" "primary-con visitor-identification" "full-name-con visitor-fname" "contact-number-con visitor-contact" "email-con visitor-email-com";
-        grid-row-gap: 5px;
+        grid-row-gap: 10px;
     }
     .appointment-info-container {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 0.1fr 0.1fr 0.1fr 0.1fr 0.1fr 0.1fr 1fr;
         grid-template-areas: "appointment-info-text appointment-info-text" "rtu-branch-con visitor-branch" "office-name-con visitor-office" "date-con sched-date" "time-con sched-time" "govID-con sched-govID" "purpose-con sched-purpose";
-        grid-row-gap: 5px;
+        grid-row-gap: 10px;
     }
     strong {
         font-size: 10px;
