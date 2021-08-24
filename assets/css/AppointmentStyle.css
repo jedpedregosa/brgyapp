@@ -86,7 +86,6 @@
     .progress-bar .step .bullet img {
         width: 25px;
         position: relative;
-        top: -10px;
     }
     .inputs-row1 label,
     .inputs-row2 label {
