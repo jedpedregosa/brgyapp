@@ -65,7 +65,7 @@
     }
     .inputs-row2 input[type="text"] {
         height: 30px;
-        width: 86%;
+        width: 84%;
         font-size: 9px;
     }
     .inputs-row2 input[type="text"]::-webkit-input-placeholder {
@@ -136,7 +136,7 @@
     }
     .inputs-row2 input[type="text"] {
         height: 36px;
-        width: 86%;
+        width: 79%;
     }
     .progress-bar {
         width: 78%;
@@ -460,6 +460,7 @@ textarea::-webkit-input-placeholder {
     border: 1px solid rgb(191, 216, 239);
     line-height: 30px;
     padding-left: 15px;
+    padding-right: 15px;
     border-radius: 6px;
     position: relative;
 }
