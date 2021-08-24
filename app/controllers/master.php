@@ -43,6 +43,7 @@
 
     // Checkers
     checkAllAppointments($assigned_office);
+    checkAllScheds($assigned_office);
 
     $message;
     $title;

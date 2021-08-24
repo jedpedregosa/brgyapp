@@ -39,6 +39,8 @@
     }
 
     if(userIsAuthenticated($username, $password)) {
+        session_regenerate_id();
+        
         $_SESSION["admin_uname"] = $username;
         $_SESSION["admin_chng"] = getLastPasswordChange($username);
         $_SESSION["admin_session_expiry"] = time() + 60 * (int)oadmin_min_session_expr;

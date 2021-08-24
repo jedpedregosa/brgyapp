@@ -37,7 +37,7 @@
 			$message = "We have not found an appointment under this email.";
 		} else if($error_code == 300) {
 			$title = "Thank you.";
-			$message = "We really appreciate you taking the time to share your rating with us. We look forward to seeing you again soon. =)";
+			$message = "We are grateful for your feedback! See you again at RTU.";
 		}
 		unset($_SESSION["error_status"]);
 	}
@@ -120,8 +120,8 @@
 								<div class="container-inputs">
 									<form>
 										<div class="inputs">	
-											<input type="text" placeholder="Student Number" name="studentNum" required autocomplete="off" id="studentNum">
-											<input type="text" placeholder="Last Name" name="sLname" required autocomplete="off" id="sLname">
+											<input type="text" placeholder="Student Number" name="studentNum" minLength= "2" maxLength = "15" autocomplete="off" id="studentNum" required>
+											<input type="text" placeholder="Last Name" name="sLname" minLength= "2" maxLength = "20" autocomplete="off" id="sLname" required>
 											<input type = "submit" class="button1" value = "Proceed" id="submit-student">
 										</div>
 									</form>
@@ -149,8 +149,8 @@
 								<div class="container-inputs">
 									<form>
 										<div class="inputs">
-										<input type="text" placeholder="Employee Number" name="empNum" required autocomplete="off" id="empNum">
-										<input type="text" placeholder="Last Name" name="eLname" required autocomplete="off" id="eLname">
+										<input type="text" placeholder="Employee Number" name="empNum" minLength= "2" maxLength = "15" required autocomplete="off" id="empNum">
+										<input type="text" placeholder="Last Name" name="eLname" minLength= "2" maxLength = "20" required autocomplete="off" id="eLname">
 										<input type = "submit" class="button1" value = "Proceed" id="submit-employee">
 										</div>
 									</form>
@@ -178,8 +178,8 @@
 								<div class="container-inputs">
 									<form>
 										<div class="inputs">
-											<input type="text" placeholder="Email" name="email" required autocomplete="off" id="email">
-											<input type="text" placeholder="Last Name" name="gLname" required autocomplete="off" id="gLname">
+											<input type="text" placeholder="Email" name="email" minLength= "2" maxLength = "30" required autocomplete="off" id="email">
+											<input type="text" placeholder="Last Name" name="gLname" minLength= "2" maxLength = "20" required autocomplete="off" id="gLname">
 											<input type = "submit" class="button1" value = "Proceed" id="submit-guest">
 										</div>
 									</form>
@@ -207,8 +207,8 @@
 									<div class="container-inputs">
 										<form>
 											<div class="inputs">
-												<input type="text" name ="view_email" id ="view_email" placeholder="Email Address" required autocomplete="off" >
-												<input type="text" name ="view_lname" id ="view_email" placeholder="Last Name" required autocomplete="off">
+												<input type="text" name ="view_email" id ="view_email" placeholder="Email Address" minLength= "2" maxLength = "30" required autocomplete="off" >
+												<input type="text" name ="view_lname" id ="view_email" placeholder="Last Name" minLength= "2" maxLength = "20" required autocomplete="off">
 
 												<input class="button1" type="submit" id = "view_submit" value="Proceed">
 											</div>   

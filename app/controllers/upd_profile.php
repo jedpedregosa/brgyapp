@@ -11,8 +11,8 @@
             goBack();
         }
         if(isset($_POST["first-name"]) && isset($_POST["last-name"]) && isset($_POST["email-address"]) && isset($_POST["phone-number"])) {
-            $firstname = $_POST["first-name"];
-            $lastname = $_POST["last-name"];
+            $firstname = htmlspecialchars($_POST["first-name"]);
+            $lastname = htmlspecialchars($_POST["last-name"]);
             $email = $_POST["email-address"];
             $phone = $_POST["phone-number"];
         } else {
@@ -22,7 +22,7 @@
         goBack();
     }
 
-    $result = updateData($admin_id, $firstname, $lastname, $email, $phone);
+    $result = updateData($admin_id, ucwords($firstname), ucwords($lastname), $email, $phone);
 
     if($result) {
         goBack(300);

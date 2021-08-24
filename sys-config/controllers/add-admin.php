@@ -31,15 +31,19 @@
         goBack();
     }
 
-    $lname = $_POST["oa-lastname"];
-    $fname = $_POST["oa-firstname"];
-    $email = $_POST["oa-email"];
-    $contact = $_POST["oa-contact"];
+    $lname = htmlspecialchars($_POST["oa-lastname"]);
+    $fname = htmlspecialchars($_POST["oa-firstname"]);
+    $email = htmlspecialchars($_POST["oa-email"]);
+    $contact = htmlspecialchars($_POST["oa-contact"]);
     $pass = generateRandomString();
     $office = $_POST["oa-office"];
 
-    
-    $oadmn_id = addAdminAccount($lname, $fname, $email, $contact, $pass, $office, $pass);
+    $lname = addslashes($lname);
+    $fname = addslashes($fname);
+    $email = addslashes($email);
+    $contact = addslashes($contact);
+
+    $oadmn_id = addAdminAccount(ucwords($lname), ucwords($fname), $email, $contact, $pass, $office, $pass);
     
     if($oadmn_id) {
         if(addAdminAuth($oadmn_id, $pass)) {

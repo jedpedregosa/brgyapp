@@ -122,7 +122,7 @@
 
 					<div class="columns right">
 						<!-- USER FULLNAME INPUT -->
-					    <input type="text" id="fullname" name="fullname" placeholder="Last Name, First Name" required autocomplete="off">
+					    <input type="text" id="fullname" name="fullname" minLength = "2" maxLength = "50" placeholder="Last Name, First Name" required autocomplete="off">
 					    <!-- //USER FULLNAME INPUT -->
 					</div>
 				</div>
@@ -132,13 +132,13 @@
 				<div class="row">
 					<div class="columns left">
 						<!-- USER EMAIL INPUT -->
-					    <input type="email" id="emailAdd" name="email" placeholder="Email Address" required autocomplete="off">
+					    <input type="email" id="emailAdd" name="email" minLength = "2" maxLength = "30" placeholder="Email Address" required autocomplete="off">
 					    <!-- //USER EMAIL INPUT -->
 					</div>
 
 					<div class="columns right">
 						<!-- USER CONTACT NO. INPUT -->
-					    <input type="tel" id="contactNo" name="contact" placeholder="Contact Number" pattern="[0-9]{11}" required autocomplete="off">
+					    <input type="tel" id="contactNo" name="contact" minLength = "2" maxLength = "20" placeholder="Contact Number" pattern="[0-9]{11}" required autocomplete="off">
 					    <!-- //USER CONTACT NO. INPUT -->
 					</div>
 					
@@ -183,7 +183,7 @@
 				<div class="row">
 					<!-- TEXTAREA FEEDBACK -->
 					<div class="textarea">
-				    	<textarea placeholder="Write your feedback here..." name ="feedback" required></textarea>
+				    	<textarea placeholder="Write your feedback here..." minLength = "5" maxLength = "150"  name ="feedback" required></textarea>
 				    </div>
 				    <!-- //TEXTAREA FEEDBACK -->
 				</div>

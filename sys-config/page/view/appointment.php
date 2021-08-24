@@ -210,7 +210,7 @@
 
                 <div class="select-1-container">
                     <select class="select-table" id = "slct_class" onchange="sortTable(this)">
-                        <option value="" <?php echo ($hasNoClass ? "selected" : "");?>>View All Class</option>
+                        <option value="" <?php echo ($hasNoClass ? "selected" : "");?>>View All Users</option>
                         <option value="student" <?php echo ($isStudent ? "selected" : "");?>>By Student</option>
                         <option value="employee"<?php echo ($isEmployee ? "selected" : "");?>>By Employee</option>
                         <option value="guest"<?php echo ($isGuest ? "selected" : "");?>>By Guest</option>
@@ -369,7 +369,7 @@
     <?php 
         if($is_under_maintenance) {
             echo "<script> Fnon.Alert.Dark({
-                message: 'The system is still under maintenance, all users except system administrators are still prohibited to use the system.',
+                message: 'The system is still under maintenance mode. All users except system administrators are still prohibited to use the system.',
                 title: '<strong>Reminder</strong>',
                 btnOkText: 'Okay',
                 fontFamily: 'Poppins, sans-serif'

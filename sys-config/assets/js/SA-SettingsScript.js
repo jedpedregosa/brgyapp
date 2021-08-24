@@ -161,7 +161,7 @@ function validateHours()
     if(toggle_btn.checked == true) {
 
       Fnon.Ask.Dark({
-        message: 'Are you sure to turn on maintenance mode? All users except system administrators will be prohibited to use the system.',
+        message: 'Are you sure to turn on maintenance mode? All users except system administrators will be prohibited from using the system.',
         title: 'Maintenance Mode',
         btnOkText: 'Yes',
         fontFamily: 'Poppins, sans-serif',

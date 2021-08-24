@@ -184,4 +184,19 @@
 
         return $availableDates;
     }
+
+    function checkAllScheds($office = null) {
+        $conn = connectDb();
+
+        $days_ago = date("Y-m-d", strtotime("-5 day"));
+
+        if(!empty($office)) {
+            $stmt = $conn->prepare("DELETE FROM tbl_schedule WHERE office_id = ? AND sched_date <= ?");
+            $stmt->execute([$office, $days_ago]);
+        } else {
+            $stmt = $conn->prepare("DELETE FROM tbl_schedule WHERE sched_date <= ?");
+            $stmt->execute([$days_ago]);
+        }
+        
+    }
 ?>

@@ -41,6 +41,16 @@
         }
 
         unset($_SESSION["config_admin_err"]);
+    } else if(isset($_SESSION["config_admin_reset"])) {
+        $isError = true;
+        $val = $_SESSION["config_admin_reset"];
+
+        if($val == 100) {
+            $error_id = "err-3";
+        } else {
+            $error_id = "err-4";
+        }
+        unset($_SESSION["config_admin_reset"]);
     }
 
 ?>
@@ -65,8 +75,8 @@
 	    			<img src="assets/img/SA.png" alt="Avatar" class="avatar">
 
 					  <div class="container">
-					    <input type="text" placeholder=" Username" name="adm_uname" autocomplete="off" required>
-				        <input type="password" placeholder=" Password" name="adm_pass" id="password" autocomplete="off" required />
+					    <input type="text" placeholder=" Username" name="adm_uname" maxLength = "20" autocomplete="off" required>
+				        <input type="password" placeholder=" Password" name="adm_pass" id="password" maxLength = "20" autocomplete="off" required />
 					      	<span class="show">
 					        <i class="bi bi-eye" id="togglePassword" onclick="toggle()"></i>
 					      </span>
@@ -76,6 +86,12 @@
                         </div>
                         <div id = "err-2" class = "error_msg">
                             <span>Username or password is incorrect.</span>
+                        </div>
+                        <div id = "err-3" class = "error_msg">
+                            <span>Configuration Reset Success.</span>
+                        </div>
+                        <div id = "err-4" class = "error_msg">
+                            <span>Configuration Reset Failed.</span>
                         </div>
 	        
 	    			<input class="button" type="submit" name = "adm_sbmt" value = "Login">

@@ -115,7 +115,7 @@
                     </tbody>
                 </table>
             </div>
-            <div align='center' style = 'margin-bottom: 5%; margin-left: 5%; margin-right: 5%;'>
+            <div align='center' style = 'margin-bottom: 1%; margin-left: 5%; margin-right: 5%;'>
                 <table cellspacing='0' cellpadding='0' style = 'width: 100%'>
                     <tbody>
                         <tr>
@@ -149,7 +149,10 @@
                                     Date: <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>" . date("F j, Y", strtotime($schedData[4])) . "</strong>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> 
                                 </span>
-                                <span style = 'display: block; margin-top: 1%'><strong>Reminder:</strong> Bring your specified ID. </span>
+                                <span style = 'display: block; margin-top: 4%; font-size: 11px'><strong>Reminder:</strong></span>
+                                <span style = 'display: block; font-size: 9px'>&nbsp;&nbsp;&nbsp;&nbsp; •  Bring your specified ID.</span>
+                                <span style = 'display: block; font-size: 9px'>&nbsp;&nbsp;&nbsp;&nbsp; •  You may use this QR to other offices as long as it is within your appointment date.</span>
+                                <span style = 'display: block; font-size: 9px'>&nbsp;&nbsp;&nbsp;&nbsp; •  You can submit your feedback at <u>" . HTTP_PROTOCOL . HOST . "/main/feedback</u>.</span>
                             </td>
                             <td width='20' valign = 'top' align = 'center' style = 'width: 40%;'>
                                 <span style = 'display: block;'>

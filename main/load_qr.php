@@ -56,7 +56,14 @@
 	ob_clean();
 	flush();
 
+    $file_to_read;
+
+    if(is_file($original_filename)){
+        $file_to_read = $original_filename;
+    } else {
+        $file_to_read = $_SERVER['DOCUMENT_ROOT'] . "/assets/img/no_qr.png";
+    }
 	// upload the file to the user and quit
-    readfile($original_filename);
+    readfile($file_to_read);
     exit;
 ?>

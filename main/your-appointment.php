@@ -99,7 +99,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Thank You!</title>
+	<title>Thank You! - RTU Appointment System</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo HTTP_PROTOCOL . HOST . "/assets/css/PDFStyle.css" . FILE_VERSION ?>">
 </head>
@@ -140,7 +140,7 @@
                 
 				<!-- SEE YOU IN RTU -->
 				<div class="seeYou">
-					<p><span>You can </span> download it <a href="your-appointment?dl=1" >here</a> instead.</p>
+					<p><span>Click </span><a href="your-appointment?dl=1" >here</a> <span>to download</span> your appointment slip.</p>
 					<p>See you in <span>Rizal Technological University</span>!</p>
 				</div>
 				<!-- //SEE YOU IN RTU -->

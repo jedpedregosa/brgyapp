@@ -7,6 +7,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Office.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Feedback.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Validation.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Schedule.php");
 
     session_name("cid");
     session_start();
@@ -32,7 +33,10 @@
         $_SESSION["config_session_expiry"] = time() + 60 * (int)config_min_session_expr;
 
         $config_admin_id = $_SESSION["config_admin_uname"];
+        
         checkAllAppointments();
+        checkAllScheds();
+
     } else {
         header("Location: " . HTTP_PROTOCOL . $_SERVER['HTTP_HOST'] . "/sys-config");
         die();

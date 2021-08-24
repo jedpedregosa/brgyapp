@@ -38,7 +38,7 @@
                 $office_id = $_SESSION["add_office_id"];
     
                 $title = "Add an Office";
-                $msg = "Office  <strong>" . $office_id . "</strong>  was created successfuly.";
+                $msg = "Office  <strong>" . $office_id . "</strong>  was created successfully.";
 
                 unset($_SESSION["add_office_id"]);
             } else if(isset($_SESSION["add-admin-id"]) && isset($_SESSION["add-admin-pw"])) {
@@ -46,7 +46,7 @@
                 $id = $_SESSION["add-admin-id"];
 
                 $title = "Add an Admin Account";
-                $msg = "Office admin  <strong>" . $id . "</strong>  with password  <strong>" . $pw . "</strong>  was created successfuly.";
+                $msg = "Office admin  <strong>" . $id . "</strong>  with password  <strong>" . $pw . "</strong>  was created successfully.";
 
                 unset($_SESSION["add-admin-id"]);
                 unset($_SESSION["add-admin-pw"]);
@@ -69,12 +69,12 @@
                 
                 if(isset($_SESSION["admn_dltd"])) {
                     $title = "Delete Office";
-                    $msg = "Office <strong>" . $off_id . "</strong> and Admin <strong>" . $_SESSION["admn_dltd"] . "</strong> was deleted successfuly."; 
+                    $msg = "Office <strong>" . $off_id . "</strong> and Admin <strong>" . $_SESSION["admn_dltd"] . "</strong> was deleted successfully."; 
                     
                     unset($_SESSION["admn_dltd"]);
                 } else {
                     $title = "Delete Office";
-                    $msg = "Office <strong>" . $off_id . "</strong> was deleted successfuly. ";  
+                    $msg = "Office <strong>" . $off_id . "</strong> was deleted successfully. ";  
                 }
                 
             } else if($val == 301) {
@@ -91,7 +91,7 @@
         } else if($val == 302){
             if(isset($_SESSION["admn_dltd"])) {
                 $title = "Delete Office Admin";
-                $msg = "Office Admin <strong>" . $_SESSION["admn_dltd"] . "</strong> was deleted successfuly.";  
+                $msg = "Office Admin <strong>" . $_SESSION["admn_dltd"] . "</strong> was deleted successfully.";  
 
                 $isSuccess = true;
                 unset($_SESSION["admn_dltd"]);
@@ -109,7 +109,7 @@
         if($_SESSION["updt_res"] == 300) {
             if(isset($_SESSION["updt_office"])) {
                 $title = "Update Office";
-                $msg = "Office <strong>" . $_SESSION["updt_office"] . "</strong> was updated successfuly.";  
+                $msg = "Office <strong>" . $_SESSION["updt_office"] . "</strong> was updated successfully.";  
                 $isSuccess = true;
 
                 unset($_SESSION["updt_office"]);
@@ -133,7 +133,7 @@
                 unset($_SESSION["updt_admid"]);
             } else if(isset($_SESSION["updt_admid"])) {
                 $title = "Update Office Admin";
-                $msg = "Office Admin <strong>" . $_SESSION["updt_admid"] . "</strong> successfuly updated.";
+                $msg = "Office Admin <strong>" . $_SESSION["updt_admid"] . "</strong> successfully updated.";
                 
                 $isSuccess = true;
                 
@@ -372,11 +372,11 @@
                             </td>
                             <td>
                             <button class="delete" title="Delete Record"
-                                onclick = "confirmODelete('<?php echo htmlspecialchars($office[0]); ?>','<?php echo addslashes($office[1]); ?>', '<?php echo htmlspecialchars($office[3]); ?>')">
+                                onclick = "confirmODelete('<?php echo addslashes($office[0]); ?>','<?php echo addslashes($office[1]); ?>', '<?php echo addslashes($office[3]); ?>')">
                                 <img src="../assets/img/delete_icon.png">
                             </button>
                             <button class="edit" title="Edit Record" id="add_admin" 
-                                onclick="editOffice('<?php echo htmlspecialchars($office[0]); ?>', '<?php echo addslashes($office[1]); ?>', '<?php echo htmlspecialchars($office[2]); ?>', <?php echo $isOpen; ?>)" style="width:auto;">
+                                onclick="editOffice('<?php echo htmlspecialchars($office[0]); ?>', '<?php echo addslashes($office[1]); ?>', '<?php echo addslashes($office[2]); ?>', <?php echo $isOpen; ?>)" style="width:auto;">
                                 <img src="../assets/img/edit_icon.png">
                             </button>
                             </td>
@@ -402,7 +402,7 @@
                 <div class="functions-container">
                     <div class="search-bar-container">
                         <!--Add Search Bar Here-->
-                        <input type="text" class="searchTerm" placeholder="Search by Office ID" onkeyup = "searchTableAdmin(0, this.value)">
+                    <input type="text" class="searchTerm" placeholder="Search By Office ID" onkeyup = "searchTableAdmin(0, this.value)">
                         <button disabled class="searchButton">
                           <i class="bi bi-search"></i>
                         </button>
@@ -439,11 +439,11 @@
                             <td><?php echo htmlspecialchars($admin[4])?></td>
                             <td><?php echo htmlspecialchars($admin[5])?></td>
                             <td><button class="delete" title="Delete Record" 
-                                onclick = "confirmAdmDel('<?php echo htmlspecialchars($admin[1])?>', '<?php echo htmlspecialchars($admin[2])?>')">
+                                onclick = "confirmAdmDel('<?php echo addslashes($admin[1])?>', '<?php echo addslashes($admin[2])?>')">
                                     <img src="../assets/img/delete_icon.png">
                             </button>
                             <button class="edit" title="Edit Record" id="add_admin" 
-                                onclick="editAdmin('<?php echo htmlspecialchars($admin[1])?>', '<?php echo htmlspecialchars($admin[2])?>', '<?php echo htmlspecialchars($admin[3])?>', '<?php echo htmlspecialchars($admin[4])?>', '<?php echo htmlspecialchars($admin[5])?>')" style="width:auto;">
+                                onclick="editAdmin('<?php echo htmlspecialchars($admin[1])?>', '<?php echo addslashes($admin[2])?>', '<?php echo addslashes($admin[3])?>', '<?php echo addslashes($admin[4])?>', '<?php echo addslashes($admin[5])?>')" style="width:auto;">
                                 <img src="../assets/img/edit_icon.png">
                             </button>
                             </td>
@@ -478,14 +478,14 @@
                 <p class="greetings">Hi Administrator!<span><br>Add Office here</span></p>
 
                 <div class="offc-container">
-                    <p><input type="text" placeholder="Office Name" name="ofcname" autocomplete="off" required></input></p>
+                    <p><input type="text" placeholder="Office Name" name="ofcname" minLength = "2" maxLength = "50" autocomplete="off" required></input></p>
                     <select id = "off_campus" name = "off_campus" required>
                         <option value = "" selected hidden disabled>Select a Campus</option>
                         <option value = "Boni Campus">Boni Campus</option>
                         <option value = "Pasig Campus">Pasig Campus</option>
                     </select>
                     <br>
-                    <p><textarea placeholder="Description" name="desc" autocomplete="off"></textarea></p>
+                    <p><textarea placeholder="Description" name="desc" maxLength = "60" autocomplete="off"></textarea></p>
                     <br>
                     <input type = "checkbox" name = "accepts_app" id = "accepts_app" checked>
                     <label for = "accepts_app" id = "lbl_accepts_app">Open for appointments</label> 
@@ -508,11 +508,11 @@
                 
                 <div class="ad_container">
                     <form class="form-inline">
-                        <input type="text" id="firstname" placeholder="First Name" name="oa-firstname" autocomplete="off" required>
-                        <input type="text" id="lastname" placeholder="Last Name" name="oa-lastname" autocomplete="off" required>
+                        <input type="text" id="firstname" placeholder="First Name" name="oa-firstname" minLength = "2" maxLength = "30" autocomplete="off" required>
+                        <input type="text" id="lastname" placeholder="Last Name" name="oa-lastname" minLength = "2" maxLength = "30" autocomplete="off" required>
                     
-                        <input type="email" id="email" placeholder="Email" name="oa-email" autocomplete="off" required>
-                        <input type="text" id="contact" placeholder="Contact" name="oa-contact" autocomplete="off" required>
+                        <input type="email" id="email" placeholder="Email" name="oa-email" minLength = "2" maxLength = "40" autocomplete="off" required>
+                        <input type="text" id="contact" placeholder="Contact No." name="oa-contact" minLength = "2" maxLength = "30" autocomplete="off" required>
 
                         <span class="form-inline">
                             <select id="oa-branch" onchange = "loadOffices()" required> 
@@ -552,8 +552,8 @@
 
                 <div class="offc-container">
                     <p><input type="text" class = "edit-txt edit-txt2" id = "editoffid" name="editoffid" autocomplete="off" readonly></input></p>
-                    <p><input type="text" class = "edit-txt" placeholder="Office Name" id="editoffn" name="editoffn" autocomplete="off" required></input></p>
-                    <p><textarea class = "edit-txt" placeholder="Description" id="editoffdsc" name="editoffdsc" autocomplete="off"></textarea></p>
+                    <p><input type="text" class = "edit-txt" placeholder="Office Name" id="editoffn" minLength = "2" maxLength = "50" name="editoffn" autocomplete="off" required></input></p>
+                    <p><textarea class = "edit-txt" placeholder="Description" id="editoffdsc" maxLength = "60" name="editoffdsc" autocomplete="off"></textarea></p>
 
                     <input type = "checkbox" name = "editaccept" id = "editaccept">
                     <label for = "editaccept" id = "lbl_accepts_app">Open for appointments</label> 
@@ -577,13 +577,13 @@
                 <div class="ad_container">
                     <form class="form-inline">
                         <input type="text" id="editadmid" name="editadmid" autocomplete="off" readonly>
-                      <input type="text" id="editadmfname" placeholder="First Name" name="editadmfname" autocomplete="off" required>
+                      <input type="text" id="editadmfname" placeholder="First Name" name="editadmfname" minLength = "2" maxLength = "30" autocomplete="off" required>
 
-                      <input type="text" id="editadmlname" placeholder="Last Name" name="editadmlname" autocomplete="off" required>
-                      <input type="email" id="editadmail" placeholder="Email" name="editadmail" autocomplete="off" required>
+                      <input type="text" id="editadmlname" placeholder="Last Name" name="editadmlname" minLength = "2" maxLength = "30" autocomplete="off" required>
+                      <input type="email" id="editadmail" placeholder="Email" name="editadmail" minLength = "2" maxLength = "40" autocomplete="off" required>
 
                         <span class="form-inline">
-                            <input type="text" id="editadmcntct" placeholder="Contact" name="editadmcntct" autocomplete="off" required>
+                            <input type="text" id="editadmcntct" placeholder="Contact" name="editadmcntct" minLength = "2" maxLength = "30" autocomplete="off" required>
                             <input class = "edit_admin" type="submit" name = "edt_adm_pass" value = "Reset Password">
                         </span>
                     </form>
@@ -633,7 +633,7 @@
                 }); </script>";
             } else if($is_under_maintenance) {
 				echo "<script> Fnon.Alert.Dark({
-					message: 'The system is still under maintenance, all users except system administrators are still prohibited to use the system.',
+					message: 'The system is still under maintenance mode. All users except system administrators are still prohibited to use the system.',
 					title: '<strong>Reminder</strong>',
 					btnOkText: 'Okay',
 					fontFamily: 'Poppins, sans-serif'

@@ -366,7 +366,7 @@
 		} else {
 			if($is_under_maintenance) {
 				echo "<script> Fnon.Alert.Dark({
-					message: 'The system is still under maintenance, all users except system administrators are still prohibited to use the system.',
+					message: 'The system is still under maintenance mode. All users except system administrators are still prohibited to use the system.',
 					title: '<strong>Reminder</strong>',
 					btnOkText: 'Okay',
 					fontFamily: 'Poppins, sans-serif'

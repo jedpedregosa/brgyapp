@@ -52,7 +52,7 @@ submit_close.addEventListener("click", ()=>{ // Sidebar open when you click on t
     form_close_schd.removeChild(tmpSubmit);
   } else {
     Fnon.Ask.Warning({
-      message:'Are you sure? This process cannot be undone.',
+      message:'Are you sure? You cannot undo this process anymore.',
       title: 'Closing of Schedule',
       titleColor: 'White',
       btnOkText: 'Continue',

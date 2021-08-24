@@ -55,7 +55,7 @@ a, a:visited {
 /* Showcase Header Area */
 .showcase-header { 
   grid-area: showcase-header;
-  background-color: white;
+  background-color: transparent;
   background-size: cover;
   background-position: center;
   padding: 0;
@@ -719,22 +719,20 @@ a, a:visited {
     box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8);
   }
 
-  .reschedule-closed {
-    height: auto;
-    width: auto;
-    border-radius: 20px;
-    border:  1px solid transparent;
-    background: #0F49AC;
-    font-size: .8rem;
-    letter-spacing: 0.5px;
-    color: #FFFFFF;
-    padding: .15rem 1rem;
-    transition: 0.1s ease;
-    display: block;
-    margin: .5rem 0 0 0;
-    box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8);
-  }
-
+.reschedule-closed {
+  height: auto;
+  width: auto;
+  border-radius: 20px;
+  border:  1px solid #002060;
+  background: #002060;
+  font-size: .8rem;
+  letter-spacing: 1px;
+  color: #F5F5F5;
+  padding: .4rem 2rem;
+  transition: 0.1s ease;
+  display: block;
+  margin: 1rem 0;
+}
 }
 /** Adjust responsiveness of each elements and widgets **/
 
@@ -925,7 +923,7 @@ div.b {
   font-size: .8rem;
   letter-spacing: 1px;
   color: #F5F5F5;
-  padding: .4rem 4.15rem;
+  padding: .4rem 2rem;
   transition: 0.1s ease;
   display: block;
   margin: 1rem 0;

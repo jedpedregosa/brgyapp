@@ -230,7 +230,7 @@
 					<div class="pdf">
 						<!-- Put here the pdf -->
                         <object data="load_pdf?app=<?php echo $appointment_key?>" type="application/pdf" width="100%" height="100%">
-                            <embed src="load_pdf?app=<?php echo $appointment_key?>" type="application/pdf" />
+                            <embed src="load_pdf?app=<?php echo $appointment_key?>" type="application/pdf">
                         </object>
 					</div>
 				</div>

@@ -22,6 +22,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/dbase.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Validation.php");
 
     // Check if request is not from ajax
     if(!IS_AJAX) {
@@ -31,10 +32,10 @@
 
 	// Check if from a page request 
 	if(isset($_POST['lname']) && isset($_POST['fname']) && isset($_POST['email']) && isset($_POST['phone'])) {
-		$lname = $_POST['lname'];
-		$fname = $_POST['fname'];
-		$email = $_POST['email'];
-		$phone = $_POST['phone'];	
+		$lname = valid_input($_POST['lname']);
+		$fname = valid_input($_POST['fname']);
+		$email = valid_input($_POST['email']);
+		$phone = valid_input($_POST['phone']);	
 	} else {
 		header("Location: ../main/rtuappsys");
 		die();
@@ -58,20 +59,30 @@
 		$userId = $_SESSION["userId"];
 		$userType = $_SESSION["uType"];
 
+		$isGuestValid = true;
 		if($userType == "guest") {
 			$isGuest = true;
+			
 			if(isset($_POST['company']) && isset($_POST['govId'])) {
-				$company = $_POST['company'];
-				$govId = $_POST['govId'];
+				$company = valid_input($_POST['company']);
+				$govId = valid_input($_POST['govId']);
+
+				$isGuest = lengthValidation($company, 2, 12) && lengthValidation($govId, 0, 30);
 			} else {
-				header("Location: ../main/rtuappsys");
-				die();
+				echo json_encode(array("statusCode"=>201));
 			}
 		}
 		
 
 		if(!(isTypeValid($userType))) {
-			header("Location: ../main/rtuappsys");
+			echo json_encode(array("statusCode"=>201));
+			die();  
+		}
+
+		$isValid = lengthValidation($lname, 2, 20) && lengthValidation($fname, 2, 20) && lengthValidation($email, 2, 30) && lengthValidation($phone, 2, 20);
+
+		if(!($isValid && $isGuestValid)) {
+			echo json_encode(array("statusCode"=>201));
 			die();  
 		}
 

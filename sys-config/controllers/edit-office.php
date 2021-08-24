@@ -29,8 +29,8 @@
     if(isset($_POST["updoffice"])) {
         if(isset($_POST["editoffid"]) && isset($_POST["editoffn"]) && isset($_POST["editoffdsc"])) {
             $office_id = $_POST["editoffid"];
-            $office_name = $_POST["editoffn"];
-            $office_desc = $_POST["editoffdsc"];
+            $office_name = htmlspecialchars($_POST["editoffn"]);
+            $office_desc = htmlspecialchars($_POST["editoffdsc"]);
 
             if(isset($_POST["editaccept"])) {
                 $office_accepts = 1;
@@ -46,6 +46,9 @@
         goBack();
     }
 
+    $office_name = addslashes($office_name);
+    $office_desc = addslashes($office_desc);
+    
     $result = updateOfficeData($office_id, $office_name, $office_desc, $office_accepts);
 
     if($result === 300 || $result === 301) {

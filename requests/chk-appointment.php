@@ -27,6 +27,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/module.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Validation.php");
     
     // Session Side
     session_name("cid");
@@ -80,10 +81,16 @@
         die();
     }
 
+    if(!(lengthValidation($userId, 2, 40) && lengthValidation($uLname, 2, 20))) {
+        header("Location: ../main/rtuappsys");
+        die();
+    }
+
     // Assigning Session
     $_SESSION["userId"] = $userId;
     $_SESSION["uLname"] = $uLname;
     $_SESSION["uType"] = $uType;
+    $_SESSION["app_session_expiry"] = time() + 60 * 10;
 
     $vstor_id = getVisitorId($userId, $uType);
 

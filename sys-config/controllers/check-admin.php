@@ -34,6 +34,8 @@
     }
 
     if(configIsAuthenticated($username, $password)) {
+        session_regenerate_id();
+
         $_SESSION["config_admin_uname"] = $username;
         $_SESSION["config_admin_chng"] = configLastPasswordChange($username);
         $_SESSION["config_session_expiry"] = time() + 60 * (int)config_min_session_expr;

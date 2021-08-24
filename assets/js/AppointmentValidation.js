@@ -74,7 +74,7 @@ function isCompanyValid() {
         if(affiliated_company.value == null || affiliated_company.value == ''){
             error_affiliated_company.textContent = "Please fill up this field";
         } else if (!affiliated_company.value.match(word3Regex) || affiliated_company.value.length < 2){
-            error_affiliated_company.textContent = "Invalid Company Name";
+            error_affiliated_company.textContent = "Invalid ID Name";
         } else{
             error_affiliated_company.textContent="";
             return true;
@@ -103,7 +103,7 @@ function isGovermentIdValid() {
         if(governmentID.value == null || governmentID.value == ''){
             error_governmentID.textContent = "Please fill up this field";
         } else if (!governmentID.value.match(word2Regex) || governmentID.value.length < 2){
-            error_governmentID.textContent = "Invalid Governement ID";
+            error_governmentID.textContent = "Invalid ID No.";
         } else{
             error_governmentID.textContent="";
             return true;

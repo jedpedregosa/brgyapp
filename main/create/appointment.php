@@ -33,6 +33,17 @@
         die();
     }
 
+    if(isset($_SESSION["app_session_expiry"])) {
+        if($_SESSION["app_session_expiry"] < time()) {
+            unset($_SESSION["app_session_expiry"]);
+            header("Location: ../rtuappsys");
+            die();
+        }
+    } else {
+        header("Location: ../rtuappsys");
+        die();
+    }
+    
     // Initialization of Session Values
     $fReqData = $_SESSION["userId"];
     $sReqData = $_SESSION["uLname"];
@@ -200,17 +211,17 @@
                                 ?>
 
                                 <div class="first-name">
-                                    <input type="text" id="first-name" class="first-name" placeholder="First Name" 
+                                    <input type="text" id="first-name" class="first-name" minLength = "2" maxLength = "20" placeholder="First Name" 
                                     value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" >
                                     <label id = "error-first-name"></label>
                                 </div>
 
                                 <div class="last-name">
-                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" maxlength = "15" value = "<?php echo htmlspecialchars($sReqData)?>">
+                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" minLength = "2" maxLength = "20" value = "<?php echo htmlspecialchars($sReqData)?>">
                                     <label id = "error-last-name"></label>
                                 </div>
                                 <div class="contact-number">
-                                    <input type="text" id="contact-number" class="contact-number" maxlength = "20" placeholder="Contact Number" 
+                                    <input type="text" id="contact-number" class="contact-number" minLength = "2" maxlength = "20" placeholder="Contact Number" 
                                         value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>">
                                         <label id = "error-contact-number"></label>
                                 </div>
@@ -219,7 +230,7 @@
                                 if($isGuest) {
                                     ?>
                                         <div class="email-address">
-                                            <input type="text" id="affiliated-company" class="affiliated-company" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
+                                            <input type="text" id="affiliated-company" class="affiliated-company" minLength = "2" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
                                                 value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
                                                 <label id = "error-affiliated-company"></label>
                                         </div>
@@ -227,7 +238,7 @@
                                 } else {
                                     ?>
                                         <div class="email-address">
-                                            <input type="text" id="email-address" class="email-address" placeholder="Email Address"
+                                            <input type="text" id="email-address" class="email-address" minLength = "2" maxlength = "30" placeholder="Email Address"
                                                 value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>">
                                                 <label id = "error-email-address"></label>
                                         </div>
@@ -238,7 +249,7 @@
                             ?>
 
                                 <div class="govID">
-                                    <input type="text" id="government-ID" class="government-ID" placeholder="Government ID No."
+                                    <input type="text" id="government-ID" class="government-ID" maxlength = "30"  placeholder="Identification No."
                                         value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
                                         <label id = "error-government-ID"></label>
                                 </div>
@@ -451,7 +462,7 @@
                             <?php if($isGuest) { ?>
                                 <tr>
                                     <td>
-                                    <strong class="govID-con">Government ID</strong>
+                                    <strong class="govID-con">Identification No.</strong>
                                     </td>
                                     <span id="visitor-govId"></span>
                                     </td>
@@ -463,8 +474,8 @@
 
                         <div class="agreement-container">
                             <input type="checkbox" name="agreement" id="agreement">
-                            <label for="agreement">I confirm that the above information is <b> true and correct</b>, 
-                                and <b>I give Rizal Technological University</b> the consent to <b>collect and process</b> the given data in accordance to the standards of Data Protection and Privacy.</label>
+                            <label for="agreement">I confirm that the above information is <b> true and correct</b>. 
+                                And <b>I consent Rizal Technological University</b> under the standards of Data Protection and Privacy to <b>collect and process</b> the given data</label>
                         </div>
 
                     </div>

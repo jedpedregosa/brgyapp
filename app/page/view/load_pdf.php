@@ -25,12 +25,13 @@
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
-	header("Content-Type: application/pdf");
+    header("Content-Type: application/pdf");
 
 	ob_clean();
 	flush();
 
 	// upload the file to the user and quit
     readfile($original_filename);
+
     exit;
 ?>

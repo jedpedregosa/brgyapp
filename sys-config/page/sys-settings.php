@@ -397,7 +397,7 @@
 									<label>Visitor Per Timeslot</label>
 									<input name="max_visitor" id="visitor" type="number" min="5" max="9" onblur="validateVisitor();" placeholder="Limit: 5-9 Visitors only" value = "<?php echo max_per_sched; ?>" required>
 
-									<label>The span of open days to rescheduling an appointment</label>
+									<label>The span of open days to reschedule an appointment</label>
 									<input name="days_resched" id="days_resched" type="number" min="1" max="5" onblur="validateResched();" placeholder="Limit: 1-5 Days only" value = "<?php echo days_rescheduling_span; ?>" required>
 
 									<label>Number of days open for scheduling</label>
@@ -464,7 +464,7 @@
 		} else {
 			if($is_under_maintenance) {
 				echo "<script> Fnon.Alert.Dark({
-					message: 'The system is still under maintenance, all users except system administrators are still prohibited to use the system.',
+					message: 'The system is still under maintenance mode. All users except system administrators are still prohibited to use the system.',
 					title: '<strong>Reminder</strong>',
 					btnOkText: 'Okay',
 					fontFamily: 'Poppins, sans-serif'

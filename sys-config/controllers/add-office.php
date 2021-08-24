@@ -28,9 +28,9 @@
 
     if(isset($_POST["sbmt_add"])) {
         if(isset($_POST["ofcname"]) && isset($_POST["off_campus"]) && isset($_POST["desc"])) {
-            $off_name = $_POST["ofcname"];
+            $off_name = htmlspecialchars($_POST["ofcname"]);
             $off_camp = $_POST["off_campus"];
-            $off_desc = $_POST["desc"];
+            $off_desc = htmlspecialchars($_POST["desc"]);
 
             if(isset($_POST["accepts_app"])) {
                 $off_accepts = 1;
@@ -49,6 +49,7 @@
     if(!validateOffice($off_name, $off_camp, null)) {
         goBack(301);
     }
+
 
     $result = createOffice($off_name, $off_camp, $off_desc, $off_accepts);
 

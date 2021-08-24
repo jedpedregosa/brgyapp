@@ -26,12 +26,17 @@
         $post1 = isset($_POST["editadmid"]) && isset($_POST["editadmfname"]) && isset($_POST["editadmlname"]);
         if(isset($_POST["editadmail"]) && isset($_POST["editadmcntct"]) && $post1) {
             $admin_id = $_POST["editadmid"];
-            $fname = $_POST["editadmfname"];
-            $lname = $_POST["editadmlname"];
-            $email = $_POST["editadmail"];
-            $contact = $_POST["editadmcntct"];
+            $fname = htmlspecialchars($_POST["editadmfname"]);
+            $lname = htmlspecialchars($_POST["editadmlname"]);
+            $email = htmlspecialchars($_POST["editadmail"]);
+            $contact = htmlspecialchars($_POST["editadmcntct"]);
 
-            $result = updateData($admin_id, $fname, $lname, $email, $contact);
+            $fname = addslashes($fname);
+            $lname = addslashes($lname);
+            $email = addslashes($email);
+            $contact = addslashes($contact);
+
+            $result = updateData($admin_id, ucwords($fname), ucwords($lname), $email, $contact);
 
             if($result) {
                 $_SESSION["updt_admid"] = $admin_id;

@@ -70,9 +70,9 @@
 	 				<p class="p1">Hi Administrator! <span><br>Manage RTU Appointment <br> Information!</span></p>
 
 					  <div class="container">
-					    <input type="text" placeholder=" Username" name="uname" required>
+					    <input type="text" placeholder=" Username" name="uname" autocomplete=off required>
 					    <p>
-					      <input type="password" placeholder="Password" name="pword" id="password" />
+					      <input type="password" placeholder="Password" name="pword" autocomplete=off id="password" required/>
 					      	<span class="show">
 					        <i class="bi bi-eye" id="togglePassword" onclick="toggle()"></i>
 					      </span>

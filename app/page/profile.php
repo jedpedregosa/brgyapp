@@ -191,13 +191,13 @@
 						</div>
 						<div class="info-fields">
 							<label>First Name</label>
-							<input type="text" name="first-name" id="first-name" placeholder="First Name" value = "<?php echo htmlspecialchars($admin_data[2]); ?>" required>
+							<input type="text" name="first-name" id="first-name" placeholder="First Name" minLength = "2" maxLength = "30" value = "<?php echo htmlspecialchars($admin_data[2]); ?>" required>
 							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 11em;" id="error-first-name"></label>
 						</div>
 
 						<div class="info-fields">
 							<label>Last Name</label>
-							<input type="text" name="last-name" id="last-name" placeholder="Last Name" value = "<?php echo htmlspecialchars($admin_data[1]); ?>" required>
+							<input type="text" name="last-name" id="last-name" placeholder="Last Name" minLength = "2" maxLength = "30" value = "<?php echo htmlspecialchars($admin_data[1]); ?>" required>
 							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 11em;" id="error-last-name"></label>
 						</div>
 					</div>
@@ -205,7 +205,7 @@
 					<div class="second column">
 						<div class="info-fields">
 							<label for="email-address">Email Address</label>
-							<input type="email" name="email-address" id="email-address" placeholder="sample@gmail.com" value = "<?php echo htmlspecialchars($admin_data[3]); ?>" required>
+							<input type="email" name="email-address" id="email-address" placeholder="sample@gmail.com" minLength = "2" maxLength = "40" value = "<?php echo htmlspecialchars($admin_data[3]); ?>" required>
 							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 14em;" id="error-email-address"></label>
 						</div>
 
@@ -220,7 +220,7 @@
 
 						<div class="info-fields">
 							<label for="phone-number">Phone Number</label>
-							<input type="tel" name="phone-number" id="phone-number" placeholder="xxxxxxxxxxx"value = "<?php echo htmlspecialchars($admin_data[4]); ?>" required>
+							<input type="tel" name="phone-number" id="phone-number" placeholder="09xxxxxxxxx" pattern="[0-9]{11}" minLength = "2" maxLength = "30" value = "<?php echo htmlspecialchars($admin_data[4]); ?>" required>
 							<label style="position: sticky;text-align: left;font-size: 10px;font-family: 'Poppins', sans-serif;display: block;color: rgb(255, 20, 20);width: 90%;margin-left: 14em;" id = "error-contact-number"></label>
 						</div>
 					</div>
@@ -257,7 +257,7 @@
     			<!-- Current Password -->
     			<div class="passCon">
     				<label for="currentPassword"><b>Current Password</b></label>
-	      		<input type="password" placeholder="Enter Current Password" name="currentPassword" id="currentPassword" autocomplete="off" required>
+	      		<input type="password" placeholder="Enter Current Password" name="currentPassword" minLength = "6" maxLength = "30" id="currentPassword" autocomplete="off" required>
 	      		
 	      		<!-- Show Password -->
 	      		<span class="show">
@@ -270,7 +270,7 @@
     			<!-- New Password -->
     			<div class="passCon">
     				<label for="newPassword"><b>New Password</b></label>
-	      		<input type="password" placeholder="Enter New Password" name="newPassword" id="newPassword" autocomplete="off" onkeyup="password()" required>
+	      		<input type="password" placeholder="Enter New Password" name="newPassword" id="newPassword" minLength = "6" maxLength = "30" autocomplete="off" onkeyup="password()" required>
 
 	      		<!-- Show Password -->
 	      		<span class="show">
@@ -312,7 +312,7 @@
     			<!-- Confirm New Password -->
     			<div class="passCon">
     				<label for="cNewPassword"><b>Confirm New Password</b></label>
-      			<input type="password" placeholder="Re-enter new password" name="cNewPassword" id="cNewPassword" autocomplete="off" onkeyup="valid()" required>
+      			<input type="password" placeholder="Re-enter new password" name="cNewPassword" minLength = "6" maxLength = "30" id="cNewPassword" autocomplete="off" onkeyup="valid()" required>
 
       			<!-- Show Password -->
       			<span class="show">

@@ -407,7 +407,7 @@
 			                				<b style="color: #002060"> Closed </b> &ensp;<!-- Show Data (Display Availabilty Status if Pending, Cancelled, or Ongoing) -->
 			                			</p>
 			                			<br>
-			                			<p>Sorry, it looks like the office in your appointment schedule is now unavailable. Please select a new schedule as early as you can to prevent appointment cancelation.</p>
+			                			<p>Sorry, it looks like the office in your appointment schedule is now unavailable. Please select a new schedule as early as you can to prevent appointment cancellation.</p>
 			                		</center>
 						            <table>
 									    <tbody>
@@ -460,7 +460,7 @@
 									    		<caption>
 										    		<div class="overviewcard-qr"> 
 										    			<div class="qr">
-												            <img src="load_qr"> <!-- Show Data (Display QR) -->
+												            <img src="load_qr" onerror = "this.src = '../assets/img/no_qr.png'"> <!-- Show Data (Display QR) -->
 												            <p style="color: #767171; margin-bottom: 0.5rem;">
 												            	<?php echo htmlspecialchars($file_keys[2]); ?><!-- Show Data (Display Code) -->
 												        	</p> 

@@ -1,6 +1,6 @@
 <?php 
     function isTypeValid($uType) {
-        return $uType == "student" ? true : $uType == "employee" ? true : $uType == "guest" ? true : false;
+        return ($uType == "student") ? true : ($uType == "employee") ? true : ($uType == "guest") ? true : false;
     }
     function generateRandomString(
         int $length = 12,

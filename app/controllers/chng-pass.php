@@ -1,5 +1,6 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/app/controllers/master.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Validation.php");
 
     $current_pass = null;
     $new_pass1 = null;
@@ -18,8 +19,12 @@
             goBack();
         }
     }
-
+    
     if($new_pass1 != $new_pass2) {
+        goBack();
+    }
+
+    if(!secureStringValidation($new_pass1, 8, 15)) {
         goBack();
     }
 

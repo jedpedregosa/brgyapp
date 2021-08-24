@@ -24,6 +24,7 @@
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/config.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Visitor.php");
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Appointment.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/Validation.php");
 
     // Check if request is not from ajax
     if(!IS_AJAX) {
@@ -36,7 +37,7 @@
 		$branch = $_POST['branch'];
 		$office = $_POST['officeId'];
 		$date = $_POST['date'];
-		$purpose = $_POST['purpose'];
+		$purpose = valid_input($_POST['purpose']);
         $time = $_POST['time'];
 	} else {
 		header("Location: ../main/rtuappsys");
@@ -52,6 +53,12 @@
 	if(!(isset($_SESSION["userId"]) && isset($_SESSION["uLname"]) && isset($_SESSION["uType"]))) {
         $isSessioned = false;
     } 
+
+    $isPurposeValid = lengthValidation($purpose, 0, 160);
+    if(!validateDate($date, 'Y-m-d') && !validateTimeSlotId($time) && !valid_campus($branch) && !doesOfficeExist($office) && !$isPurposeValid) {
+        echo json_encode(array("statusCode"=>201));
+        die();
+    }
 
     if($isSessioned) {
         $userId = $_SESSION["userId"];

@@ -36,4 +36,26 @@
 
         return true;
     }
+    function valid_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        
+        return $data;
+    }
+
+    function lengthValidation($data, $min, $max) {
+        if(strlen($data) >= $min && strlen($data) <= $max) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function valid_campus($data) {
+        if($data != "Boni Campus" && $data != "Pasig Campus") {
+            return false;
+        } 
+        return true;
+    }
 ?>

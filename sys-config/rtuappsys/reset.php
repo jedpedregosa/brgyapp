@@ -1,5 +1,8 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/classes/AdminConfig.php");
+    
+    session_name("cid");
+    session_start();
 
     $config_admin_detail = [
         [
@@ -17,6 +20,10 @@
     ];
 
     if(configSysReset($config_admin_detail)) {
-        header("Location: " . HTTP_PROTOCOL . $_SERVER['HTTP_HOST'] . "/sys-config");
+        $_SESSION["config_admin_reset"] = 100;
+    } else {
+        $_SESSION["config_admin_reset"] = 101;
     }
+
+    header("Location: " . HTTP_PROTOCOL . $_SERVER['HTTP_HOST'] . "/sys-config");
 ?>
