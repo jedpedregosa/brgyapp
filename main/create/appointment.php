@@ -212,17 +212,17 @@
 
                                 <div class="first-name">
                                     <input type="text" id="first-name" class="first-name" minLength = "2" maxLength = "20" placeholder="First Name" 
-                                    value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" autocomplete="off">
+                                    value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" autocomplete="off" tabindex="-1">
                                     <label id = "error-first-name"></label>
                                 </div>
 
                                 <div class="last-name">
-                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" minLength = "2" maxLength = "20" value = "<?php echo htmlspecialchars($sReqData)?>" autocomplete="off">
+                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" minLength = "2" maxLength = "20" value = "<?php echo htmlspecialchars($sReqData)?>" autocomplete="off" tabindex="-1">
                                     <label id = "error-last-name"></label>
                                 </div>
                                 <div class="contact-number">
                                     <input type="text" id="contact-number" class="contact-number" minLength = "2" maxlength = "20" placeholder="Contact Number" 
-                                        value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>" autocomplete="off">
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>" autocomplete="off" tabindex="-1">
                                         <label id = "error-contact-number"></label>
                                 </div>
 
@@ -231,7 +231,7 @@
                                     ?>
                                         <div class="email-address">
                                             <input type="text" id="affiliated-company" class="affiliated-company" minLength = "2" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
-                                                value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>" autocomplete="off">
+                                                value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>" autocomplete="off" tabindex="-1">
                                                 <label id = "error-affiliated-company"></label>
                                         </div>
                                     <?php
@@ -239,7 +239,7 @@
                                     ?>
                                         <div class="email-address">
                                             <input type="text" id="email-address" class="email-address" minLength = "2" maxlength = "30" placeholder="Email Address"
-                                                value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>" autocomplete="off">
+                                                value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>" autocomplete="off" tabindex="-1">
                                                 <label id = "error-email-address"></label>
                                         </div>
                                     <?php
@@ -250,7 +250,7 @@
 
                                 <div class="govID">
                                     <input type="text" id="government-ID" class="government-ID" maxlength = "30"  placeholder="Identification No."
-                                        value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>" autocomplete="off">
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>" autocomplete="off" tabindex="-1">
                                         <label id = "error-government-ID"></label>
                                 </div>
                                 <?php } ?>
@@ -261,7 +261,7 @@
                         <div class="pageName2-border">
                             <!-- CSS Line 171-184 -->
                                     <p class="pageName">Appointment Info</p>
-                                    <button class="firstNext button2" type="button" style="position: relative; left: 18px; top: -0.5px;">Next</button>
+                                    <button class="firstNext button2" type="button" style="position: relative; left: 18px; top: -0.5px;" tabindex="-1">Next</button>
                                     <div id="screen-overlay">
                                         <div class="screen-cv-spinner">
                                             <span class="screen-spinner"></span>
@@ -288,9 +288,9 @@
                             <!-- RIGHT COL-->
                             <div class="month">
                                 <div class="controls">
-                                    <span class="prev_btn">&and;</span>
+                                    <span class="prev_btn"tabindex="-1">&and;</span>
                                     <br>
-                                    <span class="next_btn">&or;</span>
+                                    <span class="next_btn"tabindex="-1">&or;</span>
                                 </div>
                                 <div class="date">
                                     <span class="month_ttl"></span>
@@ -326,29 +326,29 @@
                             <div class="time" id="slots">
                                 <!-- RIGHT COL -->
                                 <div>
-                                    <input type="button" id="TMSLOT-01" name="btn1" value="08:00 AM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-02" name="btn2" value="08:30 AM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-03" name="btn3" value="09:00 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-01" name="btn1" value="08:00 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-02" name="btn2" value="08:30 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-03" name="btn3" value="09:00 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
                                 </div>
                                 <div>
-                                    <input type="button" id="TMSLOT-04" name="btn4" value="09:30 AM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-05" name="btn5" value="10:00 AM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-06" name="btn6" value="10:30 AM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-04" name="btn4" value="09:30 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-05" name="btn5" value="10:00 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-06" name="btn6" value="10:30 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
                                 </div>
                                 <div>
-                                    <input type="button" id="TMSLOT-07" name="btn7" value="11:00 AM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-08" name="btn8" value="11:30 AM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-09" name="btn9" value="12:00 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-07" name="btn7" value="11:00 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-08" name="btn8" value="11:30 AM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-09" name="btn9" value="12:00 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
                                 </div>
                                 <div>
-                                    <input type="button" id="TMSLOT-10" name="btn10" value="12:30 PM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-11" name="btn11" value="01:00 PM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-12" name="btn12" value="01:30 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-10" name="btn10" value="12:30 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-11" name="btn11" value="01:00 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-12" name="btn12" value="01:30 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
                                 </div>
                                 <div>
-                                    <input type="button" id="TMSLOT-13" name="btn13" value="02:00 PM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-14" name="btn14" value="02:30 PM" onclick="load_timeslot(this.id)" disabled/>
-                                    <input type="button" id="TMSLOT-15" name="btn15" value="03:00 PM" onclick="load_timeslot(this.id)" disabled/>
+                                    <input type="button" id="TMSLOT-13" name="btn13" value="02:00 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-14" name="btn14" value="02:30 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
+                                    <input type="button" id="TMSLOT-15" name="btn15" value="03:00 PM" onclick="load_timeslot(this.id)" disabled tabindex="-1"/>
                                 </div>
                             </div>
                             <div class ="time" id = "slotsload">
@@ -367,13 +367,13 @@
 
                     <!-- DATE AND TIME PAGE BUTTONS -->
                     <div class="PageNameAndButtons">
-                        <button class="prev-1 button1">Back</button>
+                        <button class="prev-1 button1"tabindex="-1">Back</button>
 
                         <div class="pageName-border">
                             <p class="pageName">Date & Time</p>
                         </div>
 
-                        <button class="next-1 button1" type="button">Next</button>
+                        <button class="next-1 button1" type="button"tabindex="-1">Next</button>
                     </div>
                 </div>
 
@@ -473,7 +473,7 @@
                         </div>
 
                         <div class="agreement-container">
-                            <input type="checkbox" name="agreement" id="agreement">
+                            <input type="checkbox" name="agreement" id="agreement" tabindex="-1">
                             <label for="agreement">I confirm that the above information is <b> true and correct</b>. 
                                 And <b>I consent Rizal Technological University</b> under the standards of Data Protection and Privacy to <b>collect and process</b> the given data</label>
                         </div>
@@ -481,13 +481,13 @@
                     </div>
 
                     <div class="PageNameAndButtons">
-                        <button class="prev-2 button1">Back</button>
+                        <button class="prev-2 button1" tabindex="-1">Back</button>
 
                         <div class="pageName-border">
                             <p class="pageName">Confirmation</p>
                         </div>
 
-                        <button class="submit button1 confirm" type="button">Confirm Appointment</button>
+                        <button class="submit button1 confirm" type="button" tabindex="-1">Confirm Appointment</button>
                     </div>
                 </div>
             </form>
