@@ -317,80 +317,80 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* SIDEBAR SEARCH ICON */
 
-.sidebar .qr{
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  font-size: 22px;
-  background: #001642;
-  color: #F5F5F5;
+.sidebar .qr {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 22px;
+    background: #001642;
+    color: #F5F5F5;
 }
 
 
 /* SEARCH QR ICON */
 
 .sidebar .qr img {
-  width: 30px;
-  vertical-align: middle;
+    width: 30px;
+    vertical-align: middle;
 }
 
 
 /* SIDEBAR ARROW ICON */
 
 .sidebar #arrow {
-  height: 50px;
-  min-width: 40px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 50px;
-  border-radius: 12px;
+    height: 50px;
+    min-width: 40px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 12px;
 }
 
 
 /* ARROW RIGHT ICON */
 
 .sidebar .bi-arrow-right-short {
-  display: none;
+    display: none;
 }
 
 
 /* SIDEBAR OPEN ARROW RIGHT ICON  */
 
 .sidebar.open .bi-arrow-right-short {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  font-size: 22px;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  color: #F5F5F5;
-  transition: all 0.5s ease;
+    display: none;
+    position: absolute;
+    z-index: 1;
+    font-size: 22px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: #F5F5F5;
+    transition: all 0.5s ease;
 }
 
 
 /* SIDEBAR OPEN ARROW RIGHT ICON HOVER */
 
 .sidebar.open .bi-arrow-right-short:hover {
-  color: #EAB800;
-  cursor: pointer;
+    color: #EAB800;
+    cursor: pointer;
 }
 
 
 /* OPEN SIDEBAR SEARCH ICON HOVER */
 
 .sidebar.open .qr:hover {
-  background: #001642;
-  color: #F5F5F5;
+    background: #001642;
+    color: #F5F5F5;
 }
 
 
 /* SIDEBAR SEARCH ICON HOVER */
 
 .sidebar .qr:hover {
-  background: #002060;
-  color: #F5F5F5;
+    background: #002060;
+    color: #F5F5F5;
 }
 
 
@@ -893,59 +893,59 @@ a.active span.links_name {
         width: 100%;
     }
     /* SIDEBAR SEARCH ICON */
-    .sidebar .qr{
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      font-size: 22px;
-      background: #001642;
-      color: #F5F5F5;
+    .sidebar .qr {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        background: #001642;
+        color: #F5F5F5;
     }
     /* SEARCH QR ICON */
     .sidebar .qr img {
-      width: 30px;
-      vertical-align: middle;
+        width: 30px;
+        vertical-align: middle;
     }
     /* SIDEBAR ARROW ICON */
     .sidebar #arrow {
-      height: 50px;
-      min-width: 40px;
-      font-size: 20px;
-      text-align: center;
-      line-height: 50px;
-      border-radius: 12px;
+        height: 50px;
+        min-width: 40px;
+        font-size: 20px;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 12px;
     }
     /* ARROW RIGHT ICON */
     .sidebar .bi-arrow-right-short {
-      display: none;
+        display: none;
     }
     /* SIDEBAR OPEN ARROW RIGHT ICON  */
     .sidebar.open .bi-arrow-right-short {
-      display: none;
-      position: absolute;
-      z-index: 1;
-      font-size: 22px;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      color: #F5F5F5;
-      transition: all 0.5s ease;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        font-size: 22px;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        color: #F5F5F5;
+        transition: all 0.5s ease;
     }
     /* SIDEBAR OPEN ARROW RIGHT ICON HOVER */
     .sidebar.open .bi-arrow-right-short:hover {
-      color: #EAB800;
-      cursor: pointer;
+        color: #EAB800;
+        cursor: pointer;
     }
     /* OPEN SIDEBAR SEARCH ICON HOVER */
     .sidebar.open .qr:hover {
-      background: #001642;
-      color: #F5F5F5;
+        background: #001642;
+        color: #F5F5F5;
     }
     /* SIDEBAR SEARCH ICON HOVER */
     .sidebar .qr:hover {
-      background: #002060;
-      color: #F5F5F5;
+        background: #002060;
+        color: #F5F5F5;
     }
     /* SIDEBAR NAVIGATION LINKS */
     .sidebar li a {
@@ -1386,12 +1386,13 @@ select option {
 /* Button group CSS */
 
 .button-group-container {
-    position: fixed;
+    position: absolute;
+    bottom: -18%;
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "done-walk-in download-all";
-    width: 91.5%;
+    width: 97%;
     justify-content: center;
 }
 
@@ -1466,6 +1467,7 @@ select option {
 .button-group-container button:hover {
     box-shadow: 0 1px 1px rgba(104, 104, 104, 0.8);
 }
+
 .button-group-container #current {
     background-color: #33312b;
 }
@@ -1477,49 +1479,52 @@ select option {
     font-size: 10px;
     font-family: "Poppins", sans-serif;
 }
-  
-  .build-badge__label, .build-badge__status {
+
+.build-badge__label,
+.build-badge__status {
     border-radius: 50px;
     display: inline-block;
-    padding: 0 6px 1px 6px; 
-  }
-  
-  .build-badge__label {
+    padding: 0 6px 1px 6px;
+}
+
+.build-badge__label {
     background-color: #333;
     color: #fff;
-  }
-  
-  .build-badge__status-success {
+}
+
+.build-badge__status-success {
     background-color: #0075b5;
-  color: #fff;
-  }
-  
-  .build-badge__status-warning {
+    color: #fff;
+}
+
+.build-badge__status-warning {
     background-color: #FEC006;
     color: #000;
-  }
-  
-  .build-badge__status-error {
+}
+
+.build-badge__status-error {
     background-color: #E0E0E0;
     color: #fff;
-  }
-  
-  .build-badge__status-information {
+}
+
+.build-badge__status-information {
     background-color: #878787;
     color: #fff;
-  }
-  
-  .build-badge__status-indeterminate {
+}
+
+.build-badge__status-indeterminate {
     background-color: #E0E0E0;
     color: #000;
-  }
-  .build-badge__status-appid {
+}
+
+.build-badge__status-appid {
     background-color: #00153ecd;
     color: #fff;
     font-size: 12px;
-  }
-  
-  /* LIKE RESULT RATE */
+}
+
+
+/* LIKE RESULT RATE */
 
 .like {
     border: 2px solid #002060;

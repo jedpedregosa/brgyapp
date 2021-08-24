@@ -233,7 +233,7 @@
             <div class="buttons-container">
                     <div class="buttons-right">
                         <a href="../download/all_feedback" class="download"><i class="bi bi-download"></i> &nbsp; Download All Records</a>
-
+                        <a href = "#" style="position:relative; top:6px; left: 80px;"><i class="bi bi-download"></i> &nbsp; Download All Records This Month</a>
                     </div>
                 </div>
         </div>

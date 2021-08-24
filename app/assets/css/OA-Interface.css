@@ -236,104 +236,89 @@
         display: none;
     }
     /* SIDEBAR SEARCH BAR INPUT */
-    
     /* SIDEBAR SEARCH BAR INPUT */
-
-.sidebar input {
-    font-size: 15px;
-    font-family: Arial;
-    color: #F5F5F5;
-    font-weight: 400;
-    outline: none;
-    height: 50px;
-    width: 100%;
-    width: 50px;
-    border: none;
-    border-radius: 12px;
-    transition: all 0.5s ease;
-    background: #001642;
-}
-
-
-/* OPEN SIDEBAR SEARCH INPUT */
-
-.sidebar.open input {
-    padding: 0 20px 0 50px;
-    width: 100%;
-}
-
-
-/* SIDEBAR SEARCH ICON */
-
-.sidebar .qr {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    font-size: 22px;
-    background: #001642;
-    color: #F5F5F5;
-}
-
-
-/* OPEN SIDEBAR SEARCH ICON HOVER */
-
-.sidebar.open .qr:hover {
-    background: #001642;
-    color: #F5F5F5;
-}
-
-
-/* SIDEBAR SEARCH ICON HOVER */
-
-.sidebar .qr:hover {
-    background: #002060;
-    color: #F5F5F5;
-}
-
-.sidebar .qr img {
-    width: 30px;
-    vertical-align: middle;
-}
-
-
-/* SIDEBAR ARROW ICON */
-
-.sidebar #arrow {
-    height: 50px;
-    min-width: 40px;
-    font-size: 20px;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 12px;
-}
-
-
-/* ARROW RIGHT ICON */
-
-.sidebar .bi-arrow-right-short {
-    display: none;
-}
-
-
-/* SIDEBAR OPEN ARROW RIGHT ICON  */
-
-.sidebar.open .bi-arrow-right-short {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    font-size: 22px;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    color: #F5F5F5;
-    transition: all 0.5s ease;
-}
-
-.sidebar.open .bi-arrow-right-short:hover {
-    color: #EAB800;
-    cursor: pointer;
-}
+    
+    .sidebar input {
+        font-size: 15px;
+        font-family: Arial;
+        color: #F5F5F5;
+        font-weight: 400;
+        outline: none;
+        height: 50px;
+        width: 100%;
+        width: 50px;
+        border: none;
+        border-radius: 12px;
+        transition: all 0.5s ease;
+        background: #001642;
+    }
+    /* OPEN SIDEBAR SEARCH INPUT */
+    
+    .sidebar.open input {
+        padding: 0 20px 0 50px;
+        width: 100%;
+    }
+    /* SIDEBAR SEARCH ICON */
+    
+    .sidebar .qr {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        font-size: 22px;
+        background: #001642;
+        color: #F5F5F5;
+    }
+    /* OPEN SIDEBAR SEARCH ICON HOVER */
+    
+    .sidebar.open .qr:hover {
+        background: #001642;
+        color: #F5F5F5;
+    }
+    /* SIDEBAR SEARCH ICON HOVER */
+    
+    .sidebar .qr:hover {
+        background: #002060;
+        color: #F5F5F5;
+    }
+    
+    .sidebar .qr img {
+        width: 30px;
+        vertical-align: middle;
+    }
+    /* SIDEBAR ARROW ICON */
+    
+    .sidebar #arrow {
+        height: 50px;
+        min-width: 40px;
+        font-size: 20px;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 12px;
+    }
+    /* ARROW RIGHT ICON */
+    
+    .sidebar .bi-arrow-right-short {
+        display: none;
+    }
+    /* SIDEBAR OPEN ARROW RIGHT ICON  */
+    
+    .sidebar.open .bi-arrow-right-short {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        font-size: 22px;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        color: #F5F5F5;
+        transition: all 0.5s ease;
+    }
+    
+    .sidebar.open .bi-arrow-right-short:hover {
+        color: #EAB800;
+        cursor: pointer;
+    }
     /* SIDEBAR NAVIGATION LINKS */
     
     .sidebar li a {
@@ -2349,9 +2334,12 @@
     .buttons-container {
         grid-area: buttons-container;
         display: grid;
-        grid-template-columns: 1fr 0.4fr;
+        grid-template-columns: 1fr 1.1fr;
         grid-template-rows: 1fr;
         grid-template-areas: "buttons-left buttons-right";
+        position: absolute;
+        bottom: 0;
+        width: 93%;
     }
     /* Button Elements Container */
     
@@ -2451,84 +2439,82 @@
         background: #002E8A;
     }
     /* BADGE */
-
-.build-badge {
-    display: inline-block;
-    height: 20px;
-    line-height: 20px;
-    font-size: 10px;
-    font-family: "Poppins", sans-serif;
-}
-  
-  .build-badge__label, .build-badge__status {
-    border-radius: 50px;
-    display: inline-block;
-    padding: 0 6px 1px 6px; 
-  }
-  
-  .build-badge__label {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .build-badge__status-success {
-    background-color: #0075b5;
-  color: #fff;
-  }
-  
-  .build-badge__status-warning {
-    background-color: #FEC006;
-    color: #000;
-  }
-  
-  .build-badge__status-error {
-    background-color: #E0E0E0;
-    color: #fff;
-  }
-
-  .build-badge__status-appid {
-    background-color: #00153E;
-    color: #fff;
-    font-size: 12px;
-  }
-  
-  .build-badge__status-information {
-    background-color: #878787;
-    color: #fff;
-  }
-  
-  .build-badge__status-indeterminate {
-    background-color: #E0E0E0;
-    color: #000;
-  }
-  
-  /* LIKE RESULT RATE */
-
-.like {
-    border: 2px solid #002060;
-    padding: 2px;
-    border-radius: 12px;
-    vertical-align: middle;
-    text-align: center;
-    margin: 0 5px 0 0;
-    width: 80px;
-    color: #002060;
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-}
-
-
-/* DISLIKE RESULT RATE */
-
-.dislike {
-    border: 2px solid #002060;
-    padding: 2px;
-    border-radius: 12px;
-    vertical-align: middle;
-    text-align: center;
-    margin: 0 5px 0 0;
-    width: 100px;
-    color: #002060;
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-}
+    
+    .build-badge {
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        font-size: 10px;
+        font-family: "Poppins", sans-serif;
+    }
+    
+    .build-badge__label,
+    .build-badge__status {
+        border-radius: 50px;
+        display: inline-block;
+        padding: 0 6px 1px 6px;
+    }
+    
+    .build-badge__label {
+        background-color: #333;
+        color: #fff;
+    }
+    
+    .build-badge__status-success {
+        background-color: #0075b5;
+        color: #fff;
+    }
+    
+    .build-badge__status-warning {
+        background-color: #FEC006;
+        color: #000;
+    }
+    
+    .build-badge__status-error {
+        background-color: #E0E0E0;
+        color: #fff;
+    }
+    
+    .build-badge__status-appid {
+        background-color: #00153E;
+        color: #fff;
+        font-size: 12px;
+    }
+    
+    .build-badge__status-information {
+        background-color: #878787;
+        color: #fff;
+    }
+    
+    .build-badge__status-indeterminate {
+        background-color: #E0E0E0;
+        color: #000;
+    }
+    /* LIKE RESULT RATE */
+    
+    .like {
+        border: 2px solid #002060;
+        padding: 2px;
+        border-radius: 12px;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 5px 0 0;
+        width: 80px;
+        color: #002060;
+        font-family: 'Poppins', sans-serif;
+        font-size: 10px;
+    }
+    /* DISLIKE RESULT RATE */
+    
+    .dislike {
+        border: 2px solid #002060;
+        padding: 2px;
+        border-radius: 12px;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0 5px 0 0;
+        width: 100px;
+        color: #002060;
+        font-family: 'Poppins', sans-serif;
+        font-size: 10px;
+    }
