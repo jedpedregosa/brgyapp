@@ -21,13 +21,13 @@ let current = 1;
 function isValidated() {
     var officeId = $('#Office').val();
     var branch = $('#branch').val();
-    
+
     return isFormValidated() && officeId != null && branch != null;
 }
 
 nextBtnFirst.addEventListener("click", function(event) {
 
-    
+
     // Submit to db
     var lname = $('#last-name').val();
     var fname = $('#first-name').val();
@@ -40,28 +40,28 @@ nextBtnFirst.addEventListener("click", function(event) {
 
     var isSuccess = true;
 
-    if(isValidated()) {
+    if (isValidated()) {
         // Check schedules for the selected office, then continue to next page.
-		$.ajax({
-			url: "../../requests/load-dates",
-			type: "POST",
-			data: {
-				officeCode: officeId
-			},
-			cache: false,
+        $.ajax({
+            url: "../../requests/load-dates",
+            type: "POST",
+            data: {
+                officeCode: officeId
+            },
+            cache: false,
             beforeSend: function() {
                 $("#screen-overlay").fadeIn(100);
             },
-			success: function(dataResult){
+            success: function(dataResult) {
                 var dataResult = JSON.parse(dataResult);
-			},
+            },
             error: function() {
                 showAlertServerError();
                 $("#screen-overlay").fadeOut(400);
                 isSuccess = false;
             }
-		}).done(function(dataResult) {
-            if(isSuccess) {
+        }).done(function(dataResult) {
+            if (isSuccess) {
                 available_dates = JSON.parse(dataResult);
 
                 event.preventDefault();
@@ -77,7 +77,7 @@ nextBtnFirst.addEventListener("click", function(event) {
             }
             $("#screen-overlay").fadeOut(400);
         }); //Lacks Catch
-	} else if(branch == null) {
+    } else if (branch == null) {
         Fnon.Alert.Warning({
             message: 'Please select a campus.',
             title: 'Selected Campus',
@@ -86,7 +86,7 @@ nextBtnFirst.addEventListener("click", function(event) {
             btnOkBackground: '#002060',
             fontFamily: 'Poppins, sans-serif'
         });
-    } else if(officeId == null) {
+    } else if (officeId == null) {
         Fnon.Alert.Warning({
             message: 'Please select an office.',
             title: 'Selected Office',
@@ -101,7 +101,7 @@ nextBtnFirst.addEventListener("click", function(event) {
 });
 nextBtnSec.addEventListener("click", function(event) {
     slctDate = slctdDate.text;
-    if(slctDate == null) { // If User selected a schedule (both time & day)
+    if (slctDate == null) { // If User selected a schedule (both time & day)
         // No proper schedule selected
         Fnon.Alert.Warning({
             message: 'Please select a date for your appointment.',
@@ -111,7 +111,7 @@ nextBtnSec.addEventListener("click", function(event) {
             btnOkBackground: '#002060',
             fontFamily: 'Poppins, sans-serif'
         });
-    } else if(slctTimeSlt == null) {
+    } else if (slctTimeSlt == null) {
         Fnon.Alert.Warning({
             message: 'Please select a time for your appointment.',
             title: 'Timeslot',
@@ -120,7 +120,7 @@ nextBtnSec.addEventListener("click", function(event) {
             btnOkBackground: '#002060',
             fontFamily: 'Poppins, sans-serif'
         });
-    } else if(!isValidated()){
+    } else if (!isValidated()) {
         showValidationError();
     } else {
         var officeId = document.getElementById('Office').value;
@@ -139,38 +139,38 @@ nextBtnSec.addEventListener("click", function(event) {
         var companyElement = document.getElementById("affiliated-company");
         var govIdElement = document.getElementById("government-ID");
 
-        if(companyElement && govIdElement) {
+        if (companyElement && govIdElement) {
             company = companyElement.value;
             govId = govIdElement.value;
-        } 
+        }
 
         $.ajax({
-			url: "../../requests/schedule",
-			type: "POST",
-			data: {
-				officeCode: officeId,
-				timeCode: slctTimeSlt				
-			},
-			cache: false,
+            url: "../../requests/schedule",
+            type: "POST",
+            data: {
+                officeCode: officeId,
+                timeCode: slctTimeSlt
+            },
+            cache: false,
             beforeSend: function() {
                 $("#screen-overlay").fadeIn(100);
             },
-			success: function(dataResult){
-                    var dataResult = JSON.parse(dataResult);
-                    JSON.stringify(dataResult);
-					// Lacks catch if db fails
-                    var loadedofficeValue = dataResult.officeValue;
-                    var loadedtimeValue = dataResult.timeValue;
+            success: function(dataResult) {
+                var dataResult = JSON.parse(dataResult);
+                JSON.stringify(dataResult);
+                // Lacks catch if db fails
+                var loadedofficeValue = dataResult.officeValue;
+                var loadedtimeValue = dataResult.timeValue;
 
-                    document.getElementById('sched-time').innerHTML = String(loadedtimeValue);
-                    document.getElementById('visitor-office').innerHTML = String(loadedofficeValue);
-			},
+                document.getElementById('sched-time').innerHTML = String(loadedtimeValue);
+                document.getElementById('visitor-office').innerHTML = String(loadedofficeValue);
+            },
             error: function() {
                 showAlertServerError();
                 $("#screen-overlay").fadeOut(400);
                 isSuccess = false;
             }
-		}).done(function () {
+        }).done(function() {
             $("#screen-overlay").fadeOut(400);
         });
 
@@ -180,52 +180,50 @@ nextBtnSec.addEventListener("click", function(event) {
 
         document.getElementById('visitor-fname').innerHTML = fName + " " + lName;
         document.getElementById('visitor-contact').innerHTML = contact;
-        
+
         document.getElementById('visitor-branch').innerHTML = branch;
 
-        if(companyElement && govIdElement) {
+        if (companyElement && govIdElement) {
             document.getElementById('visitor-govId').innerHTML = govId;
             document.getElementById('visitor-email-com').innerHTML = company;
         } else {
             document.getElementById('visitor-email-com').innerHTML = email;
         }
-        
+
         document.getElementById('sched-date').innerHTML = new Date(slctDate).toLocaleDateString("en-US", options);
-        
+
         document.getElementById('sched-purpose').innerHTML = purpose;
 
         $.ajax({
-			url: "../../requests/schedule",
-			type: "POST",
-			data: {
-				officeCode: officeId,
-				timeCode: slctTimeSlt,
-                slctDate: slctDate			
-			},
-			cache: false,
+            url: "../../requests/schedule",
+            type: "POST",
+            data: {
+                officeCode: officeId,
+                timeCode: slctTimeSlt,
+                slctDate: slctDate
+            },
+            cache: false,
             beforeSend: function() {
                 $("#screen-overlay").fadeIn(100);
             },
-			success: function(dataResult){
-                    var dataResult = JSON.parse(dataResult);
-			},
+            success: function(dataResult) {
+                var dataResult = JSON.parse(dataResult);
+            },
             error: function() {
                 showAlertServerError();
                 $("#screen-overlay").fadeOut(400);
                 isSuccess = false;
             }
-		}).done(function (dataResult) {
+        }).done(function(dataResult) {
             var dataResult = JSON.parse(dataResult);
-            if(dataResult.statusCode==200){
-            }
-            else if(dataResult.statusCode==201){
+            if (dataResult.statusCode == 200) {} else if (dataResult.statusCode == 201) {
                 showSchedNotAvailableError();
                 isSuccess = false;
-            } else if(dataResult.statusCode==202) {
+            } else if (dataResult.statusCode == 202) {
                 window.location.replace("../rtuappsys");
             }
             $("#screen-overlay").fadeOut(400);
-            if(isSuccess) {
+            if (isSuccess) {
                 event.preventDefault();
                 slidePage.style.marginLeft = "-50%";
                 bullet[current - 1].classList.add("active");
@@ -238,7 +236,7 @@ nextBtnSec.addEventListener("click", function(event) {
 
 submitBtn.addEventListener("click", function() {
 
-    if(current < 3) {
+    if (current < 3) {
         bullet[current - 1].classList.add("active");
         progressCheck[current - 1].classList.add("active");
         current += 1;
@@ -249,7 +247,7 @@ submitBtn.addEventListener("click", function() {
     var purpose = document.getElementById('purpose').value;
     var isChecked = document.getElementById("agreement").checked;
 
-    if(slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
+    if (slctTimeSlt == null || slctDate == null) { // If User selected a schedule (both time & day)
         // No proper schedule selected
         Fnon.Alert.Warning({
             message: 'You have not selected your schedule yet.',
@@ -259,19 +257,19 @@ submitBtn.addEventListener("click", function() {
             btnOkBackground: '#002060',
             fontFamily: 'Poppins, sans-serif'
         });
-    } else if(!isValidated()){
+    } else if (!isValidated()) {
         showValidationError();
-    } else if(!isChecked) {
+    } else if (!isChecked) {
         Fnon.Alert.Warning({
-            message: 'To continue, please confirm below that you are giving <strong>Rizal Technological University</strong> the consent' + 
-            ' to collect and process your data.',
+            message: 'To continue, please confirm below that you are giving <b>Rizal Technological University</b> the consent' +
+                ' to collect and process your data.',
             title: 'Please Confirm',
             btnOkText: 'Okay',
             btnOkColor: 'White',
             btnOkBackground: '#002060',
             fontFamily: 'Poppins, sans-serif'
         });
-    }else { // Resubmit personal information & Confirm Appointment
+    } else { // Resubmit personal information & Confirm Appointment
         var lname = $('#last-name').val();
         var fname = $('#first-name').val();
         var email = $('#email-address').val();
@@ -297,7 +295,7 @@ submitBtn.addEventListener("click", function() {
             beforeSend: function() {
                 $("#screen-overlay").fadeIn(100);
             },
-            success: function(dataResult){
+            success: function(dataResult) {
 
             },
             error: function() {
@@ -305,58 +303,57 @@ submitBtn.addEventListener("click", function() {
                 $("#screen-overlay").fadeOut(400);
                 isSuccess = false;
             }
-            }).done(function (dataResult) {
-                var dataResult = JSON.parse(dataResult);
-                    if(dataResult.statusCode==200){ // Continue to submit appointment
-                        if(isSuccess) {
-                            $.ajax({ 
-                                url: "../../requests/sub-appointment",
-                                type: "POST",
-                                data: {
-                                    branch: branch,
-                                    officeId: officeId,
-                                    date: slctDate,
-                                    purpose: purpose,	
-                                    time: slctTimeSlt			
-                                },
-                                cache: false,
-                                beforeSend: function() {
-                                    $("#screen-overlay").fadeIn(100);
-                                },
-                                success: function(appResult){
-                                },
-                                error: function() {
-                                    isSuccess = false;
-                                    showAlertServerError();
-                                    $("#screen-overlay").fadeOut(400);
-                                }
-                            }).done(function (appResult) {
-                                    var appResult = JSON.parse(appResult);
-                                    if(appResult.statusCode==200){
-                                        // Insert JS Form Validation
-                                        window.location.replace("../your-appointment");
-                                    } else if(appResult.statusCode==201){
-                                        showInternalError();
-                                        $("#screen-overlay").fadeOut(400);
-                                    } else {
-                                        showSchedNotAvailableError();
-                                        $("#screen-overlay").fadeOut(400);
-                                    }
-                                    
-                            });
+        }).done(function(dataResult) {
+            var dataResult = JSON.parse(dataResult);
+            if (dataResult.statusCode == 200) { // Continue to submit appointment
+                if (isSuccess) {
+                    $.ajax({
+                        url: "../../requests/sub-appointment",
+                        type: "POST",
+                        data: {
+                            branch: branch,
+                            officeId: officeId,
+                            date: slctDate,
+                            purpose: purpose,
+                            time: slctTimeSlt
+                        },
+                        cache: false,
+                        beforeSend: function() {
+                            $("#screen-overlay").fadeIn(100);
+                        },
+                        success: function(appResult) {},
+                        error: function() {
+                            isSuccess = false;
+                            showAlertServerError();
+                            $("#screen-overlay").fadeOut(400);
                         }
-                    } else if(dataResult.statusCode==201){
-                        showAlertServerError();
-                        $("#screen-overlay").fadeOut(400);
-                    } else if(dataResult.statusCode==202) {
-                        showIdNotAvailableError();
-                        isSuccess = false;
-                        $("#screen-overlay").fadeOut(400);
-                    } else {
-                        showEmailNotAvailableError();
-                        $("#screen-overlay").fadeOut(400);
-                    }
-            });
+                    }).done(function(appResult) {
+                        var appResult = JSON.parse(appResult);
+                        if (appResult.statusCode == 200) {
+                            // Insert JS Form Validation
+                            window.location.replace("../your-appointment");
+                        } else if (appResult.statusCode == 201) {
+                            showInternalError();
+                            $("#screen-overlay").fadeOut(400);
+                        } else {
+                            showSchedNotAvailableError();
+                            $("#screen-overlay").fadeOut(400);
+                        }
+
+                    });
+                }
+            } else if (dataResult.statusCode == 201) {
+                showAlertServerError();
+                $("#screen-overlay").fadeOut(400);
+            } else if (dataResult.statusCode == 202) {
+                showIdNotAvailableError();
+                isSuccess = false;
+                $("#screen-overlay").fadeOut(400);
+            } else {
+                showEmailNotAvailableError();
+                $("#screen-overlay").fadeOut(400);
+            }
+        });
     }
 });
 prevBtnSec.addEventListener("click", function(event) {
@@ -378,7 +375,7 @@ prevBtnThird.addEventListener("click", function(event) {
 
 function load_timeslot(tmslot) {
     timeButton = document.getElementById(tmslot);
-    if(slctTimeSlt == tmslot) {
+    if (slctTimeSlt == tmslot) {
         slctTimeSlt = null;
 
         timeButton.style.backgroundColor = "white"; // SET THE SELECTED BUTTON TO UNHOLD
@@ -386,7 +383,7 @@ function load_timeslot(tmslot) {
 
         timeButton.style.backgroundColor = ''; // SET THE SELECTED BUTTON TO UNHOLD
         timeButton.style.color = '';
-    } else if(slctTimeSlt == null) {
+    } else if (slctTimeSlt == null) {
         slctTimeSlt = tmslot;
 
         timeButton.style.backgroundColor = "#002060"; // SET THE SELECTED BUTTON TO HOLD
@@ -409,11 +406,11 @@ function loadOffices() {
     var office_select = document.getElementById('Office');
 
     office_select.innerHTML = "";
-    
+
     let off_wait = document.getElementById('off-wait');
     let off_none = document.getElementById('off-none');
 
-    if(branch != "") {
+    if (branch != "") {
         $.ajax({
             url: "../../requests/load-offices",
             type: "POST",
@@ -421,7 +418,7 @@ function loadOffices() {
                 branch: branch,
             },
             cache: false,
-            beforeSend: function(){
+            beforeSend: function() {
                 var opt = document.createElement('option');
                 opt.disabled = true;
                 opt.selected = true;
@@ -433,17 +430,17 @@ function loadOffices() {
             error: function() {
                 showAlertServerError();
             },
-            success: function(dataResult){
+            success: function(dataResult) {
                 var dataResult = JSON.parse(dataResult);
 
             }
         }).done(function(dataResult) {
             office_select.innerHTML = "";
-            
+
             var available_offices = JSON.parse(dataResult);
 
-            if(available_offices.length > 0) {
-                for(let i = 0; i < available_offices.length; i++) {
+            if (available_offices.length > 0) {
+                for (let i = 0; i < available_offices.length; i++) {
                     var opt = document.createElement('option');
                     opt.value = available_offices[i][0];
                     opt.innerHTML = available_offices[i][1];
@@ -476,53 +473,53 @@ function showAlertServerError() {
 function showSchedNotAvailableError() {
     Fnon.Alert.Warning({
         message: 'Your schedule is not available anymore, please select another schedule.',
-		title: 'Unfortunately,',
-		btnOkText: 'Okay',
+        title: 'Unfortunately,',
+        btnOkText: 'Okay',
         titleBackground: '#002060',
-		titleColor: 'White',
-		fontFamily: 'Poppins, sans-serif'
+        titleColor: 'White',
+        fontFamily: 'Poppins, sans-serif'
     });
 }
 
 function showEmailNotAvailableError() {
     Fnon.Alert.Warning({
         message: 'This email is currently used in an appointment, please use another email.',
-		title: 'Unfortunately,',
-		btnOkText: 'Okay',
+        title: 'Unfortunately,',
+        btnOkText: 'Okay',
         titleBackground: '#002060',
-		titleColor: 'White',
-		fontFamily: 'Poppins, sans-serif'
+        titleColor: 'White',
+        fontFamily: 'Poppins, sans-serif'
     });
 }
 
 function showInternalError() {
     Fnon.Alert.Danger({
         message: 'An error occured, please try again later.',
-		title: 'We\'re Sorry',
-		btnOkText: 'Okay',
-		titleColor: 'White',
-		fontFamily: 'Poppins, sans-serif'
+        title: 'We\'re Sorry',
+        btnOkText: 'Okay',
+        titleColor: 'White',
+        fontFamily: 'Poppins, sans-serif'
     });
 }
 
 function showValidationError() {
     Fnon.Alert.Warning({
         message: 'Please fill-up all the required information.',
-		title: 'Your Information',
-		btnOkText: 'Okay',
+        title: 'Your Information',
+        btnOkText: 'Okay',
         titleBackground: '#002060',
-		titleColor: 'White',
-		fontFamily: 'Poppins, sans-serif'
+        titleColor: 'White',
+        fontFamily: 'Poppins, sans-serif'
     });
 }
 
 function showIdNotAvailableError() {
     Fnon.Alert.Warning({
         message: 'Your information has an appointment already.',
-		title: 'Unfortunately,',
-		btnOkText: 'Okay',
+        title: 'Unfortunately,',
+        btnOkText: 'Okay',
         titleBackground: '#002060',
-		titleColor: 'White',
-		fontFamily: 'Poppins, sans-serif'
+        titleColor: 'White',
+        fontFamily: 'Poppins, sans-serif'
     });
 }
