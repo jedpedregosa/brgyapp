@@ -87,6 +87,7 @@
     .progress-bar .step .bullet img {
         width: 25px;
         position: relative;
+        top: -5px;
     }
     .inputs-row1 label,
     .inputs-row2 label {
@@ -961,10 +962,10 @@ textarea::-webkit-input-placeholder {
 @media only screen and (max-width: 415px) {
     .confirmation-content-container {
         height: auto;
-        grid-template-rows: 0.8fr 0.9fr 0.2fr;
+        grid-template-rows: 0.7fr 0.8fr 0.2fr;
         grid-template-areas: "personal-info" "appointment-info" "agreement";
         font-size: 10px;
-        grid-row-gap: 20px;
+        grid-row-gap: 15px;
     }
     .personal-info-container {
         grid-template-columns: 1fr 1fr;
