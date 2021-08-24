@@ -212,17 +212,17 @@
 
                                 <div class="first-name">
                                     <input type="text" id="first-name" class="first-name" minLength = "2" maxLength = "20" placeholder="First Name" 
-                                    value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" >
+                                    value = "<?php echo htmlspecialchars($userExists ? $userData[0] : ""); ?>" autocomplete="off">
                                     <label id = "error-first-name"></label>
                                 </div>
 
                                 <div class="last-name">
-                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" minLength = "2" maxLength = "20" value = "<?php echo htmlspecialchars($sReqData)?>">
+                                    <input type="text" id="last-name" class="last-name" placeholder="Last Name" minLength = "2" maxLength = "20" value = "<?php echo htmlspecialchars($sReqData)?>" autocomplete="off">
                                     <label id = "error-last-name"></label>
                                 </div>
                                 <div class="contact-number">
                                     <input type="text" id="contact-number" class="contact-number" minLength = "2" maxlength = "20" placeholder="Contact Number" 
-                                        value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>">
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[1] : ""); ?>" autocomplete="off">
                                         <label id = "error-contact-number"></label>
                                 </div>
 
@@ -231,7 +231,7 @@
                                     ?>
                                         <div class="email-address">
                                             <input type="text" id="affiliated-company" class="affiliated-company" minLength = "2" maxlength = "12" placeholder="Type of ID (SSS, PHIL-Health)"
-                                                value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>">
+                                                value = "<?php echo htmlspecialchars($userExists ? $userData[3] : ""); ?>" autocomplete="off">
                                                 <label id = "error-affiliated-company"></label>
                                         </div>
                                     <?php
@@ -239,7 +239,7 @@
                                     ?>
                                         <div class="email-address">
                                             <input type="text" id="email-address" class="email-address" minLength = "2" maxlength = "30" placeholder="Email Address"
-                                                value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>">
+                                                value = "<?php echo htmlspecialchars($userExists ? $userData[2] : ""); ?>" autocomplete="off">
                                                 <label id = "error-email-address"></label>
                                         </div>
                                     <?php
@@ -250,7 +250,7 @@
 
                                 <div class="govID">
                                     <input type="text" id="government-ID" class="government-ID" maxlength = "30"  placeholder="Identification No."
-                                        value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>">
+                                        value = "<?php echo htmlspecialchars($userExists ? $userData[4] : ""); ?>" autocomplete="off">
                                         <label id = "error-government-ID"></label>
                                 </div>
                                 <?php } ?>
