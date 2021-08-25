@@ -1868,9 +1868,10 @@ span.psw {
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "done-walk-in download-all";
+    grid-template-areas: "done-walk-in-appointments";
     width: 91.5%;
     justify-content: center;
+    top: 89%;
 }
 
 @media only screen and (max-width: 750px) {
