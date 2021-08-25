@@ -306,14 +306,14 @@
 
                     <div class="select-1-container">
                         <!--Add Select View By Here-->
-                        <select class="select-table" onchange = "searchTableOffice(2, this.value)">
+                        <select class="select-table" style="padding-top: 8px;" onchange = "searchTableOffice(2, this.value)">
                             <option value="">All Campus</option>
                             <option value="Boni Campus">Boni Campus</option>
                             <option value="Pasig Campus">Pasig Campus</option>
                         </select>
                     </div>
                     <div class="select-2-container">
-                        <select class="select-table" onchange = "searchTableOffice(4, this.value)">
+                        <select class="select-table" style="padding-top: 8px;" onchange = "searchTableOffice(4, this.value)">
                             <option value="">All Offices</option>
                             <option value="Open">Open Offices</option>
                             <option value="Closed">Closed Offices</option>
