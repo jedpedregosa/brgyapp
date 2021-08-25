@@ -30,12 +30,21 @@
         return $stmt->execute([$date, $type, $name, $source]);
     }
 
-    function getAllSysLog() {
+    function getAllSysLog($isMonth = false) {
         $conn = connectDb();
 
-        $stmt = $conn->prepare("SELECT * FROM tbl_config_log ORDER BY log_tmstmp DESC");
-        $stmt->execute();
+        $stmt;
 
+        if($isMonth) {
+            $last_month = date("Y-m-d", strtotime("-30 day"));
+
+            $stmt = $conn->prepare("SELECT * FROM tbl_config_log WHERE log_tmstmp > ? ORDER BY log_tmstmp DESC");
+            $stmt->execute([$last_month]);
+        } else {
+            $stmt = $conn->prepare("SELECT * FROM tbl_config_log ORDER BY log_tmstmp DESC");
+            $stmt->execute();
+        }
+        
         $all_logs = [];
         while($row = $stmt->fetchAll()) {
             $all_logs = array_merge($all_logs, $row);
