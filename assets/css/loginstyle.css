@@ -221,7 +221,7 @@ body {
 /*SUBMIT FEEDBACK..*/
 .col-1 .p8{
   position: absolute;
-  margin-left: 140px ;
+  margin-left: 136px ;
   padding-bottom: 50px;
   color: #002060;
   font-size: 14px;
@@ -375,7 +375,7 @@ body {
   text-decoration: none;
   font-size: 12px;
   cursor: pointer;
-  width: 80px;
+  width: 90px;
   align-self: flex-end;
   padding: 10px;
   margin-bottom: 10px;
@@ -383,8 +383,13 @@ body {
 }
 
 .col-1 .button1:hover {
-  background-color: #00153E;
+  background-color: #000080;
 }
+
+.col-1 .button1:active{
+    transform: scale(0.95);
+}
+
 
 /*VIEW APPOINTMENTBUTTON*/
 .col-1 .button2 {

@@ -108,12 +108,19 @@ input:focus {
   border-radius: 25px;
   color: white;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
   width: 90px;
   padding: 8px;
   margin-bottom: 25px;
   
+}
+.button:hover {
+  background-color: #000080;
+}
+
+.button:active{
+    transform: scale(0.95);
 }
 
 .container span.show {
