@@ -243,7 +243,7 @@
 
                 </div>
             </div>
-            <div class="button-group-container" style="left: 20px;">
+            <div class="button-group-container" style="top: 114%; left: 20px;">
                 <div class="download-all">
                     <a href = "../download/all-office-fback"><i class="bi bi-download"></i> &nbsp; Download All Records</a>
                     <a href = "../download/all-office-fback?month=1"style="position:relative; left:10px;"><i class="bi bi-download"></i> &nbsp; Download All Records This Month</a>

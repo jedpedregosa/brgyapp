@@ -240,8 +240,7 @@
                 </div>
 
             </div>
-
-            <div class="button-group-container">
+            <div class="button-group-container" style="top: 114%;">
                 <div class="done-walk-in-appointments">
                     <a href = "appointment"><i class="bi bi-circle"></i> &nbsp; Ongoing Appointments</a>
                     <a href = "done-appointment" id = "current"><i class="bi bi-check2-circle"></i> &nbsp; Done Appointments</a>
