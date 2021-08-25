@@ -345,7 +345,7 @@
         ?>
               
             </div>
-            <div class="button-group-container">
+            <div class="button-group-container" style="top: 114%;">
 
                 <div class="done-walk-in-appointments">
                     <a href = "appointment" id = "current"><i class="bi bi-circle"></i> &nbsp; Ongoing Appointments</a>
