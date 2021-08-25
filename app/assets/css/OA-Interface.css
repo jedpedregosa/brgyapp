@@ -2119,7 +2119,7 @@
         display: grid;
         height: 82.5vh;
         grid-template-columns: 1.5fr 1fr;
-        grid-template-rows: 0.2fr 1.5fr 0.1fr;
+        grid-template-rows: 0.2fr 2.5fr 0.1fr;
         grid-template-areas: "text-container functions-container" "table-container table-container" "buttons-container buttons-container";
     }
     
