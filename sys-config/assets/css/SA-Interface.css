@@ -1387,7 +1387,7 @@ select option {
 
 .button-group-container {
     position: absolute;
-    bottom: -18%;
+    bottom: -25%;
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     grid-template-rows: 1fr;
