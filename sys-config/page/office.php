@@ -459,7 +459,7 @@
             </div>
             <div class="button-group-container">
 
-                <div class="done-walk-in-appointments">
+            <div class="download-all" style="position:relative; left: 20%;">
                     <a href = "download/all-office"><i class="bi bi-check2-circle"></i> &nbsp; Download List of Offices</a>
                     <a href = "download/all-office-admin"><i class="bi bi-door-closed"></i> &nbsp; Download List of Admins</a>
                 </div>
