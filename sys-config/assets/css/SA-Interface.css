@@ -1173,8 +1173,6 @@ a.active span.links_name {
 .text-container {
     position: relative;
     grid-area: text-container;
-    border: 2px solid black;
-    background-color: #001642;
 }
 
 .functions-container {
@@ -1183,8 +1181,6 @@ a.active span.links_name {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "select-1 select-2 search-bar";
-    border: 2px solid black;
-    background-color: #001642;
 }
 
 .table-container {
@@ -1192,8 +1188,6 @@ a.active span.links_name {
     overflow-x: auto;
     position: relative;
     top: -15px;
-    border: 2px solid black;
-    background-color: #001642;
 }
 
 .select-1-container {
@@ -1394,14 +1388,13 @@ select option {
 .button-group-container {
     position: absolute;
     bottom: -25%;
+    top: 108%;
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "done-walk-in download-all";
     width: 97%;
     justify-content: center;
-    border: 2px solid black;
-    background-color: #001642;
 }
 
 @media only screen and (max-width: 750px) {
