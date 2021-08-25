@@ -420,8 +420,13 @@
 							<!-- //Form -->
 
 							<!-- View System Logs Button -->
-							<button id="viewBtn" onclick="location.href='download/all-sys-log?month=1'">View System Activities This Month</button>
+
 							<button id="viewBtn" onclick="location.href='download/all-sys-log'">View All System Logs</button>
+							<!-- View System Activities Button -->
+							<button id="viewBtn" onclick="location.href='download/all-sys-log?month=1'">View System Logs</button>
+							<!-- //View System Activities Button -->
+
+							<span id="note">* This month</span>
 							<!-- //View System Logs Button -->
 
 						</div>

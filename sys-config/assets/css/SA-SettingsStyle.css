@@ -1253,6 +1253,10 @@ main .contents {
 
 /* RESPONSIVE LAYOUT */
 @media only screen and (max-width: 340px) {
+  .tabs .tab-body .system_tab #note {
+    display: block;
+    padding: 5px 5px 0 0;
+  }
   /* SIDEBAR */
   .sidebar {
     position: fixed;
@@ -2073,6 +2077,10 @@ main .contents {
 
 /* RESPONSIVE LAYOUT */
 @media only screen and (max-width: 900px) and (min-width: 350px){
+  .tabs .tab-body .system_tab #note {
+    display: block;
+    padding: 5px 5px 0 0;
+  }
   /* SIDEBAR */
   .sidebar {
     position: fixed;
@@ -3189,4 +3197,10 @@ main .contents {
     flex-direction: column;
     width: 100%;
   }
+}
+.tabs .tab-body .system_tab #note {
+  font-family: Arial;
+  font-size: 12px;
+  color: #002060; 
+  font-weight: 600;
 }
