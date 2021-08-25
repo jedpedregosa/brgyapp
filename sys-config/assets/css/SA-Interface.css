@@ -1386,8 +1386,8 @@ select option {
 /* Button group CSS */
 
 .button-group-container {
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    bottom: -25%;
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     grid-template-rows: 1fr;
