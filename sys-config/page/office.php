@@ -306,14 +306,14 @@
 
                     <div class="select-1-container">
                         <!--Add Select View By Here-->
-                        <select class="select-table" onchange = "searchTableOffice(2, this.value)">
+                        <select class="select-table" style="padding-top: 8px;" onchange = "searchTableOffice(2, this.value)">
                             <option value="">All Campus</option>
                             <option value="Boni Campus">Boni Campus</option>
                             <option value="Pasig Campus">Pasig Campus</option>
                         </select>
                     </div>
                     <div class="select-2-container">
-                        <select class="select-table" onchange = "searchTableOffice(4, this.value)">
+                        <select class="select-table" style="padding-top: 8px;" onchange = "searchTableOffice(4, this.value)">
                             <option value="">All Offices</option>
                             <option value="Open">Open Offices</option>
                             <option value="Closed">Closed Offices</option>
@@ -459,7 +459,7 @@
             </div>
             <div class="button-group-container">
 
-                <div class="done-walk-in-appointments">
+            <div class="download-all" style="position:relative; left: 20%;">
                     <a href = "download/all-office"><i class="bi bi-check2-circle"></i> &nbsp; Download List of Offices</a>
                     <a href = "download/all-office-admin"><i class="bi bi-door-closed"></i> &nbsp; Download List of Admins</a>
                 </div>
