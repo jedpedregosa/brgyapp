@@ -186,14 +186,19 @@ input[type=password] {
     text-decoration: none;
     font-size: 12px;
     cursor: pointer;
-    width: 95px;
+    width: 90px;
     padding: 8px;
     margin-bottom: 25px;
 }
 
 .col-1 .button:hover {
-    background-color: #00153E;
+  background-color: #000080;
 }
+
+.col-1 .button:active{
+    transform: scale(0.95);
+}
+
 
 .col-1 .imgcontainer {
     text-align: center;
