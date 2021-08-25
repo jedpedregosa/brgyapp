@@ -28,7 +28,7 @@
         return $result;
     }
 
-    function getAllFeedBack($office = null) {
+    function getAllFeedBack($office = null, $isMonth = false) {
         $conn = connectDb();
 
         $feedback = [];
@@ -36,13 +36,70 @@
         $stmt; 
 
         if(!empty($office)) {
-            $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
-                FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC LIMIT 50");
-            $stmt->execute([$office]);
+            if($isMonth) {
+                $last_month = date("Y-m-d", strtotime("-30 day"));
+
+                $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
+                    FROM tbl_feedback WHERE office_id = ? AND fback_sys_time > ? ORDER BY fback_id DESC LIMIT 50");
+                $stmt->execute([$office, $last_month]);
+            } else {
+                $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
+                    FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC LIMIT 50");
+                $stmt->execute([$office]);
+            }      
         } else {
-            $stmt = $conn->prepare("SELECT office_id, fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd,
-                fback_ip_add FROM tbl_feedback ORDER BY fback_id DESC LIMIT 50");
-            $stmt->execute();
+            if($isMonth) {
+                $last_month = date("Y-m-d", strtotime("-30 day"));
+
+                $stmt = $conn->prepare("SELECT office_id, fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd,
+                    fback_ip_add FROM tbl_feedback WHERE fback_sys_time > ? ORDER BY fback_id DESC LIMIT 50");
+                $stmt->execute([$last_month]);
+            } else {
+                $stmt = $conn->prepare("SELECT office_id, fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd,
+                    fback_ip_add FROM tbl_feedback ORDER BY fback_id DESC LIMIT 50");
+                $stmt->execute();
+            }
+        }
+        
+
+        while($row = $stmt->fetchAll()) {
+            $feedback = array_merge($feedback, $row);
+        }
+
+        return $feedback;
+    }
+
+    function downloadAllFeedBack($office = null, $isMonth = false) {
+        $conn = connectDb();
+
+        $feedback = [];
+
+        $stmt; 
+
+        if(!empty($office)) {
+            if($isMonth) {
+                $last_month = date("Y-m-d", strtotime("-30 day"));
+
+                $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
+                    FROM tbl_feedback WHERE office_id = ? AND fback_sys_time > ? ORDER BY fback_id DESC");
+                $stmt->execute([$office, $last_month]);
+            } else {
+                $stmt = $conn->prepare("SELECT fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd 
+                    FROM tbl_feedback WHERE office_id = ? ORDER BY fback_id DESC");
+                $stmt->execute([$office]);
+            }      
+        } else {
+            if($isMonth) {
+                $last_month = date("Y-m-d", strtotime("-30 day"));
+
+                $stmt = $conn->prepare("SELECT office_id, fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd,
+                    fback_ip_add FROM tbl_feedback WHERE fback_sys_time > ? ORDER BY fback_id DESC");
+                $stmt->execute([$last_month]);
+            } else {
+                $stmt = $conn->prepare("SELECT office_id, fback_fname, fback_contact, fback_email, fback_msg, fback_cat, fback_sys_time, fback_is_stsfd,
+                    fback_ip_add FROM tbl_feedback ORDER BY fback_id DESC");
+                $stmt->execute();
+            }
         }
         
 

@@ -12,7 +12,17 @@
 
     $rtu_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-    $appointees_table = getDoneAppointments($assigned_office);
+    $isMonth = false;
+    $add_str = null;
+
+    if(isset($_GET["month"])) {
+        $today = date("F d, Y", time());
+        $last_month = date("F d, Y", strtotime("-30 day"));
+        $isMonth = true;
+        $add_str = "from " . $last_month . " to " . $today;
+    }
+
+    $appointees_table = downloadDoneAppointments($assigned_office, $isMonth);
     $appointees_size = sizeof($appointees_table);
 
 
@@ -104,7 +114,7 @@
         </div>
         <div style = 'margin: 3%; display: block'>
             <span style = 'display: block; margin-bottom: 3%;'><strong>DATE:</strong> " . $report_date . "</span>
-            <span style = 'display: block;'><strong>NAME:</strong> All Done Appointments</span>
+            <span style = 'display: block;'><strong>NAME:</strong> All Done Appointments " . $add_str ."</span>
             <span style = 'display: block;'><strong>FOR OFFICE:</strong> <em>" . $office_name . "</em>, " . $campus_name . "</span>
         </div>
 

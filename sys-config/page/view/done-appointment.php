@@ -248,8 +248,8 @@
                 </div>
 
                 <div class="download-all">
-                    <a href = "../download/all-office-fback"><i class="bi bi-download"></i> &nbsp; Download All  Done Appointments</a>
-                    <a href = "#"style="position:relative; left:-10px;"><i class="bi bi-download"></i> &nbsp; Download All Records This Month</a>
+                    <a href = "../download/all-office-visits"><i class="bi bi-download"></i> &nbsp; Download All  Done Appointments</a>
+                    <a href = "../download/all-office-visits?month=1"style="position:relative; left:-10px;"><i class="bi bi-download"></i> &nbsp; Download All Records This Month</a>
                 </div>
             </div>
 

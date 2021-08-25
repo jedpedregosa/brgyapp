@@ -10,9 +10,18 @@
 
     $rtu_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-    $feedback_data = getAllFeedback();
-    $feedback_size = sizeof($feedback_data);
+    $isMonth = false;
+    $add_str = null;
 
+    if(isset($_GET["month"])) {
+        $today = date("F d, Y", time());
+        $last_month = date("F d, Y", strtotime("-30 day"));
+        $isMonth = true;
+        $add_str = "from " . $last_month . " to " . $today;
+    }
+
+    $feedback_data = downloadAllFeedback(null, $isMonth);
+    $feedback_size = sizeof($feedback_data);
 
     $table ="";
     foreach($feedback_data as $feedback) {
@@ -90,7 +99,7 @@
         </div>
         <div style = 'margin: 3%; display: block'>
             <span style = 'display: block; margin-bottom: 3%;'><strong>DATE: </strong> " . $report_date . "</span>
-            <span style = 'display: block;'><strong>REPORT NAME:</strong> All Office Feedback</span>
+            <span style = 'display: block;'><strong>REPORT NAME:</strong> All Office Feedback " . $add_str . "</span>
             <span style = 'display: block;'><strong>REPORT FOR:</strong> " . $config_admin_id . ", <em>System Administrator</em></span>
         </div>
 

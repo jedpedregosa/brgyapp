@@ -10,7 +10,17 @@
 
     $rtu_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-    $appointees_table = getDoneAppointmentsConfig();
+    $isMonth = false;
+    $add_str = null;
+
+    if(isset($_GET["month"])) {
+        $today = date("F d, Y", time());
+        $last_month = date("F d, Y", strtotime("-30 day"));
+        $isMonth = true;
+        $add_str = "from " . $last_month . " to " . $today;
+    }
+
+    $appointees_table = downloadAppointmentsConfig($isMonth);
     $appointees_size = sizeof($appointees_table);
 
 
@@ -107,7 +117,7 @@
         </div>
         <div style = 'margin: 3%; display: block'>
             <span style = 'display: block; margin-bottom: 3%;'><strong>DATE: </strong> " . $report_date . "</span>
-            <span style = 'display: block;'><strong>REPORT NAME:</strong> All Office Visit</span>
+            <span style = 'display: block;'><strong>REPORT NAME:</strong> All Office Visit " . $add_str . "</span>
             <span style = 'display: block;'><strong>REPORT FOR:</strong> " . $config_admin_id . ", <em>System Administrator</em></span>
         </div>
 

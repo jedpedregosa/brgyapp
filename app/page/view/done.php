@@ -234,7 +234,7 @@
 
                 <div class="buttons-right">
                     <a href="../download/all_done_appointment" class="download"><i class="bi bi-download"></i> &nbsp; Download All Done Appointments</a>    
-                    <a href = "#" style="position:relative; top:6px; left: 80px;"><i class="bi bi-download"></i> &nbsp; Download All Records This Month</a>
+                    <a href = "../download/all_done_appointment?month=1" style="position:relative; top:6px; left: 80px;"><i class="bi bi-download"></i> &nbsp; Download All Records This Month</a>
                 </div>
             </div>
 

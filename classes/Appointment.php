@@ -591,6 +591,45 @@
         return $done_appointments;
     }
 
+    function downloadDoneAppointments($office, $isMonth = false){
+        $conn = connectDb();
+
+        $done_appointments = [];
+
+        $stmt;
+        if($isMonth) {
+            $last_month = date("Y-m-d", strtotime("-30 day"));
+
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date 
+                FROM tbl_appointment_done WHERE office_id = ? AND app_done_date > ? ORDER BY app_num DESC, app_done_date desc");
+            $stmt->execute([$office, $last_month]);
+        } else {
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date 
+                FROM tbl_appointment_done WHERE office_id = ? ORDER BY app_num DESC, app_done_date desc");
+            $stmt->execute([$office]);
+        }
+
+        $r_appdone = [];
+        while($row = $stmt->fetchAll()) {
+            $r_appdone = array_merge($r_appdone, $row);
+        }
+
+        foreach((array)$r_appdone as $app) {
+            $appointment = [];
+            $app_id = $app[0];
+            
+            $stmt_vstor = $conn->prepare("SELECT vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type 
+                FROM tbl_appdone_vstr WHERE app_id = ?");
+            $stmt_vstor ->execute([$app_id]);
+            $result = $stmt_vstor->fetch();
+
+            $appointment = array_merge($app, $result);
+            array_push($done_appointments, $appointment);
+        }
+
+        return $done_appointments;
+    }
+
     function getWalkinAppointments($office) {
         $conn = connectDb();
 
@@ -599,6 +638,49 @@
         $stmt = $conn->prepare("SELECT app_id, wlkin_date FROM tbl_app_wlkin WHERE office_id = ? ORDER BY wlkin_num DESC, wlkin_date desc LIMIT 50");
         $stmt->execute([$office]);
 
+        $r_walkin = [];
+        while($row = $stmt->fetchAll()) {
+            $r_walkin = array_merge($r_walkin , $row);
+        }
+
+        foreach((array)$r_walkin as $app) {
+            $app_id = $app[0];
+
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time
+                FROM tbl_appointment_done WHERE app_id = ?");
+            $stmt->execute([$app_id]);
+            $app_data = $stmt->fetch();
+
+            array_push($app_data, $app[1]);
+
+            $stmt_vstor = $conn->prepare("SELECT vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type 
+                FROM tbl_appdone_vstr WHERE app_id = ?");
+            $stmt_vstor ->execute([$app_id]);
+            $vstor_data = $stmt_vstor->fetch();
+    
+            $app_row = array_merge($app_data, $vstor_data);
+            array_push($walkin_app, $app_row);
+        }
+
+        return $walkin_app;
+    }
+    function downloadWalkinAppointments($office, $isMonth = false) {
+        $conn = connectDb();
+
+        $walkin_app = [];
+
+        $stmt;
+
+        if($isMonth) {
+            $last_month = date("Y-m-d", strtotime("-30 day"));
+            
+            $stmt = $conn->prepare("SELECT app_id, wlkin_date FROM tbl_app_wlkin WHERE office_id = ? AND wlkin_date > ?  ORDER BY wlkin_num DESC, wlkin_date DESC");
+            $stmt->execute([$office, $last_month]);
+        } else {
+            $stmt = $conn->prepare("SELECT app_id, wlkin_date FROM tbl_app_wlkin WHERE office_id = ? ORDER BY wlkin_num DESC, wlkin_date DESC");
+            $stmt->execute([$office]);
+        }
+        
         $r_walkin = [];
         while($row = $stmt->fetchAll()) {
             $r_walkin = array_merge($r_walkin , $row);
@@ -919,13 +1001,78 @@
         return $appointment_result;
     }
 
-    function getDoneAppointmentsConfig(){
+    function getDoneAppointmentsConfig($isMonth = false){
         $conn = connectDb();
 
         $done_appointments = [];
-        $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date, office_id
-            FROM tbl_appointment_done ORDER BY app_num DESC, app_done_date desc LIMIT 50");
-        $stmt->execute();
+
+        $stmt;
+        if($isMonth) {
+            $last_month = date("Y-m-d", strtotime("-30 day"));
+
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date, office_id
+                FROM tbl_appointment_done WHERE app_done_date > ? ORDER BY app_num DESC, app_done_date desc LIMIT 50");
+
+            $stmt->execute([$last_month]);
+        } else {
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date, office_id
+                FROM tbl_appointment_done ORDER BY app_num DESC, app_done_date desc LIMIT 50");
+
+            $stmt->execute();
+        }
+
+        $r_appdone = [];
+        while($row = $stmt->fetchAll()) {
+            $r_appdone = array_merge($r_appdone, $row);
+        }
+
+        foreach((array)$r_appdone as $app) {
+            $appointment = [];
+            $all_office = [];
+            $app_id = $app[0];
+
+            $office_visited = getOfficeVisitedAsWalkin($app_id);
+            
+            $office_done = $app["office_id"];
+            if(sizeof($office_visited) > 0) {
+                foreach((array)$office_visited as $office) {
+                    array_push($all_office, $office[0]);
+                }
+                array_unshift($all_office, $office_done);
+                $app[6] = $all_office;
+            }
+            
+            $stmt_vstor = $conn->prepare("SELECT vstor_lname, vstor_fname, vstor_idnum, vstor_contact, vstor_email, type, vstor_ip_add
+                FROM tbl_appdone_vstr WHERE app_id = ?");
+            $stmt_vstor ->execute([$app_id]);
+            $result = $stmt_vstor->fetch();
+
+            $appointment = array_merge($app, $result);
+            array_push($done_appointments, $appointment);
+        }
+
+        return $done_appointments;
+    }
+
+    function downloadAppointmentsConfig($isMonth = false){
+        $conn = connectDb();
+
+        $done_appointments = [];
+
+        $stmt;
+        if($isMonth) {
+            $last_month = date("Y-m-d", strtotime("-30 day"));
+
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date, office_id
+                FROM tbl_appointment_done WHERE app_done_date > ? ORDER BY app_num DESC, app_done_date desc");
+
+            $stmt->execute([$last_month]);
+        } else {
+            $stmt = $conn->prepare("SELECT app_id, app_date, tmslot, app_purpose, app_sys_time, app_done_date, office_id
+                FROM tbl_appointment_done ORDER BY app_num DESC, app_done_date desc");
+
+            $stmt->execute();
+        }
 
         $r_appdone = [];
         while($row = $stmt->fetchAll()) {
