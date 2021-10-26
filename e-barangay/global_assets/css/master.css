@@ -1,0 +1,582 @@
+/* Font Used */
+@font-face {
+  font-family: Product Sans;
+  font-style: normal;
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+.info-msg,
+.success-msg,
+.warning-msg,
+.error-msg {
+  padding: 13px;
+  border-radius: 5px 5px 5px 5px;
+  font-family: Product Sans;
+  font-size: 12px;
+  display: inline-block;
+}
+.info-msg {
+  border: 1px solid #059;
+  color: #059;
+  background-color: #BEF;
+}
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+}
+.warning-msg {
+  color: #9F6000;
+  background-color: #FEEFB3;
+}
+.error-msg {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+
+body {
+    background-color: white;
+    background-repeat: automatic;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+}
+
+.navbar {
+  overflow: auto;
+  background-color: #000066;
+  width: 100%;
+  font-family: Verdana;
+  margin-top: -40px;
+  text-align: center;
+  
+}
+
+.navbar a {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Arial;
+  width: 20%; /* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
+  text-align: center; /* If you want the text to be centered */
+  display: inline-block;
+  
+}
+
+.dropdown {
+  overflow: hidden;
+  display: inline-block;
+  width: 20%;
+  vertical-align: middle;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: rgb(170, 13, 13);
+  text-align: center; /* If you want the text to be centered */
+  font-family: Arial;
+  margin: 0; /* Important for vertical align on mobile phones */
+  
+}
+
+.nav-button-group {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #63676e;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: rgb(167, 33, 33);
+}
+
+a:link {
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+   background-color: transparent;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 2px solid rgb(170, 13, 13);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  width: inherit;
+  font-size: 18px;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.time {
+  overflow: hidden;
+  background-color: #000066;
+  height: 40px;
+  color: white;
+  margin-top: -10px;
+  font-size: 12px;
+  font-family: Verdana;
+  display: block;
+}
+.datetime {
+  padding-top: 5px;
+}
+
+.uid {
+  margin-top: -15px;
+  margin-left: 5px;
+  margin-right: 25px;
+  font-size: 14px;
+  float: right;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.container {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+}
+img {
+  max-width: 100%;
+}
+
+.image {
+  flex-basis:auto;
+}
+.logo1 {
+  margin-top: 25px;
+}
+.text{
+  font-size: 15px;
+  padding: 0px;
+  margin-top: -15px;
+  margin-right: auto;
+  margin-left: 10px;
+  font-family: Arial;
+}
+
+.facebook {
+  margin-top: 30px;
+}
+
+.content {
+    margin: 2%;
+    text-align: center;
+}
+
+.donation-div {
+    color: black;
+    padding: 0.5%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    width: 100%;
+    position: fixed;
+    left: -30;
+    bottom: 30;
+}
+
+.main-footer {
+    background-color: #000066;
+    color: white;
+    padding: 0.5%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.copyright {
+    font-style: normal;
+}
+.footer-info {
+    display: block;
+    font-style: italic;
+}
+
+.sys-text {
+  border: 1px solid #000066;
+  display: block;
+  height: 40px;
+  width: 100%;
+  border-radius: 0%;
+  padding: 2%;
+  font-size: 15px;
+}
+
+.sys-button {
+  border: none;
+  background-color: #000066;
+  font-weight: bold;
+  color: white;
+  margin: 1% auto;
+  height: 40px;
+  width: 100px;
+  border-radius: 0%;
+  font-size: 15px;
+  text-align: center;
+}
+
+.sys-button-lg {
+  height: 30px;
+  width: 150px
+}
+
+.sys-modal-button {
+  border: none;
+  background-color: #000066;
+  color: white;
+  margin: 1% auto;
+  height: 25px;
+  width: 70px;
+  border-radius: 0%;
+  font-size: 15px;
+  text-align: center;
+}
+
+.sys-button:hover, .sys-modal-button:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
+.button-2 {
+  background-color: grey;
+  width: 100px;
+}
+
+.button-2:hover {
+  background-color: rgb(192, 192, 192);
+}
+
+.modal-button-2 {
+  color: grey;
+  background-color: white;
+}
+
+.button-3 {
+  color: #000066;
+  background-color: white;
+  border: none;
+}
+
+.button-3:hover {
+  background-color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-button-2:hover {
+  background-color: rgb(192, 192, 192);
+  cursor: pointer;
+}
+
+.sys-label {
+  color: grey;
+  font-size: 12px;
+  display: block;
+  font-weight: bold;
+}
+
+.type2 {
+  color: black;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.sub-lbl {
+  font-style: italic;
+  color: rgb(192, 192, 192);
+  display: inline-block;
+}
+
+.md {
+  width: 75%;
+}
+
+.sm {
+  width: 25%;
+}
+
+.img-button {
+  cursor: pointer;
+}
+
+.hidden-upload {
+  display: none;
+}
+
+.sys-chck-label {
+  font-size: 12px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #000066;
+  text-align: center;
+  width: 40%; /* Could be more or less, depending on screen size */
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+}
+
+.modal-alert {
+  border-radius: 0px;
+}
+
+/* The Close Button */
+.close {
+  color: #000066;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000066aa;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  display: block;
+  font-weight: 600;
+}
+
+.modal-sub-header {
+  display: block;
+}
+
+.header-lg {
+  font-size: 20px;
+}
+
+.error {
+  color: rgb(196, 27, 27);
+}
+
+.validate-msg {
+  font-size: 10px;
+  color: red;
+  display: block;
+  font-family: Product Sans;
+}
+
+.val-lg {
+  font-size: 14px;
+}
+
+.title {
+  color: #000066;
+  font-weight: bold;
+}
+
+#editor-container {
+  min-height: 175px;
+  font-size: 17px !important; 
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid #000066;
+  border-bottom: none;
+  border-radius: 10px;
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column-reverse; 
+  margin: 1%;
+}
+
+.ql-toolbar {
+  text-align: left;
+  border: 2px solid #000066 !important;
+  border-top: none !important; 
+  border-radius: 10px;
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+}
+
+#editor-container img {
+  width: 30%;
+  height: 30%;
+}
+
+.custom_fileuload {
+  display: none;
+}
+
+.grid {
+  width: 98%;
+}
+
+.button-grid {
+  margin: 1%;
+}
+
+.col-right {
+  text-align: right;
+}
+
+.data-wrapper {
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
+.data-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.data-grid th, .data-grid td {
+  border: .1px solid rgba(0, 0, 0, 0.768);
+  padding: 5px;
+}
+
+.mini {
+  font-size: 8px;
+  padding: 2px;
+}
+
+/* The Modal (background) */
+.img-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.img-modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#img_caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.img-modal-content, #img_caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.img-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.img-close:hover,
+.img-close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .img-modal-content {
+    width: 100%;
+  }
+}
+
+.side-menu-button {
+  width: 100%;
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.push-left {
+  margin-left: 30px;
+}

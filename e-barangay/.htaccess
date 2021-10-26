@@ -1,0 +1,20 @@
+# Server Configuration File for e-Barangay
+
+# Remember:
+#   - Increase the following on php.ini
+#       memory_limit
+#       post_max_size
+#       upload_max_filesize
+
+
+php_value date.timezone 'Asia/Manila'
+php_value display_errors Off
+
+RewriteEngine On
+
+# Rewrite /foo/bar to /foo/bar.php
+RewriteRule ^([^.?]+)$ %{REQUEST_URI}.php [L]
+
+# Return 404 if original request is /foo/bar.php
+RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
+RewriteRule .* - [L,R=404]

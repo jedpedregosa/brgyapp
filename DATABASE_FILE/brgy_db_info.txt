@@ -1,0 +1,19 @@
+1. Import database file.
+
+2. Create a database user
+	Host:     localhost
+
+	Username: eBrgy108Z12
+	Password: eBrgy108Zone12
+	DB Name:  dbbrgy108z12
+	
+	-if in cloud hosting;
+		Cloud pass: SA2DFxD1u1iZ2
+
+3. BARANGAY ADMIN ACCOUNTS
+
+	Username	Email (2nd Username)		Password
+
+	kgwd2014	kgwd2014@gmail.com		password123
+	kptan2014	kptan2014@yahoo.com		password123		
+	brgysec2017	brgysec2017@hotmail.com		password123

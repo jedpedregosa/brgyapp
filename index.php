@@ -1,3 +1,4 @@
 <?php 
-    header("Location: main/rtuappsys");
+
+header("Location: e-barangay/guest/home");
 ?>
