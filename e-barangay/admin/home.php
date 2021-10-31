@@ -84,7 +84,7 @@
                         <a href="">COVID-19 INFORMATION</a>
                         <a href="e-services/barangay-clearance">REQUESTS</a>
                         <a href="">BLOTTER REPORTS</a>
-                        <a href="">DONATIONS</a>
+                        <a href="e-services/charity-donation">DONATIONS</a>
                         <a href="">PROFILES</a>
                         <a href="logout">LOG OUT</a>
                     </div>

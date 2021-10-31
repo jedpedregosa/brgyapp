@@ -154,6 +154,8 @@
                                         <td>
                                             <select class = "sys-text" name = "StName" required>
                                                 <option value = "Tengco"> Tengco</option>
+                                                <option value = "Aurora"> Aurora</option>
+                                                <option value = "Arnaiz"> Arnaiz</option>
                                                 <option value = "Tramo"> Tramo</option>
                                             </select>
                                         </td>

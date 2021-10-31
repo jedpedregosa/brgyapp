@@ -3,16 +3,18 @@
 
     if(isset($_GET["r_id"]) && isset($_GET["type"])) {
         $file_loc;
-        $file_dir = "../../FILE_STORAGE/RESIDENT_FILES/";
+        $file_dir = "../../FILE_STORAGE/";
 
         if($_GET["type"] == "view1") {
-            $file_loc = $file_dir . "RESIDENT-" .  $_GET["r_id"] .  "/FILE_PHOTO.tmp";                             
+            $file_loc = $file_dir . "RESIDENT_FILES/RESIDENT-" .  $_GET["r_id"] .  "/FILE_PHOTO.tmp";                             
         } else if($_GET["type"] == "view2") {
-            $file_loc = $file_dir . "RESIDENT-" .  $_GET["r_id"] .  "/FILE_IDFBACK.tmp";
+            $file_loc = $file_dir . "RESIDENT_FILES/RESIDENT-" .  $_GET["r_id"] .  "/FILE_IDFBACK.tmp";
         } else if($_GET["type"] == "view3") {
-            $file_loc = $file_dir . "RESIDENT-" .  $_GET["r_id"] .  "/FILE_SLFIE.tmp";
+            $file_loc = $file_dir . "RESIDENT_FILES/RESIDENT-" .  $_GET["r_id"] .  "/FILE_SLFIE.tmp";
         } else if($_GET["type"] == "view4") {
-            $file_loc = $file_dir . "RESIDENT-" .  $_GET["r_id"] .  "/FILE_SIG.tmp";
+            $file_loc = $file_dir . "RESIDENT_FILES/RESIDENT-" .  $_GET["r_id"] .  "/FILE_SIG.tmp";
+        } else if($_GET["type"] == "view5") {
+            $file_loc = $file_dir . "DONATION_FILES/DONATION-" .  $_GET["r_id"] .  ".tmp";
         }
 
         if($file_loc) {

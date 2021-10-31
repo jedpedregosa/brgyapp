@@ -6,9 +6,8 @@
         exit();
     }
 
-    $req_sql = "SELECT res.* FROM tblResident_auth auth INNER JOIN tblResident res ON auth.resUname = res.resUname WHERE resValid = 0";
-    $resident_data = selectStatement("r", $req_sql, null);
-
+    $donation_sql = "SELECT * FROM tblDonation WHERE donType = 'dntn2'";
+    $donation_data = selectStatement("r", $donation_sql, null);
 ?>
 <html>
     <head>
@@ -90,95 +89,114 @@
                         <span class = "request-title"> Barangay Requests </span>
                     </td>
                     <td class = "col-right">
-                        <a class = "request-status" href = "barangay-clearance">New Requests</a>
-                        <a class = "request-status" href = "">Completed Requests</a>
-                        <a class = "request-status status-selected" href = "resident-request">Residents</a>
+                        <a class = "request-status status-selected" href = "charity-donation">Charity</a>
+                        <a class = "request-status" href = "in-kind-donation">In-kind</a>
                     </td>
                 </tr>
             </table>
             <hr>
             <div class = "side-menu-button">
-                <input type = "button" value = "VIEW">
-                <input type = "button" onclick = "window.open('../../guest/sign-up', '_blank').focus();" value = "ADD">
-                <input type = "button" id = "tool_slct" value = "SELECT">
-                <input type = "button" id = "tool_accpt" value = "ACCEPT">
+                <input type = "button" onclick = "window.open('../../guest/donation', '_blank').focus();" value = "ADD">
                 <input type = "button" id = "tool_dlte" value = "DELETE">
             </div>
-            <div class = "data-wrapper">
-                
+            <div class = "data-wrapper">    
                 <table class = "data-grid" cellspacing = "0">
                     <thead>
                         <th></th>
                         <th>Date</th>
-                        <th>Upload</th>
+                        <th colspan = "5">DONATION DRIVE</th>
+                        <th>POSITION</th>
+                        <th>LAST NAME</th>
                         <th>First Name</th>
                         <th>Middle Name</th>
-                        <th>Last Name</th>
-                        <th>Suffix</th>
-                        <th>Civil Status</th>
-                        <th>Citizenship</th>
-                        <th>Birthdate<span class = "mini">(M/D/Y)</span></th>
-                        <th>Sex</th>
-                        <th>House Number</th>
+                        <th>Email</th>
                         <th>Contact Number</th>
-                        <th>Email Address</th>
-                        <th>Facebook</th>
-                        <th>Voter Registration</th>
-                        <th>ID (Front & Back)</th>
-                        <th>Selfie</th>
-                        <th>Signatures</th>
+                        <th>House Number</th>
+                        <th>Street</th>
+                        <th>Barangay</th>
+                        <th>City</th>
+                        <th>Postal Code</th>
                     </thead>
                     <tbody>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Date of Transaction</th>
+                            <th>Type of Payment</th>
+                            <th>Amount</th>
+                            <th>Proof of Payment</th>
+                            <th>Remarks</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        
     <?php 
-        if($resident_data["req_result"]) {
-            if($resident_data["req_val"]) {
-                foreach((array)$resident_data["req_val"] as $resident) {
-                    $hash_id = hash('sha256', $resident["resUname"] . $resident["sysTime"]);
+        if($donation_data["req_result"]) {
+            if($donation_data["req_val"]) {
+                foreach((array)$donation_data["req_val"] as $donation) {
+                    $hash_id = hash('sha256', $donation["donationId"] . $donation["sysTime"]);
                     ?>
                         <tr>
-                            <td><input type = "radio" class = "slct_row" value = "<?php echo $resident["resUname"]; ?>" disabled/></td>
-                            <td><?php echo transformDate($resident["sysTime"], "m-d-y"); ?></td>
-                            <td><input type = "button" class = "button-3" 
-                                    onclick = "showImgModal('<?php echo $hash_id; ?>', 1)" 
-                                    value = "view photo">
+                            <td><input type = "radio" class = "slct_row" value = "<?php echo $donation["donationId"]; ?>"/></td>
+                            <td><?php echo transformDate($donation["sysTime"], "m-d-y"); ?></td>
+                            <td>
+                                <?php 
+                                    if($donation["transDate"]) {
+                                        echo transformDate($donation["transDate"], "M d, Y"); 
+                                    } else {
+                                        echo "Not Specified";
+                                    }       
+                                ?>
                             </td>
-                            <td><?php echo $resident["resFname"]; ?></td>
-                            <td><?php echo $resident["resMname"]; ?></td>
-                            <td><?php echo $resident["resLname"]; ?></td>
-                            <td><?php echo $resident["resSuffix"]; ?></td>
-                            <td><?php echo getCivilStatus($resident["resCivStat"]); ?></td>
-                            <td><?php echo $resident["resCitiznshp"]; ?></td>
-                            <td><?php echo transformDate($resident["resBdate"], "m/d/y"); ?></td>
-                            <td><?php echo $resident["resSex"]; ?></td>
-                            <td><?php echo $resident["resHouseNum"]; ?></td>
-                            <td><?php echo $resident["resContact"]; ?></td>
-                            <td><?php echo $resident["resEmail"]; ?></td>
-                            <td><?php echo $resident["resFbName"]; ?></td>
-                            <td><?php echo $resident["resVoter"]; ?></td>
-                            <td><input type = "button" class = "button-3" 
-                                    onclick = "showImgModal('<?php echo $hash_id; ?>', 2)" 
-                                    value = "view ID">
+                            <td><?php echo $donation["payType"]; ?></td>
+                            <td><?php echo $donation["payAmmnt"]; ?></td>
+                            <td>
+                                <?php 
+                                    if($donation["hasFile"]) {
+                                        ?>
+                                            <input type = "button" class = "button-3" 
+                                                onclick = "showImgModal('<?php echo $hash_id; ?>', 5)" 
+                                                value = "view photo">
+                                        <?php
+                                    } else {
+                                        echo 'No Upload';
+                                    }
+                                ?>
                             </td>
-                            <td><input type = "button" class = "button-3" 
-                                    onclick = "showImgModal('<?php echo $hash_id; ?>', 3)" 
-                                    value = "view selfie">
-                            </td>
-                            <td><input type = "button" class = "button-3" 
-                                    onclick = "showImgModal('<?php echo $hash_id; ?>', 4)" 
-                                    value = "view signatures">
-                            </td>
+                            <td><?php echo $donation["remark"]; ?></td>
+                            <td><?php echo $donation["position"]; ?></td>
+                            <td><?php echo $donation["lName"]; ?></td>
+                            <td><?php echo $donation["fName"]; ?></td>
+                            <td><?php echo $donation["mInitial"]; ?></td>
+                            <td><?php echo $donation["email"]; ?></td>
+                            <td><?php echo $donation["contact"]; ?></td>
+                            <td><?php echo $donation["hNumber"]; ?></td>
+                            <td><?php echo $donation["stName"]; ?></td>
+                            <td><?php echo $donation["brgy"]; ?></td>
+                            <td><?php echo $donation["city"]; ?></td>
+                            <td><?php echo $donation["pCode"]; ?></td>
                         </tr>
                     <?php
                 }
             }
         }
-    ?>    
+    ?>
+                        
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- The Modal -->
-        <div id="res_img_modal" class="img-modal">
+        <div id="don_img_modal" class="img-modal">
 
             <!-- The Close Button -->
             <span class="img-close">&times;</span>
@@ -195,5 +213,5 @@
         </div>
     </body>
     <script src="../../global_assets/js/datetime.js"></script>
-    <script src="../assets/js/resident-request.js"></script>
+    <script src="../assets/js/donation.js"></script>
 </html>

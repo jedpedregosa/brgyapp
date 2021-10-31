@@ -14,14 +14,18 @@
         $all_rows = json_decode($_POST["id_rows"]);
         $result = true;
         
-        if($_POST["type"] == "1") {
+        if($_POST["type"] == "1") {                 # Residents Accepted
             foreach($all_rows as $id) {
                 $result = $result && updateStatement("UPDATE tblResident_auth SET resValid = 1 WHERE resUname = ?", $id);
             }
-        } else if($_POST["type"] == "2") {
-            foreach($all_rows as $id) {
+        } else if($_POST["type"] == "2") {          # Resident Record Deleted
+            foreach($all_rows as $id) {   
                 $result = $result && updateStatement("DELETE FROM tblResident_auth WHERE resUname = ?", $id);
                 $result = $result && updateStatement("DELETE FROM tblResident WHERE resUname = ?", $id);
+            }
+        } else if($_POST["type"] == "3") {
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblDonation WHERE donationId = ?", $id);
             }
         }
          

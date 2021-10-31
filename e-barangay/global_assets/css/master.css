@@ -186,6 +186,7 @@ img {
 }
 .logo1 {
   margin-top: 25px;
+  margin-left: 45%;
 }
 .text{
   font-size: 15px;
@@ -579,4 +580,27 @@ img {
 
 .push-left {
   margin-left: 30px;
+}
+
+.msg {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+}
+
+.msg-header {
+  display: block;
+  font-weight: bold;
+  margin-top: 1%;
+}
+
+.msg-info {
+  display: block;
+}
+
+.msg-italic {
+  font-style: italic;
+}
+
+.msg-sm {
+  font-size: 12px;
 }

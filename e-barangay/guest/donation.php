@@ -116,7 +116,7 @@
         </div>
     <!-- /Navigation Bar/ -->
     <!-- Content -->
-        <form id = "frmAcc" method = "POST" action = "controllers/service/submit-donation" enctype="multipart/form-data">
+        <form id = "frmDonation" method = "POST" action = "controllers/service/submit-donation" enctype="multipart/form-data">
             <div class = "content">
                 <div class = "create-donation">
                     <h3 class = "title">DONATION FORM</h3>
@@ -228,11 +228,12 @@
                             </tr>
                         </table>
                         <span class = "sys-label type2 lbl-upload">Proof of Payment:</span>
-                        <input type = "button" class = "button-3" onclick = "document.getElementById('filePay').click();" value = "Upload Photo">
-                        <input type = "file" class = "hidden-upload" name = "filePay" id = "filePay" accept=".jpg,.png">
+                        <input type = "button" class = "button-3" id = "btn_upload" onclick = "document.getElementById('filePay').click();" value = "Upload Photo">
+                        <span class = "validate-msg" id = "don-upload-msg"></span>
+                        <input type = "file" class = "hidden-upload" name = "filePay" id = "filePay" onchange = "checkUpload()" accept=".jpg,.png">
                     </div>
                     <input class = "sys-button button-2" onclick = "location.href='home'" value = "C A N C E L">
-                    <input type = "submit" class = "sys-button" value = "S U B M I T">
+                    <input class = "sys-button" onclick = "submitForm()" value = "S U B M I T">
                 </div>
             </div>
         </form>
