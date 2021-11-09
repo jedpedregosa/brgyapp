@@ -35,6 +35,9 @@
                     <span id="period">AM</span>
                 </div>
                 <!--digital clock end-->
+                <div class = "uid">
+                    <span><?php echo "@" . $admn_uid; ?></span>
+                </div>
             </ul>
         </nav>
         <!-- LOGO -->   
@@ -68,9 +71,9 @@
                     <div class="dropdown-content">
                         <a href="announcements">ANNOUNCEMENTS</a>
                         <a href="health-updates">HEALTH UPDATES</a>
-                        <a href="">COVID-19 INFORMATION</a>
+                        <a href="covid-info">COVID-19 INFORMATION</a>
                         <a href="barangay-clearance">REQUESTS</a>
-                        <a href="">BLOTTER REPORTS</a>
+                        <a href="blotter-report">BLOTTER REPORTS</a>
                         <a href="charity-donation">DONATIONS</a>
                         <a href="">PROFILES</a>
                         <a href="../logout">LOG OUT</a>

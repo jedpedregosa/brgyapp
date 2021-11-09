@@ -80,7 +80,7 @@
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="">CERTIFICATE TO TRAVEL</a>
                         <a href="">PROOF OF RESIDENCY</a>
-                        <a href="">BLOTTER REPORT</a>
+                        <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
                         <a href=""><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>

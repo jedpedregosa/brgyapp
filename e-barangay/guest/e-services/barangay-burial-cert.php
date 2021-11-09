@@ -99,10 +99,10 @@
                         <a href="barangay-id-form">BARANGAY IDENTIFICATION (ID)</a>
                         <a href="barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="barangay-burial-cert">BURIAL CERTIFICATION</a>
-                        <a href="">CERTIFICATE OF EMPLOYMENT</a>
+                        <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="">CERTIFICATE TO TRAVEL</a>
                         <a href="">PROOF OF RESIDENCY</a>
-                        <a href="">BLOTTER REPORT</a>
+                        <a href="barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
                         <a href=""><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>

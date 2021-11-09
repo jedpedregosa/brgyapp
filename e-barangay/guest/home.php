@@ -6,6 +6,8 @@
     // Get Updates
     $all_posts = getAllPost();
     $all_health_upd = getAllHealthUpd();
+
+    $covid_info = getAllCovidInfo();
 ?>
 <html>
     <head>
@@ -86,7 +88,7 @@
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="">CERTIFICATE TO TRAVEL</a>
                         <a href="">PROOF OF RESIDENCY</a>
-                        <a href="">BLOTTER REPORT</a>
+                        <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
                         <a href=""><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>
@@ -120,7 +122,7 @@
                                         <div class = "card-covid">
                                             <div class = "card-covid-content">
                                                 <span class = "card-sub">TOTAL</span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["total"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>
@@ -130,7 +132,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-error">ACTIVE</span>
                                                 </span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["active"] : "Error";?></span>
                                             </div>  
                                         </div>
                                     </td>
@@ -142,7 +144,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-success">RECOVERED</span>
                                                 </span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["recovered"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>
@@ -152,7 +154,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-info">DEATH</span>
                                                 </span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["death"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>

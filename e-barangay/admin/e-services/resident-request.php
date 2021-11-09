@@ -40,6 +40,9 @@
                     <span id="period">AM</span>
                 </div>
                 <!--digital clock end-->
+                <div class = "uid">
+                    <span><?php echo "@" . $admn_uid; ?></span>
+                </div>
             </ul>
         </nav>
         <!-- LOGO -->   
@@ -73,9 +76,9 @@
                     <div class="dropdown-content">
                         <a href="announcements">ANNOUNCEMENTS</a>
                         <a href="health-updates">HEALTH UPDATES</a>
-                        <a href="">COVID-19 INFORMATION</a>
+                        <a href="covid-info">COVID-19 INFORMATION</a>
                         <a href="barangay-clearance">REQUESTS</a>
-                        <a href="">BLOTTER REPORTS</a>
+                        <a href="blotter-report">BLOTTER REPORTS</a>
                         <a href="charity-donation">DONATIONS</a>
                         <a href="">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
@@ -120,6 +123,7 @@
                         <th>Birthdate<span class = "mini">(M/D/Y)</span></th>
                         <th>Sex</th>
                         <th>House Number</th>
+                        <th>Street Name</th>
                         <th>Contact Number</th>
                         <th>Email Address</th>
                         <th>Facebook</th>
@@ -151,6 +155,7 @@
                             <td><?php echo transformDate($resident["resBdate"], "m/d/y"); ?></td>
                             <td><?php echo $resident["resSex"]; ?></td>
                             <td><?php echo $resident["resHouseNum"]; ?></td>
+                            <td><?php echo $resident["resStName"]; ?></td>
                             <td><?php echo $resident["resContact"]; ?></td>
                             <td><?php echo $resident["resEmail"]; ?></td>
                             <td><?php echo $resident["resFbName"]; ?></td>

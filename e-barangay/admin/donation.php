@@ -1,5 +1,5 @@
 <?php 
-    include_once($_SERVER['DOCUMENT_ROOT'] . "/e-barangay/classes/GuestMaster.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/e-barangay/classes/AdminMaster.php");
 
     $current_time = getTimeDate("(F. d, Y - h:m a)");
 
@@ -50,10 +50,10 @@
                 </div>
                 <!--digital clock end-->
     <?php 
-        if($is_resdnt_lgn) {
+        if($is_admn_lgn) {
             ?>
                 <div class = "uid">
-                    <span><?php echo "@" . $resdnt_uid; ?></span>
+                    <span><?php echo "@" . $admn_uid; ?></span>
                 </div>
             <?php
         }
@@ -85,23 +85,20 @@
                 <a href="about"> A B O U T </a>
                 <a href="guide"> U S E R - G U I D E </a>
     <?php 
-        if($is_resdnt_lgn) {
+        if($is_admn_lgn) {
             ?>
                 <div class="dropdown">
                     <button class="dropbtn">E-SERVICES
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="e-services/barangay-clearance">BARANGAY CLEARANCE</a>
-                        <a href="e-services/health-updates">BARANGAY IDENTIFICATION (ID)</a>
-                        <a href="e-services/barangay-indigency">BARANGAY INDIGENCY</a>
-                        <a href="e-services/barangay-burial-cert">BURIAL CERTIFICATION</a>
-                        <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
-                        <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
-                        <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="e-services/announcements">ANNOUNCEMENTS</a>
+                        <a href="e-services/health-updates">HEALTH UPDATES</a>
+                        <a href="e-services/covid-info">COVID-19 INFORMATION</a>
+                        <a href="e-services/barangay-clearance">REQUESTS</a>
+                        <a href="e-services/blotter-report">BLOTTER REPORTS</a>
+                        <a href="e-services/charity-donation">DONATIONS</a>
+                        <a href="">PROFILES</a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -279,7 +276,7 @@
         </div>
     </body>
     <script src="../global_assets/js/datetime.js"></script>
-    <script src="../gloabal_assets/js/donation.js"></script>
+    <script src="../global_assets/js/donation.js"></script>
 
 <?php 
     if($isSubmit) {

@@ -75,9 +75,9 @@
                     <div class="dropdown-content">
                         <a href="e-services/announcements">ANNOUNCEMENTS</a>
                         <a href="e-services/health-updates">HEALTH UPDATES</a>
-                        <a href="">COVID-19 INFORMATION</a>
+                        <a href="e-services/covid-info">COVID-19 INFORMATION</a>
                         <a href="e-services/barangay-clearance">REQUESTS</a>
-                        <a href="">BLOTTER REPORTS</a>
+                        <a href="e-services/blotter-report">BLOTTER REPORTS</a>
                         <a href="e-services/charity-donation">DONATIONS</a>
                         <a href="">PROFILES</a>
                         <a href="logout">LOG OUT</a>

@@ -6,6 +6,8 @@
     // Get Updates
     $all_posts = getAllPost();
     $all_health_upd = getAllHealthUpd();
+
+    $covid_info = getAllCovidInfo();
 ?>
 <html>
     <head>
@@ -81,11 +83,11 @@
                     <div class="dropdown-content">
                         <a href="e-services/announcements">ANNOUNCEMENTS</a>
                         <a href="e-services/health-updates">HEALTH UPDATES</a>
-                        <a href="">COVID-19 INFORMATION</a>
+                        <a href="e-services/covid-info">COVID-19 INFORMATION</a>
                         <a href="e-services/barangay-clearance">REQUESTS</a>
                         <a href="">BLOTTER REPORTS</a>
                         <a href="e-services/charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="e-services/blotter-report">PROFILES</a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -117,7 +119,7 @@
                                         <div class = "card-covid">
                                             <div class = "card-covid-content">
                                                 <span class = "card-sub">TOTAL</span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["total"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>
@@ -127,7 +129,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-error">ACTIVE</span>
                                                 </span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["active"] : "Error";?></span>
                                             </div>  
                                         </div>
                                     </td>
@@ -137,9 +139,9 @@
                                         <div class = "card-covid">
                                             <div class = "card-covid-content">
                                                 <span class = "card-sub">
-                                                    <span class = "text-success">RECOVERED</span>
+                                                <span class = "text-success">RECOVERED</span>
                                                 </span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><span class = "text-success"><?php echo ($covid_info) ? (int)$covid_info["recovered"] : "Error";?></span></span>
                                             </div>
                                         </div>
                                     </td>
@@ -149,7 +151,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-info">DEATH</span>
                                                 </span>
-                                                <span class = "card-val">1</span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["death"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>
@@ -313,6 +315,9 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div class = "donation-div">
+            <input type = "button" class = "sys-button sys-button-lg" onclick = "location.href='donation'"value = "DONATION DRIVE">
         </div>
         <div class = "main-footer">
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>

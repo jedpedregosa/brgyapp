@@ -98,7 +98,7 @@
                                         </td>
                                         <td>
                                             <span class = "sys-label">Middle Name</span>
-                                            <input class = "sys-text" name = "Mname" minlength = "2" maxlength = "25" required>
+                                            <input class = "sys-text" name = "Mname" maxlength = "25">
                                         </td>
                                         <td>
                                             <span class = "sys-label">Last Name</span>
@@ -275,8 +275,8 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close" onclick = "location.href = 'login'">&times;</span>
-                    <p class = "modal-header header-lg">Request succesfully sent!</p>
-                    <p class = "modal-sub-header header-lg">Please wait for a maximum of 2 days to verify and confirm your account.</p>
+                    <span class = "modal-header header-lg">Request succesfully sent!</span>
+                    <span class = "modal-sub-header header-lg">Please wait for a maximum of 2 days to verify and confirm your account.</span>
                 </div>
             </div>
 

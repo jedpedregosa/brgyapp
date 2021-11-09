@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 26, 2021 at 07:52 AM
+-- Generation Time: Nov 09, 2021 at 01:16 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -75,6 +75,72 @@ CREATE TABLE IF NOT EXISTS `tblannouncements` (
   `anncmntFname` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sysTime` datetime NOT NULL,
   PRIMARY KEY (`anncmntId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblblotterreport`
+--
+
+DROP TABLE IF EXISTS `tblblotterreport`;
+CREATE TABLE IF NOT EXISTS `tblblotterreport` (
+  `blotterId` int NOT NULL,
+  `blotterStatus` int NOT NULL DEFAULT '1',
+  `fName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alias` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `suffix` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ctzn` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `age` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sex` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hNum` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `street` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dateCrime` date NOT NULL,
+  `incident` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susFname` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susLname` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susAlias` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susSuffix` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susAge` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susSex` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susHnum` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `susStreet` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reason` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userIp` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sysTime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcovidinfo`
+--
+
+DROP TABLE IF EXISTS `tblcovidinfo`;
+CREATE TABLE IF NOT EXISTS `tblcovidinfo` (
+  `infoId` int NOT NULL,
+  `fName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `suffix` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `covType` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `covStatus` int DEFAULT '1',
+  `contact` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ctznshp` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `age` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sex` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hNum` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dateAd` date DEFAULT NULL,
+  `dateDis` date DEFAULT NULL,
+  `dateStart` date DEFAULT NULL,
+  `dateEnd` date DEFAULT NULL,
+  `sysTime` datetime NOT NULL,
+  PRIMARY KEY (`infoId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -167,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `tblresident_attmp` (
   `attmpStmp` int NOT NULL,
   `attmpIpAdd` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`attmpNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 

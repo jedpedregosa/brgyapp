@@ -5,9 +5,22 @@
         header("Location: ../logout");
         exit();
     }
+    
+    $not_last = true;
+    $is_rec = false;
+    $info_sql;
 
-    $donation_sql = "SELECT * FROM tblDonation WHERE donType = 'dntn1'";
-    $donation_data = selectStatement("r", $donation_sql, null);
+    if($_GET["type"] == 1) {
+        $info_sql = "SELECT * FROM tblCovidInfo WHERE covStatus = 2";
+        $is_rec = true;
+    } else if($_GET["type"] == 2){
+        $info_sql = "SELECT * FROM tblCovidInfo WHERE covStatus = 3";
+        $not_last = false;
+    } else {
+        $info_sql = "SELECT * FROM tblCovidInfo WHERE covStatus = 1";
+    }
+    
+    $info_data = selectStatement("r", $info_sql, null);
 ?>
 <html>
     <head>
@@ -89,108 +102,87 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Barangay Requests </span>
+                        <span class = "request-title"> Covid-19 Information </span>
                     </td>
                     <td class = "col-right">
-                        <a class = "request-status" href = "charity-donation">Charity</a>
-                        <a class = "request-status status-selected" href = "in-kind-donation">In-kind</a>
+                        <a class = "request-status<?php echo ($not_last && !$is_rec) ? " status-selected" : null?>" href = "covid-info">Active</a>
+                        <a class = "request-status<?php echo ($is_rec) ? " status-selected" : null?>" href = "covid-info?type=1">Recover</a>
+                        <a class = "request-status<?php echo (!$not_last) ? " status-selected" : null?>" href = "covid-info?type=2">Death</a>
                     </td>
                 </tr>
             </table>
             <hr>
             <div class = "side-menu-button">
-                <input type = "button" onclick = "window.open('../../guest/donation', '_blank').focus();" value = "ADD">
+                <input type = "button" onclick = "window.location.href='add-covid-info'" value = "ADD">
+                <input type = "button" id = "tool_slct" value = "SELECT">
+    <?php 
+        if($not_last) {    
+            ?>
+                <input type = "button" id = "tool_move" value = "MOVE">
+    <?php
+        } 
+            ?>
                 <input type = "button" id = "tool_dlte" value = "DELETE">
             </div>
-            <div class = "data-wrapper">    
+            <div class = "data-wrapper">
+                
                 <table class = "data-grid" cellspacing = "0">
                     <thead>
                         <th></th>
                         <th>Date</th>
-                        <th colspan = "4">DONATION DRIVE</th>
-                        <th>POSITION</th>
-                        <th>LAST NAME</th>
+                        <th></th>
+                        <th>Type of Covid</th>
                         <th>First Name</th>
                         <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Suffix</th>
+                        <th>Contact</th>
                         <th>Email</th>
-                        <th>Contact Number</th>
-                        <th>House Number</th>
-                        <th>Street</th>
-                        <th>Barangay</th>
-                        <th>City</th>
-                        <th>Postal Code</th>
+                        <th>Citizenship</th>
+                        <th>Age</th>
+                        <th>Sex</th>
+                        <th>House No.</th>
+                        <th>Street Name</th>
+                        <th>Date Admitted</th>
+                        <th>Date Discharged</th>
+                        <th>Quarantine Start</th>
+                        <th>Quarantine End</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th>Date of Delivery</th>
-                            <th colspan = "3">Type of Goods and How Many</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        
     <?php 
-        if($donation_data["req_result"]) {
-            if($donation_data["req_val"]) {
-                foreach((array)$donation_data["req_val"] as $donation) {
-                    $hash_id = hash('sha256', $donation["donationId"] . $donation["sysTime"]);
-                    ?>
+        if($info_data["req_result"]) {
+            if($info_data["req_val"]) {
+                foreach((array)$info_data["req_val"] as $info) {
+                    ?> 
                         <tr>
-                            <td><input type = "radio" class = "slct_row" value = "<?php echo $donation["donationId"]; ?>"/></td>
-                            <td><?php echo transformDate($donation["sysTime"], "m-d-y"); ?></td>
-                            <td>
-                                <?php 
-                                    if($donation["transDate"]) {
-                                        echo transformDate($donation["transDate"], "M d, Y"); 
-                                    } else {
-                                        echo "Not Specified";
-                                    }       
-                                ?>
-                            </td>
-                            <td colspan = "3"><?php echo $donation["goodType"]; ?></td>
-                            <td><?php echo $donation["position"]; ?></td>
-                            <td><?php echo $donation["lName"]; ?></td>
-                            <td><?php echo $donation["fName"]; ?></td>
-                            <td><?php echo $donation["mInitial"]; ?></td>
-                            <td><?php echo $donation["email"]; ?></td>
-                            <td><?php echo $donation["contact"]; ?></td>
-                            <td><?php echo $donation["hNumber"]; ?></td>
-                            <td><?php echo $donation["stName"]; ?></td>
-                            <td><?php echo $donation["brgy"]; ?></td>
-                            <td><?php echo $donation["city"]; ?></td>
-                            <td><?php echo $donation["pCode"]; ?></td>
+                            <td><input type = "radio" class = "slct_row" value = "<?php echo $info["infoId"]; ?>" disabled/></td>
+                            <td><?php echo transformDate($info["sysTime"], "m-d-y"); ?></td>
+                            <td></td>
+                            <td><?php echo $info["covType"]; ?></td>
+                            <td><?php echo $info["fName"]; ?></td>
+                            <td><?php echo $info["mName"]; ?></td>
+                            <td><?php echo $info["lName"]; ?></td>
+                            <td><?php echo $info["suffix"]; ?></td>
+                            <td><?php echo $info["contact"]; ?></td>
+                            <td><?php echo $info["email"]; ?></td>
+                            <td><?php echo $info["ctznshp"]; ?></td>
+                            <td><?php echo $info["age"]; ?></td>
+                            <td><?php echo $info["sex"]; ?></td>
+                            <td><?php echo $info["hNum"]; ?></td>
+                            <td><?php echo $info["stName"]; ?></td>
+                            <td><?php echo $info["dateAd"]; ?></td>
+                            <td><?php echo $info["dateDis"]; ?></td>
+                            <td><?php echo $info["dateStart"]; ?></td>
+                            <td><?php echo $info["dateEnd"]; ?></td>
                         </tr>
                     <?php
                 }
             }
         }
-    ?>
-                        
+    ?>    
                     </tbody>
                 </table>
             </div>
-        </div>
-        <!-- The Modal -->
-        <div id="don_img_modal" class="img-modal">
-
-            <!-- The Close Button -->
-            <span class="img-close">&times;</span>
-
-            <!-- Modal Content (The Image) -->
-            <img class="img-modal-content" id="sample_photo">
-
-            <!-- Modal Caption (Image Text) -->
-            <div id="img_caption"></div>
         </div>
     <!-- /Navigation Bar/ -->
         <div class = "main-footer">
@@ -198,5 +190,5 @@
         </div>
     </body>
     <script src="../../global_assets/js/datetime.js"></script>
-    <script src="../assets/js/donation.js"></script>
+    <script src="../assets/js/covid-info.js"></script>
 </html>

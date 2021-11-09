@@ -19,11 +19,11 @@
 
         $stmt = $conn->prepare($query);
         
-        try {
+       # try {
             return $stmt->execute((array)$params);
-        } catch(PDOException $e) { 
+      #  } catch(PDOException $e) { 
             return false;
-        }
+      #  }
         
         return true;
     }
