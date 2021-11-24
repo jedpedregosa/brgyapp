@@ -1,5 +1,16 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/e-barangay/classes/AdminMaster.php");
+
+    $off_val = selectStatement("r", "SELECT * FROM tblOfficial", null);
+
+    $req_sql = "SELECT COUNT(*) FROM tblResident_auth auth INNER JOIN tblResident res ON auth.resUname = res.resUname WHERE resValid = 1";
+    $total_population = selectStatement("c", $req_sql, null);
+    $total_voter = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 17 AND resVoter", null);
+    $total_male = selectStatement("c", $req_sql . " AND resSex = 'M'", null);
+    $total_female = selectStatement("c", $req_sql . " AND resSex = 'F'", null);
+    $total_senior = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 59", null);
+    $total_pwd = 0;
+
 ?>
 <html>
     <head>
@@ -79,7 +90,7 @@
                         <a href="e-services/barangay-clearance">REQUESTS</a>
                         <a href="e-services/blotter-report">BLOTTER REPORTS</a>
                         <a href="e-services/charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="e-services/barangay-profile">PROFILES</a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -142,6 +153,223 @@
                     </td>
                 </tr>
             </table>
+            <table class = "card-grid last">
+                <tr>
+                    <td>
+                        <div class = "card-official">
+                            <div class = "card-official-title">
+                                <span>CURRENT BARANGAY OFFICIALS</span>
+                            </div>
+                            <table class = "card-official-grid">
+                                <tr>
+                                    <th>
+                                        Full Name
+                                    </th>
+                                    <th>
+                                        Position
+                                    </th>
+                                </tr>
+            <?php 
+                if($off_val["req_result"]) {
+                    if($off_val["req_val"]) {
+                        foreach($off_val["req_val"] as $val) {
+                            ?>
+                                <tr>
+                                    <td>
+                                        <input type = "button" class = "button-3 mod" 
+                                        onclick = "showImgModal('<?php echo $val['id']; ?>', 6)" 
+                                        value = "<?php echo strtoupper($val["name"]); ?>">
+                                        
+                                    </td>
+                                    <td>
+                                        <?php echo strtoupper($val["position"]); ?>
+                                    </td>
+                            <?php if($is_admn_lgn) {
+                                ?>
+                                    <td>
+                                        <a href = "controllers/service/del-official?r_id=<?php echo $val['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td></td>
+                                <?php
+                                }
+                            ?>
+                               
+                                </tr>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                            <tr>
+                                <td colspan = "2">
+                                    No officials found.
+                                </td>
+                            </tr>
+                        <?php
+                    }
+                }
+            ?>
+                    <?php 
+                        if($is_admn_lgn) {
+                            ?>
+                                <tr>
+                                    <td colspan = "2">
+                                        <form method = "POST" action = "controllers/service/add-official" enctype="multipart/form-data">
+                                        <div class = "add-official"> 
+                                            <span class = "add-title">Add an Official</span>
+                                            <table class = "grid">
+                                                <tr>
+                                                    <td>
+                                                        <input class = "sys-text" name = "ofcl_name" placeholder = "FN MN. LN SUFF." required>
+                                                    </td>
+                                                    <td>
+                                                        <input class = "sys-text" name = "position" placeholder = "POSITION" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type = "file" name = "ofcl_photo" accept=".jpg,.png" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type = "submit" class = "sys-button" value = "Save">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div> 
+                                    </td>
+                                </tr>
+                    <?php } ?>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <div class = "res-sum">
+                            <div class = "res-sum-title">RESIDENTS RECORD SUMMARY</div>
+                            <table class = "grid-res-sum">
+                                <tr>
+                                    <td class = "left-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">TOTAL POPULATION</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_population["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class = "right-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">REGISTERED VOTERS</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-address-card" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_voter["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class = "left-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">MALE</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-mars" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_male["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class = "right-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">FEMALE</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-venus" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_female["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class = "left-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">SENIOR CITIZEN</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-blind" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_senior["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class = "right-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">PWD</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-wheelchair" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo $total_pwd; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- The Modal -->
+        <div id="res_img_modal" class="img-modal">
+
+            <!-- The Close Button -->
+            <span class="img-close" id = "img-close">&times;</span>
+
+            <!-- Modal Content (The Image) -->
+            <img class="img-modal-content" id="sample_photo">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="img_caption"></div>
         </div>
     <!-- /Content/ -->
         <div class = "main-footer">
@@ -149,4 +377,19 @@
         </div>
     </body>
     <script src="../global_assets/js/datetime.js"></script>
+    <script> 
+        let close = document.getElementById("img-close");
+        let modal = document.getElementById("res_img_modal");
+
+        function showImgModal (val, type){
+            let modalImg = document.getElementById("sample_photo");   
+
+            modal.style.display = "block";
+            modalImg.src = "../file/load/img?type=view" + type + "&r_id=" + val;
+        }
+
+        close.onclick = function () {
+            modal.style.display = "none";
+        }
+    </script>
 </html>

@@ -24,7 +24,7 @@
                 $resdnt_uid = $test_resdnt_uid ? $test_resdnt_uid : $temp_resdnt_uid;
                 
                 if($_SESSION["resdnt_sess_pwrdchng"] == residentLastPassChng($resdnt_uid)) {
-                    $_SESSION["resdnt_sess_tmeout"] = time() + 60 * 15; # Session expires every 15 min.
+                    $_SESSION["resdnt_sess_tmeout"] = time() + 60 * 600; # Session expires every 6 hours.
                     $is_resdnt_lgn = true;
                 } 
             } else {

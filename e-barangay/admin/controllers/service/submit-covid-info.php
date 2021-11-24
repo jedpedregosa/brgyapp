@@ -26,11 +26,31 @@
         && isset($_POST["start"])
         && isset($_POST["end"])
         && isset($_POST["s_start"])
+        && isset($_POST["hospital"])
+        && isset($_POST["s_last_contact"])
+        && isset($_POST["last_place"])
+        && isset($_POST["last_contact"])
         && isset($_POST["s_end"]);
     
     if(!$post_req) {
         goPrev();
     }
+
+    $symptoms = null;
+    if(isset($_POST["symptoms"])) {
+        if(!empty($_POST["symptoms"])) {
+            foreach($_POST["symptoms"] as $type) {
+                $symptoms .= $type . ", ";
+            }
+        }
+    }
+
+    if(!empty($_POST['last_contact'])) 
+        $lastCon = $_POST['last_contact'];
+    else if(!empty($_POST["s_last_contact"]))
+        $lastCon = $_POST["s_last_contact"];
+    else    
+        $lastCon = null;
 
     if(!empty($_POST["start"]))
         $start = $_POST["start"]; 
@@ -38,7 +58,6 @@
         $start = $_POST["s_start"];
     else    
         $start = null;
-
 
     if(!empty($_POST["end"])) 
         $end = $_POST["end"]; 
@@ -65,11 +84,15 @@
         (!empty($_POST["discharge"])) ? $_POST["discharge"] : null,
         $start,
         $end,
+        $symptoms,
+        $_POST["hospital"],
+        $_POST["last_place"],
+        $lastCon,
         $current_time
     ];
 
     $info_sql = "INSERT INTO tblCovidInfo (infoId, fName, mName, lName, suffix, covType, contact, email, ctznshp, age, sex, hNum, stName, 
-        dateAd, dateDis, dateStart, dateEnd, sysTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        dateAd, dateDis, dateStart, dateEnd, symptoms, hospital, lastPlace, lastContact, sysTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     $insertInfo = insertStatement($info_sql, $post_data);
 

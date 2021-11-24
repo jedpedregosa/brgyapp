@@ -220,3 +220,11 @@ th, td {
   display: block;
   margin: 5px;
 }
+
+.post-img:hover {
+  cursor: pointer;
+}
+
+.content td {
+  vertical-align: top;
+}

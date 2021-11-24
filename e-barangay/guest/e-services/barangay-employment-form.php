@@ -99,12 +99,12 @@
                         <a href="barangay-id-form">BARANGAY IDENTIFICATION (ID)</a>
                         <a href="barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="barangay-burial-cert">BURIAL CERTIFICATION</a>
-                        <a href="">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
+                        <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
+                        <a href="barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
+                        <a href="barangay-proof-res">PROOF OF RESIDENCY</a>
                         <a href="barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="view-profile"><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>
@@ -119,10 +119,10 @@
         </div>
     <!-- /Navigation Bar/ -->
     <!-- Content -->
-        <form id = "frmAcc" method = "POST" action = "controllers/acc/create-account" enctype="multipart/form-data">
+        <form id = "frmClearance" method = "POST" action = "../controllers/service/submit-employment-form" enctype="multipart/form-data">
             <div class = "content">
                 <div class = "create-account">
-                    <h3 class = "title">CERTIFICATE TO TRAVEL FORM</h3>
+                    <h3 class = "title">CERTIFICATE OF EMPLOYMENT FORM</h3>
                     <table class = "grid">
                         <tr>
                             <td class = "cell-pic">
@@ -193,8 +193,10 @@
                                             <input class = "sys-text" name = "HouseNum" maxlength = "25" required>
                                         </td>
                                         <td>
-                                            <select class = "sys-text" required>
+                                            <select class = "sys-text" name = "StName" required>
                                                 <option value = "Tengco"> Tengco</option>
+                                                <option value = "Aurora"> Aurora</option>
+                                                <option value = "Arnaiz"> Arnaiz</option>
                                                 <option value = "Tramo"> Tramo</option>
                                             </select>
                                         </td>
@@ -213,12 +215,12 @@
                                     <tr>
                                         <td>
                                             <span class = "sys-label">Contact Number</span>
-                                            <input class = "sys-text" name = "Contact" maxlength = "25" onchange = "validateUsername(this.value, 'a')" required>
+                                            <input class = "sys-text" name = "Contact" maxlength = "25" required>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
-                                        <td colspan = "2">
+                                        <td>
                                             <span class = "sys-label">Email Address</span>
-                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "25" onchange = "validateUsername(this.value, 'c')" required>
+                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "25" required>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>
                                         <td>
@@ -230,82 +232,32 @@
                                             <input class = "sys-text" name = "Voter" maxlength = "25" placeholder = "Precinct Numbert">
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td colspan = "3"><span class = "sys-label row-title"><em>Purpose</em></span></td>
+                                        <td><span class = "sys-label row-title">Attachments</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan = "3">
+                                            <textarea class = "sys-text" name = "purpose"></textarea>
+                                        </td>
+                                        <td> 
+                                            <input type = "button" value = "Upload File" id = "btn_upload">
+                                            <input type = "file" id = "upload_idcard" class ="hidden-upload" name = "idCardPic" onchange = "checkUpload(this)" accept=".jpg,.png">
+                                            <label class = "sys-chck-label">
+                                                <input type = "checkbox" id = "chck_id" disabled> ID (Front and back)
+                                            </label>
+                                            <span class = "validate-msg" id = "file-upload-msg"></span>
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>
                     </table>
-                    <table class = "main-grid">
-                        <tr>
-                            <td colspan = "6">
-                                <span class = "sys-label row-title"><em>Driver Information</em></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class = "sys-label">First Name</span>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                            <td>
-                                <span class = "sys-label">Middle Name</span>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                            <td>
-                                <span class = "sys-label">Last Name</span>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                            <td>
-                                <span class = "sys-label">Suffix</span>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                            <td>
-                                <span class = "sys-label">Sex</span>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                            <td>
-                                <span class = "sys-label">Passenger?</span>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan = "2">
-                                <span class = "sys-label row-title"><em>Destination Address<span class = "sys-label"> (House Address, Barangay, Zone, City)</span></em></span>
-                                <input class = "sys-text" name = "Voter" placeholder = "House Address" maxlength = "25">
-                            </td>
-                            <td colspan = "2">
-                                <input class = "sys-text" name = "Voter" placeholder = "Barangay" maxlength = "25">
-                            </td>
-                            <td colspan = "2">
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan = "6">
-                                <span class = "sys-label row-title"><em>Remark</em></span>
-                                <textarea class = "sys-text" ></textarea>
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td colspan = "2"><span class = "sys-label row-title">Attachments</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type = "button" id = "upload_button"  value = "Upload File">
-                            </td>
-                            <td>
-                                <label class = "sys-chck-label">
-                                    <input type = "checkbox"> ID (Front and back)
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <input class = "sys-button button-2" onclick = "location.href='login'" value = "C A N C E L">
-                    <input type = "button" class = "sys-button" onclick = "submitAccount()" value = "S U B M I T">
+                    
+                    <input class = "sys-button button-2" onclick = "location.href='../home'" value = "C A N C E L">
+                    <input type = "button" class = "sys-button" onclick = "submitClearance()" value = "S U B M I T">
                 </div>
             </div>
-
 <?php 
     if($isSubmit) {
         if($isCreate_success) {
@@ -314,9 +266,10 @@
             <div id = "response_msg" class = "modal modal-alert">
                 <!-- Modal content -->
                 <div class="modal-content">
-                    <span class="close" onclick = "location.href = 'login'">&times;</span>
+                    <span class="close" onclick = "location.href = '../home'">&times;</span>
                     <p class = "modal-header header-lg">Request succesfully sent!</p>
-                    <p class = "modal-sub-header header-lg">Please wait for a maximum of 2 days to verify and confirm your account.</p>
+                    <p class = "modal-sub-header header-lg">Please wait for a maximum of 2 days to verify and complete your request.</p>
+                    <p class = "modal-sub-header header-lg">After the request has been completed expect an email for the date and time of pickup.</p>
                 </div>
             </div>
 
@@ -328,7 +281,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close" onclick = "closeModal('response_msg')">&times;</span>
-                    <p class = "modal-header header-lg error">Create Account Unsuccessful</p>
+                    <p class = "modal-header header-lg error">Request Unsuccessful</p>
                     <p class = "modal-sub-header header-lg">There is a problem while processing your request, please try again.</p>
                 </div>
             </div>
@@ -344,7 +297,8 @@
         </div>
     </body>
     <script src="../../global_assets/js/datetime.js"></script>
-    <script src="../../global_assets/js/sign-up.js"></script>
+    <script src="../assets/js/clearance.js"></script>
+    <script src="../assets/js/module.js"></script>
 
     <?php 
         if($isSubmit) {

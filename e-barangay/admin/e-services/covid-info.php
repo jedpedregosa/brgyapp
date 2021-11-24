@@ -92,7 +92,7 @@
                         <a href="barangay-clearance">REQUESTS</a>
                         <a href="blotter-report">BLOTTER REPORTS</a>
                         <a href="charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>
@@ -143,10 +143,14 @@
                         <th>Sex</th>
                         <th>House No.</th>
                         <th>Street Name</th>
+                        <th>Hospital Admitted</th>
                         <th>Date Admitted</th>
                         <th>Date Discharged</th>
                         <th>Quarantine Start</th>
                         <th>Quarantine End</th>
+                        <th>Symptoms Experiencing</th>
+                        <th>Last Place</th>
+                        <th>Last Contacts</th>
                     </thead>
                     <tbody>
     <?php 
@@ -170,10 +174,14 @@
                             <td><?php echo $info["sex"]; ?></td>
                             <td><?php echo $info["hNum"]; ?></td>
                             <td><?php echo $info["stName"]; ?></td>
+                            <td><?php echo $info["hospital"]; ?></td>
                             <td><?php echo $info["dateAd"]; ?></td>
                             <td><?php echo $info["dateDis"]; ?></td>
                             <td><?php echo $info["dateStart"]; ?></td>
                             <td><?php echo $info["dateEnd"]; ?></td>
+                            <td><?php echo $info["symptoms"]; ?></td>
+                            <td><?php echo $info["lastPlace"]; ?></td>
+                            <td><?php echo $info["lastContact"]; ?></td>
                         </tr>
                     <?php
                 }

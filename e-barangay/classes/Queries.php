@@ -21,9 +21,9 @@
         
        # try {
             return $stmt->execute((array)$params);
-      #  } catch(PDOException $e) { 
+       # } catch(PDOException $e) { 
             return false;
-      #  }
+       # }
         
         return true;
     }
@@ -50,7 +50,7 @@
         try {
             return $stmt->execute((array)$params);
         } catch(PDOException $e) { 
-            //return false;
+            return false;
         }
 
         return true;

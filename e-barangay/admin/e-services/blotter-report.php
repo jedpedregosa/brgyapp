@@ -93,7 +93,7 @@
                         <a href="barangay-clearance">REQUESTS</a>
                         <a href="blotter-report">BLOTTER REPORTS</a>
                         <a href="charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>

@@ -82,15 +82,15 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="e-services/barangay-clearance">BARANGAY CLEARANCE</a>
-                        <a href="e-services/health-updates">BARANGAY IDENTIFICATION (ID)</a>
+                        <a href="e-services/barangay-id-form">BARANGAY IDENTIFICATION (ID)</a>
                         <a href="e-services/barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="e-services/barangay-burial-cert">BURIAL CERTIFICATION</a>
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
+                        <a href="e-services/barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
+                        <a href="e-services/barangay-proof-res">PROOF OF RESIDENCY</a>
                         <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="e-services/view-profile"><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                         <?php 
                             if($post["anncmntHasPic"]) {
                                 ?>
-                                    <img class = "post-img" src = "../file/POST/post_photo?type=view1&p_id=<?php echo $post["anncmntId"];?>" onerror = "this.style.display = 'none'"/>
+                                    <img class = "post-img" src = "../file/POST/post_photo?type=view1&p_id=<?php echo $post["anncmntId"];?>" onclick = "showImgModal(<?php echo $post['anncmntId'];?>, 1)" onerror = "this.style.display = 'none'"/>
                                 <?php
                             }
 
@@ -290,7 +290,7 @@
                         <?php 
                             if($post["updateHasPic"]) {
                                 ?>
-                                    <img class = "post-img" src = "../file/POST/post_photo?type=view2&p_id=<?php echo $post["updateId"];?>" onerror = "this.style.display = 'none'"/>
+                                    <img class = "post-img" src = "../file/POST/post_photo?type=view2&p_id=<?php echo $post["updateId"];?>" onclick = "showImgModal(<?php echo $post['updateId'];?>, 2)" onerror = "this.style.display = 'none'"/>
                                 <?php
                             }
 
@@ -318,6 +318,18 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <!-- The Modal -->
+        <div id="res_img_modal" class="img-modal">
+
+            <!-- The Close Button -->
+            <span class="img-close">&times;</span>
+
+            <!-- Modal Content (The Image) -->
+            <img class="img-modal-content" id="sample_photo">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="img_caption"></div>
         </div>
         <div class = "donation-div">
             <input type = "button" class = "sys-button sys-button-lg" onclick = "location.href='donation'"value = "DONATION DRIVE">

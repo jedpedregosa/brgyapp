@@ -79,7 +79,7 @@
                         <a href="e-services/barangay-clearance">REQUESTS</a>
                         <a href="e-services/blotter-report">BLOTTER REPORTS</a>
                         <a href="e-services/charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="e-services/barangay-profile">PROFILES</a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>

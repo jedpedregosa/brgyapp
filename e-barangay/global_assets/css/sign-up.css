@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+.grid2 {
+    width: 100%;
+}
+
 .grid .cell-pic {
     width: 15%;
     text-align: left;

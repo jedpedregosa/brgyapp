@@ -43,7 +43,65 @@
             foreach($all_rows as $id) {   
                 $result = $result && updateStatement("DELETE FROM tblBlotterReport WHERE blotterId = ?", $id);
             }
+        } else if($_POST["type"] == "8") {          # Clearance Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblClearance SET cStatus = cStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "9") {          # Clearance Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblClearance WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "10") {          # ID Request Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblIdRequest SET rStatus = rStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "11") {          # ID Request Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblIdRequest WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "12") {          # Indigency Request Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblIndigency SET rStatus = rStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "13") {          # Indigency Request Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblIndigency WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "14") {          # Burial Cert Request Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblBurialRequest SET rStatus = rStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "15") {          # Burial Cert Request Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblBurialRequest WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "16") {          # Employment Cert Request Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblEmpForm SET rStatus = rStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "17") {          # Employment Cert Request Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblEmpForm WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "18") {          # Travel Cert Request Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblTravelRequest SET rStatus = rStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "19") {          # Travel Cert Request Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblTravelRequest WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "20") {          # Proof of Res Request Completed
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("UPDATE tblResProof SET rStatus = rStatus + 1 WHERE id = ?", $id);
+            }
+        } else if($_POST["type"] == "21") {          # Proof of Res Request Deleted
+            foreach($all_rows as $id) {   
+                $result = $result && updateStatement("DELETE FROM tblResProof WHERE id = ?", $id);
+            }
         } 
+         
+         
          
         if($result) {
             echo json_encode(array("req_pro_status"=>100));

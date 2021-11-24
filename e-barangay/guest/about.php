@@ -1,5 +1,16 @@
 <?php 
     include_once($_SERVER['DOCUMENT_ROOT'] . "/e-barangay/classes/GuestMaster.php");
+
+    $off_val = selectStatement("r", "SELECT * FROM tblOfficial", null);
+
+    $req_sql = "SELECT COUNT(*) FROM tblResident_auth auth INNER JOIN tblResident res ON auth.resUname = res.resUname WHERE resValid = 1";
+    $total_population = selectStatement("c", $req_sql, null);
+    $total_voter = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 17 AND resVoter", null);
+    $total_male = selectStatement("c", $req_sql . " AND resSex = 'M'", null);
+    $total_female = selectStatement("c", $req_sql . " AND resSex = 'F'", null);
+    $total_senior = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 59", null);
+    $total_pwd = 0;
+
 ?>
 <html>
     <head>
@@ -78,11 +89,11 @@
                         <a href="e-services/barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="e-services/barangay-burial-cert">BURIAL CERTIFICATION</a>
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
+                        <a href="e-services/barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
+                        <a href="e-services/barangay-proof-res">PROOF OF RESIDENCY</a>
                         <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="e-services/view-profile"><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -140,6 +151,171 @@
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class = "card-grid last">
+                <tr>
+                    <td>
+                        <div class = "card-official">
+                            <div class = "card-official-title">
+                                <span>CURRENT BARANGAY OFFICIALS</span>
+                            </div>
+                            <table class = "card-official-grid">
+                                <tr>
+                                    <th>
+                                        Full Name
+                                    </th>
+                                    <th>
+                                        Position
+                                    </th>
+                                </tr>
+            <?php 
+                if($off_val["req_result"]) {
+                    if($off_val["req_val"]) {
+                        foreach($off_val["req_val"] as $val) {
+                            ?>
+                                <tr>
+                                    <td>
+                                        <input type = "button" class = "button-3 mod" 
+                                        onclick = "showImgModal('<?php echo $val['id']; ?>', 6)" 
+                                        value = "<?php echo strtoupper($val["name"]); ?>">
+                                        
+                                    </td>
+                                    <td>
+                                        <?php echo strtoupper($val["position"]); ?>
+                                    </td>                             
+                                </tr>
+                            <?php
+                        }
+                    } else {
+                        ?>
+                            <tr>
+                                <td colspan = "2">
+                                    No officials found.
+                                </td>
+                            </tr>
+                        <?php
+                    }
+                }
+            ?>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <div class = "res-sum">
+                            <div class = "res-sum-title">RESIDENTS RECORD SUMMARY</div>
+                            <table class = "grid-res-sum">
+                                <tr>
+                                    <td class = "left-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">TOTAL POPULATION</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_population["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class = "right-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">REGISTERED VOTERS</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-address-card" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_voter["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class = "left-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">MALE</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-mars" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_male["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class = "right-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">FEMALE</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-venus" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_female["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class = "left-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">SENIOR CITIZEN</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-blind" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo (int)$total_senior["req_val"]; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class = "right-col">
+                                        <div class = "card-res-sum">
+                                            <div class = "card-res-wrap">
+                                                <div class = "card-sum-title">PWD</div>
+                                                <table class = "grid-card-sum">
+                                                    <tr>
+                                                        <td class = "card-icon">
+                                                            <i class="fa fa-wheelchair" aria-hidden="true"></i>
+                                                        </td>
+                                                        <td class = "card-value">
+                                                            <?php echo $total_pwd; ?>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </td>
                 </tr>

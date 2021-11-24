@@ -80,7 +80,7 @@
                         <a href="barangay-clearance">REQUESTS</a>
                         <a href="blotter-report">BLOTTER REPORTS</a>
                         <a href="charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>
@@ -94,14 +94,14 @@
                     </td>
                     <td class = "col-right">
                         <a class = "request-status" href = "barangay-clearance">New Requests</a>
-                        <a class = "request-status" href = "">Completed Requests</a>
+                        <a class = "request-status" href = "barangay-clearance?type=1">Completed Requests</a>
                         <a class = "request-status status-selected" href = "resident-request">Residents</a>
                     </td>
                 </tr>
             </table>
             <hr>
             <div class = "side-menu-button">
-                <input type = "button" value = "VIEW">
+                <input type = "button" value = "VIEW" onclick = "location.href='reports/resident-request'">
                 <input type = "button" onclick = "window.open('../../guest/sign-up', '_blank').focus();" value = "ADD">
                 <input type = "button" id = "tool_slct" value = "SELECT">
                 <input type = "button" id = "tool_accpt" value = "ACCEPT">

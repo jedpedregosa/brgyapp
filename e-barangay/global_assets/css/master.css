@@ -615,3 +615,44 @@ img {
   padding: 12px 20px 12px 40px; /* Add some padding */
   margin-bottom: 12px; /* Add some space below the input */
 }
+
+#settings {
+  font-size: 35px;
+  margin-left: 10px;
+  color: #6b6b70;
+}
+
+#settings:hover {
+  cursor: pointer;
+  color: #39393a;
+}
+
+.menu {
+  background-color: #f9f9f9;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 2px solid #000066;
+  font-style: Arial;
+}
+
+.menu a {
+  float: none;
+  color: black;
+  padding: 8px 14px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  width: inherit;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  background-color: #ddd;
+}
+
+.menu .module-selected{
+  background-color: #d8d8fa;
+}
+

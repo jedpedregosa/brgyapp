@@ -85,9 +85,9 @@
                         <a href="e-services/health-updates">HEALTH UPDATES</a>
                         <a href="e-services/covid-info">COVID-19 INFORMATION</a>
                         <a href="e-services/barangay-clearance">REQUESTS</a>
-                        <a href="">BLOTTER REPORTS</a>
+                        <a href="e-services/blotter-report">BLOTTER REPORTS</a>
                         <a href="e-services/charity-donation">DONATIONS</a>
-                        <a href="e-services/blotter-report">PROFILES</a>
+                        <a href="e-services/barangay-profile">PROFILES</a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -233,13 +233,19 @@
                             <div class = "post-content">
                                 <div class = "post-time">
                                     <span><?php echo $post_date; ?> | <?php echo $post_time; ?></span>
+                        <?php if($is_admn_lgn) {
+                                ?>
+                                    <a href = "controllers/service/del-post?type=1&p_id=<?php echo $post["anncmntId"];?>"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+                                <?php
+                                }
+                        ?>
                                 </div>
                                 <div class = "post-msg">
                                     <?php echo $post["anncmntMsg"]; ?>
                         <?php 
                             if($post["anncmntHasPic"]) {
                                 ?>
-                                    <img class = "post-img" src = "../file/POST/post_photo?type=view1&p_id=<?php echo $post["anncmntId"];?>" onerror = "this.style.display = 'none'"/>
+                                    <img class = "post-img" src = "../file/POST/post_photo?type=view1&p_id=<?php echo $post["anncmntId"];?>" onclick = "showImgModal(<?php echo $post['anncmntId'];?>, 1)" onerror = "this.style.display = 'none'"/>
                                 <?php
                             }
 
@@ -281,13 +287,19 @@
                             <div class = "post-content">
                                 <div class = "post-time">
                                     <span><?php echo $post_date; ?> | <?php echo $post_time; ?></span>
+                        <?php if($is_admn_lgn) {
+                                ?>
+                                    <a href = "controllers/service/del-post?type=2&p_id=<?php echo $post["updateId"];?>"><i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+                                <?php
+                                }
+                        ?>
                                 </div>
                                 <div class = "post-msg">
                                     <?php echo $post["updateMsg"]; ?>
                         <?php 
                             if($post["updateHasPic"]) {
                                 ?>
-                                    <img class = "post-img" src = "../file/POST/post_photo?type=view2&p_id=<?php echo $post["updateId"];?>" onerror = "this.style.display = 'none'"/>
+                                    <img class = "post-img" src = "../file/POST/post_photo?type=view2&p_id=<?php echo $post["updateId"];?>" onclick = "showImgModal(<?php echo $post['updateId'];?>, 2)" onerror = "this.style.display = 'none'"/>
                                 <?php
                             }
 
@@ -315,6 +327,18 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <!-- The Modal -->
+        <div id="res_img_modal" class="img-modal">
+
+            <!-- The Close Button -->
+            <span class="img-close">&times;</span>
+
+            <!-- Modal Content (The Image) -->
+            <img class="img-modal-content" id="sample_photo">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="img_caption"></div>
         </div>
         <div class = "donation-div">
             <input type = "button" class = "sys-button sys-button-lg" onclick = "location.href='donation'"value = "DONATION DRIVE">

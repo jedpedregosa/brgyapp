@@ -99,12 +99,12 @@
                         <a href="barangay-id-form">BARANGAY IDENTIFICATION (ID)</a>
                         <a href="barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="barangay-burial-cert">BURIAL CERTIFICATION</a>
-                        <a href="">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
+                        <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
+                        <a href="barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
+                        <a href="barangay-proof-res">PROOF OF RESIDENCY</a>
                         <a href="barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="view-profile"><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
         </div>
     <!-- /Navigation Bar/ -->
     <!-- Content -->
-        <form id = "frmAcc" method = "POST" action = "controllers/acc/create-account" enctype="multipart/form-data">
+        <form id = "frmClearance" method = "POST" action = "../controllers/service/submit-indigency" enctype="multipart/form-data">
             <div class = "content">
                 <div class = "create-account">
                     <h3 class = "title">BARANGAY INDIGENCY FORM</h3>
@@ -193,8 +193,10 @@
                                             <input class = "sys-text" name = "HouseNum" maxlength = "25" required>
                                         </td>
                                         <td>
-                                            <select class = "sys-text" required>
+                                            <select class = "sys-text" name = "StName" required>
                                                 <option value = "Tengco"> Tengco</option>
+                                                <option value = "Aurora"> Aurora</option>
+                                                <option value = "Arnaiz"> Arnaiz</option>
                                                 <option value = "Tramo"> Tramo</option>
                                             </select>
                                         </td>
@@ -213,12 +215,12 @@
                                     <tr>
                                         <td>
                                             <span class = "sys-label">Contact Number</span>
-                                            <input class = "sys-text" name = "Contact" maxlength = "25" onchange = "validateUsername(this.value, 'a')" required>
+                                            <input class = "sys-text" name = "Contact" maxlength = "25" required>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Email Address</span>
-                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "25" onchange = "validateUsername(this.value, 'c')" required>
+                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "25" required>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>
                                         <td>
@@ -241,87 +243,54 @@
                         <tr>
                             <td>
                                 <label>
-                                    <input type = "radio" value = "Financial Assistance"> Financial Assistance
+                                    <input type = "radio" value = "Financial Assistance" name = "purpose"> Financial Assistance
                                 </label>
                             </td>
                             <td> 
                                 <label>
-                                    <input type = "radio" value = "Senior Citizen"> Senior Citizen
+                                    <input type = "radio" value = "Senior Citizen" name = "purpose"> Senior Citizen
                                 </label>
                             </td>
                             <td> 
                                 <label>
-                                    <input type = "radio" value = "other"> Others: <em>(Please specify)</em>
+                                    <input type = "radio" value = "other" name = "purpose"> Others: <em>(Please specify)</em>
                                 </label>
                             </td>
                             <td> 
                                 <div class = "push-left">
                                     <span class = "sys-label row-title">Attachments</span>
-                                    <input type = "button" value = "Upload File">
+                                    <input type = "button" value = "Upload File" id = "btn_upload">
+                                    <input type = "file" id = "upload_idcard" class ="hidden-upload" name = "idCardPic" onchange = "checkUpload(this)" accept=".jpg,.png">
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>
-                                    <input type = "radio" value = "Medical Assistance"> Medical Assistance
+                                    <input type = "radio" value = "Medical Assistance" name = "purpose"> Medical Assistance
                                 </label>
                             </td>
                             <td>
                                 <label>
-                                    <input type = "radio" value = "Persons with Disability"> Persons with Disability (PWD)
+                                    <input type = "radio" value = "Persons with Disability" name = "purpose"> Persons with Disability (PWD)
                                 </label>
                             </td>
                             <td>
-                                <input class = "sys-text" name = "Voter" maxlength = "25">
+                                <input class = "sys-text" name = "extend-purpose" maxlength = "25">
                             </td>
                             <td>
                                 <div class = "push-left">
                                     <label class = "sys-chck-label">
-                                        <input type = "checkbox"> ID (Front and back)
+                                        <input type = "checkbox" id = "chck_id" disabled> ID (Front and back)
                                     </label>
+                                    <span class = "validate-msg" id = "file-upload-msg"></span>
                                 </div>
                             </td>
                         </tr>
                     </table>
                     
-                    <input class = "sys-button button-2" onclick = "location.href='login'" value = "C A N C E L">
-                    <input type = "button" class = "sys-button" onclick = "submitAccount()" value = "S U B M I T">
-                </div>
-            </div>
-            <div id="assign_password" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <table class = "main-grid">
-                        <tr>
-                            <td colspan = "2">
-                                <p class = "modal-header">Setup username and password</p>
-                                <hr>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class = "sys-label">New Username:</span>
-                                <input class = "sys-text" id = "txtUsername" name = "Uname" minlength = "7" maxlength = "15"  onchange = "validateUsername(this.value, 'b')" required>
-                                <span class = "sys-label">Re-enter Username:</span>
-                                <input class = "sys-text" id = "txtConUsername" minlength = "7" maxlength = "15" onkeyup = "isUsernameValidated()" required>
-                                <span class = "validate-msg" id = "uname-msg"></span>
-                            </td>
-                            <td>
-                                <span class = "sys-label">New Password:</span>
-                                <input type = "password" class = "sys-text" id = "txtPassword" name = "Pword" minlength = "8" maxlength = "15" required>
-                                <span class = "sys-label">Re-enter Password:</span>
-                                <input type = "password" class = "sys-text" id = "txtConPassword" minlength = "8" maxlength = "15" onkeyup = "isPasswordValidated()" required>
-                                <span class = "validate-msg" id = "password-msg"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan = "2" class = "cell-right">
-                                <input type = "button" class = "sys-modal-button modal-button-2" onclick = "closeModal('assign_password')" value = "Cancel">
-                                <input type = "button" class = "sys-modal-button" onclick = "submitForm()" value = "Save">
-                            </td>
-                        </tr>
-                    </table>
+                    <input class = "sys-button button-2" onclick = "location.href='../home'" value = "C A N C E L">
+                    <input type = "button" class = "sys-button" onclick = "submitClearance()" value = "S U B M I T">
                 </div>
             </div>
 <?php 
@@ -332,9 +301,10 @@
             <div id = "response_msg" class = "modal modal-alert">
                 <!-- Modal content -->
                 <div class="modal-content">
-                    <span class="close" onclick = "location.href = 'login'">&times;</span>
+                    <span class="close" onclick = "location.href = '../home'">&times;</span>
                     <p class = "modal-header header-lg">Request succesfully sent!</p>
-                    <p class = "modal-sub-header header-lg">Please wait for a maximum of 2 days to verify and confirm your account.</p>
+                    <p class = "modal-sub-header header-lg">Please wait for a maximum of 2 days to verify and complete your request.</p>
+                    <p class = "modal-sub-header header-lg">After the request has been completed expect an email for the date and time of pickup.</p>
                 </div>
             </div>
 
@@ -346,7 +316,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close" onclick = "closeModal('response_msg')">&times;</span>
-                    <p class = "modal-header header-lg error">Create Account Unsuccessful</p>
+                    <p class = "modal-header header-lg error">Request Unsuccessful</p>
                     <p class = "modal-sub-header header-lg">There is a problem while processing your request, please try again.</p>
                 </div>
             </div>
@@ -362,7 +332,8 @@
         </div>
     </body>
     <script src="../../global_assets/js/datetime.js"></script>
-    <script src="../../global_assets/js/sign-up.js"></script>
+    <script src="../assets/js/clearance.js"></script>
+    <script src="../assets/js/module.js"></script>
 
     <?php 
         if($isSubmit) {

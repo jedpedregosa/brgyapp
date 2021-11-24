@@ -87,7 +87,7 @@
                 <a href="../home"> H O M E </a>
                 <a href="../about"> A B O U T </a>
                 <a href="../guide"> U S E R - G U I D E </a>
-                <?php 
+    <?php 
         if($is_resdnt_lgn) {
             ?>
                 <div class="dropdown">
@@ -100,11 +100,11 @@
                         <a href="barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="barangay-burial-cert">BURIAL CERTIFICATION</a>
                         <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
+                        <a href="barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
+                        <a href="barangay-proof-res">PROOF OF RESIDENCY</a>
                         <a href="barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="view-profile"><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>
@@ -340,7 +340,7 @@
             <div id = "response_msg" class = "modal modal-alert">
                 <!-- Modal content -->
                 <div class="modal-content">
-                    <span class="close" onclick = "location.href = 'login'">&times;</span>
+                    <span class="close" onclick = "location.href = '../home'">&times;</span>
                     <p class = "modal-sub-header header-lg">The report has been submitted.</p>
                     <p class = "modal-sub-header header-lg"><?php echo getTimeDate("(F. d, Y - h:m a)");?></p>
                     <p class = "modal-sub-header header-lg">Please wait for it to be reviewed. Kindly check your email for updates.</p>

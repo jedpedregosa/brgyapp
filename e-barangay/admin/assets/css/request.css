@@ -18,3 +18,25 @@
     color: rgb(170, 13, 13);
     font-weight: bold;
 }
+
+.top td {
+    vertical-align: top;
+}
+
+.top {
+    margin-right: 50px;
+}
+
+.data-wrapper2 {
+    width: 1050px;   
+    overflow-x: scroll;
+}
+
+.moddy {
+    width: 30%;
+}
+
+.header-title {
+    text-align: left;
+    font-size: 25px;
+}

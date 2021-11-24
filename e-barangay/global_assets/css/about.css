@@ -15,16 +15,17 @@
 .card-history {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(228, 228, 228);
-    padding: 1%;
     text-align: left;
+    overflow-y: auto;
 }
 .card-history-content {
     margin: 5%; 
     text-align: justify;
+    height: 300px;
 }
 .card-history-text {
     font-size: 15px;
-
+    padding-bottom: 5%;
 }
 
 .card-info {
@@ -53,4 +54,113 @@
     height: 5px;
     background-color: #000066;
     border: none;
+}
+
+.row1 {
+    height: 300px;
+}
+
+.card-official {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    border: #000066 2px solid;
+}
+
+.card-official-title {
+    padding: 1%;
+    background-color: #000066;
+    color: white;
+    font-size: 18px;
+}
+
+.card-official-grid {
+    width: 100%;
+}
+
+.card-official-grid th {
+    padding: 1%;
+    font-weight: normal;
+    color:#000066;
+    background-color: rgb(206, 206, 206);
+}
+
+.card-official-grid td {
+    border-bottom: black 1px solid;
+}
+
+.last {
+    margin-bottom: 50px;
+}
+
+.add-official {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.add-official td {
+    border: none;
+}
+
+.add-title {
+    color:#000066;
+    font-weight: bold;
+}
+
+.res-sum {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.res-sum-title {
+    font-weight: bold;
+    color:#000066;
+    font-size: 14px;
+}
+
+.grid-res-sum {
+    width: 100%;
+}
+
+.card-res-sum {
+    color: white;
+}
+
+.card-res-wrap {
+    background-color: #000066;
+}
+
+.card-sum-title {
+    font-weight: bold;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.grid-card-sum {
+    color: white;
+    width: 100%;
+}
+
+.card-value {
+    font-weight: bold;
+    font-size: 50px;
+    width: 70%;
+}
+
+.card-icon {
+    font-size: 40px;
+    width: 30%;
+}
+
+.left-col {
+    text-align: right;
+    padding-left: 120px;
+} 
+
+.right-col {
+    text-align: left;
+    padding-right: 120px;
+}
+
+.mod {
+    font-size: 15px;
+    color: black;
 }

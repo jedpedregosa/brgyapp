@@ -1,0 +1,24 @@
+.search-field {
+    width: 30%;
+}
+
+#search-content {
+    margin-left: 800px;
+    width: 30%;
+    margin-top: -10px;
+}
+
+#search-content a {
+    width: 92%;
+    vertical-align: middle;
+}
+
+#search-content a:hover {
+    cursor: pointer;
+}
+
+.search-img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}

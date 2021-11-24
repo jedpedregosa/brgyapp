@@ -11,6 +11,22 @@
         unset($_SESSION["cov_req_status"]);
         $is_err = true;
     }
+
+    $hasData = false;
+    $res_val = [];
+    if(isset($_GET["r_id"])) {
+        $res_id = $_GET["r_id"];
+
+        $req_sql = "SELECT res.*, TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) AS age FROM tblResident_auth auth INNER JOIN tblResident res ON auth.resUname = res.resUname WHERE res.resUname = ?";
+        $resident_data = selectStatement("f", $req_sql, [$res_id]);
+
+        if($resident_data["req_result"]) {
+            if($resident_data["req_val"]) {
+                $res_val = $resident_data["req_val"];
+                $hasData = true;
+            } 
+        }
+    }
 ?>
 
 <html>
@@ -22,7 +38,9 @@
 
         <link rel="stylesheet" href="../../global_assets/css/master.css">
         <link rel="stylesheet" href="../assets/css/donation.css">
+        <link rel="stylesheet" href="../assets/css/add-info.css">
         
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body onload="initClock()">
     <!-- Navigation Bar -->
@@ -82,7 +100,7 @@
                         <a href="barangay-clearance">REQUESTS</a>
                         <a href="blotter-report">BLOTTER REPORTS</a>
                         <a href="charity-donation">DONATIONS</a>
-                        <a href="">PROFILES</a>
+                        <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
                     </div>
                 </div>
@@ -95,23 +113,30 @@
             <div class = "content">
                 <div class = "create-donation">
                     <h3 class = "title">C O V I D - 1 9 &nbsp; I N F O R M A T I O N</h3>
+                    <div class = "col-right">
+                        <div>
+                            <input class = "search-field" placeholder = "Search Residents..." id = "txtSearch"/>
+                            <div class = "dropdown-content" id = "search-content">
+                            </div>
+                        </div>
+                    </div>
                     <table class = "grid">
                         <tr>
                             <td>
                                 <span class = "sys-label">First Name</span>
-                                <input class = "sys-text" name = "firstname" minlength = "2" maxlength = "25" required>
+                                <input class = "sys-text" value = "<?php echo ($hasData) ? $res_val["resFname"] : ""; ?>" name = "firstname" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
                                 <span class = "sys-label">Middle Name</span>
-                                <input class = "sys-text" name = "middlename" maxlength = "25">
+                                <input class = "sys-text" value = "<?php echo ($hasData) ? $res_val["resMname"] : ""; ?>" name = "middlename" maxlength = "25">
                             </td>
                             <td>
                                 <span class = "sys-label">Last Name</span>
-                                <input class = "sys-text" name = "lastname" minlength = "2" maxlength = "25" required>
+                                <input class = "sys-text" name = "lastname" value = "<?php echo ($hasData) ? $res_val["resLname"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
                                 <span class = "sys-label">Suffix</span>
-                                <input class = "sys-text" name = "suffix" maxlength = "5">
+                                <input class = "sys-text" name = "suffix" value = "<?php echo ($hasData) ? $res_val["resSuffix"] : ""; ?>" maxlength = "5">
                             </td>
                             <td>
                                 <span class = "sys-label">Type of Covid</span>
@@ -125,25 +150,25 @@
                         <tr>
                             <td>
                                 <span class = "sys-label">Contact Number</span>
-                                <input class = "sys-text" name = "contact" minlength = "2" maxlength = "25" required>
+                                <input class = "sys-text" name = "contact" value = "<?php echo ($hasData) ? $res_val["resContact"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
                                 <span class = "sys-label">Email Address</span>
-                                <input class = "sys-text" type = "email" name = "email" minlength = "2" maxlength = "25" required>
+                                <input class = "sys-text" type = "email" name = "email" value = "<?php echo ($hasData) ? $res_val["resEmail"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
                                 <span class = "sys-label">Citizenship</span>
-                                <input class = "sys-text" name = "citizenship" minlength = "2" maxlength = "25" required>
+                                <input class = "sys-text" name = "citizenship" value = "<?php echo ($hasData) ? $res_val["resCitiznshp"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
                                 <span class = "sys-label">Age</span>
-                                <input class = "sys-text" name = "age" maxlength = "3" required>
+                                <input class = "sys-text" name = "age" maxlength = "3" value = "<?php echo ($hasData) ? $res_val["age"] : ""; ?>" required>
                             </td>
                             <td>
                                 <span class = "sys-label">Sex</span>
                                 <select class = "sys-text" name = "sex" required>
-                                    <option value = "M" selected>Male</option>
-                                    <option value = "F" selected>Female</option>
+                                    <option value = "M" <?php echo ($hasData && $res_val["resSex"] == 'M') ? "selected": (!$hasData) ? "selected": ""; ?>>Male</option>
+                                    <option value = "F" <?php echo ($hasData && $res_val["resSex"] == 'F') ? "selected" : ""; ?>>Female</option>
                                 </select>
                             </td>
                         </tr>
@@ -156,14 +181,14 @@
                         </tr>
                         <tr>
                             <td>
-                                <input class = "sys-text" name = "hnum" placeholder = "House No" minlength = "2" maxlength = "25" required>
+                                <input class = "sys-text" name = "hnum" placeholder = "House No" value = "<?php echo ($hasData) ? $res_val["resHouseNum"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
                                 <select class = "sys-text" name = "stname" required>
-                                    <option value = "Tengco"> Tengco</option>
-                                    <option value = "Aurora"> Aurora</option>
-                                    <option value = "Arnaiz"> Arnaiz</option>
-                                    <option value = "Tramo"> Tramo</option>
+                                    <option value = "Tengco" <?php echo ($hasData && $res_val["resStName"] == 'Tengco' || !$hasData) ? "selected": ""; ?>> Tengco</option>
+                                    <option value = "Aurora" <?php echo ($hasData && $res_val["resStName"] == 'Aurora') ? "selected": ""; ?>> Aurora</option>
+                                    <option value = "Arnaiz" <?php echo ($hasData && $res_val["resStName"] == 'Arnaiz') ? "selected": ""; ?>> Arnaiz</option>
+                                    <option value = "Tramo" <?php echo ($hasData && $res_val["resStName"] == 'Tramo') ? "selected": ""; ?>> Tramo</option>
                                 </select>
                             </td>
                             <td>
@@ -197,6 +222,111 @@
                                     <input type = "date" class = "sys-text" name = "end">
                                 </td>
                             </tr>
+                            <tr>
+                                <td colspan = "4">
+                                    <span class = "sys-label">Symptoms <span class = "sys-label sub-lbl">(Check the box)</span></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan = "4">
+                                    <table class = "main-grid">
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Fever"> Fever
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Sore Throat"> Sore Throat
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Aches and pains"> Aches and pains
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Chest pain or pressure"> Chest pain or pressure
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Dry Cough"> Dry Cough
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Diarrhoea"> Diarrhoea
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Loss of taste or smell"> Loss of taste or smell
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Loss of speech or movement"> Loss of speech or movement
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Tiredness"> Tiredness
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Conjunctivitis"> Conjunctivitis
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Rash on skin"> Rash on skin
+                                                </label>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Headache"> Headache
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Discolouration of fingers or toes"> Discolouration of fingers or toes
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label>
+                                                    <input type = "checkbox" name = "symptoms[]" value = "Difficulty breathing or shortness of breath"> Difficulty breathing or shortness of breath
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan = "4">
+                                                <span class = "sys-label"><em>Hospital Admitted</em></span>
+                                                <textarea class = "sys-text" name = "hospital"></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan = "4">
+                                                <span class = "sys-label"><em>Last Contacts</em> <span class = "sys-label sub-lbl">(Input fullname, relation, contact details)</span></span>
+                                                <textarea class = "sys-text" name = "s_last_contact"></textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                     <div id = "asymp-div">
@@ -211,6 +341,18 @@
                                     <input type = "date" class = "sys-text" name = "s_end">
                                 </td>
                                 <td colspan = "2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan = "4">
+                                    <span class = "sys-label"><em>Last Place you've been</em></span>
+                                    <textarea class = "sys-text" name = "last_place" placeholder = "Input Place"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan = "4">
+                                    <span class = "sys-label"><em>Last Contacts</em> <span class = "sys-label sub-lbl">(Input fullname, relation, contact details)</span></span>
+                                    <textarea class = "sys-text" name = "last_contact"></textarea>
+                                </td>
                             </tr>
                         </table>
                     </div>

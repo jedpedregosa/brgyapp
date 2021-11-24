@@ -97,11 +97,11 @@
                         <a href="e-services/barangay-indigency">BARANGAY INDIGENCY</a>
                         <a href="e-services/barangay-burial-cert">BURIAL CERTIFICATION</a>
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
-                        <a href="">CERTIFICATE TO TRAVEL</a>
-                        <a href="">PROOF OF RESIDENCY</a>
+                        <a href="e-services/barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
+                        <a href="e-services/barangay-proof-res">PROOF OF RESIDENCY</a>
                         <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
                         <a></a>
-                        <a href=""><strong>PROFILE</strong></a>
+                        <a href="e-services/view-profile"><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>
                     </div>
                 </div>
@@ -279,7 +279,7 @@
         </div>
     </body>
     <script src="../global_assets/js/datetime.js"></script>
-    <script src="../gloabal_assets/js/donation.js"></script>
+    <script src="../global_assets/js/donation.js"></script>
 
 <?php 
     if($isSubmit) {
