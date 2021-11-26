@@ -170,7 +170,7 @@
                                     <th>
                                         Position
                                     </th>
-                        <?php if($is_admn_lgn) {
+                        <?php if($is_admn_lgn && $off_val["req_val"]) {
                             ?>
                                     <th>&nbsp;</th>
                             <?php 
