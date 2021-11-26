@@ -1,0 +1,11 @@
+.post-img:hover {
+    cursor: pointer;
+}
+
+.main-grid td {
+    padding: 10px;
+}
+
+.main-grid {
+    margin-bottom: 50px;
+}

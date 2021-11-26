@@ -33,6 +33,7 @@ let txt_cntct = document.getElementById("Contact");
 let txt_email = document.getElementById("Email");
 let txt_fbname = document.getElementById("FbName");
 let txt_voter = document.getElementById("Voter");
+let is_pwd = document.getElementById("isPwd");
 
 var isUsername_valid = false;
 var isPhone_valid = false;
@@ -68,6 +69,7 @@ btn_edit.onclick = function () {
     onEditStatus = true;
     btn_save.style.display = 'inline-block';
     this.style.display = 'none';
+    is_pwd.disabled = false;
 }
 
 btn_settings.onclick = function () {

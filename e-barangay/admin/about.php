@@ -9,7 +9,7 @@
     $total_male = selectStatement("c", $req_sql . " AND resSex = 'M'", null);
     $total_female = selectStatement("c", $req_sql . " AND resSex = 'F'", null);
     $total_senior = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 59", null);
-    $total_pwd = 0;
+    $total_pwd = selectStatement("c", $req_sql . " AND res.isPWD = 1", null);
 
 ?>
 <html>
@@ -113,18 +113,20 @@
                             <div class = "card-history-content">
                                 <h1 class = "card-history-title">History of Barangay 108 Zone 12</h1>
                                 <span class = "card-history-text">
-                                    During the first Barangay election which happened on May 17, 1982, Kapitan Isla was hailed as the first ever Barangay Captain of Brgy. 108. His reign lasted 8 years when Kapitan Alfredo R. Jondes took the responsibility of the positions. Jondes' governance lasted for 10 years, occupying a total of 3 electoral terms. He was then replaced by lan P. Vendivel during the 2002 Barangay Elections, which took place on the 15th of July of the said year. Vendivel's reign as Barangay Captain only lasted for approximately a year because of his candidacy as City Councilor. Because of this, the First Kagawad of that time, Marcos A. Ereña, replaced Vendivel as the new Barangay Captain. Ereña finished the remaining years of governance up until 2006.
-
+                                    During the first Barangay election which happened on May 17, 1982, Kapitan Isla was hailed as the first ever Barangay Captain of Brgy. 108. His reign lasted 8 years when Kapitan Alfredo R. Jondes took the responsibility of the positions. Jondes' governance lasted for 10 years, occupying a total of 3 electoral terms. He was then replaced by lan P. Vendivel during the 2002 Barangay Elections, which took place on the 15th of July of the said year. 
+                                    
+                                    Vendivel's reign as Barangay Captain only lasted for approximately a year because of his candidacy as City Councilor. Because of this, the First Kagawad of that time, Marcos A. Ereña, replaced Vendivel as the new Barangay Captain. Ereña finished the remaining years of governance up until 2006.
+                                    <br><br>
                                     However, lan P. Vendivel is the first ever Barangay 108 Captain who became a City Councilor for 2nd district of Pasay. The 2007 elections happened and a new Brgy. Captain was elected which is Eugenio Marnelego. His governance lasted for only a term until 2010. In 2010, former appointed Brgy. Captain Marcos A. Ereña succeeded in running for the position. He has been serving as the Barangay 108 Captain from 2010 until the present time.
-
+                                    <br><br>
                                     Barangay 108 Zone 12 is located at Santa Clara area under District II legislative jurisdiction of Pasay City. It is composed of 500 estimated families with an estimated population of 2100. Barangay 108 bounded on the east by Aurora Street (Barangay 121 & 120), west by Tramo Street (Barangay 107), North by Antornio Amaiz Avenue (Fommer Cementina Street Barangay 66) and South by Tengco Street (Barangay 109).
-
+                                    <br><br>
                                     Barangay 108 is proud to have our territorial area of jurisdiction of 2.82 Hectares and is surrounded by many busy commercial establishments such as Card Bank Inc, Andok's, Capitol Restaurant and Ramesh Trading Corporation, LBC CARGO Services, Ochoa Pawnshop, Palawan Express and many more offices and Stores.
-
+                                    <br><br>
                                     This small barangay community proud to be the home of middle-class families having most of their income from varying public and private employments, smalls scale business enterprises and professional practices and skills.
-
+                                    <br><br>
                                     Among the various projects offered to our barangay constituents are decloging of canal, beautification of environment, clean-up and green campaign, programang pang edukasyon-distribution of school supplies, project and equipment for disaster preparedness preservation of peace and order of the community, anti-drug program and campaign, sports activities, medical programs and more.
-
+                                    <br><br>
                                 </span>
                             </div>
                         </div> 
@@ -168,6 +170,12 @@
                                     <th>
                                         Position
                                     </th>
+                        <?php if($is_admn_lgn) {
+                            ?>
+                                    <th>&nbsp;</th>
+                            <?php 
+                            }
+                        ?>
                                 </tr>
             <?php 
                 if($off_val["req_result"]) {
@@ -189,7 +197,6 @@
                                     <td>
                                         <a href = "controllers/service/del-official?r_id=<?php echo $val['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
-                                    <td></td>
                                 <?php
                                 }
                             ?>
@@ -345,7 +352,7 @@
                                                             <i class="fa fa-wheelchair" aria-hidden="true"></i>
                                                         </td>
                                                         <td class = "card-value">
-                                                            <?php echo $total_pwd; ?>
+                                                            <?php echo (int)$total_pwd["req_val"]; ?>
                                                         </td>
                                                     </tr>
                                                 </table>

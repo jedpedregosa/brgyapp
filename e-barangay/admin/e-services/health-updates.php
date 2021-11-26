@@ -174,7 +174,7 @@
         }
         myButton.attach(editor);
 
-        const limit = 300;
+        const limit = 5000;
 
         editor.on('text-change', function (delta, old, source) {
             update_msg_area.textContent = editor.container.firstChild.innerHTML;

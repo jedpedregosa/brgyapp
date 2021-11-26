@@ -258,21 +258,27 @@
                                     <tr>
                                         <td>
                                             <span class = "sys-label">Contact Number</span>
-                                            <input class = "sys-text" name = "Contact" id = "Contact" maxlength = "25" value = "<?php echo $res_val["resContact"]; ?>" onchange = "validateUsername(this.value, 'a')" required readonly>
+                                            <input class = "sys-text" name = "Contact" id = "Contact" maxlength = "11" value = "<?php echo $res_val["resContact"]; ?>" onchange = "validateUsername(this.value, 'a')" required readonly>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Email Address</span>
-                                            <input type = "email" class = "sys-text" name = "Email" id = "Email" maxlength = "25" value = "<?php echo $res_val["resEmail"]; ?>" onchange = "validateUsername(this.value, 'c')" required readonly>
+                                            <input type = "email" class = "sys-text" name = "Email" id = "Email" maxlength = "50" value = "<?php echo $res_val["resEmail"]; ?>" onchange = "validateUsername(this.value, 'c')" required readonly>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Facebook Name</span>
-                                            <input class = "sys-text" name = "FbName" id = "FbName" maxlength = "25" value = "<?php echo $res_val["resFbName"]; ?>" required readonly>
+                                            <input class = "sys-text" name = "FbName" id = "FbName" maxlength = "25" value = "<?php echo $res_val["resFbName"]; ?>" readonly>
                                         </td>
                                         <td>
                                             <span class = "sys-label"><em>Registered Voter?</em></span>
-                                            <input class = "sys-text" name = "Voter" id = "Voter" maxlength = "25" value = "<?php echo $res_val["resVoter"]; ?>" required readonly>
+                                            <input class = "sys-text" name = "Voter" id = "Voter" maxlength = "25" value = "<?php echo $res_val["resVoter"]; ?>" readonly>
+                                        </td>
+                                        <td>
+                                            <label class = "sys-chck-label">
+                                                <span class = "sys-label"><em>Select:</em></span>
+                                                <input type = "checkbox" name = "isPwd" id = "isPwd" <?php echo ($res_val["isPWD"]) ? 'checked' : ''; ?> disabled> Are you a PWD? 
+                                            </label>
                                         </td>
                                     </tr>
                                 </table>

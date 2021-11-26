@@ -215,12 +215,12 @@
                                     <tr>
                                         <td>
                                             <span class = "sys-label">Contact Number</span>
-                                            <input class = "sys-text" name = "Contact" maxlength = "25" required>
+                                            <input class = "sys-text" name = "Contact" maxlength = "11" required>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Email Address</span>
-                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "25" required>
+                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "50" required>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>
                                         <td>
@@ -229,7 +229,7 @@
                                         </td>
                                         <td>
                                             <span class = "sys-label"><em>Registered Voter?</em></span>
-                                            <input class = "sys-text" name = "Voter" maxlength = "25" placeholder = "Precinct Numbert">
+                                            <input class = "sys-text" name = "Voter" maxlength = "25" placeholder = "Precint Number">
                                         </td>
                                     </tr>
                                     <tr>

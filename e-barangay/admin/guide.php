@@ -10,6 +10,7 @@
 
         <link rel="stylesheet" href="../global_assets/css/master.css">
         <link rel="stylesheet" href="../global_assets/css/about.css">
+        <link rel="stylesheet" href="../global_assets/css/guide.css">
         
     </head>
     <body onload="initClock()">
@@ -92,10 +93,49 @@
     ?>
             </div>  
         </div>
+        <div class = "content">
+            <table class = "main-grid">
+                <tr>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-1.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-2.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-3.png" onclick = "showImgModal(this.src)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-4.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-5.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-6.png" onclick = "showImgModal(this.src)">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- The Modal -->
+        <div id="res_img_modal" class="img-modal">
+
+            <!-- The Close Button -->
+            <span class="img-close" id = "img-close">&times;</span>
+
+            <!-- Modal Content (The Image) -->
+            <img class="img-modal-content" id="sample_photo">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="img_caption"></div>
+        </div>
     <!-- /Navigation Bar/ -->
         <div class = "main-footer">
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
         </div>
     </body>
     <script src="../global_assets/js/datetime.js"></script>
+    <script src="../global_assets/js/guide.js"></script>
 </html>

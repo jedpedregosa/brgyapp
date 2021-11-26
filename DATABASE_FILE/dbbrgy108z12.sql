@@ -396,6 +396,7 @@ CREATE TABLE IF NOT EXISTS `tblResident` (
   `resEmail` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `resFbName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `resVoter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isPWD` tinyint(1) NOT NULL DEFAULT '0',
   `sysTime` datetime NOT NULL,
   PRIMARY KEY (`resUname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

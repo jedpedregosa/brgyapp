@@ -174,12 +174,12 @@
                                     <tr>
                                         <td>
                                             <span class = "sys-label">Contact Number</span>
-                                            <input class = "sys-text" name = "Contact" maxlength = "25" onchange = "validateUsername(this.value, 'a')" required>
+                                            <input class = "sys-text" name = "Contact" maxlength = "11" onchange = "validateUsername(this.value, 'a')" required>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Email Address</span>
-                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "25" onchange = "validateUsername(this.value, 'c')" required>
+                                            <input type = "email" class = "sys-text" name = "Email" maxlength = "50" onchange = "validateUsername(this.value, 'c')" required>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>
                                         <td>
@@ -189,6 +189,12 @@
                                         <td>
                                             <span class = "sys-label"><em>Registered Voter?</em></span>
                                             <input class = "sys-text" name = "Voter" maxlength = "25">
+                                        </td>
+                                        <td>
+                                            <label class = "sys-chck-label">
+                                                <span class = "sys-label"><em>Select:</em></span>
+                                                <input type = "checkbox" name = "isPwd"> Are you a PWD? 
+                                            </label>
                                         </td>
                                     </tr>
                                 </table>

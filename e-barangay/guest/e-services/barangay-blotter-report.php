@@ -153,11 +153,11 @@
                                     <tr>
                                         <td>
                                             <span class = "sys-label">Contact Number</span>
-                                            <input class = "sys-text" name = "contact" min = "2" maxlength = "25" required>
+                                            <input class = "sys-text" name = "contact" min = "2" maxlength = "11" required>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Email Address</span>
-                                            <input type = "email" class = "sys-text" name = "email" min = "2" maxlength = "25" required>
+                                            <input type = "email" class = "sys-text" name = "email" min = "2" maxlength = "50" required>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Citizenship</span>
@@ -165,7 +165,7 @@
                                         </td>
                                         <td>
                                             <span class = "sys-label">Age</span>
-                                            <input class = "sys-text" name = "age" maxlength = "25" required>
+                                            <input class = "sys-text" name = "age" maxlength = "3" required>
                                         </td>
                                         <td class = "col-sm">
                                             <span class = "sys-label">Sex</span>
@@ -252,7 +252,7 @@
                                         </td>
                                         <td>
                                             <span class = "sys-label">Age</span>
-                                            <input class = "sys-text" name = "susage" maxlength = "25" required>
+                                            <input class = "sys-text" name = "susage" maxlength = "3" required>
                                         </td>
                                         <td class = "col-sm">
                                             <span class = "sys-label">Sex</span>

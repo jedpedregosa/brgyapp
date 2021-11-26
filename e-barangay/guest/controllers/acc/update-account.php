@@ -40,6 +40,7 @@
         $_POST["Email"],
         $_POST["FbName"],
         $_POST["Voter"],
+        ($_POST["isPwd"]) ? 1 : 0,
         $resdnt_uid
     ];
 
@@ -50,7 +51,7 @@
     ];
 
     $res_up_sql = "UPDATE tblResident SET resFname = ?, resMname = ?, resLname = ?, resSuffix = ?, resCivStat = ?, resCitiznshp = ?, resBdate = ?, resSex = ?, resHouseNum = ?,
-        resStName = ?, resContact = ?, resEmail = ?, resFbName = ?, resVoter = ? WHERE resUname = ?";
+        resStName = ?, resContact = ?, resEmail = ?, resFbName = ?, resVoter = ?, isPWD = ? WHERE resUname = ?";
     $res_auth_up_sql = "UPDATE tblResident_auth SET resContact = ?, resEmail = ? WHERE resUname = ?";
 
     $up_res = updateStatement($res_up_sql, $acc_details);

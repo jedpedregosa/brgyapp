@@ -19,6 +19,7 @@
         && isset($_POST["Email"])
         && isset($_POST["FbName"])
         && isset($_POST["Voter"])
+        && isset($_POST["isPwd"])
         && isset($_POST["Uname"])
         && isset($_POST["Pword"]);
 
@@ -65,6 +66,7 @@
         $_POST["Email"],
         $_POST["FbName"],
         $_POST["Voter"],
+        ($_POST["isPwd"]) ? 1 : 0,
         $current_time
     ];
 
@@ -108,8 +110,8 @@
         && move_uploaded_file($all_files[3]['tmp_name'], $sig_file);
 
     $res_details_stmt = "INSERT INTO tblResident (resUname, resFname, resMname, resLname, resSuffix, resCivStat, 
-        resCitiznshp, resBdate, resSex, resHouseNum, resStName, resContact, resEmail, resFbName, resVoter, sysTime) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        resCitiznshp, resBdate, resSex, resHouseNum, resStName, resContact, resEmail, resFbName, resVoter, isPWD, sysTime) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     $res_auth_stmt = "INSERT INTO tblResident_auth (resUname, resEmail, resContact, resPword, resGString)
         VALUES (?, ?, ?, ?, ?)";
