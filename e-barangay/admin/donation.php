@@ -180,7 +180,7 @@
                                 </select>
                             </td>
                             <td colspan = "4" class = "type-row">
-                                <span id = "charity-div1"> N U M B E R : 123-456-789 / 123-456-789</span>
+                                <span id = "charity-div1"> NO NUMBER AVAILABLE </span>
                             </td>
                         </tr>
                     </table>

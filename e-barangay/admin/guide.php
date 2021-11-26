@@ -117,6 +117,28 @@
                         <img class = "post-img" src = "../global_assets/img/guide/user-guide-6.png" onclick = "showImgModal(this.src)">
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-7.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-8.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-9.png" onclick = "showImgModal(this.src)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-10.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-11.png" onclick = "showImgModal(this.src)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-12.png" onclick = "showImgModal(this.src)">
+                    </td>
+                </tr>
             </table>
         </div>
         <!-- The Modal -->

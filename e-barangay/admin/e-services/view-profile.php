@@ -255,7 +255,7 @@
                     </table>
                     
                     <input class = "sys-button button-2" onclick = "location.href='barangay-profile'" value = "Back">
-                    <input type = "button" class = "sys-button" onclick = "location.href='../controllers/service/del-res?res_id=<?php echo $res_id; ?>'"  value = "Remove">
+                    <input type = "button" class = "sys-button" onclick = "location.href='../controllers/service/del-res?r_id=<?php echo $res_id; ?>'"  value = "Remove">
                 </div>
             </div>
         </form>
