@@ -30,8 +30,8 @@
             <td class = 'itd'>" . $resident["resMname"] ." </td>
             <td class = 'itd'>" . $resident["resLname"] ." </td>
             <td class = 'itd'>" . $resident["resSuffix"] ." </td>
-            <td class = 'itd'>" . $resident["resCitiznshp"] ." </td> 
             <td class = 'itd'>" . getCivilStatus($resident["resCivStat"]) ." </td>
+            <td class = 'itd'>" . $resident["resCitiznshp"] ." </td> 
             <td class = 'itd'>" . transformDate($resident["resBdate"], "m/d/y") ." </td>
             <td class = 'itd'>" . $resident["resSex"] ." </td>
             <td class = 'itd'>" . $resident["resHouseNum"] ." </td>
