@@ -118,7 +118,6 @@
                         <input type = "button" class = "sys-button" onclick = "location.href='sign-up'" value = "S I G N  UP">
                     </div>
                 </form>
-                <a href = "" class = "forgot-pass">Forgot Password?</a>
                 <input class = "sys-button admin" onclick = "location.href='../admin/login'" value = "A D M I N  L O G I N">
             </div>
         </div>

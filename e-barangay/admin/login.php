@@ -108,7 +108,6 @@
                         <input type = "submit" class = "sys-button" name = "sbmt-admn-lgn" value = "L O G I N">
                     </div>
                 </form>
-                <a href = "" class = "forgot-pass">Forgot Password?</a>
                 <input class = "sys-button admin" onclick = "location.href='../guest/login'" value = "U S E R S  L O G I N">
             </div>
         </div>

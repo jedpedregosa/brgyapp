@@ -32,7 +32,7 @@
             <td class = 'itd'>" . $resident["sffx"] ." </td>
             <td class = 'itd'>" . $resident["ctznshp"] ." </td>
             <td class = 'itd'>" . getCivilStatus($resident["civStat"]) ." </td>
-            <td class = 'itd'>" . transformDate($resident["bDate"], "m/d/y") ." </td>
+            <td class = 'itd'>" . transformDate($resident["bDate"], "m/d/Y") ." </td>
             <td class = 'itd'>" . $resident["sex"] ." </td>
             <td class = 'itd'>" . $resident["hNum"] ." </td>
             <td class = 'itd'>" . $resident["stName"] ." </td>

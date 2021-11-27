@@ -32,7 +32,7 @@
             <td class = 'itd'>" . $resident["sffx"] ." </td>
             <td class = 'itd'>" . $resident["ctznshp"] ." </td>
             <td class = 'itd'>" . getCivilStatus($resident["civStat"]) ." </td>
-            <td class = 'itd'>" . transformDate($resident["bDate"], "m/d/y") ." </td>
+            <td class = 'itd'>" . transformDate($resident["bDate"], "m/d/Y") ." </td>
             <td class = 'itd'>" . $resident["sex"] ." </td>
             <td class = 'itd'>" . $resident["hNum"] ." </td>
             <td class = 'itd'>" . $resident["stName"] ." </td>
@@ -46,9 +46,9 @@
             <td class = 'itd'>" . $resident["dSffx"] ." </td>
             <td class = 'itd'>" . $resident["dAge"] ." </td>
             <td class = 'itd'>" . $resident["dSex"] ." </td>
-            <td class = 'itd'>" . transformDate($resident["dBdate"], "m/d/y") ." </td>
-            <td class = 'itd'>" . transformDate($resident["dDdate"], "m/d/y") ." </td>
-            <td class = 'itd'>" . transformDate($resident["dBurDate"], "m/d/y") ." </td>
+            <td class = 'itd'>" . transformDate($resident["dBdate"], "m/d/Y") ." </td>
+            <td class = 'itd'>" . transformDate($resident["dDdate"], "m/d/Y") ." </td>
+            <td class = 'itd'>" . transformDate($resident["dBurDate"], "m/d/Y") ." </td>
             <td class = 'itd'>" . $resident["dRemark"] ." </td>
             <td class = 'itd'>" . $status ." </td>
         </tr>";

@@ -30,8 +30,8 @@
             <td class = 'itd'>" . $resident["resMname"] ." </td>
             <td class = 'itd'>" . $resident["resLname"] ." </td>
             <td class = 'itd'>" . $resident["resSuffix"] ." </td>
-            <td class = 'itd'>" . $resident["resCivStat"] ." </td>
-            <td class = 'itd'>" . getCivilStatus($resident["resCitiznshp"]) ." </td>
+            <td class = 'itd'>" . $resident["resCitiznshp"] ." </td> 
+            <td class = 'itd'>" . getCivilStatus($resident["resCivStat"]) ." </td>
             <td class = 'itd'>" . transformDate($resident["resBdate"], "m/d/y") ." </td>
             <td class = 'itd'>" . $resident["resSex"] ." </td>
             <td class = 'itd'>" . $resident["resHouseNum"] ." </td>
@@ -40,7 +40,6 @@
             <td class = 'itd'>" . $resident["resEmail"] ." </td>
             <td class = 'itd'>" . $resident["resFbName"] ." </td>
             <td class = 'itd'>" . $resident["resVoter"] ." </td>
-            <td class = 'itd'>" . $status ." </td>
         </tr>";
     }
 
@@ -127,7 +126,6 @@
                     <th class = 'ith'>Email Address</th>
                     <th class = 'ith'>Facebook</th>
                     <th class = 'ith'>Voter Registration</th>
-                    <th class = 'ith'>Status</th> 
                 </tr>
                 " . $table . "
             </table>
