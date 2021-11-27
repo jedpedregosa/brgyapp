@@ -5,7 +5,7 @@
 
     $req_sql = "SELECT COUNT(*) FROM tblResident_auth auth INNER JOIN tblResident res ON auth.resUname = res.resUname WHERE resValid = 1";
     $total_population = selectStatement("c", $req_sql, null);
-    $total_voter = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 17 AND resVoter IS NOT NULL", null);
+    $total_voter = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 17 AND NOT ISNULL(NULLIF(resVoter,''))", null);
     $total_male = selectStatement("c", $req_sql . " AND resSex = 'M'", null);
     $total_female = selectStatement("c", $req_sql . " AND resSex = 'F'", null);
     $total_senior = selectStatement("c", $req_sql . " AND TIMESTAMPDIFF(YEAR, res.resBdate, CURDATE()) > 59", null);
