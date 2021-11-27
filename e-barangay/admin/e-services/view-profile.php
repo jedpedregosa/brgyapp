@@ -264,8 +264,7 @@
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
         </div>
     </body>
-    <script src="../global_assets/js/datetime.js"></script>
-    <script src="../global_assets/js/sign-up.js"></script>
+    <script src="../../global_assets/js/datetime.js"></script>
 
     <?php 
         if($isSubmit) {
