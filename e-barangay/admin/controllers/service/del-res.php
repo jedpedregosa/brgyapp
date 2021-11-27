@@ -10,7 +10,7 @@
         $res_id = $_GET["r_id"];
 
         updateStatement("DELETE FROM tblResident WHERE resUname = ?", [$res_id]);
-        updateStatement("DELETE FROM tblResident_attmp WHERE resUname = ?", [$res_id]);
+        updateStatement("DELETE FROM tblResident_auth WHERE resUname = ?", [$res_id]);
     }
 
     header("Location: ../../e-services/barangay-profile");
