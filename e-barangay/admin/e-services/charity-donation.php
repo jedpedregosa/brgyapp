@@ -89,7 +89,7 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Barangay Requests </span>
+                        <span class = "request-title"> Barangay Donations </span>
                     </td>
                     <td class = "col-right">
                         <a class = "request-status status-selected" href = "charity-donation">Charity</a>
