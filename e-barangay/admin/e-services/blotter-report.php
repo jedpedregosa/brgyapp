@@ -141,7 +141,7 @@
                             <th>Date</th>
                             <th colspan = "14">Complainant Information</th>
                             <th colspan = "2">CRIME</th>
-                            <th colspan = "3">Suspect Information</th>
+                            <th colspan = "9">Suspect Information</th>
                         </tr>
                         <tr>
                             <th></th>
@@ -161,6 +161,12 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Alias</th>
+                            <th>Suffix</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>House Number</th>
+                            <th>Street</th>
+                            <th>Reason</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -192,6 +198,12 @@
                             <td><?php echo $info["susFname"]; ?></td>
                             <td><?php echo $info["susLname"]; ?></td>
                             <td><?php echo $info["susAlias"]; ?></td>
+                            <td><?php echo $info["susSuffix"]; ?></td>
+                            <td><?php echo $info["susAge"]; ?></td>
+                            <td><?php echo $info["susSex"]; ?></td>
+                            <td><?php echo $info["susHnum"]; ?></td>
+                            <td><?php echo $info["susStreet"]; ?></td>
+                            <td><?php echo $info["reason"]; ?></td>
                         </tr>
                     <?php
                 }
