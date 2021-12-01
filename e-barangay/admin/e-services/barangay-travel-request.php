@@ -113,13 +113,28 @@
                 <tr>
                     <td class = "col-menu">
                         <div class="menu">
+                    <?php if(!$isComplete) {
+                        ?>
                             <a href="barangay-clearance">BARANGAY CLEARANCE</a>
                             <a href="barangay-id-request">BARANGAY IDENTIFICATION (ID)</a>
                             <a href="barangay-indigency-request">BARANGAY INDIGENCY</a>
                             <a href="barangay-burial-request">BURIAL CERTIFICATION</a>
                             <a href="barangay-employment-request">CERTIFICATE OF EMPLOYMENT</a>
-                            <a href="barangay-travel-request" class = "module-selected">CERTIFICATE TO TRAVEL</a>
+                            <a href="barangay-travel-request"  class = "module-selected">CERTIFICATE TO TRAVEL</a>
                             <a href="barangay-residency-request">PROOF OF RESIDENCY</a>
+                        <?php
+                    } else {
+                        ?>
+                            <a href="barangay-clearance?type=1">BARANGAY CLEARANCE</a>
+                            <a href="barangay-id-request?type=1">BARANGAY IDENTIFICATION (ID)</a>
+                            <a href="barangay-indigency-request?type=1">BARANGAY INDIGENCY</a>
+                            <a href="barangay-burial-request?type=1">BURIAL CERTIFICATION</a>
+                            <a href="barangay-employment-request?type=1">CERTIFICATE OF EMPLOYMENT</a>
+                            <a href="barangay-travel-request?type=1"  class = "module-selected">CERTIFICATE TO TRAVEL</a>
+                            <a href="barangay-residency-request?type=1">PROOF OF RESIDENCY</a>
+                        <?php
+                    }
+                    ?>
                         </div>
                     </td>
                     <td class = "col-data">
