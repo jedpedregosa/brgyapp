@@ -119,7 +119,7 @@
                                         <div class = "card-covid">
                                             <div class = "card-covid-content">
                                                 <span class = "card-sub">TOTAL</span>
-                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["total"] : "Error";?></span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? $covid_data["total"] + (int)$covid_info["total"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>
@@ -129,7 +129,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-error">ACTIVE</span>
                                                 </span>
-                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["active"] : "Error";?></span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? $covid_data["active"] + (int)$covid_info["active"] : "Error";?></span>
                                             </div>  
                                         </div>
                                     </td>
@@ -141,7 +141,7 @@
                                                 <span class = "card-sub">
                                                 <span class = "text-success">RECOVERED</span>
                                                 </span>
-                                                <span class = "card-val"><span class = "text-success"><?php echo ($covid_info) ? (int)$covid_info["recovered"] : "Error";?></span></span>
+                                                <span class = "card-val"><span class = "text-success"><?php echo ($covid_info) ? $covid_data["recovered"] + (int)$covid_info["recovered"] : "Error";?></span></span>
                                             </div>
                                         </div>
                                     </td>
@@ -151,7 +151,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-info">DEATH</span>
                                                 </span>
-                                                <span class = "card-val"><?php echo ($covid_info) ? (int)$covid_info["death"] : "Error";?></span>
+                                                <span class = "card-val"><?php echo ($covid_info) ? $covid_data["death"] + (int)$covid_info["death"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>

@@ -37,4 +37,12 @@
     define("resident_max_attempt", 5); # Max attempt per 30 min. for resident
     define("res_max_attempt", 5); # Max attempt per 15 min. for residents
 
+    # Test Data
+    $covid_data = array(
+        "total"=> 97,
+        "active"=> 0,
+        "recovered"=> 95,
+        "death"=> 2
+    );
+
 ?>
