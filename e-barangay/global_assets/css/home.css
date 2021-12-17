@@ -23,6 +23,8 @@ div.ex1 {
   position: center;
   border: 2px solid #000066;
   text-align: center;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .home-grid td {
@@ -204,6 +206,7 @@ th, td {
   padding: 5px;
   border: 1.5px solid #000066;
   text-align: center;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .post-time {

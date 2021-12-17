@@ -102,7 +102,7 @@
                         <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
                         <a href="barangay-proof-res">PROOF OF RESIDENCY</a>
-                        <a href="barangay-blotter-report">BLOTTER REPORT</a>
+                        <a href="barangay-blotter-report">INCIDENT REPORT</a>
                         <a></a>
                         <a href="view-profile"><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>
@@ -132,6 +132,11 @@
                             </td>
                             <td class = "cell-info">
                                 <table class = "main-grid">
+                                    <tr>
+                                        <td colspan = "4">
+                                            <span class = "required-msg">* REQUIRED FIELDS</span>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <span class = "sys-label">First Name <span class = "required">*</span></span>

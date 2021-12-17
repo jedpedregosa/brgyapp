@@ -85,7 +85,7 @@
                         <a href="e-services/health-updates">HEALTH UPDATES</a>
                         <a href="e-services/covid-info">COVID-19 INFORMATION</a>
                         <a href="e-services/barangay-clearance">REQUESTS</a>
-                        <a href="e-services/blotter-report">BLOTTER REPORTS</a>
+                        <a href="e-services/blotter-report">INCIDENT REPORT</a>
                         <a href="e-services/charity-donation">DONATIONS</a>
                         <a href="e-services/barangay-profile">PROFILES</a>
                         <a href="logout">LOG OUT</a>

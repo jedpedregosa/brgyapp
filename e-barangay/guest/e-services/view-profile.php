@@ -144,7 +144,7 @@
                         <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
                         <a href="barangay-proof-res">PROOF OF RESIDENCY</a>
-                        <a href="barangay-blotter-report">BLOTTER REPORT</a>
+                        <a href="barangay-blotter-report">INCIDENT REPORT</a>
                         <a></a>
                         <a href="view-profile"><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>
@@ -176,8 +176,13 @@
                             <td class = "cell-info">
                                 <table class = "main-grid">
                                     <tr>
+                                        <td colspan = "4">
+                                            <span class = "required-msg">* REQUIRED FIELDS</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>
-                                            <span class = "sys-label">First Name</span>
+                                            <span class = "sys-label">First Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Fname" id = "Fname" minlength = "2" maxlength = "25" value = "<?php echo $res_val["resFname"]; ?>" required readonly>
                                         </td>
                                         <td>
@@ -185,7 +190,7 @@
                                             <input class = "sys-text" name = "Mname" id = "Mname" maxlength = "25" value = "<?php echo $res_val["resMname"]; ?>" readonly>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Last Name</span>
+                                            <span class = "sys-label">Last Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Lname" id = "Lname" minlength = "2" value = "<?php echo $res_val["resLname"]; ?>" maxlength = "25" required readonly>
                                         </td>
                                         <td class = "col-sm">
@@ -195,7 +200,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">Civil Status</span>
+                                            <span class = "sys-label">Civil Status <span class = "required">*</span></span>
                                             <select class = "sys-text" id = "CivStat" name = "CivStat" required disabled>
                                                 <option value = "1" <?php echo ($res_val["resCivStat"] == 1) ? "selected": ''; ?>> Single</option>
                                                 <option value = "2" <?php echo ($res_val["resCivStat"] == 2) ? "selected": ''; ?>> Married</option>
@@ -205,15 +210,15 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Citizenship</span>
+                                            <span class = "sys-label">Citizenship <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Ctznshp" id = "Ctznshp" min = "2" maxlength = "25" value = "<?php echo $res_val["resCitiznshp"]; ?>" required readonly>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Birthdate <span class = "sys-label sub-lbl">(Month, Day, Year)</span></span>
+                                            <span class = "sys-label">Birthdate <span class = "sys-label sub-lbl">(Month, Day, Year)</span> <span class = "required">*</span></span>
                                             <input type = "date" class = "sys-text" name = "Bdate" id = "Bdate" value = "<?php echo $res_val["resBdate"]; ?>" required readonly>
                                         </td>
                                         <td class = "col-sm">
-                                            <span class = "sys-label">Sex</span>
+                                            <span class = "sys-label">Sex <span class = "required">*</span></span>
                                             <select class = "sys-text" name = "Sex" id = "Sex" required disabled>
                                                 <option value = "M" <?php echo ($res_val["resSex"] == 'M') ? "selected" : ''; ?>>M</option>
                                                 <option value = "F" <?php echo ($res_val["resSex"] == 'F') ? "selected" : ''; ?>>F</option>
@@ -228,7 +233,7 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td colspan = "5">
-                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span></span>
+                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span> <span class = "required">*</span></span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -257,12 +262,12 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">Contact Number</span>
+                                            <span class = "sys-label">Contact Number <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Contact" id = "Contact" maxlength = "11" value = "<?php echo $res_val["resContact"]; ?>" onchange = "validateUsername(this.value, 'a')" required readonly>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Email Address</span>
+                                            <span class = "sys-label">Email Address <span class = "required">*</span></span>
                                             <input type = "email" class = "sys-text" name = "Email" id = "Email" maxlength = "50" value = "<?php echo $res_val["resEmail"]; ?>" onchange = "validateUsername(this.value, 'c')" required readonly>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>

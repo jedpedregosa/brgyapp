@@ -108,7 +108,7 @@
         </div>
         <div style = 'margin: 3%; display: block'>
             <span style = 'display: block; margin-bottom: 3%;'><strong>DATE:</strong> " . $report_date . "</span>
-            <span style = 'display: block;'><strong>REPORT NAME:</strong> Barangay Identification (ID) Request</span>
+            <span style = 'display: block;'><strong>REPORT NAME:</strong> List of Persons with Requested Barangay Identification (ID)</span>
         </div>
 
         <style>

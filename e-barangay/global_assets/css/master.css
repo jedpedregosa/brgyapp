@@ -194,18 +194,24 @@ img {
 .text{
   font-size: 15px;
   padding: 0px;
-  margin-top: -15px;
+  margin-top: -20px;
   margin-right: auto;
   margin-left: 10px;
   font-family: Arial;
 }
 
 .head-title {
-  margin-bottom: -15px;
+  margin-bottom: -20px;
+  font-size: 45px;
 }
 
 .facebook {
-  margin-top: 30px;
+  margin-top: 45px;
+}
+
+.facebook a {
+  display: block;
+  margin-top: -15px;
 }
 
 .content {
@@ -231,7 +237,7 @@ img {
     position: fixed;
     font-size: 500px;
     left: -2%;
-    bottom: 5%; 
+    bottom: 5%;
 }
 
 .main-footer {
@@ -276,8 +282,9 @@ img {
 }
 
 .sys-button-lg {
-  height: 30px;
-  width: 150px
+  height: 45px;
+  width: 170px;
+  font-size: 17px;
 }
 
 .sys-modal-button {
@@ -342,6 +349,11 @@ img {
   font-style: italic;
 }
 
+.required-msg {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
 
 .type2 {
   color: black;
@@ -610,7 +622,7 @@ img {
   font-size: 17px;
   width: 55%;
   margin: 0 auto;
-  color: #49494b;
+  color: #757575;
 }
 
 .msg-wrapper {
@@ -689,3 +701,6 @@ img {
   background-color: #d8d8fa;
 }
 
+.grid-settings-content {
+  width: 100%;
+}

@@ -92,6 +92,11 @@
                             <td class = "cell-info">
                                 <table class = "main-grid">
                                     <tr>
+                                        <td colspan = "4">
+                                            <span class = "required-msg">* REQUIRED FIELDS</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>
                                             <span class = "sys-label">First Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Fname" minlength = "2" maxlength = "25" required>
@@ -203,26 +208,25 @@
                     </table>
                     <table>
                         <tr>
-                            <td colspan = "4"><span class = "sys-label row-title">Attachments</span></td>
+                            <td colspan = "3"><span class = "sys-label row-title">Attachments</span></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style = "width: 25%">
                                 <input type = "button" id = "upload_button"  onclick = "uploadClick()">
                                 <input type = "file" id = "upload_idcard" class ="hidden-upload" name = "idCardPic" onchange = "checkUpload(this)" accept=".jpg,.png">
                                 <input type = "file" id = "upload_selfie" class ="hidden-upload" name = "selfiePic" onchange = "checkUpload(this)" accept=".jpg,.png">
                             </td>
-                            <td> 
+                            <td style = "width: 20%"> 
                                 <input type = "checkbox"  id = "chck_idcard" onchange = "renderChecklist()" disabled>
                                 <label for = "chck_idcard" class = "sys-chck-label">Valid ID</label>
                             </td>
-                            <td> 
+                            <td style = "width: 55%"> 
                                 <input type = "checkbox" id = "chck_selfie" onchange = "renderChecklist()" disabled>
                                 <label for = "chck_selfie" class = "sys-chck-label">Selfie</label>
                             </td>
-                            <td></td>
                         </tr>
                         <tr>
-                            <td colspan = "4">
+                            <td colspan = "3">
                                 <span class = "validate-msg" id = "file-upload-msg"></span>
                                 <span class = "sys-label sub-lbl">(Please submit all requirements needed. Inclomplete requirements will be automatically rejected)</span>
                             </td>

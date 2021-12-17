@@ -87,7 +87,7 @@
                         <a href="health-updates">HEALTH UPDATES</a>
                         <a href="covid-info">COVID-19 INFORMATION</a>
                         <a href="barangay-clearance">REQUESTS</a>
-                        <a href="blotter-report">BLOTTER REPORTS</a>
+                        <a href="blotter-report">INCIDENT REPORT</a>
                         <a href="charity-donation">DONATIONS</a>
                         <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
@@ -177,7 +177,7 @@
                                         <th>Email Address</th>
                                         <th>Facebook</th>
                                         <th>Voter Registration</th>
-                                        <th>ID (Front & Back)</th>
+                                        <th>Valid ID</th>
                                         <th>Birth Place</th>
                                         <th>Weight</th>
                                         <th>Height</th>

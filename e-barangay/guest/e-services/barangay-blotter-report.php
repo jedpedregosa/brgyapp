@@ -102,7 +102,7 @@
                         <a href="barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
                         <a href="barangay-proof-res">PROOF OF RESIDENCY</a>
-                        <a href="barangay-blotter-report">BLOTTER REPORT</a>
+                        <a href="barangay-blotter-report">INCIDENT REPORT</a>
                         <a></a>
                         <a href="view-profile"><strong>PROFILE</strong></a>
                         <a href="../logout">LOG OUT</a>
@@ -126,7 +126,12 @@
                     <table class = "main-grid">
                         <tr>
                             <td colspan = "2">
-                                <span><em><strong>Complainant Information</strong></em></span>
+                                <span class = "required-msg">* REQUIRED FIELDS</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan = "2">
+                                <span><strong>Complainant Information</strong></span>
                             </td>
                         </tr>
                         <tr>
@@ -227,7 +232,7 @@
                     <table class = "main-grid">
                         <tr>
                             <td colspan = "2">
-                                <span><em><strong>Suspect Information</strong></em></span>
+                                <span><strong>Defendant Information</strong></span>
                             </td>
                         </tr>
                         <tr>
@@ -297,7 +302,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan = "5">
-                                            <span><em><strong>Reason for Reporting</strong></em> <span class = "required">*</span></span>
+                                            <span><strong>Reason for Reporting</strong> <span class = "required">*</span></span>
                                             <textarea class = "sys-text" name = "reason" required></textarea>
                                         </td>
                                     </tr>

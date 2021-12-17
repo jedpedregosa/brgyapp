@@ -86,7 +86,7 @@
                         <a href="health-updates">HEALTH UPDATES</a>
                         <a href="covid-info">COVID-19 INFORMATION</a>
                         <a href="resident-request">REQUESTS</a>
-                        <a href="blotter-report">BLOTTER REPORTS</a>
+                        <a href="blotter-report">INCIDENT REPORT</a>
                         <a href="charity-donation">DONATIONS</a>
                         <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>

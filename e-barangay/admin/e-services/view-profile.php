@@ -114,7 +114,7 @@
                         <a href="health-updates">HEALTH UPDATES</a>
                         <a href="covid-info">COVID-19 INFORMATION</a>
                         <a href="barangay-clearance">REQUESTS</a>
-                        <a href="blotter-report">BLOTTER REPORTS</a>
+                        <a href="blotter-report">INCIDENT REPORT</a>
                         <a href="charity-donation">DONATIONS</a>
                         <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
@@ -135,7 +135,7 @@
             <div class = "content">
                 <div class = "create-account">
                     <div class = "push-left">
-                        <span class = "request-title"> Brgy Residents</span>
+                        <span class = "request-title"> Barangay Resident </span>
                     </div>
                     <table class = "grid">
                         <tr>
@@ -241,15 +241,11 @@
                         <tr>
                             <td> 
                                 <input type = "checkbox"  id = "chck_idcard" disabled checked>
-                                <label for = "chck_idcard" class = "sys-chck-label">ID (Front and Back)</label>
+                                <label for = "chck_idcard" class = "sys-chck-label">View ID</label>
                             </td>
                             <td> 
                                 <input type = "checkbox" id = "chck_selfie" disabled checked>
                                 <label for = "chck_selfie" class = "sys-chck-label">Selfie</label>
-                            </td>
-                            <td> 
-                                <input type = "checkbox" id = "chck_sig" disabled checked>
-                                <label for = "chck_sig" class = "sys-chck-label">3 Specimen Signature</label>
                             </td>
                         </tr>
                     </table>

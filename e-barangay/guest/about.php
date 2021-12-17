@@ -91,7 +91,7 @@
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="e-services/barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
                         <a href="e-services/barangay-proof-res">PROOF OF RESIDENCY</a>
-                        <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
+                        <a href="e-services/barangay-blotter-report">INCIDENT REPORT</a>
                         <a></a>
                         <a href="e-services/view-profile"><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>

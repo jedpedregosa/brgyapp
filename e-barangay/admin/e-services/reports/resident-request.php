@@ -99,7 +99,7 @@
         </div>
         <div style = 'margin: 3%; display: block'>
             <span style = 'display: block; margin-bottom: 3%;'><strong>DATE:</strong> " . $report_date . "</span>
-            <span style = 'display: block;'><strong>REPORT NAME:</strong> Resident Request</span>
+            <span style = 'display: block;'><strong>REPORT NAME:</strong> List of Persons with Requested Resident Account</span>
         </div>
 
         <style>

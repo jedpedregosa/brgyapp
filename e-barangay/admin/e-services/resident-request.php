@@ -78,7 +78,7 @@
                         <a href="health-updates">HEALTH UPDATES</a>
                         <a href="covid-info">COVID-19 INFORMATION</a>
                         <a href="barangay-clearance">REQUESTS</a>
-                        <a href="blotter-report">BLOTTER REPORTS</a>
+                        <a href="blotter-report">INCIDENT REPORT</a>
                         <a href="charity-donation">DONATIONS</a>
                         <a href="barangay-profile">PROFILES</a>
                         <a href="../logout">LOG OUT</a>
@@ -90,7 +90,7 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Barangay Requests </span>
+                        <span class = "request-title"> Barangay Request </span>
                     </td>
                     <td class = "col-right">
                         <a class = "request-status" href = "barangay-clearance">New Requests</a>
@@ -128,9 +128,8 @@
                         <th>Email Address</th>
                         <th>Facebook</th>
                         <th>Voter Registration</th>
-                        <th>ID (Front & Back)</th>
+                        <th>Valid ID</th>
                         <th>Selfie</th>
-                        <th>Signatures</th>
                     </thead>
                     <tbody>
     <?php 
@@ -167,10 +166,6 @@
                             <td><input type = "button" class = "button-3" 
                                     onclick = "showImgModal('<?php echo $hash_id; ?>', 3)" 
                                     value = "view selfie">
-                            </td>
-                            <td><input type = "button" class = "button-3" 
-                                    onclick = "showImgModal('<?php echo $hash_id; ?>', 4)" 
-                                    value = "view signatures">
                             </td>
                         </tr>
                     <?php

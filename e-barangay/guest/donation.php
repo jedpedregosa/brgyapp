@@ -99,7 +99,7 @@
                         <a href="e-services/barangay-employment-form">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="e-services/barangay-travel-cert">CERTIFICATE TO TRAVEL</a>
                         <a href="e-services/barangay-proof-res">PROOF OF RESIDENCY</a>
-                        <a href="e-services/barangay-blotter-report">BLOTTER REPORT</a>
+                        <a href="e-services/barangay-blotter-report">INCIDENT REPORT</a>
                         <a></a>
                         <a href="e-services/view-profile"><strong>PROFILE</strong></a>
                         <a href="logout">LOG OUT</a>
@@ -121,6 +121,11 @@
                 <div class = "create-donation">
                     <h3 class = "title">DONATION FORM</h3>
                     <table class = "grid">
+                        <tr>
+                            <td colspan = "4">
+                                <span class = "required-msg">* REQUIRED FIELDS</span>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <span class = "sys-label">P O S I T I O N <span class = "required">*</span></span>
