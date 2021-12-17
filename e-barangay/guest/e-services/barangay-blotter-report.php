@@ -122,7 +122,7 @@
         <form id = "frmBlotter" method = "POST" action = "../controllers/service/submit-blotter-report" enctype="multipart/form-data">
             <div class = "content">
                 <div class = "create-account">
-                    <h3 class = "title">Blotter Report Form</h3>
+                    <h3 class = "title">Incident Report Form</h3>
                     <table class = "main-grid">
                         <tr>
                             <td colspan = "2">
@@ -134,11 +134,11 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">First Name</span>
+                                            <span class = "sys-label">First Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "firstname" minlength = "2" maxlength = "25" required>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Last Name</span>
+                                            <span class = "sys-label">Last Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "lastname" minlength = "2" maxlength = "25" required>
                                         </td>
                                         <td>
@@ -152,23 +152,23 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">Contact Number</span>
+                                            <span class = "sys-label">Contact Number <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "contact" min = "2" maxlength = "11" required>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Email Address</span>
+                                            <span class = "sys-label">Email Address <span class = "required">*</span></span>
                                             <input type = "email" class = "sys-text" name = "email" min = "2" maxlength = "50" required>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Citizenship</span>
+                                            <span class = "sys-label">Citizenship <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "ctzn" min = "2" maxlength = "25" required>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Age</span>
+                                            <span class = "sys-label">Age <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "age" maxlength = "3" required>
                                         </td>
                                         <td class = "col-sm">
-                                            <span class = "sys-label">Sex</span>
+                                            <span class = "sys-label">Sex <span class = "required">*</span></span>
                                             <select class = "sys-text" name = "Sex" required>
                                                 <option value = "M" selected>M</option>
                                                 <option value = "F" selected>F</option>
@@ -183,7 +183,7 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td colspan = "5">
-                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span></span>
+                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span> <span class = "required">*</span></span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -212,11 +212,11 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">Date of Crime (M/D/Y)</span>
+                                            <span class = "sys-label">Date of Incident (M/D/Y) <span class = "required">*</span></span>
                                             <input type = "date" class = "sys-text" name = "dateoc" required>
                                         </td>
                                         <td colspan = "2">
-                                            <span class = "sys-label">Incident take place</span>
+                                            <span class = "sys-label">Incident take place <span class = "required">*</span></span>
                                             <textarea class = "sys-text" name = "incident" required></textarea>
                                         </td>
                                     </tr>
@@ -235,11 +235,11 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">First Name</span>
+                                            <span class = "sys-label">First Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "susfirstname" minlength = "2" maxlength = "25" required>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Last Name</span>
+                                            <span class = "sys-label">Last Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "suslastname" minlength = "2" maxlength = "25" required>
                                         </td>
                                         <td>
@@ -251,11 +251,11 @@
                                             <input class = "sys-text" name = "sussuffix" maxlength = "5">
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Age</span>
+                                            <span class = "sys-label">Age <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "susage" maxlength = "3" required>
                                         </td>
                                         <td class = "col-sm">
-                                            <span class = "sys-label">Sex</span>
+                                            <span class = "sys-label">Sex <span class = "required">*</span></span>
                                             <select class = "sys-text" name = "susSex" required>
                                                 <option value = "M" selected>M</option>
                                                 <option value = "F" selected>F</option>
@@ -270,7 +270,7 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td colspan = "5">
-                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span></span>
+                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span> <span class = "required">*</span></span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -297,7 +297,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan = "5">
-                                            <span><em><strong>Reason for Reporting</strong></em></span>
+                                            <span><em><strong>Reason for Reporting</strong></em> <span class = "required">*</span></span>
                                             <textarea class = "sys-text" name = "reason" required></textarea>
                                         </td>
                                     </tr>
@@ -316,7 +316,7 @@
                             </td>
                             <td>
                                 <label class = "sys-chck-label">
-                                    <input type = "checkbox" id = "chckup" disabled/> ID (Front and back)
+                                    <input type = "checkbox" id = "chckup" disabled/> Valid ID
                                 </label>
                             </td>
                         </tr>

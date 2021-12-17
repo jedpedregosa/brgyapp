@@ -123,7 +123,7 @@
                     <table class = "grid">
                         <tr>
                             <td>
-                                <span class = "sys-label">First Name</span>
+                                <span class = "sys-label">First Name <span class = "required">*</span></span>
                                 <input class = "sys-text" value = "<?php echo ($hasData) ? $res_val["resFname"] : ""; ?>" name = "firstname" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
@@ -131,7 +131,7 @@
                                 <input class = "sys-text" value = "<?php echo ($hasData) ? $res_val["resMname"] : ""; ?>" name = "middlename" maxlength = "25">
                             </td>
                             <td>
-                                <span class = "sys-label">Last Name</span>
+                                <span class = "sys-label">Last Name <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "lastname" value = "<?php echo ($hasData) ? $res_val["resLname"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
@@ -139,7 +139,7 @@
                                 <input class = "sys-text" name = "suffix" value = "<?php echo ($hasData) ? $res_val["resSuffix"] : ""; ?>" maxlength = "5">
                             </td>
                             <td>
-                                <span class = "sys-label">Type of Covid</span>
+                                <span class = "sys-label">Type of Covid <span class = "required">*</span></span>
                                 <select class = "sys-text" name = "covtype" id = "slct_cov" required>
                                     <option value = "" selected disabled>- choose -</option>
                                     <option value = "Symptomatic"> Symptomatic</option>
@@ -149,23 +149,23 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class = "sys-label">Contact Number</span>
+                                <span class = "sys-label">Contact Number <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "contact" value = "<?php echo ($hasData) ? $res_val["resContact"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
-                                <span class = "sys-label">Email Address</span>
+                                <span class = "sys-label">Email Address <span class = "required">*</span></span>
                                 <input class = "sys-text" type = "email" name = "email" value = "<?php echo ($hasData) ? $res_val["resEmail"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
-                                <span class = "sys-label">Citizenship</span>
+                                <span class = "sys-label">Citizenship <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "citizenship" value = "<?php echo ($hasData) ? $res_val["resCitiznshp"] : ""; ?>" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
-                                <span class = "sys-label">Age</span>
+                                <span class = "sys-label">Age <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "age" maxlength = "3" value = "<?php echo ($hasData) ? $res_val["age"] : ""; ?>" required>
                             </td>
                             <td>
-                                <span class = "sys-label">Sex</span>
+                                <span class = "sys-label">Sex <span class = "required">*</span></span>
                                 <select class = "sys-text" name = "sex" required>
                                     <option value = "M" <?php echo ($hasData && $res_val["resSex"] == 'M') ? "selected": (!$hasData) ? "selected": ""; ?>>Male</option>
                                     <option value = "F" <?php echo ($hasData && $res_val["resSex"] == 'F') ? "selected" : ""; ?>>Female</option>
@@ -176,7 +176,7 @@
                     <table class = "main-grid">
                         <tr>
                             <td colspan = "5">
-                                <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span></span>
+                                <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span> <span class = "required">*</span></span>
                             </td>
                         </tr>
                         <tr>

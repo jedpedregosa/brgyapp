@@ -120,15 +120,15 @@
                     <table class = "grid">
                         <tr>
                             <td>
-                                <span class = "sys-label">P O S I T I O N</span>
+                                <span class = "sys-label">P O S I T I O N <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "txtPosition" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
-                                <span class = "sys-label">LAST NAME</span>
+                                <span class = "sys-label">LAST NAME <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "txtLname" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
-                                <span class = "sys-label">First Name</span>
+                                <span class = "sys-label">First Name <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "txtFname" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
@@ -138,11 +138,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class = "sys-label">Email Address</span>
+                                <span class = "sys-label">Email Address <span class = "required">*</span></span>
                                 <input class = "sys-text" type = "email" name = "txtEmail" minlength = "2" maxlength = "25" required>
                             </td>
                             <td>
-                                <span class = "sys-label">Contact Number</span>
+                                <span class = "sys-label">Contact Number <span class = "required">*</span></span>
                                 <input class = "sys-text" name = "txtContact" minlength = "2" maxlength = "25" required>
                             </td>
                             <td colspan = "2"></td>
@@ -151,7 +151,7 @@
                     <table class = "main-grid">
                         <tr>
                             <td colspan = "5">
-                                <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span></span>
+                                <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span> <span class = "required">*</span></span>
                             </td>
                         </tr>
                         <tr>

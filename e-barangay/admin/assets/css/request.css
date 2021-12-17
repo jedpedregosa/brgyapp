@@ -27,8 +27,7 @@
     margin-right: 50px;
 }
 
-.data-wrapper2 {
-    width: 1050px;   
+.data-wrapper2 {  
     overflow-x: scroll;
 }
 
@@ -39,4 +38,24 @@
 .header-title {
     text-align: left;
     font-size: 25px;
+}
+
+.data-grid {
+    max-width: 100%;
+    width: 100%;
+}
+
+.data-grid th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grid {
+    max-width: 100%;    
+    table-layout: fixed;
+}
+
+.col-menu {
+    width: 20%;
 }

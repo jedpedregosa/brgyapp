@@ -99,7 +99,7 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Barangay Requests </span>
+                        <span class = "request-title"> Barangay Request </span>
                     </td>
                     <td class = "col-right">
                         <a class = "request-status <?php echo (!$isComplete) ? 'status-selected' : ''?>" href = "barangay-indigency-request">New Requests</a>

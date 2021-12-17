@@ -99,9 +99,9 @@
         <!-- NAVIGATION PANEL -->
         <div class="navbar">
             <div class = "nav-button-group">
-                <a href="home"> H O M E </a>
-                <a href="about"> A B O U T </a>
-                <a href="guide"> U S E R - G U I D E </a>
+                <a href="../home"> H O M E </a>
+                <a href="../about"> A B O U T </a>
+                <a href="../guide"> U S E R - G U I D E </a>
     <?php 
         if($is_admn_lgn) {
             ?>

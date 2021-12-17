@@ -1,12 +1,10 @@
 // File Upload Checklists
 let chck_id = document.getElementById("chck_idcard");
 let chck_sf = document.getElementById("chck_selfie");
-let chck_sg = document.getElementById("chck_sig");
 
 // Upload Inputs
 let uload_id = document.getElementById("upload_idcard");
 let uload_sf = document.getElementById("upload_selfie");
-let uload_sg = document.getElementById("upload_sig");
 let uload_dp = document.getElementById("upload_dp");
 
 // Upload Button
@@ -20,9 +18,9 @@ let valmsg_uname = document.getElementById("uname-msg");
 let valmsg_email = document.getElementById("email-msg");
 let valmsg_cntct = document.getElementById("cntct-msg");
 
-var uload_btn_names = ["ID (Front & Back)", "Selfie", "Specimen Signature"];
-var all_uploads = [uload_id, uload_sf, uload_sg];
-var checklist = [chck_id, chck_sf, chck_sg];
+var uload_btn_names = ["Valid ID", "Selfie"];
+var all_uploads = [uload_id, uload_sf];
+var checklist = [chck_id, chck_sf];
 
 var isPhone_valid = false;
 var isUsername_valid = false;

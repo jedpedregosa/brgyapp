@@ -16,17 +16,22 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(228, 228, 228);
     text-align: left;
-    overflow-y: auto;
+    padding: 0.5%;
 }
 .card-history-content {
     margin: 5%; 
     text-align: justify;
-    height: 300px;
+    height: 400px;
+    padding-right: 10px;
+    overflow-y: auto;   
 }
 .card-history-text {
     font-size: 15px;
     padding-bottom: 5%;
+    margin-bottom: 5%;
+    
 }
+
 
 .card-info {
     margin: 1%;
@@ -113,7 +118,7 @@
 .res-sum-title {
     font-weight: bold;
     color:#000066;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .grid-res-sum {
@@ -130,8 +135,8 @@
 
 .card-sum-title {
     font-weight: bold;
-    font-size: 12px;
-    padding-top: 5px;
+    font-size: 16px;
+    padding-top: 9px;
 }
 
 .grid-card-sum {
@@ -141,12 +146,12 @@
 
 .card-value {
     font-weight: bold;
-    font-size: 50px;
-    width: 70%;
+    font-size: 60px;
+    width: 95%;
 }
 
 .card-icon {
-    font-size: 40px;
+    font-size: 45px;
     width: 30%;
 }
 
@@ -157,7 +162,7 @@
 
 .right-col {
     text-align: left;
-    padding-right: 120px;
+    padding-right: 100px;
 }
 
 .mod {

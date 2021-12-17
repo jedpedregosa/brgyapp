@@ -10,6 +10,35 @@
     margin-bottom: 50px;
 }
 
+.img-modal {
+    text-align: center;
+    overflow-y: auto;
+}
+
+#img_caption {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 90%;
+    text-align: left;
+}
+
 .img-modal-content {
     max-width: 1100px;
+}
+
+.next-button {
+    font-size: 50px;
+    color: white;
+}
+
+.next-button:hover {
+    cursor: pointer;
+    color: rgb(197, 194, 194);
+}
+
+.img-modal-grid {
+    width: 95%;
+}
+
+.img-modal-grid td {
+    text-align: center;
 }

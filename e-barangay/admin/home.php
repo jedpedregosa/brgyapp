@@ -103,7 +103,7 @@
     <!-- /Navigation Bar/ -->
     <!-- Content -->
         <div class = "content">
-            <table style="width:100%">
+            <table class = "home-grid">
                 <tr>
                     <!-- COVID UPDATES -->
                     <td>
@@ -129,7 +129,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-error">ACTIVE</span>
                                                 </span>
-                                                <span class = "card-val"><?php echo ($covid_info) ? $covid_data["active"] + (int)$covid_info["active"] : "Error";?></span>
+                                                <span class = "card-val text-error"><?php echo ($covid_info) ? $covid_data["active"] + (int)$covid_info["active"] : "Error";?></span>
                                             </div>  
                                         </div>
                                     </td>
@@ -141,7 +141,7 @@
                                                 <span class = "card-sub">
                                                 <span class = "text-success">RECOVERED</span>
                                                 </span>
-                                                <span class = "card-val"><span class = "text-success"><?php echo ($covid_info) ? $covid_data["recovered"] + (int)$covid_info["recovered"] : "Error";?></span></span>
+                                                <span class = "card-val text-success"><span class = "text-success"><?php echo ($covid_info) ? $covid_data["recovered"] + (int)$covid_info["recovered"] : "Error";?></span></span>
                                             </div>
                                         </div>
                                     </td>
@@ -151,7 +151,7 @@
                                                 <span class = "card-sub">
                                                     <span class = "text-info">DEATH</span>
                                                 </span>
-                                                <span class = "card-val"><?php echo ($covid_info) ? $covid_data["death"] + (int)$covid_info["death"] : "Error";?></span>
+                                                <span class = "card-val text-info"><?php echo ($covid_info) ? $covid_data["death"] + (int)$covid_info["death"] : "Error";?></span>
                                             </div>
                                         </div>
                                     </td>
@@ -163,20 +163,20 @@
                     <!-- SLIDESHOW -->
                     <td class = "cl-slideshow"> 
                         <div class="slideshow-container">
-                            <div class="mySlides fade">
-                                <img src="../global_assets/img/slideshows/slideshow-1.jpg" style="width:50%">
+                            <div class="slide-img fade">
+                                <img src="../global_assets/img/slideshows/slideshow-1.jpg">
                             </div>
-                            <div class="mySlides fade">
-                                <img src="../global_assets/img/slideshows/slideshow-2.jpg" style="width:50%">
+                            <div class="slide-img fade">
+                                <img src="../global_assets/img/slideshows/slideshow-2.jpg">
                             </div>
-                            <div class="mySlides fade">
-                                <img src="../global_assets/img/slideshows/slideshow-3.jpg" style="width:50%">
+                            <div class="slide-img fade">
+                                <img src="../global_assets/img/slideshows/slideshow-3.jpg">
                             </div>
-                            <div class="mySlides fade">
-                                <img src="../global_assets/img/slideshows/slideshow-4.jpg" style="width:50%">
+                            <div class="slide-img fade">
+                                <img src="../global_assets/img/slideshows/slideshow-4.jpg">
                             </div>
-                            <div class="mySlides fade">
-                                <img src="../global_assets/img/slideshows/slideshow-5.jpg" style="width:50%">
+                            <div class="slide-img fade">
+                                <img src="../global_assets/img/slideshows/slideshow-5.jpg">
                             </div>
                             <br>
                             <div style="text-align:center">

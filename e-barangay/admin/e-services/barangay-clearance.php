@@ -99,7 +99,7 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Barangay Requests </span>
+                        <span class = "request-title"> Barangay Request </span>
                     </td>
                     <td class = "col-right">
                         <a class = "request-status <?php echo (!$isComplete) ? 'status-selected' : ''?>" href = "barangay-clearance">New Requests</a>
@@ -152,7 +152,7 @@
                             <input type = "button" onclick = "deleteClick(9)" value = "DELETE">
                         </div>
                         <div class = "data-wrapper2">
-                            <table class = "data-grid" cellspacing = "0">
+                            <table class = "data-grid" width = "100%" cellspacing = "0">
                                 <thead>
                                     <tr>
                                         <th colspan = "19"  class = "header-title">

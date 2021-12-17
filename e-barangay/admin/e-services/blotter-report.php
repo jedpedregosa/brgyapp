@@ -103,7 +103,7 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Blotter Reports </span>
+                        <span class = "request-title"> Incident Report </span>
                     </td>
                     <td class = "col-right">
                         <div>
@@ -140,8 +140,8 @@
                             <th></th>
                             <th>Date</th>
                             <th colspan = "14">Complainant Information</th>
-                            <th colspan = "2">CRIME</th>
-                            <th colspan = "9">Suspect Information</th>
+                            <th colspan = "2">Violation</th>
+                            <th colspan = "9">Defendant Information</th>
                         </tr>
                         <tr>
                             <th></th>

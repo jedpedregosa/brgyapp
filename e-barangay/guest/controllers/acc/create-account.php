@@ -25,8 +25,7 @@
 
     $file_result = isset($_FILES["profilePic"])
         && isset($_FILES["idCardPic"])
-        && isset($_FILES["selfiePic"])
-        && isset($_FILES["sigPic"]);
+        && isset($_FILES["selfiePic"]);
 
     if(!$post_result && !$file_result) {
         goPrev();
@@ -35,8 +34,7 @@
     $all_files = [
         $_FILES["profilePic"],
         $_FILES["idCardPic"],
-        $_FILES["selfiePic"],
-        $_FILES["sigPic"]
+        $_FILES["selfiePic"]
     ];
 
     $are_files_valid = true;
@@ -101,13 +99,11 @@
     $photo_file = tempnam_sfx($file_dir, "FILE_PHOTO");
     $idcard_file = tempnam_sfx($file_dir, "FILE_IDFBACK");
     $selfie_file = tempnam_sfx($file_dir, "FILE_SLFIE"); 
-    $sig_file = tempnam_sfx($file_dir, "FILE_SIG");
 
     /* Upload the file to a secure directory with the new name and extension */
     $file_upload_success = move_uploaded_file($all_files[0]['tmp_name'], $photo_file)
         && move_uploaded_file($all_files[1]['tmp_name'], $idcard_file)
-        && move_uploaded_file($all_files[2]['tmp_name'], $selfie_file)
-        && move_uploaded_file($all_files[3]['tmp_name'], $sig_file);
+        && move_uploaded_file($all_files[2]['tmp_name'], $selfie_file);
 
     $res_details_stmt = "INSERT INTO tblResident (resUname, resFname, resMname, resLname, resSuffix, resCivStat, 
         resCitiznshp, resBdate, resSex, resHouseNum, resStName, resContact, resEmail, resFbName, resVoter, isPWD, sysTime) 

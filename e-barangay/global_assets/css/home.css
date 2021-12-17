@@ -1,9 +1,7 @@
 div.ex1 {
   background-color: rgb(226, 226, 226);
   height: 100%;
-  width: 500px;
-  overflow: auto;
-  margin-top:10px;
+  padding-top: 10px;
   margin-left:5px;
   padding-left: 2em;
   padding-right: 2em;
@@ -14,12 +12,9 @@ div.ex1 {
 }
 
 .ex2 {
-  height: 400px;
-  width: 550px;
-  overflow: auto;
+  min-height: 400px;
   margin-top:10px;
   margin-left:5px;
-  margin-bottom: 20px;
   padding-left: 1em;
   padding-right: 1em;
   padding-bottom: 1em;
@@ -28,6 +23,20 @@ div.ex1 {
   position: center;
   border: 2px solid #000066;
   text-align: center;
+}
+
+.home-grid td {
+  width: 50%;
+}
+
+.home-grid {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.slide-img img {
+  width: 500px;
+  height: 300px;
 }
 
 div.fixed{
@@ -124,15 +133,15 @@ th, td {
   font-size: 25px;
 }
 
-.card-sub .text-error {
+.card-val.text-error {
   color: rgb(153, 0, 0);
 }
 
-.card-sub .text-success {
+.card-val.text-success {
   color: rgb(2, 110, 2);
 }
 
-.card-sub .text-info {
+.card-val.text-info {
   color: rgb(0, 0, 80);
 }
 
@@ -173,7 +182,7 @@ th, td {
 
 .icon-phone {
   display: block;
-  font-size: 75px;
+  font-size: 65px;
 }
 
 .phone-title {

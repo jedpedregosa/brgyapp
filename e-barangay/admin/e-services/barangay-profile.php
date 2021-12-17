@@ -137,12 +137,12 @@
             <table class = "grid">
                 <tr>
                     <td>
-                        <span class = "request-title"> Brgy Residents</span>
+                        <span class = "request-title"> Barangay Resident </span>
                     </td>
                     <td class = "col-right">
                         <div>
                             <input class = "search-field" placeholder = "Search Residents..." id = "txtSearch" onkeyup = "cardSearch()"/>
-                            <span id = "settings"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                            <span id = "settings"><i class="fa fa-cog" aria-hidden="true"></i></span>
                         </div>
                     </td>
                 </tr>

@@ -100,46 +100,46 @@
             <table class = "main-grid">
                 <tr>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-1.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-1.png" onclick = "showImgModal(this.src, 0)">
                     </td>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-2.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-2.png" onclick = "showImgModal(this.src, 1)">
                     </td>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-3.png" onclick = "showImgModal(this.src)">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-4.png" onclick = "showImgModal(this.src)">
-                    </td>
-                    <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-5.png" onclick = "showImgModal(this.src)">
-                    </td>
-                    <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-6.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-3.png" onclick = "showImgModal(this.src, 2)">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-7.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-4.png" onclick = "showImgModal(this.src, 3)">
                     </td>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-8.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-5.png" onclick = "showImgModal(this.src, 4)">
                     </td>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-9.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-6.png" onclick = "showImgModal(this.src, 5)">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-10.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-7.png" onclick = "showImgModal(this.src, 6)">
                     </td>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-11.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-8.png" onclick = "showImgModal(this.src, 7)">
                     </td>
                     <td>
-                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-12.png" onclick = "showImgModal(this.src)">
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-9.png" onclick = "showImgModal(this.src, 8)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-10.png" onclick = "showImgModal(this.src, 9)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-11.png" onclick = "showImgModal(this.src, 10)">
+                    </td>
+                    <td>
+                        <img class = "post-img" src = "../global_assets/img/guide/user-guide-12.png" onclick = "showImgModal(this.src, 11)">
                     </td>
                 </tr>
             </table>
@@ -150,9 +150,24 @@
             <!-- The Close Button -->
             <span class="img-close" id = "img-close">&times;</span>
 
-            <!-- Modal Content (The Image) -->
-            <img class="img-modal-content" id="sample_photo">
-
+            <table class = "img-modal-grid">
+                <tr>
+                    <td>
+                        <span class = "next-button" id = "img-prev">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <!-- Modal Content (The Image) -->
+                        <img class="img-modal-content" id="sample_photo">
+                    </td>
+                    <td>
+                        <span class = "next-button" id = "img-next">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </td>
+                </tr>
+            </table>
             <!-- Modal Caption (Image Text) -->
             <div id="img_caption"></div>
         </div>

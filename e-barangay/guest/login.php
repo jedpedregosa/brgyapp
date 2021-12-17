@@ -90,17 +90,20 @@
     <!-- /Navigation Bar/ -->
     <!-- Content -->
         <div class = "content">
-            <div class = "msg">
-                <p class = "msg-header msg-italic">Data Privacy Notice</p>
-                <span class = "msg-info msg-italic msg-sm">
-                    Data Privacy Law of 2012 (RA10173): Adhere to Data Privacy Law of 2012 (RA10173) the information provided by the 
-                    people of Barangay 108 Zone 12 is strictly for this website only. Details are only accessible by the Barangay 
-                    Official Admin for their documentation. We are committed to protect the confidentiality of the personal information
-                     you will provide and we are bound to comply with Data Privacy Act of 2012 (RA10173). By signing up in this website,
-                      you are consenting to our collection and use of information in pursuant with this Privacy Notice.
-                </span>
+            <div class = "msg-wrapper">
+                <div class = "msg">
+                    <p class = "msg-header">Data Privacy Notice</p>
+                    <span class = "msg-info msg-sm">
+                        Data Privacy Law of 2012 (RA10173): Adhere to Data Privacy Law of 2012 (RA10173) the information provided by the 
+                        people of Barangay 108 Zone 12 is strictly for this website only. Details are only accessible by the Barangay 
+                        Official Admin for their documentation. We are committed to protect the confidentiality of the personal information
+                        you will provide and we are bound to comply with Data Privacy Act of 2012 (RA10173). By signing up in this website,
+                        you are consenting to our collection and use of information in pursuant with this Privacy Notice.
+                    </span>
+                </div>
             </div>
             <div class = "container-login">
+                <h3 class = "title">USER'S LOGIN</h3>
                 <form action = "controllers/acc/check-auth" method = "POST">
                     <div class = "container-field">
                         <input type = "text" class = "sys-text" name = "lgnUname" placeholder = "Email / Username / Contact Number" max = "40" required>

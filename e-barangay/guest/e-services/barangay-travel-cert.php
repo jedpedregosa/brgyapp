@@ -134,15 +134,15 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">First Name</span>
+                                            <span class = "sys-label">First Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Fname" minlength = "2" maxlength = "25" required>
                                         </td>
                                         <td>
                                             <span class = "sys-label">Middle Name</span>
-                                            <input class = "sys-text" name = "Mname" minlength = "2" maxlength = "25" required>
+                                            <input class = "sys-text" name = "Mname" minlength = "2" maxlength = "25">
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Last Name</span>
+                                            <span class = "sys-label">Last Name <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Lname" minlength = "2" maxlength = "25" required>
                                         </td>
                                         <td class = "col-sm">
@@ -152,7 +152,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">Civil Status</span>
+                                            <span class = "sys-label">Civil Status <span class = "required">*</span></span>
                                             <select class = "sys-text" name = "CivStat" required>
                                                 <option value = "1"> Single</option>
                                                 <option value = "2"> Married</option>
@@ -162,15 +162,15 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Citizenship</span>
+                                            <span class = "sys-label">Citizenship <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Ctznshp" min = "2" maxlength = "25" required>
                                         </td>
                                         <td>
-                                            <span class = "sys-label">Birthdate <span class = "sys-label sub-lbl">(Month, Day, Year)</span></span>
+                                            <span class = "sys-label">Birthdate <span class = "sys-label sub-lbl">(Month, Day, Year)</span> <span class = "required">*</span></span>
                                             <input type = "date" class = "sys-text" name = "Bdate" required>
                                         </td>
                                         <td class = "col-sm">
-                                            <span class = "sys-label">Sex</span>
+                                            <span class = "sys-label">Sex <span class = "required">*</span></span>
                                             <select class = "sys-text" name = "Sex" required>
                                                 <option value = "M" selected>M</option>
                                                 <option value = "F" selected>F</option>
@@ -185,7 +185,7 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td colspan = "5">
-                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span></span>
+                                            <span class = "sys-label">Address <span class = "sys-label sub-lbl">(House Number, Street Name, Barangay, Zone, City)</span> <span class = "required">*</span></span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -214,12 +214,12 @@
                                 <table class = "main-grid">
                                     <tr>
                                         <td>
-                                            <span class = "sys-label">Contact Number</span>
+                                            <span class = "sys-label">Contact Number <span class = "required">*</span></span>
                                             <input class = "sys-text" name = "Contact" maxlength = "11" required>
                                             <span class = "validate-msg" id = "cntct-msg"></span>
                                         </td>
                                         <td colspan = "2">
-                                            <span class = "sys-label">Email Address</span>
+                                            <span class = "sys-label">Email Address <span class = "required">*</span></span>
                                             <input type = "email" class = "sys-text" name = "Email" maxlength = "50" required>
                                             <span class = "validate-msg" id = "email-msg"></span>
                                         </td>
@@ -304,7 +304,7 @@
                                 <input type = "button" value = "Upload File" id = "btn_upload">
                                 <input type = "file" id = "upload_idcard" class ="hidden-upload" name = "idCardPic" onchange = "checkUpload(this)" accept=".jpg,.png">
                                 <label class = "sys-chck-label">
-                                        <input type = "checkbox" id = "chck_id" disabled> ID (Front and back)
+                                        <input type = "checkbox" id = "chck_id" disabled> Valid ID
                                 </label>
                                 <span class = "validate-msg" id = "file-upload-msg"></span>
                             </td>

@@ -165,7 +165,7 @@
             <div class = "content">
                 <div class = "create-account">
                     <div class = "col-right">
-                        <span id = "settings"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                        <span id = "settings"><i class="fa fa-cog" aria-hidden="true"></i></span>
                     </div>
                     <h3 class = "title">R E S I D E N T &ensp; P R O F I L E</h3>
                     <table class = "grid">
