@@ -168,6 +168,9 @@
             <!-- Modal Caption (Image Text) -->
             <div id="img_caption"></div>
         </div>
+        <div class = "main-footer">
+            <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
+        </div>
     </body>
     <script src="../global_assets/js/datetime.js"></script>
     <script src="../global_assets/js/guide.js"></script>

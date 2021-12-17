@@ -78,4 +78,22 @@
   width: 100%;
   text-align: left;
   margin-bottom: 20px;
+  margin-left: 0px;
+}
+
+.mini-grid {
+  width: 100%;
+}
+
+.mini-grid td {
+  vertical-align: middle;
+  text-align: right;
+}
+
+.settings-button {
+  width: 5%;
+}
+
+.search-field {
+  margin-bottom: 0px;
 }

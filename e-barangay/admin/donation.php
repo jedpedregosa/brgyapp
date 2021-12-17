@@ -120,8 +120,8 @@
                     <table class = "grid">
                         <tr>
                             <td>
-                                <span class = "sys-label">P O S I T I O N <span class = "required">*</span></span>
-                                <input class = "sys-text" name = "txtPosition" minlength = "2" maxlength = "25" required>
+                                <span class = "sys-label">P O S I T I O N </span>
+                                <input class = "sys-text" name = "txtPosition" minlength = "2" maxlength = "25">
                             </td>
                             <td>
                                 <span class = "sys-label">LAST NAME <span class = "required">*</span></span>

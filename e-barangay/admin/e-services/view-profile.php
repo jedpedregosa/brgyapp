@@ -242,10 +242,16 @@
                             <td> 
                                 <input type = "checkbox"  id = "chck_idcard" disabled checked>
                                 <label for = "chck_idcard" class = "sys-chck-label">View ID</label>
+                                <input type = "button" class = "button-3" 
+                                                onclick = "showImgModal('<?php echo $hash_id; ?>', 2)" 
+                                                value = "view photo">
                             </td>
                             <td> 
                                 <input type = "checkbox" id = "chck_selfie" disabled checked>
                                 <label for = "chck_selfie" class = "sys-chck-label">Selfie</label>
+                                <input type = "button" class = "button-3" 
+                                                onclick = "showImgModal('<?php echo $hash_id; ?>', 3)" 
+                                                value = "view photo">
                             </td>
                         </tr>
                     </table>
@@ -256,11 +262,24 @@
             </div>
         </form>
     <!-- /Content/ -->
+    <!-- The Modal -->
+        <div id="res_img_modal" class="img-modal">
+
+            <!-- The Close Button -->
+            <span class="img-close">&times;</span>
+
+            <!-- Modal Content (The Image) -->
+            <img class="img-modal-content" id="sample_photo">
+
+            <!-- Modal Caption (Image Text) -->
+            <div id="img_caption"></div>
+        </div>
         <div class = "main-footer">
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
         </div>
     </body>
     <script src="../../global_assets/js/datetime.js"></script>
+    <script src="../assets/js/request.js"></script>
 
     <?php 
         if($isSubmit) {

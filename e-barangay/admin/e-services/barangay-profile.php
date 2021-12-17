@@ -141,8 +141,16 @@
                     </td>
                     <td class = "col-right">
                         <div>
-                            <input class = "search-field" placeholder = "Search Residents..." id = "txtSearch" onkeyup = "cardSearch()"/>
-                            <span id = "settings"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                            <table class = "mini-grid">
+                                <tr>
+                                    <td>
+                                        <input class = "search-field" placeholder = "Search Residents..." id = "txtSearch" onkeyup = "cardSearch()"/>
+                                    </td>
+                                    <td class = "settings-button">
+                                        <span id = "settings"><i class="fa fa-cog" aria-hidden="true"></i></span>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </td>
                 </tr>

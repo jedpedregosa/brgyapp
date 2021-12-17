@@ -121,7 +121,7 @@
                         <a href="barangay-burial-request">BURIAL CERTIFICATION</a>
                         <a href="barangay-employment-request">CERTIFICATE OF EMPLOYMENT</a>
                         <a href="barangay-travel-request">CERTIFICATE TO TRAVEL</a>
-                        <a href="barangay-residency-request"  class = "module-selected"">PROOF OF RESIDENCY</a>
+                        <a href="barangay-residency-request"  class = "module-selected">PROOF OF RESIDENCY</a>
                     <?php
                 } else {
                     ?>
