@@ -119,6 +119,11 @@
                     <h3 class = "title">DONATION FORM</h3>
                     <table class = "grid">
                         <tr>
+                            <td colspan = "4">
+                                <span class = "required-msg">* REQUIRED FIELDS</span>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>
                                 <span class = "sys-label">P O S I T I O N </span>
                                 <input class = "sys-text" name = "txtPosition" minlength = "2" maxlength = "25">
