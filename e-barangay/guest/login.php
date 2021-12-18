@@ -89,7 +89,7 @@
         </div>
     <!-- /Navigation Bar/ -->
     <!-- Content -->
-        <div class = "content">
+        <div class = "content adjust">
             <div class = "msg-wrapper">
                 <div class = "msg">
                     <p class = "msg-header">Data Privacy Notice</p>
@@ -125,7 +125,7 @@
             </div>
         </div>
     <!-- /Content/ -->
-        <div class = "main-footer">
+        <div class = "main-footer foot-adjust">
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
         </div>
     </body>

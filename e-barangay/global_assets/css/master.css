@@ -223,6 +223,18 @@ img {
     /* But also accounting for potential margin-bottom of last child */
     margin-bottom: -10px;
 }
+
+.content.adjust {
+  min-height: 0;
+}
+
+.main-footer.foot-adjust {
+  min-width: 99%;
+  position: fixed;
+  bottom: 0;
+  left:0;
+}
+
 .push {
   height: 10px;
 }
@@ -252,6 +264,7 @@ img {
 .copyright {
     font-style: normal;
 }
+
 .footer-info {
     display: block;
     font-style: italic;
@@ -620,7 +633,7 @@ img {
 .msg {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 17px;
-  width: 55%;
+  width: 70%;
   margin: 0 auto;
   color: #757575;
 }

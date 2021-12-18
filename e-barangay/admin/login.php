@@ -89,7 +89,7 @@
         </div>
     <!-- /Navigation Bar/ -->
     <!-- Content -->
-        <div class = "content">
+        <div class = "content adjust">
             <div class = "container-login">
                 <h3 class = "title">ADMIN'S LOGIN</h3>
                 <form action = "controllers/admin/check-auth" method = "POST">
@@ -112,7 +112,7 @@
             </div>
         </div>
     <!-- /Content/ -->
-        <div class = "main-footer">
+        <div class = "main-footer foot-adjust">
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
         </div>
     </body>

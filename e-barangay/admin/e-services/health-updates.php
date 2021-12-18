@@ -94,7 +94,7 @@
                 </div>
             </div>  
         </div>
-        <div class = "content">
+        <div class = "content adjust">
             <form id = "frmUpdate" action = "../controllers/service/create-post?type=hlthpdt" method = "POST" enctype="multipart/form-data" >
                 <div class="editor-wrapper">
                     <div id="editor-container"></div>
@@ -125,7 +125,7 @@
             </form>
         </div>
     <!-- /Navigation Bar/ -->
-        <div class = "main-footer">
+        <div class = "main-footer foot-adjust">
             <span class = "footer-info"><span class = "copyright">Ⓒ</span> 2021 - Manila Tytana Colleges</span>
         </div>
     </body>

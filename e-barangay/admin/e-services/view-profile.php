@@ -132,7 +132,7 @@
     <!-- /Navigation Bar/ -->
     <!-- Content -->
         <form id = "frmAcc" method = "POST" action = "controllers/acc/create-account" enctype="multipart/form-data">
-            <div class = "content">
+            <div class = "content profile-adjust">
                 <div class = "create-account">
                     <div class = "push-left">
                         <span class = "request-title"> Barangay Resident </span>

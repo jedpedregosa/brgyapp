@@ -72,6 +72,7 @@
 
         <link rel="stylesheet" href="../../global_assets/css/master.css">
         <link rel="stylesheet" href="../../global_assets/css/sign-up.css">
+        <link rel="stylesheet" href="../assets/css/profile.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
@@ -162,7 +163,7 @@
     <!-- /Navigation Bar/ -->
     <!-- Content -->
         <form id = "frm_acc" method = "POST" action = "../controllers/acc/update-account" enctype="multipart/form-data">
-            <div class = "content">
+            <div class = "content profile-adjust">
                 <div class = "create-account">
                     <div class = "col-right">
                         <span id = "settings"><i class="fa fa-cog" aria-hidden="true"></i></span>
