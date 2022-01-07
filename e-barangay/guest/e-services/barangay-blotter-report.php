@@ -221,7 +221,7 @@
                                             <input type = "date" class = "sys-text" name = "dateoc" required>
                                         </td>
                                         <td colspan = "2">
-                                            <span class = "sys-label">Incident take place <span class = "required">*</span></span>
+                                            <span class = "sys-label">Incident Place <span class = "required">*</span></span>
                                             <textarea class = "sys-text" name = "incident" required></textarea>
                                         </td>
                                     </tr>

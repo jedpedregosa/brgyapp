@@ -157,7 +157,7 @@
                             <th>Sex</th>
                             <th colspan = "5">Address <em>(House Number, Street Name, Barangay, Zone, City)</em></th>
                             <th>Date of Incident</th>
-                            <th>Incident take place</th>
+                            <th>Incident Place</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Alias</th>
